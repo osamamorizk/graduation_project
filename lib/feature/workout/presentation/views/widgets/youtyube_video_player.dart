@@ -37,6 +37,10 @@ class YouTubeVideoPlayerState extends State<YouTubeVideoPlayer> {
   @override
   Widget build(BuildContext context) {
     return YoutubePlayer(
+      onEnded: (metaData) {
+        _controller.seekTo(const Duration(seconds: 0));
+        _controller.play();
+      },
       controller: _controller,
       showVideoProgressIndicator: true,
       progressIndicatorColor: ColorsManger.darkBlue,
