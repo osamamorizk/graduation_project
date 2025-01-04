@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/functions/show_comming_soon_dialog.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
@@ -19,7 +20,7 @@ class HomeView extends StatelessWidget {
           scrolledUnderElevation: 0,
           titleSpacing: 0,
           backgroundColor: Colors.white,
-          leading: Image.asset(Assets.imagesTempIcon),
+          leading: SvgPicture.asset(Assets.svgsAppIcon),
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

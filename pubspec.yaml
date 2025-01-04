@@ -36,6 +36,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   flutter_native_splash: ^2.4.3
   flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.0.16
   fluttertoast: ^8.2.8
   gal: ^2.3.0
   persistent_bottom_nav_bar: ^6.2.1
@@ -66,6 +67,9 @@ flutter:
     - assets/images/exercises/
     - assets/icons/
     - assets/icons/profile/
+    - assets/svgs/bottom_bar/
+    - assets/svgs/profile/
+    - assets/svgs/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
@@ -35,9 +36,9 @@ class ChanllengItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Image.asset(
-                    Assets.iconsCalender,
-                    scale: .6,
+                  SvgPicture.asset(
+                    height: 24,
+                    Assets.svgsCalender,
                   ),
                   Text(
                     '30 days  |  ',

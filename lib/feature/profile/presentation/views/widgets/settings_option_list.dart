@@ -13,30 +13,30 @@ class SettingstOptionsList extends StatelessWidget {
       children: [
         verticalSpace(60),
         ProfileOptionItem(
-          image: Assets.iconsProfileReminderTime,
+          image: Assets.svgsProfileReminder,
           text: 'My Reminders',
           onTap: () => showCommingSoonDialog(context),
         ),
         verticalSpace(32),
         const ProfileOptionItem(
-          image: Assets.iconsProfileMyData,
+          image: Assets.svgsProfileChangePassword,
           text: 'Change Password',
         ),
         verticalSpace(32),
         ProfileOptionItem(
-          image: Assets.iconsProfileShare,
+          image: Assets.svgsProfileContactUs,
           text: 'Notifications',
           onTap: () => showCommingSoonDialog(context),
         ),
         verticalSpace(32),
         ProfileOptionItem(
-          image: Assets.iconsProfilePeople,
+          image: Assets.svgsProfileDataPrivacy,
           text: 'Privacy & Data',
           onTap: () => showCommingSoonDialog(context),
         ),
         verticalSpace(32),
         const ProfileOptionItem(
-          image: Assets.iconsProfileLogOut,
+          image: Assets.svgsProfileLogOut,
           text: 'Clear History',
         ),
       ],

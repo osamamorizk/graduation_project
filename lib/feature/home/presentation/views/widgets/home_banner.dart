@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/bannner_text_button.dart';
@@ -28,8 +29,10 @@ class HomeBanner extends StatelessWidget {
           ),
           Positioned(
             bottom: 1,
-            right: -15,
-            child: Image.asset(Assets.imagesManHomeBanner),
+            right: 1,
+            child: SvgPicture.asset(
+              Assets.svgsBannerMan,
+            ),
           ),
         ],
       ),

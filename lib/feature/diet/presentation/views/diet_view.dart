@@ -16,6 +16,7 @@ class DietView extends StatelessWidget {
       length: taps.length,
       child: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 45,
           title: Text(
             'Diet',
             style: TextStyles.font22BlueBold,

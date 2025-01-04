@@ -71,9 +71,7 @@ class _CameraWindowState extends State<CameraWindow>
           ? const Center(child: CircularProgressIndicator())
           : Stack(
               children: [
-                SizedBox.expand(
-                  child: CameraPreview(cameraController!),
-                ),
+                SizedBox.expand(child: CameraPreview(cameraController!)),
                 Column(
                   children: [
                     Padding(

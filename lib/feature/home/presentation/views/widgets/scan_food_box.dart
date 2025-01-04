@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
@@ -28,9 +29,9 @@ class ScanFoodBox extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              Assets.iconsCameraIcon,
-              color: Colors.white,
+            SvgPicture.asset(
+              height: 27,
+              Assets.svgsCameraIcon,
             ),
             verticalSpace(12),
             Text(

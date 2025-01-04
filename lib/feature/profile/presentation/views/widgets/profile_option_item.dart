@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 
@@ -34,9 +35,8 @@ class ProfileOptionItem extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Image.asset(
+            SvgPicture.asset(
               image,
-              color: ColorsManger.darkBlue,
             ),
             const SizedBox(width: 16),
             Text(

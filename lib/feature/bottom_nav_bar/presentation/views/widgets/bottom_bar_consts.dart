@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/feature/diet/presentation/views/diet_view.dart';
@@ -12,52 +13,47 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 List<PersistentBottomNavBarItem> navBarsItems() {
   return [
     PersistentBottomNavBarItem(
-      icon: Image.asset(
-        Assets.iconsActiveHome,
-        scale: .9,
+      icon: SvgPicture.asset(
+        Assets.svgsBottomBarActiveHome,
       ),
-      inactiveIcon: Image.asset(
-        Assets.iconsInactiveHome,
-      ),
-      activeColorPrimary: ColorsManger.darkBlue,
-    ),
-    PersistentBottomNavBarItem(
-      icon: Image.asset(
-        Assets.iconsActiveDiet,
-        scale: .9,
-      ),
-      inactiveIcon: Image.asset(
-        Assets.iconsInactiveDiet,
+      inactiveIcon: SvgPicture.asset(
+        Assets.svgsBottomBarInactiveHome,
       ),
       activeColorPrimary: ColorsManger.darkBlue,
     ),
     PersistentBottomNavBarItem(
-      icon: Image.asset(
-        Assets.iconsActiveScan,
-        scale: .9,
+      icon: SvgPicture.asset(
+        Assets.svgsBottomBarActiveDiet,
       ),
-      inactiveIcon: Image.asset(
-        Assets.iconsInactiveScan,
-      ),
-      activeColorPrimary: ColorsManger.darkBlue,
-    ),
-    PersistentBottomNavBarItem(
-      icon: Image.asset(
-        Assets.iconsActiveWorkout,
-        scale: .9,
-      ),
-      inactiveIcon: Image.asset(
-        Assets.iconsInactiveWorkout,
+      inactiveIcon: SvgPicture.asset(
+        Assets.svgsBottomBarInactiveDiet,
       ),
       activeColorPrimary: ColorsManger.darkBlue,
     ),
     PersistentBottomNavBarItem(
-      icon: Image.asset(
-        Assets.iconsActiveProfile,
-        scale: .9,
+      icon: SvgPicture.asset(
+        Assets.svgsBottomBarActiveScan,
       ),
-      inactiveIcon: Image.asset(
-        Assets.iconsInactiveProfile,
+      inactiveIcon: SvgPicture.asset(
+        Assets.svgsBottomBarInactiveScan,
+      ),
+      activeColorPrimary: ColorsManger.darkBlue,
+    ),
+    PersistentBottomNavBarItem(
+      icon: SvgPicture.asset(
+        Assets.svgsBottomBarActiveWorkouts,
+      ),
+      inactiveIcon: SvgPicture.asset(
+        Assets.svgsBottomBarInactiveWorkouts,
+      ),
+      activeColorPrimary: ColorsManger.darkBlue,
+    ),
+    PersistentBottomNavBarItem(
+      icon: SvgPicture.asset(
+        Assets.svgsBottomBarActiveProfile,
+      ),
+      inactiveIcon: SvgPicture.asset(
+        Assets.svgsBottomBarInactiveProfile,
       ),
       activeColorPrimary: ColorsManger.darkBlue,
     ),

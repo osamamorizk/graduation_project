@@ -14,29 +14,29 @@ class ProfileOptionList extends StatelessWidget {
     return Column(
       children: [
         ProfileOptionItem(
-          image: Assets.iconsProfileProgress,
+          image: Assets.svgsProfileMyProgress,
           text: 'My Progress',
           onTap: () => showCommingSoonDialog(context),
         ),
         verticalSpace(32),
         const ProfileOptionItem(
-          image: Assets.iconsProfileMyData,
+          image: Assets.svgsProfileMyData,
           text: 'My Data',
         ),
         verticalSpace(32),
         ProfileOptionItem(
-          image: Assets.iconsProfileShare,
+          image: Assets.svgsProfileShare,
           text: 'Share',
           onTap: () => showCommingSoonDialog(context),
         ),
         verticalSpace(32),
         const ProfileOptionItem(
-          image: Assets.iconsProfilePeople,
+          image: Assets.svgsProfileContactUs,
           text: 'Contact us',
         ),
         verticalSpace(32),
         const ProfileOptionItem(
-          image: Assets.iconsProfileLogOut,
+          image: Assets.svgsProfileLogOut,
           text: 'Log out',
         ),
       ],

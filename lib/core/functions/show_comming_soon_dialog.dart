@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
@@ -21,7 +22,7 @@ void showCommingSoonDialog(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(Assets.imagesCommingSoon),
+              SvgPicture.asset(Assets.svgsCommingSoon),
               verticalSpace(24),
               Text(
                 textAlign: TextAlign.center,
