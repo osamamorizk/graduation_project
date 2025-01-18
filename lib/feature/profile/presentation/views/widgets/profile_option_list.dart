@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/functions/show_comming_soon_dialog.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
-import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
-import 'package:graduation_project/core/routes/routes.dart';
+import 'package:graduation_project/feature/profile/presentation/views/my_data_view.dart';
 import 'package:graduation_project/feature/profile/presentation/views/widgets/profile_option_item.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class ProfileOptionList extends StatelessWidget {
   const ProfileOptionList({
@@ -25,7 +25,12 @@ class ProfileOptionList extends StatelessWidget {
           image: Assets.svgsProfileMyData,
           text: 'My Data',
           onTap: () {
-            context.pushNamed(Routes.exerciseListView);
+            PersistentNavBarNavigator.pushNewScreen(
+              context,
+              screen: const MyDataView(),
+              withNavBar: false,
+              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+            );
           },
         ),
         verticalSpace(32),
