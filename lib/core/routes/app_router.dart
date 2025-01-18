@@ -47,10 +47,11 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const Verification(),
         );
+
       case Routes.exerciseListView:
         return MaterialPageRoute(
-          builder: (_) => const ExerciseListView(
-            exerciseGroup: 'Exercise List',
+          builder: (context) => ExerciseListView(
+            exerciseGroup: settings.arguments as String,
           ),
         );
 

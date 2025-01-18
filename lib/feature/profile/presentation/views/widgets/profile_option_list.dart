@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/functions/show_comming_soon_dialog.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
+import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/feature/profile/presentation/views/widgets/profile_option_item.dart';
 
 class ProfileOptionList extends StatelessWidget {
@@ -19,9 +21,12 @@ class ProfileOptionList extends StatelessWidget {
           onTap: () => showCommingSoonDialog(context),
         ),
         verticalSpace(32),
-        const ProfileOptionItem(
+        ProfileOptionItem(
           image: Assets.svgsProfileMyData,
           text: 'My Data',
+          onTap: () {
+            context.pushNamed(Routes.exerciseListView);
+          },
         ),
         verticalSpace(32),
         ProfileOptionItem(

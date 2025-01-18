@@ -86,6 +86,10 @@ class Assets {
   /// assets/images/comming_soon.png
   static const String imagesCommingSoon = "assets/images/comming_soon.png";
 
+  /// Assets for imagesDepressedMan
+  /// assets/images/depressed_man.png
+  static const String imagesDepressedMan = "assets/images/depressed_man.png";
+
   /// Assets for imagesExerciseItem
   /// assets/images/exercise_item.png
   static const String imagesExerciseItem = "assets/images/exercise_item.png";
@@ -161,10 +165,6 @@ class Assets {
   /// Assets for imagesScanBoxBackground
   /// assets/images/scan_box_background.png
   static const String imagesScanBoxBackground = "assets/images/scan_box_background.png";
-
-  /// Assets for imagesTempIcon
-  /// assets/images/temp_icon.png
-  static const String imagesTempIcon = "assets/images/temp_icon.png";
 
   /// Assets for svgsAppIcon
   /// assets/svgs/app_icon.svg

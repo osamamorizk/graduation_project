@@ -25,7 +25,7 @@ class MuscleGroupView extends StatelessWidget {
                     screen: ExerciseListView(
                       exerciseGroup: exerciseList[index].name,
                     ),
-                    withNavBar: true,
+                    withNavBar: false,
                     pageTransitionAnimation: PageTransitionAnimation.cupertino,
                   );
                 },

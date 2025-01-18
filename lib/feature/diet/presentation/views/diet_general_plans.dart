@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
+import 'package:graduation_project/core/helpers/spacing.dart';
+import 'package:graduation_project/core/themes/text_styles.dart';
 
 class DietGeneralPlans extends StatelessWidget {
   const DietGeneralPlans({super.key});
@@ -8,13 +9,18 @@ class DietGeneralPlans extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SvgPicture.asset(Assets.svgsDepressedMan),
-          Text('work on it ')
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(Assets.imagesDepressedMan),
+            verticalSpace(20),
+            Text(
+              'Still working on it',
+              style: TextStyles.font16BlackBold,
+            )
+          ],
+        ),
       ),
     );
   }

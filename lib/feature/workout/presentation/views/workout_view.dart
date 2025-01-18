@@ -19,7 +19,7 @@ class WorkoutView extends StatelessWidget {
           toolbarHeight: 45,
           title: Text(
             'Workout',
-            style: TextStyles.font22BlueBold,
+            style: TextStyles.font22BlueBold.copyWith(fontSize: 20),
           ),
           actions: const [
             CustomNewPlanButton(),
@@ -40,10 +40,10 @@ class WorkoutView extends StatelessWidget {
                 text: 'Your plan',
               ),
               Tab(
-                text: 'General plans',
+                text: 'Exercises',
               ),
               Tab(
-                text: 'Exercises',
+                text: 'General plans',
               ),
             ],
           ),
@@ -56,6 +56,6 @@ class WorkoutView extends StatelessWidget {
 
 List<Widget> taps = [
   const WorkoutYourPlanView(),
+  const MuscleGroupView(),
   const WorkoutGeneralPlansView(),
-  const MuscleGroupView()
 ];
