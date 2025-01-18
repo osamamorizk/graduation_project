@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/functions/show_comming_soon_dialog.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/profile/presentation/views/widgets/profie_body.dart';
-import 'package:graduation_project/feature/profile/presentation/views/widgets/settings_view.dart';
-import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -25,12 +24,13 @@ class ProfileView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: IconButton(
                 onPressed: () {
-                  PersistentNavBarNavigator.pushNewScreen(
-                    context,
-                    screen: const SettingsView(),
-                    withNavBar: true,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
+                  showCommingSoonDialog(context);
+                  // PersistentNavBarNavigator.pushNewScreen(
+                  //   context,
+                  //   screen: const SettingsView(),
+                  //   withNavBar: true,
+                  //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                  // );
                 },
                 icon: Icon(
                   Icons.settings,

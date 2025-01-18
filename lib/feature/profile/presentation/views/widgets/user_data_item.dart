@@ -15,6 +15,7 @@ Widget userDataItem(String label, String value,
       ),
       verticalSpace(5),
       Container(
+        height: 50,
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.grey.shade300),
