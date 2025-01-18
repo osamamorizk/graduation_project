@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/routes/routes.dart';
+import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/custom_action_button.dart';
 import 'package:graduation_project/core/widgets/custom_text_form_field.dart';
@@ -13,14 +14,18 @@ class ForgetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: true,
+        iconTheme: IconThemeData(color: ColorsManger.darkBlue),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              verticalSpace(60),
+              verticalSpace(15),
               Text(
                 'Forget Password',
                 style: TextStyles.font28DarkBlueBold,
