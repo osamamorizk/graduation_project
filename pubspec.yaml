@@ -45,6 +45,7 @@ dependencies:
   share_plus: ^10.1.4
   shared_preferences: ^2.3.3
   smooth_page_indicator: ^1.2.0+3
+  syncfusion_flutter_sliders: ^28.1.39
   url_launcher: ^6.3.1
   youtube_player_flutter: ^9.1.1
 
@@ -101,8 +102,7 @@ flutter_assets:
   filename: app_assets.dart
   field_prefix: null
 
-
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icons/app_icon_2.png"  
+  image_path: "assets/icons/app_icon_2.png"
