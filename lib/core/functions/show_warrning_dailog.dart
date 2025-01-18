@@ -4,18 +4,15 @@ import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 
-Future<dynamic> logoutDialog(BuildContext context) {
+Future<dynamic> warningDialog(BuildContext context) {
   return showDialog(
     builder: (context) => AlertDialog(
       backgroundColor: Colors.white,
-      icon: Icon(
-        size: 60,
-        Icons.warning_rounded,
-        color: ColorsManger.darkBlue,
-      ),
       actionsAlignment: MainAxisAlignment.center,
-      content: Text('Do you want to logout ?',
-          textAlign: TextAlign.center, style: TextStyles.font18BlackBold),
+      title: Text('Do you want to create new plan ?',
+          textAlign: TextAlign.center, style: TextStyles.font22BlueBold),
+      content: Text('You will lost the current plan',
+          textAlign: TextAlign.center, style: TextStyles.font16BlackRegular),
       actions: <Widget>[
         ElevatedButton(
           style: ButtonStyle(
@@ -38,7 +35,7 @@ Future<dynamic> logoutDialog(BuildContext context) {
             Navigator.of(context).pop;
           },
           child: Text(
-            'Log out',
+            'New Plan',
             style: TextStyles.font14WhiteBold,
           ),
         ),

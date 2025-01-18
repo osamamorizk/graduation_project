@@ -4,7 +4,7 @@ import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/diet/presentation/views/diet_general_plans.dart';
 import 'package:graduation_project/feature/diet/presentation/views/diet_your_plan.dart';
 
-import 'package:graduation_project/feature/workout/presentation/views/widgets/custom_new_plan_button.dart';
+import 'package:graduation_project/core/widgets/custom_new_plan_button.dart';
 
 class DietView extends StatelessWidget {
   const DietView({super.key});
