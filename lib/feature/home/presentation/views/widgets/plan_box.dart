@@ -24,7 +24,7 @@ class YourPlanBox extends StatelessWidget {
         decoration: BoxDecoration(
           image: const DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage(Assets.imagesScanBoxBackground)),
+              image: AssetImage(Assets.imagesPlanboxBackground)),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(

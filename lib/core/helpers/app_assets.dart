@@ -18,13 +18,9 @@ class Assets {
   /// assets/icons/3bar.png
   static const String icons3bar = "assets/icons/3bar.png";
 
-  /// Assets for iconsCalender
-  /// assets/icons/calender.png
-  static const String iconsCalender = "assets/icons/calender.png";
-
-  /// Assets for iconsCameraIcon
-  /// assets/icons/camera_icon.png
-  static const String iconsCameraIcon = "assets/icons/camera_icon.png";
+  /// Assets for iconsAppIcon
+  /// assets/icons/app_icon.png
+  static const String iconsAppIcon = "assets/icons/app_icon.png";
 
   /// Assets for iconsCardio
   /// assets/icons/cardio.png
@@ -58,46 +54,6 @@ class Assets {
   /// assets/icons/Othericon.png
   static const String iconsOthericon = "assets/icons/Othericon.png";
 
-  /// Assets for iconsProfileClearHistory
-  /// assets/icons/profile/clear_history.png
-  static const String iconsProfileClearHistory = "assets/icons/profile/clear_history.png";
-
-  /// Assets for iconsProfileDataPrivacy
-  /// assets/icons/profile/data_privacy.png
-  static const String iconsProfileDataPrivacy = "assets/icons/profile/data_privacy.png";
-
-  /// Assets for iconsProfileLock
-  /// assets/icons/profile/lock.png
-  static const String iconsProfileLock = "assets/icons/profile/lock.png";
-
-  /// Assets for iconsProfileLogOut
-  /// assets/icons/profile/log_out.png
-  static const String iconsProfileLogOut = "assets/icons/profile/log_out.png";
-
-  /// Assets for iconsProfileMyData
-  /// assets/icons/profile/my_data.png
-  static const String iconsProfileMyData = "assets/icons/profile/my_data.png";
-
-  /// Assets for iconsProfileNotifications
-  /// assets/icons/profile/notifications.png
-  static const String iconsProfileNotifications = "assets/icons/profile/notifications.png";
-
-  /// Assets for iconsProfilePeople
-  /// assets/icons/profile/people.png
-  static const String iconsProfilePeople = "assets/icons/profile/people.png";
-
-  /// Assets for iconsProfileProgress
-  /// assets/icons/profile/progress.png
-  static const String iconsProfileProgress = "assets/icons/profile/progress.png";
-
-  /// Assets for iconsProfileReminderTime
-  /// assets/icons/profile/reminder-time.png
-  static const String iconsProfileReminderTime = "assets/icons/profile/reminder-time.png";
-
-  /// Assets for iconsProfileShare
-  /// assets/icons/profile/share.png
-  static const String iconsProfileShare = "assets/icons/profile/share.png";
-
   /// Assets for iconsReduceStress
   /// assets/icons/reduce_stress.png
   static const String iconsReduceStress = "assets/icons/reduce_stress.png";
@@ -113,10 +69,6 @@ class Assets {
   /// Assets for iconsYoga
   /// assets/icons/yoga.png
   static const String iconsYoga = "assets/icons/yoga.png";
-
-  /// Assets for iconsYourPlan
-  /// assets/icons/your_plan.png
-  static const String iconsYourPlan = "assets/icons/your_plan.png";
 
   /// Assets for imagesCameraButton
   /// assets/images/camera_button.png

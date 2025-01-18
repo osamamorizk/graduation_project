@@ -20,7 +20,7 @@ class HomeView extends StatelessWidget {
           scrolledUnderElevation: 0,
           titleSpacing: 0,
           backgroundColor: Colors.white,
-          leading: SvgPicture.asset(Assets.svgsAppIcon),
+          leading: Image.asset(Assets.iconsAppIcon),
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -34,27 +34,34 @@ class HomeView extends StatelessWidget {
               ),
             ],
           )),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const HomeBanner(),
-                  verticalSpace(20),
-                  const ScanAndPlanBox(),
-                  verticalSpace(16),
-                  Text(
-                    'Challenges',
-                    style: TextStyles.font18BlackBold,
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const HomeBanner(),
+                      verticalSpace(20),
+                      const ScanAndPlanBox(),
+                      verticalSpace(16),
+                      Text(
+                        'Challenges',
+                        style: TextStyles.font18BlackBold,
+                      ),
+                      verticalSpace(8),
+                    ],
                   ),
-                  verticalSpace(8),
-                ],
-              ),
+                ),
+              ],
             ),
-            SliverList(
+          ),
+          SliverPadding(
+            padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
+            sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) => GestureDetector(
                     onTap: () => showCommingSoonDialog(context),
@@ -62,8 +69,8 @@ class HomeView extends StatelessWidget {
                 childCount: 4,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

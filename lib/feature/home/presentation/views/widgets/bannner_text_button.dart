@@ -15,9 +15,9 @@ class BannerTextButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        verticalSpace(10),
+        verticalSpace(20),
         Text(
-          'Check our website for\nmore insights.',
+          'Check our website \nfor more insights.',
           style: TextStyles.font16whiteRegular,
         ),
         verticalSpace(17),
