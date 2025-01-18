@@ -22,6 +22,10 @@ class Assets {
   /// assets/icons/app_icon.png
   static const String iconsAppIcon = "assets/icons/app_icon.png";
 
+  /// Assets for iconsAppIcon2
+  /// assets/icons/app_icon_2.png
+  static const String iconsAppIcon2 = "assets/icons/app_icon_2.png";
+
   /// Assets for iconsCardio
   /// assets/icons/cardio.png
   static const String iconsCardio = "assets/icons/cardio.png";
