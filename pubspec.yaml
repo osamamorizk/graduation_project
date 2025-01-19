@@ -40,7 +40,6 @@ dependencies:
   flutter_svg: ^2.0.16
   fluttertoast: ^8.2.8
   gal: ^2.3.0
-  persistent_bottom_nav_bar: ^6.2.1
   pinput: ^5.0.0
   share_plus: ^10.1.4
   shared_preferences: ^2.3.3

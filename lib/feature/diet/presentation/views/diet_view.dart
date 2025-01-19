@@ -17,9 +17,19 @@ class DietView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           toolbarHeight: 40,
-          title: Text(
-            'Diet',
-            style: TextStyles.font22BlueBold,
+          title: TweenAnimationBuilder(
+            duration: const Duration(milliseconds: 1500),
+            builder: (context, value, child) {
+              return Opacity(
+                opacity: value,
+                child: child,
+              );
+            },
+            tween: Tween<double>(begin: 0, end: 1),
+            child: Text(
+              'Diet',
+              style: TextStyles.font22BlueBold.copyWith(fontSize: 20),
+            ),
           ),
           actions: const [
             CustomNewPlanButton(),

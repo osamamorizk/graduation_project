@@ -21,7 +21,7 @@ Future<dynamic> logoutDialog(BuildContext context) {
           style: ButtonStyle(
               backgroundColor: const WidgetStatePropertyAll(Colors.white),
               side: WidgetStatePropertyAll(
-                  BorderSide(color: ColorsManger.darkBlue, width: .4))),
+                  BorderSide(color: ColorsManger.darkBlue, width: .3))),
           onPressed: () {
             context.pop();
           },
