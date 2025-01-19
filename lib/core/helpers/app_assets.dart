@@ -170,6 +170,10 @@ class Assets {
   /// assets/images/scan_box_background.png
   static const String imagesScanBoxBackground = "assets/images/scan_box_background.png";
 
+  /// Assets for imagesTraining
+  /// assets/images/training.gif
+  static const String imagesTraining = "assets/images/training.gif";
+
   /// Assets for svgsAppIcon
   /// assets/svgs/app_icon.svg
   static const String svgsAppIcon = "assets/svgs/app_icon.svg";

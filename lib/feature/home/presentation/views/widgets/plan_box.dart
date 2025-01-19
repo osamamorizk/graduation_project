@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
-import 'package:graduation_project/feature/bottom_nav_bar/presentation/manger/cubit/bottom_bar_cubit.dart';
+import 'package:graduation_project/feature/bottom_nav_bar/presentation/views/widgets/bottom_nav_bar_new.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/custom_plan_choose_button.dart';
 
 class YourPlanBox extends StatelessWidget {
@@ -46,9 +45,9 @@ class YourPlanBox extends StatelessWidget {
   }
 }
 
-void showPlanDialog(BuildContext context) {
+void showPlanDialog(BuildContext parentContext) {
   showDialog(
-    context: context,
+    context: parentContext,
     builder: (BuildContext context) {
       return Dialog(
         insetAnimationCurve: Curves.elasticOut,
@@ -68,10 +67,10 @@ void showPlanDialog(BuildContext context) {
                 text: 'Diet plan',
                 icon: Icons.restaurant,
                 onPressed: () {
+                  final bottomNavBarState = parentContext
+                      .findAncestorStateOfType<NewBottomNavBarState>();
+                  bottomNavBarState?.jumpToIndex(1);
                   context.pop();
-                  BlocProvider.of<BottomBarCubit>(context)
-                      .controller
-                      .jumpToTab(1);
                 },
               ),
               verticalSpace(24),
@@ -79,10 +78,11 @@ void showPlanDialog(BuildContext context) {
                 text: 'Workout plan',
                 icon: Icons.fitness_center,
                 onPressed: () {
+                  final bottomNavBarState = parentContext
+                      .findAncestorStateOfType<NewBottomNavBarState>();
+
+                  bottomNavBarState?.jumpToIndex(3);
                   context.pop();
-                  BlocProvider.of<BottomBarCubit>(context)
-                      .controller
-                      .jumpToTab(3);
                 },
               ),
             ],

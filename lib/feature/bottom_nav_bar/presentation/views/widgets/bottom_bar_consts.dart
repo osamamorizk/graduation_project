@@ -60,12 +60,70 @@ List<PersistentBottomNavBarItem> navBarsItems() {
   ];
 }
 
-List<Widget> buildScreens() {
-  return [
-    const HomeView(),
-    const DietView(),
-    const ScanFoodView(),
-    const WorkoutView(),
-    const ProfileView(),
+// List<Widget> buildScreens() {
+//   return [
+//     const HomeView(),
+//     const DietView(),
+//     const ScanFoodView(),
+//     const WorkoutView(),
+//     const ProfileView(),
+//   ];
+// }
+
+List<BottomNavigationBarItem> get bottomBarItems {
+  return <BottomNavigationBarItem>[
+    BottomNavigationBarItem(
+      activeIcon: SvgPicture.asset(
+        Assets.svgsBottomBarActiveHome,
+      ),
+      icon: SvgPicture.asset(
+        Assets.svgsBottomBarInactiveHome,
+      ),
+      label: 'Home',
+    ),
+    BottomNavigationBarItem(
+      activeIcon: SvgPicture.asset(
+        Assets.svgsBottomBarActiveDiet,
+      ),
+      icon: SvgPicture.asset(
+        Assets.svgsBottomBarInactiveDiet,
+      ),
+      label: 'Diet',
+    ),
+    BottomNavigationBarItem(
+      activeIcon: SvgPicture.asset(
+        Assets.svgsBottomBarActiveScan,
+      ),
+      icon: SvgPicture.asset(
+        Assets.svgsBottomBarInactiveScan,
+      ),
+      label: 'Scan',
+    ),
+    BottomNavigationBarItem(
+      activeIcon: SvgPicture.asset(
+        Assets.svgsBottomBarActiveWorkouts,
+      ),
+      icon: SvgPicture.asset(
+        Assets.svgsBottomBarInactiveWorkouts,
+      ),
+      label: 'Workout',
+    ),
+    BottomNavigationBarItem(
+      activeIcon: SvgPicture.asset(
+        Assets.svgsBottomBarActiveProfile,
+      ),
+      icon: SvgPicture.asset(
+        Assets.svgsBottomBarInactiveProfile,
+      ),
+      label: 'Profile',
+    ),
   ];
 }
+
+const List<Widget> widgetOptions = <Widget>[
+  HomeView(),
+  DietView(),
+  ScanFoodView(),
+  WorkoutView(),
+  ProfileView(),
+];
