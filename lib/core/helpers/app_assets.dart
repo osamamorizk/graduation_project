@@ -74,6 +74,10 @@ class Assets {
   /// assets/icons/yoga.png
   static const String iconsYoga = "assets/icons/yoga.png";
 
+  /// Assets for imagesAndroid12
+  /// assets/images/android_12.png
+  static const String imagesAndroid12 = "assets/images/android_12.png";
+
   /// Assets for imagesCameraButton
   /// assets/images/camera_button.png
   static const String imagesCameraButton = "assets/images/camera_button.png";
@@ -170,9 +174,9 @@ class Assets {
   /// assets/images/scan_box_background.png
   static const String imagesScanBoxBackground = "assets/images/scan_box_background.png";
 
-  /// Assets for imagesTraining
-  /// assets/images/training.gif
-  static const String imagesTraining = "assets/images/training.gif";
+  /// Assets for imagesSplash
+  /// assets/images/splash.png
+  static const String imagesSplash = "assets/images/splash.png";
 
   /// Assets for svgsAppIcon
   /// assets/svgs/app_icon.svg

@@ -35,7 +35,7 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.1.6
   flutter_launcher_icons: ^0.14.3
-  flutter_native_splash: ^2.4.3
+  
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.16
   fluttertoast: ^8.2.8
@@ -47,6 +47,7 @@ dependencies:
   syncfusion_flutter_sliders: ^28.1.39
   url_launcher: ^6.3.1
   youtube_player_flutter: ^9.1.1
+  flutter_native_splash: ^2.4.4
 
 dev_dependencies:
   flutter_lints: ^4.0.0

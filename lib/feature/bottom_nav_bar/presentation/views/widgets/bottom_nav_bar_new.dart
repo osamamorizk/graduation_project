@@ -41,6 +41,7 @@ class NewBottomNavBarState extends State<NewBottomNavBar> {
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         child: BottomNavigationBar(
+         
           elevation: 0,
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.transparent,
