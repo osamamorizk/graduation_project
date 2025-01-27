@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
+import 'package:graduation_project/core/widgets/container_info.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/meal_ingrediants_info.dart';
 
 class MealListTileWithDetails extends StatelessWidget {
@@ -10,6 +11,7 @@ class MealListTileWithDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      minTileHeight: 40,
       title: Row(
         children: [
           Text(
@@ -17,10 +19,11 @@ class MealListTileWithDetails extends StatelessWidget {
             style: TextStyles.font14BlackBold,
           ),
           const Spacer(),
-          Text(
-            '2 slice',
-            style: TextStyles.font14BlackRegular,
-          ),
+          const ContainerIformation(data: '2 slice')
+          // Text(
+          //   '2 slice',
+          //   style: TextStyles.font14BlackRegular,
+          // ),
         ],
       ),
       subtitle: const Padding(

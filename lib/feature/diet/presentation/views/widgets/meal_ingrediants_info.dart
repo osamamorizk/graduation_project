@@ -18,7 +18,7 @@ class MealIngrediantsInfo extends StatelessWidget {
         const Text('|'),
         Text('Fat: 2g', style: TextStyles.font14BlueRegular),
         const Text('|'),
-        Text('Protien: 50g', style: TextStyles.font14BlueRegular),
+        Text('Protein: 50g', style: TextStyles.font14BlueRegular),
       ],
     );
   }

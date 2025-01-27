@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
-
+import 'package:graduation_project/core/widgets/days_list.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/meal_item.dart';
 
 class DietYourPlan extends StatelessWidget {
@@ -13,12 +13,16 @@ class DietYourPlan extends StatelessWidget {
       child: Column(
         children: [
           verticalSpace(16),
+          const DaysList(),
+          verticalSpace(16),
           Expanded(
-            child: ListView.separated(
-              separatorBuilder: (context, index) => verticalSpace(16),
+            child: ListView.builder(
               itemCount: 5,
               itemBuilder: (context, index) {
-                return const MealItem();
+                return const Padding(
+                  padding: EdgeInsets.only(bottom: 16),
+                  child: MealItem(),
+                );
               },
             ),
           )

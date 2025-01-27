@@ -39,6 +39,7 @@ class DietView extends StatelessWidget {
             indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
             labelStyle: TextStyles.font14BlackRegular,
             dividerColor: Colors.grey.shade200,
+            dividerHeight: .6,
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorColor: ColorsManger.darkBlue,
             labelColor: Colors.black,

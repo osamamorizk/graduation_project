@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/helpers/spacing.dart';
+import 'package:graduation_project/core/widgets/days_list.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/workout_item.dart';
 
 class WorkoutYourPlanView extends StatelessWidget {
@@ -6,26 +8,25 @@ class WorkoutYourPlanView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: NutritionPlanPage(),
-    );
-  }
-}
-
-class NutritionPlanPage extends StatelessWidget {
-  const NutritionPlanPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: ListView.builder(
-          itemCount: 4,
-          itemBuilder: (context, index) => const Padding(
-                padding: EdgeInsets.only(top: 16),
-                child: WorkoutItem(),
-              )),
-    ));
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            verticalSpace(16),
+            const DaysList(),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 4,
+                itemBuilder: (context, index) => const Padding(
+                  padding: EdgeInsets.only(top: 16),
+                  child: WorkoutItem(),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

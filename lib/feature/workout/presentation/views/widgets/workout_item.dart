@@ -41,11 +41,11 @@ class WorkoutItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               WorkoutElementDataItem(
-                data1: 'Sets:4',
-                data2: 'Reps:8_10',
+                data1: 'Sets: 4',
+                data2: 'Reps: 8_10',
               ),
               WorkoutElementDataItem(
-                data1: 'Rest:60-90 sec',
+                data1: 'Rest: 60-90 sec',
                 data2: 'Intensity: Moderate',
               )
             ],

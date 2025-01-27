@@ -34,14 +34,13 @@ class NewBottomNavBarState extends State<NewBottomNavBar> {
               BoxShadow(
                 color: Colors.grey.shade300,
                 spreadRadius: 5,
-                blurRadius: 8,
+                blurRadius: 20,
                 offset: const Offset(0, 0),
               ),
             ],
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         child: BottomNavigationBar(
-         
           elevation: 0,
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.transparent,

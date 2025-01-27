@@ -17,19 +17,10 @@ class WorkoutView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           toolbarHeight: 40,
-          title: TweenAnimationBuilder(
-            duration: const Duration(milliseconds: 1500),
-            builder: (context, value, child) {
-              return Opacity(
-                opacity: value,
-                child: child,
-              );
-            },
-            tween: Tween<double>(begin: 0, end: 1),
-            child: Text(
-              'Workout',
-              style: TextStyles.font22BlueBold.copyWith(fontSize: 20),
-            ),
+          title: Text(
+            'Workout',
+            style: TextStyles.font16BlackRegular
+                .copyWith(fontSize: 20, color: ColorsManger.darkBlue),
           ),
           actions: const [
             CustomNewPlanButton(),
@@ -40,7 +31,8 @@ class WorkoutView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
             labelStyle: TextStyles.font16BlackRegular,
-            dividerColor: Colors.transparent,
+            dividerColor: Colors.grey.shade200,
+            dividerHeight: .6,
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorColor: ColorsManger.darkBlue,
             labelColor: Colors.black,

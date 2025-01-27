@@ -3,6 +3,7 @@ import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/container_info.dart';
+import 'package:graduation_project/feature/diet/presentation/views/widgets/meal_second_item.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/food_meal_item.dart';
 
 class MealItem extends StatelessWidget {
@@ -44,14 +45,15 @@ class MealItem extends StatelessWidget {
         ),
         verticalSpace(16),
         const FoodMealItem(),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: Text(
-            'With',
-            style: TextStyles.font14BlackRegular,
-          ),
-        ),
-        const FoodMealItem(),
+        verticalSpace(16),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(vertical: 8),
+        //   child: Text(
+        //     'With',
+        //     style: TextStyles.font14BlackRegular,
+        //   ),
+        // ),
+        const MealSecondItem(),
         verticalSpace(16)
       ],
     );
