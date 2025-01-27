@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
-import 'package:graduation_project/feature/diet/presentation/views/widgets/calories_number.dart';
+import 'package:graduation_project/core/widgets/container_info.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/food_meal_item.dart';
 
 class MealItem extends StatelessWidget {
@@ -30,7 +30,9 @@ class MealItem extends StatelessWidget {
             style: TextStyles.font16BlackBold,
           ),
           const Spacer(),
-          const CaloriesNumber(),
+          const ContainerIformation(
+            data: '200 Cal',
+          ),
         ],
       ),
       children: [

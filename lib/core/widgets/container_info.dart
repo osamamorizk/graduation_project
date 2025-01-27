@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 
-class CaloriesNumber extends StatelessWidget {
-  const CaloriesNumber({
+class ContainerIformation extends StatelessWidget {
+  const ContainerIformation({
     super.key,
+    required this.data,
   });
-
+  final String data;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +18,7 @@ class CaloriesNumber extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Text(
-        '200 Cal',
+        data,
         style: TextStyles.font14BlackRegular,
       ),
     );
