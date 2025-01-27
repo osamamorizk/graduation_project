@@ -7,9 +7,10 @@ class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit() : super(UserDataInitial());
   int currentstep = 0;
   String gender = 'Male';
-  TextEditingController ageController = TextEditingController();
-  TextEditingController heightController = TextEditingController();
-  TextEditingController weightController = TextEditingController();
+  num tall = 160;
+  int age = 25;
+
+  num weight = 60;
   String heightUnit = 'cm';
   String weightUnit = 'KG';
   List<String> userGoals = [];

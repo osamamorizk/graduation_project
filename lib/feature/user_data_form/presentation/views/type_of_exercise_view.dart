@@ -74,9 +74,9 @@ class _TypeOfExerciseViewState extends State<TypeOfExerciseView> {
                       });
                     },
                     child: CustomMultiSelectionItem(
-                      image: Image.asset(
-                        activityIcons[index],
-                      ),
+                      // image: Image.asset(
+                      //   activityIcons[index],
+                      // ),
                       isSelected: isRestrict,
                       goal: activityOptions[index],
                     ));

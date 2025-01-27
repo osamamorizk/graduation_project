@@ -3,10 +3,14 @@ import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/exercise_item.dart';
 
 class ExerciseListView extends StatelessWidget {
-  const ExerciseListView({super.key, required this.exerciseGroup});
+  const ExerciseListView({
+    super.key,
+    required this.exerciseGroup,
+  });
   final String exerciseGroup;
   @override
   Widget build(BuildContext context) {
+    // final name = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 45,

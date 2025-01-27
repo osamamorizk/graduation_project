@@ -8,7 +8,7 @@ class ScanFoodView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
-      child: Expanded(child: CameraWindow()),
+      child: CameraWindow(),
     );
   }
 }

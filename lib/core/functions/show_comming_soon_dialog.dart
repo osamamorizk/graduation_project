@@ -22,7 +22,7 @@ void showCommingSoonDialog(BuildContext context) {
             mainAxisSize: MainAxisSize.min,
             children: [
               Image.asset(Assets.imagesCommingSoon),
-              verticalSpace(24),
+              verticalSpace(15),
               Text(
                 textAlign: TextAlign.center,
                 'It is planned to be in the next phase of progress',

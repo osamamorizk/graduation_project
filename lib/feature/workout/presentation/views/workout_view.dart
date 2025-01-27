@@ -3,7 +3,7 @@ import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/workout/presentation/views/muscle_group_view.dart';
 import 'package:graduation_project/feature/workout/presentation/views/general_plans_view.dart';
-import 'package:graduation_project/feature/workout/presentation/views/widgets/custom_new_plan_button.dart';
+import 'package:graduation_project/core/widgets/custom_new_plan_button.dart';
 import 'package:graduation_project/feature/workout/presentation/views/your_plan_view.dart';
 
 class WorkoutView extends StatelessWidget {
@@ -16,9 +16,20 @@ class WorkoutView extends StatelessWidget {
       length: taps.length,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
-            'Workout',
-            style: TextStyles.font22BlueBold,
+          toolbarHeight: 40,
+          title: TweenAnimationBuilder(
+            duration: const Duration(milliseconds: 1500),
+            builder: (context, value, child) {
+              return Opacity(
+                opacity: value,
+                child: child,
+              );
+            },
+            tween: Tween<double>(begin: 0, end: 1),
+            child: Text(
+              'Workout',
+              style: TextStyles.font22BlueBold.copyWith(fontSize: 20),
+            ),
           ),
           actions: const [
             CustomNewPlanButton(),
@@ -28,7 +39,7 @@ class WorkoutView extends StatelessWidget {
             labelPadding: const EdgeInsets.all(0),
             padding: const EdgeInsets.symmetric(horizontal: 16),
             indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
-            labelStyle: TextStyles.font14BlackRegular,
+            labelStyle: TextStyles.font16BlackRegular,
             dividerColor: Colors.transparent,
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorColor: ColorsManger.darkBlue,
@@ -39,10 +50,10 @@ class WorkoutView extends StatelessWidget {
                 text: 'Your plan',
               ),
               Tab(
-                text: 'General plans',
+                text: 'Exercises',
               ),
               Tab(
-                text: 'Exercises',
+                text: 'General plans',
               ),
             ],
           ),
@@ -55,6 +66,6 @@ class WorkoutView extends StatelessWidget {
 
 List<Widget> taps = [
   const WorkoutYourPlanView(),
+  const MuscleGroupView(),
   const WorkoutGeneralPlansView(),
-  const MuscleGroupView()
 ];

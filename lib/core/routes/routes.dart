@@ -8,4 +8,5 @@ abstract class Routes {
   static const String verification = 'Verification';
   static const String bottomBar = 'bottomBar';
   static const String exerciseListView = 'exerciseListView';
+  static const String myDataView = 'myData';
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/feature/workout/data/models/muscle_model.dart';
-import 'package:graduation_project/feature/workout/presentation/views/widgets/exercise_list_view.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/muscle_item.dart';
-import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class MuscleGroupView extends StatelessWidget {
   const MuscleGroupView({super.key});
@@ -20,14 +20,8 @@ class MuscleGroupView extends StatelessWidget {
               separatorBuilder: (context, index) => verticalSpace(16),
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () {
-                  PersistentNavBarNavigator.pushNewScreen(
-                    context,
-                    screen: ExerciseListView(
-                      exerciseGroup: exerciseList[index].name,
-                    ),
-                    withNavBar: true,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
+                  context.pushNamed(Routes.exerciseListView,
+                      arguments: exerciseList[index].name);
                 },
                 child: MuscleItem(
                   muscleModel: exerciseList[index],

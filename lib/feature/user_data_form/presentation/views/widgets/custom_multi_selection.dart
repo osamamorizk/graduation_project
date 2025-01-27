@@ -35,7 +35,7 @@ class CustomMultiSelectionItem extends StatelessWidget {
               fontWeight: isSelected ? FontWeight.w500 : FontWeight.normal),
         ),
         trailing: Icon(
-          isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
+          isSelected ? Icons.check_box : Icons.check_box_outline_blank,
           color: ColorsManger.darkBlue,
         ),
       ),

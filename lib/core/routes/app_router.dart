@@ -6,6 +6,7 @@ import 'package:graduation_project/feature/login/presentation/views/forget_passw
 import 'package:graduation_project/feature/login/presentation/views/login_view.dart';
 import 'package:graduation_project/feature/login/presentation/views/verification.dart';
 import 'package:graduation_project/feature/onboarding/presentation/views/onboarding_view.dart';
+import 'package:graduation_project/feature/profile/presentation/views/my_data_view.dart';
 import 'package:graduation_project/feature/sign_up/presentation/views/sign_up_view.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/user_data_form.dart';
@@ -47,10 +48,15 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const Verification(),
         );
+      case Routes.myDataView:
+        return MaterialPageRoute(
+          builder: (_) => const MyDataView(),
+        );
+
       case Routes.exerciseListView:
         return MaterialPageRoute(
-          builder: (_) => const ExerciseListView(
-            exerciseGroup: 'Exercise List',
+          builder: (context) => ExerciseListView(
+            exerciseGroup: settings.arguments as String,
           ),
         );
 
