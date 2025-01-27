@@ -24,11 +24,11 @@ class HomeView extends StatelessWidget {
             children: [
               Text(
                 'Welcome osama!',
-                style: TextStyles.font14BlackBold,
+                style: TextStyles.font16BlueBold,
               ),
               Text(
                 'Every choice brings you closer to your best self.',
-                style: TextStyles.font14greyNormal.copyWith(fontSize: 11),
+                style: TextStyles.font14greyNormal.copyWith(fontSize: 12),
               ),
             ],
           )),
