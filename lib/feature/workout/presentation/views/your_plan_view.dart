@@ -15,11 +15,12 @@ class WorkoutYourPlanView extends StatelessWidget {
           children: [
             verticalSpace(16),
             const DaysList(),
+            verticalSpace(16),
             Expanded(
               child: ListView.builder(
                 itemCount: 4,
                 itemBuilder: (context, index) => const Padding(
-                  padding: EdgeInsets.only(top: 16),
+                  padding: EdgeInsets.only(bottom: 16),
                   child: WorkoutItem(),
                 ),
               ),

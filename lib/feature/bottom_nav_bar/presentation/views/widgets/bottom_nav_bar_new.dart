@@ -32,9 +32,9 @@ class NewBottomNavBarState extends State<NewBottomNavBar> {
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.shade300,
-                spreadRadius: 5,
-                blurRadius: 20,
+                color: Colors.grey.shade200,
+                spreadRadius: 1,
+                blurRadius: 5,
                 offset: const Offset(0, 0),
               ),
             ],

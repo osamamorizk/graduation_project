@@ -15,7 +15,7 @@ class _DaysListState extends State<DaysList> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 32,
+      height: 30,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 5,

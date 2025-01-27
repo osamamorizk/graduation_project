@@ -9,8 +9,7 @@ class DayContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 90,
-      height: 30,
+      width: 89,
       margin: const EdgeInsets.only(right: 16),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
