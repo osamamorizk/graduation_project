@@ -28,7 +28,6 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  # better_open_file: ^3.6.5
   camera: ^0.11.0+2
   camerawesome: ^2.1.0
   cupertino_icons: ^1.0.8
@@ -49,6 +48,7 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   syncfusion_flutter_sliders: ^28.1.39
   url_launcher: ^6.3.1
+  video_player: ^2.9.2
   youtube_player_flutter: ^9.1.1
 
 dev_dependencies:
