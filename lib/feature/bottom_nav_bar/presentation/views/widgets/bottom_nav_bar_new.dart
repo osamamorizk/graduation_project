@@ -28,17 +28,17 @@ class NewBottomNavBarState extends State<NewBottomNavBar> {
         child: widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.shade200,
-                spreadRadius: 1,
-                blurRadius: 5,
-                offset: const Offset(0, 0),
+                color: Colors.grey,
+                spreadRadius: .1,
+                blurRadius: 1,
+                offset: Offset(0, 0),
               ),
             ],
-            borderRadius: const BorderRadius.only(
+            borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         child: BottomNavigationBar(
           elevation: 0,
