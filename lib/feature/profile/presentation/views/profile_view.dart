@@ -12,12 +12,15 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        toolbarHeight: 45,
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
+        elevation: .4,
         scrolledUnderElevation: 0,
-        centerTitle: true,
+        centerTitle: false,
         title: Text(
           'Profile',
-          style: TextStyles.font16BlueBold,
+          style: TextStyles.font16BlackRegular.copyWith(fontSize: 18),
         ),
         actions: [
           Padding(

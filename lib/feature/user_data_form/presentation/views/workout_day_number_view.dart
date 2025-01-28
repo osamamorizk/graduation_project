@@ -39,7 +39,7 @@ class _WorkoutDayNumberViewState extends State<WorkoutDayNumberView> {
                 onTap: () {
                   setState(() {
                     selectedIndex = index;
-                    BlocProvider.of<UserDataCubit>(context).dietKind =
+                    BlocProvider.of<UserDataCubit>(context).workoutDays =
                         options[index];
                   });
                 },

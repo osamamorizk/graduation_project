@@ -58,12 +58,8 @@ class _TypeOfExerciseViewState extends State<TypeOfExerciseView> {
                       setState(() {
                         if (isRestrict) {
                           typeOfPreferedExercise.remove(restrictions);
-                          BlocProvider.of<UserDataCubit>(context)
-                              .preferedExercise = typeOfPreferedExercise;
                         } else {
                           typeOfPreferedExercise.add(restrictions);
-                          BlocProvider.of<UserDataCubit>(context)
-                              .preferedExercise = typeOfPreferedExercise;
                         }
                         if (index == activityOptions.length - 1) {
                           typeOfPreferedExercise.add(
@@ -71,6 +67,8 @@ class _TypeOfExerciseViewState extends State<TypeOfExerciseView> {
                                   .preferedExerciseController
                                   .text);
                         }
+                        BlocProvider.of<UserDataCubit>(context)
+                            .preferedExercise = typeOfPreferedExercise;
                       });
                     },
                     child: CustomMultiSelectionItem(

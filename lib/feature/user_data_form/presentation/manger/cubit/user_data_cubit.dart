@@ -5,7 +5,6 @@ part 'user_data_state.dart';
 
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit() : super(UserDataInitial());
-  int currentstep = 0;
   String gender = 'Male';
   num tall = 160;
   int age = 25;
@@ -23,8 +22,49 @@ class UserDataCubit extends Cubit<UserDataState> {
   TextEditingController otherHelthConcernsController = TextEditingController();
   String fitnessLevel = '';
   String workoutDays = '';
+  String workoutTime = '';
   List<String> preferedExercise = [];
   TextEditingController preferedExerciseController = TextEditingController();
 
   List<String> userMotivation = [];
+
+  bool validateAllData() {
+    if (userGoals.isEmpty) {
+      return false;
+    }
+
+    if (dietaryRestrictions.isEmpty) {
+      return false;
+    }
+
+    if (activityLevel.isEmpty) {
+      return false;
+    }
+
+    if (dietKind.isEmpty) {
+      return false;
+    }
+
+    if (helthConcerns.isEmpty) {
+      return false;
+    }
+
+    if (fitnessLevel.isEmpty) {
+      return false;
+    }
+
+    if (workoutDays.isEmpty) {
+      return false;
+    }
+
+    if (workoutTime.isEmpty) {
+      return false;
+    }
+
+    if (userMotivation.isEmpty) {
+      return false;
+    }
+
+    return true;
+  }
 }

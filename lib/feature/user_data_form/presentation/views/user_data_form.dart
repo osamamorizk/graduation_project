@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/widgets/custom_action_button.dart';
+import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/form_bar.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/about_user_view.dart';
@@ -12,7 +14,7 @@ import 'package:graduation_project/feature/user_data_form/presentation/views/die
 import 'package:graduation_project/feature/user_data_form/presentation/views/dite_kind_view.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/fitness_level_view.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/goal_selection_view.dart';
-import 'package:graduation_project/feature/user_data_form/presentation/views/helth_concerns_view.dart';
+import 'package:graduation_project/feature/user_data_form/presentation/views/health_concerns_view.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/type_of_exercise_view.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/user_motivations_view.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/work_out_time_view.dart';
@@ -46,42 +48,48 @@ class _UserDataFormState extends State<UserDataForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: customDataFormBar(
-        currentIndex == 0
-            ? const SizedBox.shrink()
-            : IconButton(
-                onPressed: () {
-                  previousScreen();
-                },
-                icon: Icon(
-                  size: 22,
-                  Icons.arrow_back,
-                  color: ColorsManger.darkBlue,
-                ),
-              ),
-        (currentIndex + 1) / formScreens.length,
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: formScreens[currentIndex],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: CustomButton(
-              text: currentIndex != formScreens.length - 1
-                  ? 'Continue'
-                  : 'submit',
-              onPressed: () {
-                currentIndex == formScreens.length - 1
-                    ? context.pushNamed(Routes.bottomBar)
-                    : nextScreen();
-              },
+    return SafeArea(
+      child: Scaffold(
+        appBar: customDataFormBar(
+          IconButton(
+            onPressed: () {
+              previousScreen();
+            },
+            icon: Icon(
+              size: 22,
+              Icons.arrow_back,
+              color: ColorsManger.darkBlue,
             ),
           ),
-          verticalSpace(30.h),
-        ],
+          (currentIndex + 1) / formScreens.length,
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: formScreens[currentIndex],
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: CustomButton(
+                text: currentIndex != formScreens.length - 1
+                    ? 'Continue'
+                    : 'submit',
+                onPressed: () {
+                  currentIndex == formScreens.length - 1
+                      ? (context.read<UserDataCubit>().validateAllData()
+                          ? context.pushNamed(Routes.bottomBar)
+                          : ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text(
+                                      'Please complete all required fields.')),
+                            ))
+                      : nextScreen();
+                },
+              ),
+            ),
+            verticalSpace(30.h),
+          ],
+        ),
       ),
     );
   }

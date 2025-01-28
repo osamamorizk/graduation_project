@@ -16,7 +16,7 @@ class WorkoutItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.0),
-        border: Border.all(color: ColorsManger.darkGrey),
+        border: Border.all(color: ColorsManger.darkerGrey, width: .6),
       ),
       child: Column(
         children: [
@@ -32,7 +32,7 @@ class WorkoutItem extends StatelessWidget {
           ),
           const Divider(
             height: 10,
-            thickness: .4,
+            thickness: .5,
             endIndent: 5,
             indent: 5,
           ),

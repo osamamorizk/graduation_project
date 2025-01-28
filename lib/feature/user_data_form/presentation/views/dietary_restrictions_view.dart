@@ -53,14 +53,15 @@ class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
                         } else {
                           selectedDietaryRestrictions.add(restrictions);
                         }
-                        BlocProvider.of<UserDataCubit>(context)
-                            .dietaryRestrictions = selectedDietaryRestrictions;
+
                         if (index == options.length - 1) {
                           selectedDietaryRestrictions.add(
                               BlocProvider.of<UserDataCubit>(context)
                                   .preferedExerciseController
                                   .text);
                         }
+                        BlocProvider.of<UserDataCubit>(context)
+                            .dietaryRestrictions = selectedDietaryRestrictions;
                       });
                     },
                     child: CustomMultiSelectionItem(

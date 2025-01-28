@@ -44,7 +44,7 @@ class _WorkoutTimeViewState extends State<WorkoutTimeView> {
                   onTap: () {
                     setState(() {
                       selectedIndex = index;
-                      BlocProvider.of<UserDataCubit>(context).dietKind =
+                      BlocProvider.of<UserDataCubit>(context).workoutTime =
                           options[index];
                     });
                   },

@@ -16,6 +16,7 @@ class WorkoutView extends StatelessWidget {
       length: taps.length,
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           toolbarHeight: 40,
           title: Text(
             'Workout',

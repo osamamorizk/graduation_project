@@ -13,62 +13,64 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          scrolledUnderElevation: 0,
-          titleSpacing: 0,
-          backgroundColor: Colors.white,
-          leading: Image.asset(Assets.iconsAppIcon),
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Welcome osama!',
-                style: TextStyles.font16BlueBold,
-              ),
-              Text(
-                'Every choice brings you closer to your best self.',
-                style: TextStyles.font14greyNormal.copyWith(fontSize: 12),
-              ),
-            ],
-          )),
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Column(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+            scrolledUnderElevation: 0,
+            titleSpacing: 0,
+            backgroundColor: Colors.white,
+            leading: Image.asset(Assets.iconsAppIcon),
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const HomeBanner(),
-                      verticalSpace(20),
-                      const ScanAndPlanBox(),
-                      verticalSpace(16),
-                      Text(
-                        'Challenges',
-                        style: TextStyles.font18BlackBold,
-                      ),
-                      verticalSpace(8),
-                    ],
-                  ),
+                Text(
+                  'Welcome osama!',
+                  style: TextStyles.font16BlueBold,
+                ),
+                Text(
+                  'Every choice brings you closer to your best self.',
+                  style: TextStyles.font14greyNormal.copyWith(fontSize: 12),
                 ),
               ],
-            ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => GestureDetector(
-                    onTap: () => showCommingSoonDialog(context),
-                    child: const ChanllengItem()),
-                childCount: 4,
+            )),
+        body: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const HomeBanner(),
+                        verticalSpace(20),
+                        const ScanAndPlanBox(),
+                        verticalSpace(16),
+                        Text(
+                          'Challenges',
+                          style: TextStyles.font18BlackBold,
+                        ),
+                        verticalSpace(8),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+            SliverPadding(
+              padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => GestureDetector(
+                      onTap: () => showCommingSoonDialog(context),
+                      child: const ChanllengItem()),
+                  childCount: 4,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

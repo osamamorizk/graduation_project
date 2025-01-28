@@ -50,12 +50,8 @@ class _HealthConcernsViewState extends State<HealthConcernsView> {
                       setState(() {
                         if (isRestrict) {
                           selectedHealthConcerns.remove(restrictions);
-                          BlocProvider.of<UserDataCubit>(context)
-                              .helthConcerns = selectedHealthConcerns;
                         } else {
                           selectedHealthConcerns.add(restrictions);
-                          BlocProvider.of<UserDataCubit>(context)
-                              .helthConcerns = selectedHealthConcerns;
                         }
                         if (index == healthConcerns.length - 1) {
                           selectedHealthConcerns.add(
@@ -63,6 +59,8 @@ class _HealthConcernsViewState extends State<HealthConcernsView> {
                                   .preferedExerciseController
                                   .text);
                         }
+                        BlocProvider.of<UserDataCubit>(context).helthConcerns =
+                            selectedHealthConcerns;
                       });
                     },
                     child: CustomMultiSelectionItem(

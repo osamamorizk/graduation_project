@@ -23,10 +23,11 @@ class GoalSelectionScreenState extends State<GoalSelectionScreen> {
     'Improve Health',
   ];
 
-  final List<String> selectedGoals = [];
+  List<String> selectedGoals = [];
 
   @override
   Widget build(BuildContext context) {
+    selectedGoals = context.read<UserDataCubit>().userGoals;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(

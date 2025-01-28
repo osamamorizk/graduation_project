@@ -49,18 +49,18 @@ class _AboutUserState extends State<AboutUser> {
                 children: [
                   Container(
                     decoration: BoxDecoration(border: Border.all(width: .4)),
-                    height: 40,
-                    width: 130,
+                    height: 40.h,
+                    width: 110.w,
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                        const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
                     child: Text(
                       '$age',
                       style: TextStyles.font16BlackRegular,
                     ),
                   ),
                   Positioned(
-                      top: -10,
-                      left: 10,
+                      top: -15,
+                      left: 1,
                       child: Text(
                         'How old are you?',
                         style: TextStyles.font14BlackBold,
@@ -73,8 +73,8 @@ class _AboutUserState extends State<AboutUser> {
                 inactiveColor: ColorsManger.darkBlue,
                 thumbColor: Colors.white,
                 value: age.toDouble(),
-                min: 10,
-                max: 100,
+                min: 15,
+                max: 90,
                 divisions: 90,
                 label: age.round().toString(),
                 onChanged: (value) {
@@ -84,7 +84,7 @@ class _AboutUserState extends State<AboutUser> {
                   });
                 },
               ),
-              verticalSpace(30.h),
+              verticalSpace(20.h),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -127,7 +127,7 @@ class _AboutUserState extends State<AboutUser> {
               ),
               SfSlider(
                 min: 40,
-                max: 200.0,
+                max: 180,
                 value: weight,
                 interval: 20,
                 showTicks: true,
