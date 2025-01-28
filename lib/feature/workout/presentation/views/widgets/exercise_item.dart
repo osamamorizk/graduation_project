@@ -62,8 +62,11 @@ void showExerciseVideoDialog(BuildContext context) {
         child: SizedBox(
           height: 250.h,
           width: 200.w,
-          child: const YouTubeVideoPlayer(
-              videoUrl: 'https://www.youtube.com/shorts/kQyCp9zOBk4'),
+          child: const FittedBox(
+            fit: BoxFit.contain,
+            child: YouTubeVideoPlayer(
+                videoUrl: 'https://www.youtube.com/embed/-kHlqnBkzDw'),
+          ),
         ),
       );
     },

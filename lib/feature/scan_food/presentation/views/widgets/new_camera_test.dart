@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:better_open_file/better_open_file.dart';
+// import 'package:better_open_file/better_open_file.dart';
 import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
@@ -38,7 +38,7 @@ class NewCameraTest extends StatelessWidget {
       bottomActionsBuilder: (state) {
         return AwesomeBottomActions(
           onMediaTap: (mediaCapture) {
-            OpenFile.open(mediaCapture.captureRequest.path);
+            // OpenFile.open(mediaCapture.captureRequest.path);
           },
           padding: const EdgeInsets.only(bottom: 16),
           state: state,

@@ -28,7 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  better_open_file: ^3.6.5
+  # better_open_file: ^3.6.5
   camera: ^0.11.0+2
   camerawesome: ^2.1.0
   cupertino_icons: ^1.0.8

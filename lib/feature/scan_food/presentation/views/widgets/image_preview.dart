@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:better_open_file/better_open_file.dart';
+// import 'package:better_open_file/better_open_file.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
@@ -51,7 +51,7 @@ class ImagePreviewScreen extends StatelessWidget {
                       backgroundColor:
                           WidgetStatePropertyAll(ColorsManger.darkBlue)),
                   onPressed: () {
-                    OpenFile.open(imagePath);
+                    // OpenFile.open(imagePath);
                   },
                   icon: const Icon(
                     Icons.compare,
