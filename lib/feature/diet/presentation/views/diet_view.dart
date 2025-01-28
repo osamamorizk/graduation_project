@@ -17,12 +17,11 @@ class DietView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          toolbarHeight: 40,
+          toolbarHeight: 45,
           elevation: .4,
           title: Text(
             'Diet',
-            style: TextStyles.font16BlackRegular
-                .copyWith(fontSize: 20, color: ColorsManger.darkBlue),
+            style: TextStyles.font20BlueRegular,
           ),
           actions: const [
             CustomNewPlanButton(),

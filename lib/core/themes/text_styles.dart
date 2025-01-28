@@ -48,10 +48,10 @@ class TextStyles {
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
-  static final TextStyle font20BlackRegular = TextStyle(
+  static final TextStyle font20BlueRegular = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeight.normal,
-    color: Colors.black,
+    color: ColorsManger.darkBlue,
   );
   static final TextStyle font16BlueBold = TextStyle(
     fontSize: 16.sp,

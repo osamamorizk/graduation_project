@@ -18,12 +18,8 @@ class WorkoutView extends StatelessWidget {
         appBar: AppBar(
           elevation: .4,
           automaticallyImplyLeading: false,
-          toolbarHeight: 40,
-          title: Text(
-            'Workout',
-            style: TextStyles.font16BlackRegular
-                .copyWith(fontSize: 20, color: ColorsManger.darkBlue),
-          ),
+          toolbarHeight: 45,
+          title: Text('Workout', style: TextStyles.font20BlueRegular),
           actions: const [
             CustomNewPlanButton(),
           ],

@@ -17,7 +17,7 @@ class ExerciseListView extends StatelessWidget {
         titleSpacing: 0,
         title: Text(
           '$exerciseGroup Exercises',
-          style: TextStyles.font20BlackRegular,
+          style: TextStyles.font20BlueRegular,
         ),
         scrolledUnderElevation: 0,
         backgroundColor: Colors.white,
