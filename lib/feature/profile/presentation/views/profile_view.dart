@@ -28,12 +28,6 @@ class ProfileView extends StatelessWidget {
             child: IconButton(
                 onPressed: () {
                   showCommingSoonDialog(context);
-                  // PersistentNavBarNavigator.pushNewScreen(
-                  //   context,
-                  //   screen: const SettingsView(),
-                  //   withNavBar: true,
-                  //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  // );
                 },
                 icon: Icon(
                   Icons.settings,

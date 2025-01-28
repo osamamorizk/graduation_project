@@ -18,6 +18,7 @@ class DietView extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           toolbarHeight: 40,
+          elevation: .4,
           title: Text(
             'Diet',
             style: TextStyles.font16BlackRegular

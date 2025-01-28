@@ -16,7 +16,9 @@ class HomeView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-            scrolledUnderElevation: 0,
+            elevation: .4,
+            toolbarHeight: 50,
+            scrolledUnderElevation: .4,
             titleSpacing: 0,
             backgroundColor: Colors.white,
             leading: Image.asset(Assets.iconsAppIcon),
