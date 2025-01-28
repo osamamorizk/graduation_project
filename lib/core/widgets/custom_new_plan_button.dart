@@ -17,7 +17,7 @@ class CustomNewPlanButton extends StatelessWidget {
       },
       child: Container(
         margin: const EdgeInsets.only(right: 16),
-        height: 30.h,
+        height: 28.h,
         width: 85.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),

@@ -48,48 +48,46 @@ class _UserDataFormState extends State<UserDataForm> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: customDataFormBar(
-          IconButton(
-            onPressed: () {
-              previousScreen();
-            },
-            icon: Icon(
-              size: 22,
-              Icons.arrow_back,
-              color: ColorsManger.darkBlue,
+    return Scaffold(
+      appBar: customDataFormBar(
+        IconButton(
+          onPressed: () {
+            currentIndex == 0 ? context.pop() : previousScreen();
+          },
+          icon: Icon(
+            size: 22,
+            Icons.arrow_back,
+            color: ColorsManger.darkBlue,
+          ),
+        ),
+        (currentIndex + 1) / formScreens.length,
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: formScreens[currentIndex],
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: CustomButton(
+              text: currentIndex != formScreens.length - 1
+                  ? 'Continue'
+                  : 'submit',
+              onPressed: () {
+                currentIndex == formScreens.length - 1
+                    ? (context.read<UserDataCubit>().validateAllData()
+                        ? context.pushNamed(Routes.bottomBar)
+                        : ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text(
+                                    'Please complete all required fields.')),
+                          ))
+                    : nextScreen();
+              },
             ),
           ),
-          (currentIndex + 1) / formScreens.length,
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: formScreens[currentIndex],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: CustomButton(
-                text: currentIndex != formScreens.length - 1
-                    ? 'Continue'
-                    : 'submit',
-                onPressed: () {
-                  currentIndex == formScreens.length - 1
-                      ? (context.read<UserDataCubit>().validateAllData()
-                          ? context.pushNamed(Routes.bottomBar)
-                          : ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text(
-                                      'Please complete all required fields.')),
-                            ))
-                      : nextScreen();
-                },
-              ),
-            ),
-            verticalSpace(30.h),
-          ],
-        ),
+          verticalSpace(30.h),
+        ],
       ),
     );
   }

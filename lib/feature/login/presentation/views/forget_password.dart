@@ -13,43 +13,41 @@ class ForgetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          automaticallyImplyLeading: true,
-          iconTheme: IconThemeData(color: ColorsManger.darkBlue),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                verticalSpace(15),
-                Text(
-                  'Forget Password',
-                  style: TextStyles.font28DarkBlueBold,
-                ),
-                verticalSpace(16.h),
-                Text(
-                  'At our app, we take the security of your information seriously.',
-                  style: TextStyles.font14greyNormal,
-                ),
-                verticalSpace(64.h),
-                CustomTextFormField(
-                  validator: (value) {},
-                  hintText: 'Email',
-                ),
-                verticalSpace(64.h),
-                CustomButton(
-                  text: 'Reset Password',
-                  onPressed: () {
-                    context.pushNamed(Routes.verification);
-                  },
-                ),
-              ],
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: true,
+        iconTheme: IconThemeData(color: ColorsManger.darkBlue),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              verticalSpace(15),
+              Text(
+                'Forget Password',
+                style: TextStyles.font28DarkBlueBold,
+              ),
+              verticalSpace(16.h),
+              Text(
+                'At our app, we take the security of your information seriously.',
+                style: TextStyles.font14greyNormal,
+              ),
+              verticalSpace(64.h),
+              CustomTextFormField(
+                validator: (value) {},
+                hintText: 'Email',
+              ),
+              verticalSpace(64.h),
+              CustomButton(
+                text: 'Reset Password',
+                onPressed: () {
+                  context.pushNamed(Routes.verification);
+                },
+              ),
+            ],
           ),
         ),
       ),

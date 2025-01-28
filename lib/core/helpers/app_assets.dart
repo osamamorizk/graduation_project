@@ -90,6 +90,10 @@ class Assets {
   /// assets/images/challenge.png
   static const String imagesChallenge = "assets/images/challenge.png";
 
+  /// Assets for imagesCleanEating
+  /// assets/images/clean_eating.png
+  static const String imagesCleanEating = "assets/images/clean_eating.png";
+
   /// Assets for imagesCommingSoon
   /// assets/images/comming_soon.png
   static const String imagesCommingSoon = "assets/images/comming_soon.png";
@@ -146,6 +150,10 @@ class Assets {
   /// assets/images/general_plan/weight_loss.png
   static const String imagesGeneralPlanWeightLoss = "assets/images/general_plan/weight_loss.png";
 
+  /// Assets for imagesHydration
+  /// assets/images/hydration.png
+  static const String imagesHydration = "assets/images/hydration.png";
+
   /// Assets for imagesManHomeBanner
   /// assets/images/man_home_banner.png
   static const String imagesManHomeBanner = "assets/images/man_home_banner.png";
@@ -177,6 +185,10 @@ class Assets {
   /// Assets for imagesSplash
   /// assets/images/splash.png
   static const String imagesSplash = "assets/images/splash.png";
+
+  /// Assets for imagesUnbroken
+  /// assets/images/unbroken.png
+  static const String imagesUnbroken = "assets/images/unbroken.png";
 
   /// Assets for svgsAppIcon
   /// assets/svgs/app_icon.svg
