@@ -40,7 +40,7 @@ class _HealthConcernsViewState extends State<HealthConcernsView> {
             verticalSpace(40.h),
             ListView.separated(
               shrinkWrap: true,
-              separatorBuilder: (context, index) => verticalSpace(15.h),
+              separatorBuilder: (context, index) => verticalSpace(20.h),
               itemBuilder: (context, index) {
                 final restrictions = healthConcerns[index];
                 final bool isRestrict =
@@ -70,17 +70,23 @@ class _HealthConcernsViewState extends State<HealthConcernsView> {
               },
               itemCount: healthConcerns.length,
             ),
-            verticalSpace(20.h),
+            verticalSpace(30.h),
             Text(
               'If Other, please specify',
               style: TextStyles.font14BlackBold,
             ),
-            TextFormField(
+            TextField(
+              decoration: InputDecoration(
+                  hintStyle: TextStyles.font14BlueRegular,
+                  hintText: selectedHealthConcerns
+                          .contains(healthConcerns[healthConcerns.length - 1])
+                      ? 'Required Field'
+                      : null),
               controller: BlocProvider.of<UserDataCubit>(context)
                   .otherHelthConcernsController,
               enabled: selectedHealthConcerns
                   .contains(healthConcerns[healthConcerns.length - 1]),
-            )
+            ),
           ],
         ),
       ),

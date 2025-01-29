@@ -48,6 +48,10 @@ class UserDataCubit extends Cubit<UserDataState> {
     if (helthConcerns.isEmpty) {
       return false;
     }
+    if (helthConcerns.contains('Other health concerns') &&
+        otherHelthConcernsController.text.isEmpty) {
+      return false;
+    }
 
     if (fitnessLevel.isEmpty) {
       return false;

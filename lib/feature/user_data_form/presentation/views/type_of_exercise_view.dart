@@ -48,7 +48,7 @@ class _TypeOfExerciseViewState extends State<TypeOfExerciseView> {
             verticalSpace(40.h),
             ListView.separated(
               shrinkWrap: true,
-              separatorBuilder: (context, index) => verticalSpace(15.h),
+              separatorBuilder: (context, index) => verticalSpace(20.h),
               itemBuilder: (context, index) {
                 final restrictions = activityOptions[index];
                 final bool isRestrict =
@@ -81,17 +81,23 @@ class _TypeOfExerciseViewState extends State<TypeOfExerciseView> {
               },
               itemCount: activityOptions.length,
             ),
-            verticalSpace(20.h),
+            verticalSpace(30.h),
             Text(
               'If Other, please specify',
               style: TextStyles.font14BlackBold,
             ),
-            TextFormField(
+            TextField(
+              decoration: InputDecoration(
+                  hintStyle: TextStyles.font14BlueRegular,
+                  hintText: typeOfPreferedExercise
+                          .contains(activityOptions[activityOptions.length - 1])
+                      ? 'Required Field'
+                      : null),
               controller: BlocProvider.of<UserDataCubit>(context)
                   .preferedExerciseController,
               enabled: typeOfPreferedExercise
                   .contains(activityOptions[activityOptions.length - 1]),
-            )
+            ),
           ],
         ),
       ),

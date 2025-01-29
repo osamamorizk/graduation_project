@@ -21,11 +21,13 @@ List<String> options = [
   "Dairy-Free",
   "Other health concerns"
 ];
-final List<String> selectedDietaryRestrictions = [];
+List<String> selectedDietaryRestrictions = [];
 
 class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
   @override
   Widget build(BuildContext context) {
+    final userDataCubit = BlocProvider.of<UserDataCubit>(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: SingleChildScrollView(
@@ -39,6 +41,7 @@ class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
             ),
             verticalSpace(40.h),
             ListView.separated(
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               separatorBuilder: (context, index) => verticalSpace(24.h),
               itemBuilder: (context, index) {
@@ -56,12 +59,10 @@ class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
 
                         if (index == options.length - 1) {
                           selectedDietaryRestrictions.add(
-                              BlocProvider.of<UserDataCubit>(context)
-                                  .preferedExerciseController
-                                  .text);
+                              userDataCubit.preferedExerciseController.text);
                         }
-                        BlocProvider.of<UserDataCubit>(context)
-                            .dietaryRestrictions = selectedDietaryRestrictions;
+                        userDataCubit.dietaryRestrictions =
+                            selectedDietaryRestrictions;
                       });
                     },
                     child: CustomMultiSelectionItem(
@@ -71,17 +72,23 @@ class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
               },
               itemCount: options.length,
             ),
-            verticalSpace(20.h),
+            verticalSpace(30.h),
             Text(
               'If Other, please specify',
               style: TextStyles.font14BlackBold,
             ),
-            TextFormField(
-              controller: BlocProvider.of<UserDataCubit>(context)
-                  .otherDietaryRestrictionsController,
+            TextField(
+              decoration: InputDecoration(
+                  hintStyle: TextStyles.font14BlueRegular,
+                  hintText: selectedDietaryRestrictions
+                          .contains(options[options.length - 1])
+                      ? 'Required Field'
+                      : null),
+              controller: userDataCubit.otherDietaryRestrictionsController,
               enabled: selectedDietaryRestrictions
                   .contains(options[options.length - 1]),
-            )
+            ),
+            verticalSpace(40.h),
           ],
         ),
       ),
