@@ -8,25 +8,23 @@ class WorkoutYourPlanView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            verticalSpace(16),
-            const DaysList(),
-            verticalSpace(16),
-            Expanded(
-              child: ListView.builder(
-                itemCount: 4,
-                itemBuilder: (context, index) => const Padding(
-                  padding: EdgeInsets.only(bottom: 16),
-                  child: WorkoutItem(),
-                ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          verticalSpace(16),
+          const DaysList(),
+          verticalSpace(16),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 4,
+              itemBuilder: (context, index) => const Padding(
+                padding: EdgeInsets.only(bottom: 16),
+                child: WorkoutItem(),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

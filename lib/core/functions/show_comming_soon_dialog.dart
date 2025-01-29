@@ -3,9 +3,9 @@ import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 
-void showCommingSoonDialog(BuildContext context) {
+void showCommingSoonDialog(BuildContext parentContext) {
   showDialog(
-    context: context,
+    context: parentContext,
     builder: (BuildContext context) {
       return Dialog(
         insetAnimationCurve: Curves.elasticOut,

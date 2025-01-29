@@ -20,7 +20,7 @@ class SignUpView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              verticalSpace(50.h),
+              verticalSpace(60.h),
               const SignupTexts(),
               verticalSpace(30.h),
               const SignupForm(),

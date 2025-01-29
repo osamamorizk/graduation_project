@@ -21,7 +21,7 @@ class LoginView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              verticalSpace(50.h),
+              verticalSpace(60.h),
               const WelcomeText(),
               verticalSpace(36.h),
               const EmailAndPassword(),

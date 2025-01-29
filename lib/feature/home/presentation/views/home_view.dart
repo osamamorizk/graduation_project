@@ -14,49 +14,47 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: homeAppBar(),
-        body: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const HomeBanner(),
-                        verticalSpace(20),
-                        const ScanAndPlanBox(),
-                        verticalSpace(16),
-                        Text(
-                          'Challenges',
-                          style: TextStyles.font18BlackBold,
-                        ),
-                        verticalSpace(8),
-                      ],
-                    ),
+    return Scaffold(
+      appBar: homeAppBar(),
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const HomeBanner(),
+                      verticalSpace(20),
+                      const ScanAndPlanBox(),
+                      verticalSpace(16),
+                      Text(
+                        'Challenges',
+                        style: TextStyles.font18BlackBold,
+                      ),
+                      verticalSpace(8),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            SliverPadding(
-              padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) => GestureDetector(
-                      onTap: () => showCommingSoonDialog(context),
-                      child: ChallengeItem(
-                        challengeModel: challengesList[index],
-                      )),
-                  childCount: challengesList.length,
                 ),
+              ],
+            ),
+          ),
+          SliverPadding(
+            padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => GestureDetector(
+                    onTap: () => showCommingSoonDialog(context),
+                    child: ChallengeItem(
+                      challengeModel: challengesList[index],
+                    )),
+                childCount: challengesList.length,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
