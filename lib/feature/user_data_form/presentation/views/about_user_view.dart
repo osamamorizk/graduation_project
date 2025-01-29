@@ -109,14 +109,15 @@ class _AboutUserState extends State<AboutUser> {
       activeColor: Colors.grey.shade400,
       inactiveColor: ColorsManger.darkBlue,
       showDividers: false,
-      min: 70,
+      min: 60,
       max: 200,
       value: height,
-      interval: 15,
+      interval: 20,
       stepSize: .5,
       showTicks: true,
       showLabels: true,
       enableTooltip: true,
+      edgeLabelPlacement: EdgeLabelPlacement.auto,
       onChanged: (dynamic value) {
         setState(() {
           height = value;
