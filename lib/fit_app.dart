@@ -16,7 +16,7 @@ class FitApp extends StatelessWidget {
         theme: ThemeData(scaffoldBackgroundColor: Colors.white),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.bottomBar,
+        initialRoute: Routes.onboarding,
       ),
     );
   }
