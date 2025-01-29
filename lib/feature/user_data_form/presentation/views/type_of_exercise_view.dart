@@ -6,6 +6,7 @@ import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/custom_multi_selection.dart';
+import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/user_form_text_field.dart';
 
 class TypeOfExerciseView extends StatefulWidget {
   const TypeOfExerciseView({super.key});
@@ -34,6 +35,7 @@ final List<String> typeOfPreferedExercise = [];
 class _TypeOfExerciseViewState extends State<TypeOfExerciseView> {
   @override
   Widget build(BuildContext context) {
+    final userDataCubit = BlocProvider.of<UserDataCubit>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: SingleChildScrollView(
@@ -47,6 +49,7 @@ class _TypeOfExerciseViewState extends State<TypeOfExerciseView> {
             ),
             verticalSpace(40.h),
             ListView.separated(
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               separatorBuilder: (context, index) => verticalSpace(20.h),
               itemBuilder: (context, index) {
@@ -63,18 +66,13 @@ class _TypeOfExerciseViewState extends State<TypeOfExerciseView> {
                         }
                         if (index == activityOptions.length - 1) {
                           typeOfPreferedExercise.add(
-                              BlocProvider.of<UserDataCubit>(context)
-                                  .preferedExerciseController
-                                  .text);
+                              userDataCubit.preferedExerciseController.text);
                         }
-                        BlocProvider.of<UserDataCubit>(context)
-                            .preferedExercise = typeOfPreferedExercise;
+
+                        userDataCubit.preferedExercise = typeOfPreferedExercise;
                       });
                     },
                     child: CustomMultiSelectionItem(
-                      // image: Image.asset(
-                      //   activityIcons[index],
-                      // ),
                       isSelected: isRestrict,
                       goal: activityOptions[index],
                     ));
@@ -86,15 +84,8 @@ class _TypeOfExerciseViewState extends State<TypeOfExerciseView> {
               'If Other, please specify',
               style: TextStyles.font14BlackBold,
             ),
-            TextField(
-              decoration: InputDecoration(
-                  hintStyle: TextStyles.font14BlueRegular,
-                  hintText: typeOfPreferedExercise
-                          .contains(activityOptions[activityOptions.length - 1])
-                      ? 'Required Field'
-                      : null),
-              controller: BlocProvider.of<UserDataCubit>(context)
-                  .preferedExerciseController,
+            UserFormTextField(
+              controller: userDataCubit.preferedExerciseController,
               enabled: typeOfPreferedExercise
                   .contains(activityOptions[activityOptions.length - 1]),
             ),

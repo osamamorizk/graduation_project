@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation_project/feature/user_data_form/presentation/views/type_of_exercise_view.dart';
 
 part 'user_data_state.dart';
 
@@ -32,11 +33,21 @@ class UserDataCubit extends Cubit<UserDataState> {
     if (userGoals.isEmpty) {
       return false;
     }
+    if (typeOfPreferedExercise.isEmpty) {
+      return false;
+    }
+    if (typeOfPreferedExercise.contains('Other') &&
+        preferedExerciseController.text.isEmpty) {
+      return false;
+    }
 
     if (dietaryRestrictions.isEmpty) {
       return false;
     }
-
+    if (dietaryRestrictions.contains('Other health concerns') &&
+        otherDietaryRestrictionsController.text.isEmpty) {
+      return false;
+    }
     if (activityLevel.isEmpty) {
       return false;
     }

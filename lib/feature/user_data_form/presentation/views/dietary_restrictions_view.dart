@@ -5,6 +5,7 @@ import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/custom_multi_selection.dart';
+import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/user_form_text_field.dart';
 
 class DietaryRestrictionsView extends StatefulWidget {
   const DietaryRestrictionsView({super.key});
@@ -14,7 +15,7 @@ class DietaryRestrictionsView extends StatefulWidget {
       _DietaryRestrictionsViewState();
 }
 
-List<String> options = [
+List<String> restrictionsOptions = [
   "None",
   "Vegetarian",
   "Gluten-Free",
@@ -45,7 +46,7 @@ class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
               shrinkWrap: true,
               separatorBuilder: (context, index) => verticalSpace(24.h),
               itemBuilder: (context, index) {
-                final restrictions = options[index];
+                final restrictions = restrictionsOptions[index];
                 final bool isRestrict =
                     selectedDietaryRestrictions.contains(restrictions);
                 return GestureDetector(
@@ -57,7 +58,7 @@ class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
                           selectedDietaryRestrictions.add(restrictions);
                         }
 
-                        if (index == options.length - 1) {
+                        if (index == restrictionsOptions.length - 1) {
                           selectedDietaryRestrictions.add(
                               userDataCubit.preferedExerciseController.text);
                         }
@@ -67,26 +68,20 @@ class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
                     },
                     child: CustomMultiSelectionItem(
                       isSelected: isRestrict,
-                      goal: options[index],
+                      goal: restrictionsOptions[index],
                     ));
               },
-              itemCount: options.length,
+              itemCount: restrictionsOptions.length,
             ),
             verticalSpace(30.h),
             Text(
               'If Other, please specify',
               style: TextStyles.font14BlackBold,
             ),
-            TextField(
-              decoration: InputDecoration(
-                  hintStyle: TextStyles.font14BlueRegular,
-                  hintText: selectedDietaryRestrictions
-                          .contains(options[options.length - 1])
-                      ? 'Required Field'
-                      : null),
+            UserFormTextField(
               controller: userDataCubit.otherDietaryRestrictionsController,
-              enabled: selectedDietaryRestrictions
-                  .contains(options[options.length - 1]),
+              enabled: selectedDietaryRestrictions.contains(
+                  restrictionsOptions[restrictionsOptions.length - 1]),
             ),
             verticalSpace(40.h),
           ],

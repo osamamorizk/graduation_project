@@ -5,6 +5,7 @@ import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/custom_multi_selection.dart';
+import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/user_form_text_field.dart';
 
 class HealthConcernsView extends StatefulWidget {
   const HealthConcernsView({super.key});
@@ -26,6 +27,7 @@ final List<String> selectedHealthConcerns = [];
 class _HealthConcernsViewState extends State<HealthConcernsView> {
   @override
   Widget build(BuildContext context) {
+    final userDataCubit = BlocProvider.of<UserDataCubit>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: SingleChildScrollView(
@@ -39,6 +41,7 @@ class _HealthConcernsViewState extends State<HealthConcernsView> {
             ),
             verticalSpace(40.h),
             ListView.separated(
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               separatorBuilder: (context, index) => verticalSpace(20.h),
               itemBuilder: (context, index) {
@@ -55,12 +58,9 @@ class _HealthConcernsViewState extends State<HealthConcernsView> {
                         }
                         if (index == healthConcerns.length - 1) {
                           selectedHealthConcerns.add(
-                              BlocProvider.of<UserDataCubit>(context)
-                                  .preferedExerciseController
-                                  .text);
+                              userDataCubit.preferedExerciseController.text);
                         }
-                        BlocProvider.of<UserDataCubit>(context).helthConcerns =
-                            selectedHealthConcerns;
+                        userDataCubit.helthConcerns = selectedHealthConcerns;
                       });
                     },
                     child: CustomMultiSelectionItem(
@@ -75,15 +75,8 @@ class _HealthConcernsViewState extends State<HealthConcernsView> {
               'If Other, please specify',
               style: TextStyles.font14BlackBold,
             ),
-            TextField(
-              decoration: InputDecoration(
-                  hintStyle: TextStyles.font14BlueRegular,
-                  hintText: selectedHealthConcerns
-                          .contains(healthConcerns[healthConcerns.length - 1])
-                      ? 'Required Field'
-                      : null),
-              controller: BlocProvider.of<UserDataCubit>(context)
-                  .otherHelthConcernsController,
+            UserFormTextField(
+              controller: userDataCubit.otherHelthConcernsController,
               enabled: selectedHealthConcerns
                   .contains(healthConcerns[healthConcerns.length - 1]),
             ),
