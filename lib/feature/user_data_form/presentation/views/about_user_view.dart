@@ -6,6 +6,7 @@ import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/gender_toggle_buttons.dart';
+import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/how_old_container.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/tall_unit_toggle.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/wieght_unite_toggle.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -18,7 +19,7 @@ class AboutUser extends StatefulWidget {
 }
 
 class _AboutUserState extends State<AboutUser> {
-  int age = 30;
+  int age = 20;
   double height = 170;
   double weight = 54;
 
@@ -44,46 +45,8 @@ class _AboutUserState extends State<AboutUser> {
               verticalSpace(16.h),
               const Center(child: GenderToggleButtons()),
               verticalSpace(30.h),
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(border: Border.all(width: .4)),
-                    height: 40.h,
-                    width: 110.w,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
-                    child: Text(
-                      '$age',
-                      style: TextStyles.font16BlackRegular,
-                    ),
-                  ),
-                  Positioned(
-                      top: -15,
-                      left: 1,
-                      child: Text(
-                        'How old are you?',
-                        style: TextStyles.font14BlackBold,
-                      ))
-                ],
-              ),
-              Slider(
-                allowedInteraction: SliderInteraction.tapAndSlide,
-                activeColor: Colors.grey.shade400,
-                inactiveColor: ColorsManger.darkBlue,
-                thumbColor: Colors.white,
-                value: age.toDouble(),
-                min: 15,
-                max: 90,
-                divisions: 90,
-                label: age.round().toString(),
-                onChanged: (value) {
-                  setState(() {
-                    age = value.toInt();
-                    BlocProvider.of<UserDataCubit>(context).age = age;
-                  });
-                },
-              ),
+              HowOldContainer(age: age),
+              oldSlider(context),
               verticalSpace(20.h),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -96,23 +59,7 @@ class _AboutUserState extends State<AboutUser> {
                   const TallUniteToggle(),
                 ],
               ),
-              SfSlider(
-                activeColor: Colors.grey.shade400,
-                inactiveColor: ColorsManger.darkBlue,
-                min: 70,
-                max: 200.0,
-                value: height,
-                interval: 15,
-                showTicks: true,
-                showLabels: true,
-                enableTooltip: true,
-                onChanged: (dynamic value) {
-                  setState(() {
-                    height = value;
-                    BlocProvider.of<UserDataCubit>(context).tall = height;
-                  });
-                },
-              ),
+              tallSlider(context),
               verticalSpace(40.h),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -125,29 +72,78 @@ class _AboutUserState extends State<AboutUser> {
                   const WeightUniteToggle(),
                 ],
               ),
-              SfSlider(
-                min: 40,
-                max: 180,
-                value: weight,
-                interval: 20,
-                showTicks: true,
-                showDividers: true,
-                minorTickShape: const SfTickShape(),
-                showLabels: true,
-                enableTooltip: true,
-                activeColor: ColorsManger.darkBlue,
-                minorTicksPerInterval: 4,
-                onChanged: (dynamic value) {
-                  setState(() {
-                    weight = value;
-                    BlocProvider.of<UserDataCubit>(context).weight = weight;
-                  });
-                },
-              ),
+              weightSlider(context),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  SfSlider weightSlider(BuildContext context) {
+    return SfSlider(
+      showDividers: false,
+      activeColor: Colors.grey.shade400,
+      inactiveColor: ColorsManger.darkBlue,
+      edgeLabelPlacement: EdgeLabelPlacement.auto,
+      min: 40,
+      max: 180,
+      value: weight,
+      interval: 20,
+      stepSize: 1,
+      showTicks: true,
+      showLabels: true,
+      enableTooltip: true,
+      minorTicksPerInterval: 4,
+      onChanged: (dynamic value) {
+        setState(() {
+          weight = value;
+          BlocProvider.of<UserDataCubit>(context).weight = weight;
+        });
+      },
+    );
+  }
+
+  SfSlider tallSlider(BuildContext context) {
+    return SfSlider(
+      activeColor: Colors.grey.shade400,
+      inactiveColor: ColorsManger.darkBlue,
+      showDividers: false,
+      min: 70,
+      max: 200,
+      value: height,
+      interval: 15,
+      stepSize: .5,
+      showTicks: true,
+      showLabels: true,
+      enableTooltip: true,
+      onChanged: (dynamic value) {
+        setState(() {
+          height = value;
+          BlocProvider.of<UserDataCubit>(context).tall = height;
+        });
+      },
+    );
+  }
+
+  SfSlider oldSlider(BuildContext context) {
+    return SfSlider(
+      activeColor: Colors.grey.shade400,
+      inactiveColor: ColorsManger.darkBlue,
+      showDividers: false,
+      min: 10,
+      max: 90,
+      value: age.toDouble(),
+      interval: 90,
+      showTicks: false,
+      showLabels: false,
+      enableTooltip: true,
+      onChanged: (dynamic value) {
+        setState(() {
+          age = value.toInt();
+          BlocProvider.of<UserDataCubit>(context).age = age;
+        });
+      },
     );
   }
 }
