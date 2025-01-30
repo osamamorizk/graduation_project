@@ -21,11 +21,11 @@ class YouTubeVideoPlayerState extends State<YouTubeVideoPlayer> {
     _controller = YoutubePlayerController(
       initialVideoId: videoId ?? '',
       flags: const YoutubePlayerFlags(
-          useHybridComposition: false,
-          loop: true,
-          autoPlay: true,
-          mute: false,
-          enableCaption: false),
+        loop: true,
+        autoPlay: true,
+        mute: false,
+        enableCaption: false,
+      ),
     );
   }
 
@@ -38,10 +38,10 @@ class YouTubeVideoPlayerState extends State<YouTubeVideoPlayer> {
   @override
   Widget build(BuildContext context) {
     return YoutubePlayer(
-      // onEnded: (metaData) {
-      //   _controller.seekTo(const Duration(seconds: 0));
-      //   _controller.play();
-      // },
+      onEnded: (metaData) {
+        _controller.seekTo(const Duration(seconds: 0));
+        _controller.play();
+      },
       bottomActions: const <Widget>[
         SizedBox(width: 14.0),
         CurrentPosition(),
@@ -49,7 +49,6 @@ class YouTubeVideoPlayerState extends State<YouTubeVideoPlayer> {
         ProgressBar(isExpanded: true),
         RemainingDuration(),
       ],
-
       controller: _controller,
       showVideoProgressIndicator: true,
       progressIndicatorColor: Colors.amber,

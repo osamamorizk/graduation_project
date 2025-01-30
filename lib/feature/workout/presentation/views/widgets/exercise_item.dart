@@ -1,10 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/core/helpers/app_assets.dart';
-import 'package:graduation_project/core/helpers/extensions.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:graduation_project/core/functions/show_exercise_dialog.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
+import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
-import 'package:graduation_project/feature/workout/presentation/views/widgets/youtyube_video_player.dart';
 
 class ExerciseItem extends StatelessWidget {
   const ExerciseItem({super.key});
@@ -14,12 +15,6 @@ class ExerciseItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         showExerciseVideoDialog(context);
-        // Navigator.of(context).push(
-        //   MaterialPageRoute(
-        //     builder: (context) => const YouTubeVideoPlayer(
-        //         videoUrl: 'https://www.youtube.com/embed/W23xfdEqHtg'),
-        //   ),
-        // );
       },
       child: Container(
         height: 120.h,
@@ -29,9 +24,21 @@ class ExerciseItem extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset(
-              Assets.imagesExerciseItem,
-              width: 85.w,
+            AspectRatio(
+              aspectRatio: 1.5,
+              child: CachedNetworkImage(
+                fit: BoxFit.cover,
+                width: 80.w,
+                imageUrl:
+                    "https://img.youtube.com/vi/3DH2fwV5u1k/maxresdefault.jpg",
+                placeholder: (context, url) => Center(
+                  child: SpinKitSpinningLines(
+                    color: ColorsManger.darkBlue,
+                    size: 60.0,
+                  ),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
             ),
             horizontalSpace(16),
             Column(
@@ -54,45 +61,4 @@ class ExerciseItem extends StatelessWidget {
       ),
     );
   }
-}
-
-void showExerciseVideoDialog(BuildContext context) {
-  showDialog(
-    barrierDismissible: false,
-    context: context,
-    builder: (context) {
-      return Dialog(
-        insetAnimationCurve: Curves.elasticOut,
-        insetAnimationDuration: const Duration(milliseconds: 200),
-        backgroundColor: Colors.white,
-        elevation: 2,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        child: SizedBox(
-          height: 230.h,
-          width: 200.w,
-          child: Stack(
-            children: [
-              Positioned(
-                right: 2,
-                top: -8,
-                child: IconButton(
-                    padding: const EdgeInsets.all(0),
-                    onPressed: (context.pop),
-                    icon: const Icon(
-                      Icons.close,
-                    )),
-              ),
-              const Center(
-                child: FittedBox(
-                  fit: BoxFit.contain,
-                  child: YouTubeVideoPlayer(
-                      videoUrl: 'https://www.youtube.com/embed/W23xfdEqHtg'),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    },
-  );
 }
