@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation_project/feature/user_data_form/presentation/views/type_of_exercise_view.dart';
+import 'package:graduation_project/feature/user_data_form/presentation/views/work_out_views/type_of_exercise_view.dart';
 
 part 'user_data_state.dart';
 
@@ -28,19 +28,11 @@ class UserDataCubit extends Cubit<UserDataState> {
   TextEditingController preferedExerciseController = TextEditingController();
 
   List<String> userMotivation = [];
-
   bool validateAllData() {
-    if (userGoals.isEmpty) {
-      return false;
-    }
-    if (typeOfPreferedExercise.isEmpty) {
-      return false;
-    }
-    if (typeOfPreferedExercise.contains('Other') &&
-        preferedExerciseController.text.isEmpty) {
-      return false;
-    }
+    return validateDietData() && validateWorkoutData() && validateGeneralData();
+  }
 
+  bool validateDietData() {
     if (dietaryRestrictions.isEmpty) {
       return false;
     }
@@ -48,14 +40,9 @@ class UserDataCubit extends Cubit<UserDataState> {
         otherDietaryRestrictionsController.text.isEmpty) {
       return false;
     }
-    if (activityLevel.isEmpty) {
-      return false;
-    }
-
     if (dietKind.isEmpty) {
       return false;
     }
-
     if (helthConcerns.isEmpty) {
       return false;
     }
@@ -63,23 +50,39 @@ class UserDataCubit extends Cubit<UserDataState> {
         otherHelthConcernsController.text.isEmpty) {
       return false;
     }
+    return true;
+  }
 
+  bool validateWorkoutData() {
+    if (typeOfPreferedExercise.isEmpty) {
+      return false;
+    }
+    if (typeOfPreferedExercise.contains('Other') &&
+        preferedExerciseController.text.isEmpty) {
+      return false;
+    }
+    if (activityLevel.isEmpty) {
+      return false;
+    }
     if (fitnessLevel.isEmpty) {
       return false;
     }
-
     if (workoutDays.isEmpty) {
       return false;
     }
-
     if (workoutTime.isEmpty) {
       return false;
     }
+    return true;
+  }
 
+  bool validateGeneralData() {
+    if (userGoals.isEmpty) {
+      return false;
+    }
     if (userMotivation.isEmpty) {
       return false;
     }
-
     return true;
   }
 }

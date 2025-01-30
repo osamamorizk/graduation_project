@@ -74,6 +74,11 @@ class TextStyles {
     fontWeight: FontWeight.normal,
     color: Colors.white,
   );
+  static final TextStyle font13whiteRegular = TextStyle(
+    fontSize: 13.sp,
+    fontWeight: FontWeight.normal,
+    color: Colors.white,
+  );
   static final TextStyle font14greyNormal = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.normal,

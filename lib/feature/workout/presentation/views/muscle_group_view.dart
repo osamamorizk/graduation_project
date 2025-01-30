@@ -11,22 +11,20 @@ class MuscleGroupView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Expanded(
-        child: ListView.builder(
-          itemBuilder: (context, index) => GestureDetector(
-            onTap: () {
-              context.pushNamed(Routes.exerciseListView,
-                  arguments: exerciseList[index].name);
-            },
-            child: Padding(
-              padding: EdgeInsets.only(bottom: 16, top: index == 0 ? 16 : 0),
-              child: MuscleItem(
-                muscleModel: exerciseList[index],
-              ),
+      child: ListView.builder(
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {
+            context.pushNamed(Routes.exerciseListView,
+                arguments: exerciseList[index].name);
+          },
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 16, top: index == 0 ? 16 : 0),
+            child: MuscleItem(
+              muscleModel: exerciseList[index],
             ),
           ),
-          itemCount: exerciseList.length,
         ),
+        itemCount: exerciseList.length,
       ),
     );
   }

@@ -7,18 +7,24 @@ import 'package:graduation_project/core/themes/text_styles.dart';
 class CustomNewPlanButton extends StatelessWidget {
   const CustomNewPlanButton({
     super.key,
+    required this.buttonText,
+    this.onPressed,
+    required this.type,
   });
-
+  final String buttonText;
+  final String type;
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        warningDialog(context);
+        warningDialog(context, onPressed, type);
       },
       child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         margin: const EdgeInsets.only(right: 16),
         height: 28.h,
-        width: 85.w,
+        // width: 85.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: ColorsManger.darkBlue,
@@ -32,8 +38,8 @@ class CustomNewPlanButton extends StatelessWidget {
               color: Colors.white,
             ),
             Text(
-              'New plan',
-              style: TextStyles.font12WhiteBold,
+              buttonText,
+              style: TextStyles.font13whiteRegular,
             )
           ],
         ),

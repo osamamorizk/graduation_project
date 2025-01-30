@@ -12,21 +12,7 @@ class SignUpActions extends StatelessWidget {
       children: [
         CustomButton(
           onPressed: () {
-            context.pushNamed(Routes.dataForm);
-            // if (context.read<SignupCubit>().formKey.currentState!.validate()) {
-            //   context.read<SignupCubit>().signUp(
-            //       signUpData: SignUpData(
-            //           phone: context.read<SignupCubit>().numberController.text,
-            //           name: context.read<SignupCubit>().nameController.text,
-            //           email: context.read<SignupCubit>().emailController.text,
-            //           password:
-            //               context.read<SignupCubit>().passwordController.text,
-            //           confirmPassword: context
-            //               .read<SignupCubit>()
-            //               .passwordConfirmController
-            //               .text,
-            //           gender: 0));
-            // }
+            context.pushNamed(Routes.dataForm, arguments: '');
           },
           text: 'Create Account',
         ),

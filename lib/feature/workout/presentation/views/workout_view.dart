@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/helpers/extensions.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/workout/presentation/views/muscle_group_view.dart';
@@ -20,8 +22,14 @@ class WorkoutView extends StatelessWidget {
           automaticallyImplyLeading: false,
           toolbarHeight: 45,
           title: Text('Workout', style: TextStyles.font20BlueRegular),
-          actions: const [
-            CustomNewPlanButton(),
+          actions: [
+            CustomNewPlanButton(
+              type: 'workout',
+              buttonText: 'New workout plan',
+              onPressed: () {
+                context.pushNamed(Routes.dataForm, arguments: 'workout');
+              },
+            ),
           ],
           backgroundColor: Colors.white,
           bottom: TabBar(
