@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/networking/api_service.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/feature/bottom_nav_bar/presentation/views/bottom_bar.dart';
 import 'package:graduation_project/feature/login/presentation/views/forget_password.dart';
@@ -10,6 +11,8 @@ import 'package:graduation_project/feature/profile/presentation/views/my_data_vi
 import 'package:graduation_project/feature/sign_up/presentation/views/sign_up_view.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/user_data_form.dart';
+import 'package:graduation_project/feature/workout/data/repos/workout_repo_impl.dart';
+import 'package:graduation_project/feature/workout/presentation/manger/cubit/workout_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/exercise_list_view.dart';
 
 class AppRouter {
@@ -30,7 +33,10 @@ class AppRouter {
         );
       case Routes.bottomBar:
         return MaterialPageRoute(
-          builder: (_) => const BottomBar(),
+          builder: (_) => BlocProvider(
+            create: (context) => WorkoutCubit(WorkoutRepoImpl(ApiService())),
+            child: const BottomBar(),
+          ),
         );
       case Routes.dataForm:
         return MaterialPageRoute(

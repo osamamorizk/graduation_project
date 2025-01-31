@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/widgets/day_container.dart';
 
-class DaysList extends StatefulWidget {
-  const DaysList({
+class DietDaysList extends StatefulWidget {
+  const DietDaysList({
     super.key,
   });
-
   @override
-  State<DaysList> createState() => _DaysListState();
+  State<DietDaysList> createState() => _DietDaysListState();
 }
 
-class _DaysListState extends State<DaysList> {
+class _DietDaysListState extends State<DietDaysList> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -27,8 +26,8 @@ class _DaysListState extends State<DaysList> {
               });
             },
             child: DayContainer(
-              day: 'Day 1',
               isSelected: currentIndex == index,
+              day: 'day',
             ),
           );
         },

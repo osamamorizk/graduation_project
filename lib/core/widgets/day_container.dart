@@ -3,9 +3,14 @@ import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 
 class DayContainer extends StatelessWidget {
-  const DayContainer({super.key, required this.day, required this.isSelected});
+  const DayContainer({
+    super.key,
+    required this.day,
+    required this.isSelected,
+  });
   final String day;
   final bool isSelected;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,7 +23,7 @@ class DayContainer extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          'Day 1',
+          day,
           style: isSelected
               ? TextStyles.font14WhiteBold
               : TextStyles.font14DarkBlueBold,

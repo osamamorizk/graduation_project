@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:graduation_project/core/helpers/errors.dart';
 import 'package:graduation_project/core/networking/api_service.dart';
 import 'package:graduation_project/core/networking/end_points.dart';
@@ -20,7 +21,11 @@ class WorkoutRepoImpl implements WorkoutRepo {
       }
       return right(workoutPlansList);
     } catch (e) {
-      return left(ServerFailure(errorMessage: e.toString()));
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
     }
   }
 
@@ -31,11 +36,11 @@ class WorkoutRepoImpl implements WorkoutRepo {
       List<WorkoutExerciseModel> exerciseList = getWorkoutByDay(day: day);
       return right(exerciseList);
     } catch (e) {
-      return left(
-        ServerFailure(
-          errorMessage: e.toString(),
-        ),
-      );
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
     }
   }
 
