@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/diet_days_list.dart';
-import 'package:graduation_project/feature/diet/presentation/views/widgets/meal_item.dart';
+import 'package:graduation_project/feature/diet/presentation/views/widgets/diet_meal_list_view.dart';
 
 class DietYourPlan extends StatelessWidget {
   const DietYourPlan({super.key});
@@ -15,17 +15,7 @@ class DietYourPlan extends StatelessWidget {
           verticalSpace(16),
           const DietDaysList(),
           verticalSpace(16),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.only(bottom: 16),
-                  child: MealItem(),
-                );
-              },
-            ),
-          )
+          const DietMealsListView()
         ],
       ),
     );

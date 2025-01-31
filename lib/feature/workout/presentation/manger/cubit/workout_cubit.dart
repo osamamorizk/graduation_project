@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:graduation_project/feature/workout/data/models/workout_model/daily_plan.dart';
+import 'package:graduation_project/feature/workout/data/models/workout_model/workout_plan_model.dart';
 import 'package:graduation_project/feature/workout/data/models/workout_model/exercise.dart';
 import 'package:graduation_project/feature/workout/data/repos/workout_repo.dart';
 import 'package:meta/meta.dart';

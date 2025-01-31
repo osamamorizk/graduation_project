@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:graduation_project/core/helpers/errors.dart';
 import 'package:graduation_project/core/networking/api_service.dart';
-import 'package:graduation_project/feature/workout/data/models/workout_model/daily_plan.dart';
+import 'package:graduation_project/feature/workout/data/models/workout_model/workout_plan_model.dart';
 import 'package:graduation_project/feature/workout/data/models/workout_model/exercise.dart';
 import 'package:graduation_project/feature/workout/data/repos/workout_repo.dart';
 

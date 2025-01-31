@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:graduation_project/core/helpers/errors.dart';
-import 'package:graduation_project/feature/workout/data/models/workout_model/daily_plan.dart';
+import 'package:graduation_project/feature/workout/data/models/workout_model/workout_plan_model.dart';
 import 'package:graduation_project/feature/workout/data/models/workout_model/exercise.dart';
 
 abstract class WorkoutRepo {
