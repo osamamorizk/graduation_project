@@ -47,7 +47,7 @@ class MealItem extends StatelessWidget {
         for (var item in meal.items ?? [])
           Padding(
             padding: const EdgeInsets.only(top: 16),
-            child: FoodMealItem(mealItem: item),
+            child: FoodMealItem(item: item),
           ),
         verticalSpace(16),
         verticalSpace(16)

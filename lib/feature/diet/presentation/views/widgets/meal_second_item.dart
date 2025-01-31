@@ -23,11 +23,11 @@ class MealSecondItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MealListTileWithDetails(
-            mealItem: mealItem,
+            item: mealItem,
           ),
           const OrWidget(),
           MealListTileWithDetails(
-            mealItem: mealItem,
+            item: mealItem,
           ),
         ],
       ),

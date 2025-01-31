@@ -8,9 +8,9 @@ import 'package:graduation_project/feature/diet/presentation/views/widgets/meal_
 class MealListTileWithDetails extends StatelessWidget {
   const MealListTileWithDetails({
     super.key,
-    required this.mealItem,
+    required this.item,
   });
-  final Item mealItem;
+  final Item item;
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -22,22 +22,18 @@ class MealListTileWithDetails extends StatelessWidget {
             child: Text(
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
-              mealItem.name ?? 'Name',
+              item.name ?? 'Name',
               style: TextStyles.font14BlackBold,
             ),
           ),
           const Spacer(),
-          ContainerIformation(data: mealItem.portionSize ?? 'slice')
-          // Text(
-          //   '2 slice',
-          //   style: TextStyles.font14BlackRegular,
-          // ),
+          ContainerIformation(data: item.portionSize ?? 'slice')
         ],
       ),
       subtitle: Padding(
         padding: const EdgeInsets.only(top: 8),
         child: MealIngrediantsInfo(
-          mealItem: mealItem,
+          item: item,
         ),
       ),
     );

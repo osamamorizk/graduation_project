@@ -8,10 +8,10 @@ import 'package:graduation_project/feature/diet/presentation/views/widgets/meal_
 class FoodMealItem extends StatelessWidget {
   const FoodMealItem({
     super.key,
-    required this.mealItem,
+    required this.item,
     this.color,
   });
-  final Item mealItem;
+  final Item item;
   final Color? color;
   @override
   Widget build(BuildContext context) {
@@ -24,10 +24,9 @@ class FoodMealItem extends StatelessWidget {
       child: Column(
         children: [
           MealListTileWithDetails(
-            mealItem: mealItem,
+            item: item,
           ),
-          if (mealItem.alternatives != null &&
-              mealItem.alternatives!.isNotEmpty)
+          if (item.alternatives != null && item.alternatives!.isNotEmpty)
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -37,7 +36,7 @@ class FoodMealItem extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                   child: FoodMealItem(
                     color: Colors.white,
-                    mealItem: mealItem.alternatives![0],
+                    item: item.alternatives![0],
                   ),
                 ),
               ],

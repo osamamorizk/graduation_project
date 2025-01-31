@@ -5,23 +5,23 @@ import 'package:graduation_project/feature/diet/data/models/diet/item.model.dart
 class MealIngrediantsInfo extends StatelessWidget {
   const MealIngrediantsInfo({
     super.key,
-    required this.mealItem,
+    required this.item,
   });
-  final Item mealItem;
+  final Item item;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Carbs: ${mealItem.macronutrients!.carbs}',
+          'Carbs: ${item.macronutrients!.carbs}',
           style: TextStyles.font14BlueRegular,
         ),
         const Text('|'),
-        Text('Fat:  ${mealItem.macronutrients!.fat}',
+        Text('Fat:  ${item.macronutrients!.fat}',
             style: TextStyles.font14BlueRegular),
         const Text('|'),
-        Text('Protein:  ${mealItem.macronutrients!.protein}',
+        Text('Protein:  ${item.macronutrients!.protein}',
             style: TextStyles.font14BlueRegular),
       ],
     );
