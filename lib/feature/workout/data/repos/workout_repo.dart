@@ -4,7 +4,7 @@ import 'package:graduation_project/feature/workout/data/models/workout_model/dai
 import 'package:graduation_project/feature/workout/data/models/workout_model/exercise.dart';
 
 abstract class WorkoutRepo {
-  Future<Either<Failure, List<WorkoutPlanModel>>> getWorkoutPlans();
-  Future<Either<Failure, List<WorkoutExerciseModel>>> getDailyWorkout(
+  Future<Either<Failure, List<WorkoutPlanModel>>> getAllWorkoutPlans();
+  Future<Either<Failure, List<WorkoutExerciseModel>>> getWorkoutByDay(
       {required String day});
 }

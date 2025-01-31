@@ -8,9 +8,14 @@ import 'package:graduation_project/feature/workout/presentation/views/general_pl
 import 'package:graduation_project/core/widgets/custom_new_plan_button.dart';
 import 'package:graduation_project/feature/workout/presentation/views/your_plan_view.dart';
 
-class WorkoutView extends StatelessWidget {
+class WorkoutView extends StatefulWidget {
   const WorkoutView({super.key});
 
+  @override
+  State<WorkoutView> createState() => _WorkoutViewState();
+}
+
+class _WorkoutViewState extends State<WorkoutView> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

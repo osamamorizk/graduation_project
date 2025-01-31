@@ -34,7 +34,8 @@ class AppRouter {
       case Routes.bottomBar:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => WorkoutCubit(WorkoutRepoImpl(ApiService())),
+            create: (context) =>
+                WorkoutCubit(WorkoutRepoImpl(ApiService()))..getWorkoutPlans(),
             child: const BottomBar(),
           ),
         );

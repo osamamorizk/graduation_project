@@ -5,7 +5,7 @@ class WorkoutExerciseModel {
   String? reps;
   String? restBetweenSets;
   String? intensity;
-  List<String>? notes;
+  String? notes;
 
   WorkoutExerciseModel({
     this.name,
@@ -25,7 +25,7 @@ class WorkoutExerciseModel {
         reps: json['Reps'] as String?,
         restBetweenSets: json['RestBetweenSets'] as String?,
         intensity: json['Intensity'] as String?,
-        notes: json['Notes'] as List<String>?,
+        notes: json['Notes'][0],
       );
 
   Map<String, dynamic> toJson() => {

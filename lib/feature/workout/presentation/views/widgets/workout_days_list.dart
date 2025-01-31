@@ -12,12 +12,14 @@ class WorkoutDaysList extends StatefulWidget {
   State<WorkoutDaysList> createState() => _WorkoutDaysListState();
 }
 
-class _WorkoutDaysListState extends State<WorkoutDaysList> {
+class _WorkoutDaysListState extends State<WorkoutDaysList>
+    with AutomaticKeepAliveClientMixin {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SizedBox(
-      height: 30,
+      height: 32,
       child: BlocBuilder<WorkoutCubit, WorkoutState>(
         buildWhen: (previous, current) =>
             current is AllWorkoutSuccess || current is AllWorkoutFailure,
@@ -25,7 +27,7 @@ class _WorkoutDaysListState extends State<WorkoutDaysList> {
           if (state is AllWorkoutSuccess) {
             return ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 5,
+              itemCount: state.workoutPlansList.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
@@ -51,4 +53,7 @@ class _WorkoutDaysListState extends State<WorkoutDaysList> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
