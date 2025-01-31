@@ -3,13 +3,15 @@ import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/container_info.dart';
+import 'package:graduation_project/feature/workout/data/models/workout_model/exercise.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/workout_element_data.dart';
 
 class WorkoutItem extends StatelessWidget {
   const WorkoutItem({
     super.key,
+    required this.exercise,
   });
-
+  final WorkoutExerciseModel exercise;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,11 +25,11 @@ class WorkoutItem extends StatelessWidget {
           Row(
             children: [
               Text(
-                'Bench press',
+                exercise.name ?? 'Exercise',
                 style: TextStyles.font14BlackBold,
               ),
               const Spacer(),
-              const ContainerIformation(data: 'Chest')
+              ContainerIformation(data: exercise.muscleGroup ?? 'Chest')
             ],
           ),
           const Divider(
@@ -37,16 +39,16 @@ class WorkoutItem extends StatelessWidget {
             indent: 5,
           ),
           verticalSpace(16),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               WorkoutElementDataItem(
-                data1: 'Sets: 4',
-                data2: 'Reps: 8_10',
+                data1: 'Sets: ${exercise.sets}',
+                data2: 'Reps: ${exercise.reps}',
               ),
               WorkoutElementDataItem(
-                data1: 'Rest: 60-90 sec',
-                data2: 'Intensity: Moderate',
+                data1: 'Rest: ${exercise.restBetweenSets}',
+                data2: 'Intensity:  ${exercise.intensity}',
               )
             ],
           ),
@@ -57,7 +59,7 @@ class WorkoutItem extends StatelessWidget {
               color: ColorsManger.darkBlue,
             ),
             title: Text(
-              'Focus on proper form and controlled movements.',
+              '  ${exercise.notes}',
               style: TextStyles.font14BlackRegular,
             ),
           )

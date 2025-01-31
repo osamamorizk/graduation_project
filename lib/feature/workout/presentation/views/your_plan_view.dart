@@ -20,7 +20,9 @@ class WorkoutYourPlanView extends StatelessWidget {
               itemCount: 4,
               itemBuilder: (context, index) => const Padding(
                 padding: EdgeInsets.only(bottom: 16),
-                child: WorkoutItem(),
+                child: WorkoutItem(
+                  exercise: [],
+                ),
               ),
             ),
           ),
