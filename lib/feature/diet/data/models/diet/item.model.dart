@@ -1,4 +1,3 @@
-import 'alternative.model.dart';
 import 'macronutrients.model.dart';
 
 class Item {
@@ -6,7 +5,7 @@ class Item {
   String? portionSize;
   int? calories;
   Macronutrients? macronutrients;
-  List<Alternative>? alternatives;
+  List<Item>? alternatives;
 
   Item({
     this.name,
@@ -25,7 +24,7 @@ class Item {
             : Macronutrients.fromJson(
                 json['Macronutrients'] as Map<String, dynamic>),
         alternatives: (json['Alternatives'] as List<dynamic>?)
-            ?.map((e) => Alternative.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => Item.fromJson(e as Map<String, dynamic>))
             .toList(),
       );
 

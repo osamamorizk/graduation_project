@@ -12,6 +12,7 @@ class ContainerIformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 85.w,
       padding:
           const EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
@@ -20,7 +21,6 @@ class ContainerIformation extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: SizedBox(
-        width: 70.w,
         child: Center(
           child: Text(
             data,
