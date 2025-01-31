@@ -7,14 +7,30 @@ final class DietCubitInitial extends DietCubitState {}
 
 final class GetAllDietLoading extends DietCubitState {}
 
-final class GetAllDietSuccess extends DietCubitState {}
+final class GetAllDietSuccess extends DietCubitState {
+  final List<DailyPlan> allDietList;
 
-final class GetAllDietFailure extends DietCubitState {}
+  GetAllDietSuccess({required this.allDietList});
+}
+
+final class GetAllDietFailure extends DietCubitState {
+  final String errorMessage;
+
+  GetAllDietFailure({required this.errorMessage});
+}
 
 //
 
 final class GetMealsByDayLoading extends DietCubitState {}
 
-final class GetMealsByDaySuccess extends DietCubitState {}
+final class GetMealsByDaySuccess extends DietCubitState {
+  final List<Meal> dayMeals;
 
-final class GetMealsByDayFailure extends DietCubitState {}
+  GetMealsByDaySuccess({required this.dayMeals});
+}
+
+final class GetMealsByDayFailure extends DietCubitState {
+  final String errorMessage;
+
+  GetMealsByDayFailure({required this.errorMessage});
+}
