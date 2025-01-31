@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 
@@ -18,9 +19,16 @@ class ContainerIformation extends StatelessWidget {
         border: Border.all(width: .8, color: ColorsManger.darkGrey),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Text(
-        data,
-        style: TextStyles.font14BlackRegular,
+      child: SizedBox(
+        width: 70.w,
+        child: Center(
+          child: Text(
+            data,
+            style: TextStyles.font14BlackRegular,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+          ),
+        ),
       ),
     );
   }

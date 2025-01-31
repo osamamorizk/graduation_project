@@ -18,7 +18,7 @@ class Item {
 
   factory Item.fromJson(Map<String, dynamic> json) => Item(
         name: json['Name'] as String?,
-        portionSize: json['PortionSize'] as String?,
+        portionSize: json['PortionSize'],
         calories: json['Calories'] as int?,
         macronutrients: json['Macronutrients'] == null
             ? null

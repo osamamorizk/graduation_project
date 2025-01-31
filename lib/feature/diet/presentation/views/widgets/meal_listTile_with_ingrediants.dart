@@ -1,34 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/container_info.dart';
+import 'package:graduation_project/feature/diet/data/models/diet/item.model.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/meal_ingrediants_info.dart';
 
 class MealListTileWithDetails extends StatelessWidget {
   const MealListTileWithDetails({
     super.key,
+    required this.mealItem,
   });
-
+  final Item mealItem;
   @override
   Widget build(BuildContext context) {
     return ListTile(
       minTileHeight: 40,
       title: Row(
         children: [
-          Text(
-            'Toast',
-            style: TextStyles.font14BlackBold,
+          SizedBox(
+            width: 150.w,
+            child: Text(
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              mealItem.name ?? 'Name',
+              style: TextStyles.font14BlackBold,
+            ),
           ),
           const Spacer(),
-          const ContainerIformation(data: '2 slice')
+          ContainerIformation(data: mealItem.portionSize ?? 'slice')
           // Text(
           //   '2 slice',
           //   style: TextStyles.font14BlackRegular,
           // ),
         ],
       ),
-      subtitle: const Padding(
-        padding: EdgeInsets.only(top: 8),
-        child: MealIngrediantsInfo(),
+      subtitle: Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: MealIngrediantsInfo(
+          mealItem: mealItem,
+        ),
       ),
     );
   }

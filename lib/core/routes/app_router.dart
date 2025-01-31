@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/networking/api_service.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/feature/bottom_nav_bar/presentation/views/bottom_bar.dart';
+import 'package:graduation_project/feature/diet/data/repos/diet_repo_impl.dart';
+import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_cubit.dart';
 import 'package:graduation_project/feature/login/presentation/views/forget_password.dart';
 import 'package:graduation_project/feature/login/presentation/views/login_view.dart';
 import 'package:graduation_project/feature/login/presentation/views/verification.dart';
@@ -33,9 +35,17 @@ class AppRouter {
         );
       case Routes.bottomBar:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) =>
-                WorkoutCubit(WorkoutRepoImpl(ApiService()))..getWorkoutPlans(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => WorkoutCubit(WorkoutRepoImpl(ApiService()))
+                  ..getWorkoutPlans(),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    DietCubit(DietRepoImpl(ApiService()))..getAllDietsPlan(),
+              ),
+            ],
             child: const BottomBar(),
           ),
         );

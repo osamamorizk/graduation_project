@@ -3,14 +3,15 @@ import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/container_info.dart';
-import 'package:graduation_project/feature/diet/presentation/views/widgets/meal_second_item.dart';
+import 'package:graduation_project/feature/diet/data/models/diet/meal.model.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/food_meal_item.dart';
 
 class MealItem extends StatelessWidget {
   const MealItem({
     super.key,
+    required this.meal,
   });
-
+  final Meal meal;
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
@@ -27,12 +28,12 @@ class MealItem extends StatelessWidget {
       title: Row(
         children: [
           Text(
-            'Launch',
+            meal.name ?? 'Meal',
             style: TextStyles.font16BlackBold,
           ),
           const Spacer(),
-          const ContainerIformation(
-            data: '200 Cal',
+          ContainerIformation(
+            data: '${meal.items![0].calories} Cal',
           ),
         ],
       ),
@@ -44,16 +45,13 @@ class MealItem extends StatelessWidget {
           height: 1,
         ),
         verticalSpace(16),
-        const FoodMealItem(),
+        FoodMealItem(
+          mealItem: meal.items![0],
+        ),
         verticalSpace(16),
-        // Padding(
-        //   padding: const EdgeInsets.symmetric(vertical: 8),
-        //   child: Text(
-        //     'With',
-        //     style: TextStyles.font14BlackRegular,
-        //   ),
+        // MealSecondItem(
+        //   mealItem: meal.items![0],
         // ),
-        const MealSecondItem(),
         verticalSpace(16)
       ],
     );

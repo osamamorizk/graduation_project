@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -17,7 +18,8 @@ class DietRepoImpl implements DietRepo {
   Future<Either<Failure, List<DailyPlan>>> getAllDiet() async {
     try {
       // var result = await apiService.get(endPoints: 'endPoints');
-      for (var dietDay in json.decode(jsonData)['WeeklyPlans']['DailyPlans']) {
+      for (var dietDay in json.decode(jsonData)['WeeklyPlans'][0]
+          ['DailyPlans']) {
         daysDietList.add(DailyPlan.fromJson(dietDay));
       }
       return right(daysDietList);
@@ -25,6 +27,7 @@ class DietRepoImpl implements DietRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
+        log(e.toString());
         return left(ServerFailure(errorMessage: e.toString()));
       }
     }
@@ -894,4 +897,5 @@ String jsonData = '''{
     "Remember to adjust portion sizes based on personal activity levels and hunger cues.",
     "Replace any allergenic ingredients with suitable alternatives."
   ]
-} ''';
+} 
+''';

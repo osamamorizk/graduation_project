@@ -6,8 +6,8 @@ import 'package:meta/meta.dart';
 
 part 'diet_cubit_state.dart';
 
-class DietCubitCubit extends Cubit<DietCubitState> {
-  DietCubitCubit(this.dietRepo) : super(DietCubitInitial());
+class DietCubit extends Cubit<DietCubitState> {
+  DietCubit(this.dietRepo) : super(DietCubitInitial());
   final DietRepo dietRepo;
   Future<void> getAllDietsPlan() async {
     emit(GetAllDietLoading());

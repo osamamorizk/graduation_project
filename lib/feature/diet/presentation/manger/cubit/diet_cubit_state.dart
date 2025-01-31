@@ -1,4 +1,4 @@
-part of 'diet_cubit_cubit.dart';
+part of 'diet_cubit.dart';
 
 @immutable
 sealed class DietCubitState {}
