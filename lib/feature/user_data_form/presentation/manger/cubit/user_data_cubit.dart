@@ -1,18 +1,17 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation_project/feature/user_data_form/presentation/views/work_out_views/type_of_exercise_view.dart';
 
 part 'user_data_state.dart';
 
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit() : super(UserDataInitial());
-  String gender = 'Male';
+  int gender = 0;
   int tall = 160;
   int age = 25;
 
   int weight = 60;
 
-  int userGoals = 0;
+  int userGoals = 100;
   String dietaryRestrictions = '';
   String activityLevel = '';
   TextEditingController otherDietaryRestrictionsController =
@@ -20,66 +19,49 @@ class UserDataCubit extends Cubit<UserDataState> {
   String dietKind = '';
   String helthConcerns = '';
   TextEditingController otherHelthConcernsController = TextEditingController();
-  int fitnessLevel = 0;
-  int workoutDays = 2;
+  int fitnessLevel = 100;
+  int workoutDays = 100;
   String workoutTime = '';
-  List<String> preferedExercise = [];
-  TextEditingController preferedExerciseController = TextEditingController();
+  // List<String> preferedExercise = [];
 
-  List<String> userMotivation = [];
+  // List<String> userMotivation = [];
   bool validateAllData() {
-    return validateDietData() && validateWorkoutData() && validateGeneralData();
+    return validateDietData() && validateWorkoutData();
   }
 
   bool validateDietData() {
     if (dietaryRestrictions.isEmpty) {
       return false;
     }
-    if (dietaryRestrictions.contains('Other health concerns') &&
-        otherDietaryRestrictionsController.text.isEmpty) {
+
+    if (helthConcerns.isEmpty) {
       return false;
     }
+
+    return true;
+  }
+
+  bool validateWorkoutData() {
+    if (userGoals == 100) {
+      return false;
+    }
+    if (dietaryRestrictions.isEmpty) {
+      return false;
+    }
+
     if (dietKind.isEmpty) {
       return false;
     }
     if (helthConcerns.isEmpty) {
       return false;
     }
-    if (helthConcerns.contains('Other health concerns') &&
-        otherHelthConcernsController.text.isEmpty) {
+    if (fitnessLevel == 100) {
       return false;
     }
-    return true;
-  }
-
-  bool validateWorkoutData() {
-    if (typeOfPreferedExercise.isEmpty) {
+    if (workoutDays == 100) {
       return false;
     }
-    if (typeOfPreferedExercise.contains('Other') &&
-        preferedExerciseController.text.isEmpty) {
-      return false;
-    }
-    if (activityLevel.isEmpty) {
-      return false;
-    }
-    // if (fitnessLevel.isEmpty) {
-    //   return false;
-    // }
-    // if (workoutDays.isEmpty) {
-    //   return false;
-    // }
     if (workoutTime.isEmpty) {
-      return false;
-    }
-    return true;
-  }
-
-  bool validateGeneralData() {
-    // if (userGoals.isEmpty) {
-    //   return false;
-    // }
-    if (userMotivation.isEmpty) {
       return false;
     }
     return true;

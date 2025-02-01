@@ -21,11 +21,11 @@ class GenderToggleButtonsState extends State<GenderToggleButtons> {
       onPressed: (int index) {
         if (index == 0) {
           setState(() {
-            BlocProvider.of<UserDataCubit>(context).gender = 'Male';
+            BlocProvider.of<UserDataCubit>(context).gender = index;
           });
         } else {
           setState(() {
-            BlocProvider.of<UserDataCubit>(context).gender = 'Female';
+            BlocProvider.of<UserDataCubit>(context).gender = index;
           });
         }
         setState(() {
