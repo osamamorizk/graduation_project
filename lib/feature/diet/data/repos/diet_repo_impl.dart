@@ -15,7 +15,7 @@ class DietRepoImpl implements DietRepo {
   DietRepoImpl(this.apiService);
   List<DailyPlan> daysDietList = [];
   @override
-  Future<Either<Failure, List<DailyPlan>>> getAllDiet() async {
+  Future<Either<Failure, List<DailyPlan>>> getAllDiet({required int id}) async {
     try {
       // var result = await apiService.get(endPoints: 'endPoints');
       for (var dietDay in json.decode(jsonData)['WeeklyPlans'][0]

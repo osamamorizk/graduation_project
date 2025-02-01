@@ -9,9 +9,9 @@ part 'diet_cubit_state.dart';
 class DietCubit extends Cubit<DietCubitState> {
   DietCubit(this.dietRepo) : super(DietCubitInitial());
   final DietRepo dietRepo;
-  Future<void> getAllDietsPlan() async {
+  Future<void> getAllDietsPlan({required int id}) async {
     emit(GetAllDietLoading());
-    var result = await dietRepo.getAllDiet();
+    var result = await dietRepo.getAllDiet(id: id);
     result.fold(
       (failure) {
         emit(GetAllDietFailure(errorMessage: failure.errorMessage));

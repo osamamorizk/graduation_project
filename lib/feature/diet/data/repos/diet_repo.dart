@@ -4,6 +4,6 @@ import 'package:graduation_project/feature/diet/data/models/diet/daily_plan.mode
 import 'package:graduation_project/feature/diet/data/models/diet/meal.model.dart';
 
 abstract class DietRepo {
-  Future<Either<Failure, List<DailyPlan>>> getAllDiet();
+  Future<Either<Failure, List<DailyPlan>>> getAllDiet({required int id});
   Future<Either<Failure, List<Meal>>> getMealsByDay({required String day});
 }

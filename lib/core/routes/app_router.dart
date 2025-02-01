@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/helpers/cashe_helper.dart';
 import 'package:graduation_project/core/helpers/service_locator.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/feature/bottom_nav_bar/presentation/views/bottom_bar.dart';
@@ -40,11 +41,11 @@ class AppRouter {
             providers: [
               BlocProvider(
                 create: (context) => WorkoutCubit(getIt.get<WorkoutRepoImpl>())
-                  ..getWorkoutPlans(),
+                  ..getWorkoutPlans(id: CasheHlper.getData(key: 'id')),
               ),
               BlocProvider(
-                create: (context) =>
-                    DietCubit(getIt.get<DietRepoImpl>())..getAllDietsPlan(),
+                create: (context) => DietCubit(getIt.get<DietRepoImpl>())
+                  ..getAllDietsPlan(id: CasheHlper.getData(key: 'id')),
               ),
             ],
             child: const BottomBar(),

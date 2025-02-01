@@ -14,7 +14,8 @@ class WorkoutRepoImpl implements WorkoutRepo {
   List<WorkoutPlanModel> workoutPlansList = [];
   WorkoutRepoImpl(this.apiService);
   @override
-  Future<Either<Failure, List<WorkoutPlanModel>>> getAllWorkoutPlans() async {
+  Future<Either<Failure, List<WorkoutPlanModel>>> getAllWorkoutPlans(
+      {required int id}) async {
     try {
       // var result = await apiService.get(endPoints: specializationEndPoints);
 

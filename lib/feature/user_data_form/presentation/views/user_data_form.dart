@@ -1,144 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/core/functions/custom_snack_bar.dart';
+import 'package:graduation_project/core/functions/error_dialog.dart';
+import 'package:graduation_project/core/functions/upload_data_dialog.dart';
+import 'package:graduation_project/core/helpers/cashe_helper.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/routes/routes.dart';
-import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/widgets/custom_action_button.dart';
-import 'package:graduation_project/feature/user_data_form/data/constants.dart';
-import 'package:graduation_project/feature/user_data_form/data/models/user_data_form_model.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
-import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/form_bar.dart';
-import 'package:graduation_project/core/helpers/spacing.dart';
+import 'package:graduation_project/feature/user_data_form/presentation/views/user_data_form_body.dart';
 
 class UserDataForm extends StatelessWidget {
   const UserDataForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const UserDataFormBody(category: 'all');
-  }
-}
-
-class UserDataFormBody extends StatefulWidget {
-  const UserDataFormBody({super.key, required this.category});
-  final String category;
-  @override
-  State<UserDataFormBody> createState() => _UserDataFormBodyState();
-}
-
-class _UserDataFormBodyState extends State<UserDataFormBody> {
-  int currentIndex = 0;
-  late List<Widget> selectedScreens;
-
-  @override
-  void initState() {
-    super.initState();
-    selectedScreens = getScreensBasedOnCategory(widget.category);
-  }
-
-  List<Widget> getScreensBasedOnCategory(String category) {
-    if (category == 'diet') {
-      return dietScreens;
-    } else if (category == 'workout') {
-      return workoutScreens;
-    } else {
-      return formScreens;
-    }
-  }
-
-  void nextScreen() {
-    if (currentIndex < formScreens.length - 1) {
-      setState(() {
-        currentIndex++;
-      });
-    }
-  }
-
-  void previousScreen() {
-    if (currentIndex > 0) {
-      setState(() {
-        currentIndex--;
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return RepaintBoundary(
-      child: Scaffold(
-        appBar: customDataFormBar(
-          IconButton(
-            onPressed: () {
-              currentIndex == 0 ? context.pop() : previousScreen();
-            },
-            icon: Icon(
-              size: 22,
-              Icons.arrow_back,
-              color: ColorsManger.darkBlue,
-            ),
-          ),
-          (currentIndex + 1) / selectedScreens.length,
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: selectedScreens[currentIndex],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: CustomButton(
-                text: currentIndex != selectedScreens.length - 1
-                    ? 'Continue'
-                    : 'submit',
-                onPressed: () {
-                  final userDataCubit = context.read<UserDataCubit>();
-
-                  bool isValid = false;
-                  if (widget.category == 'diet') {
-                    isValid = userDataCubit.validateDietData();
-                  } else if (widget.category == 'workout') {
-                    isValid = userDataCubit.validateWorkoutData();
-                  } else {
-                    isValid = userDataCubit.validateAllData();
-                  }
-
-                  if (currentIndex == selectedScreens.length - 1) {
-                    if (isValid) {
-                      userDataCubit.postUserData(
-                          userDataFormModel: UserDataFormModel(
-                        id: 'id',
-                        userName: 'userName',
-                        gender: userDataCubit.gender,
-                        age: userDataCubit.age,
-                        height: userDataCubit.tall,
-                        weight: userDataCubit.weight,
-                        fitnessLevel: userDataCubit.fitnessLevel,
-                        weeklyWorkoutDays: userDataCubit.workoutDays,
-                        workoutDuration: userDataCubit.workoutTime,
-                        goal: userDataCubit.userGoals,
-                        dietaryRestrictions: userDataCubit.dietaryRestrictions,
-                        preferredDiet: userDataCubit.dietKind,
-                        medicalConditions: userDataCubit.helthConcerns,
-                      ));
-                      context.pushNamed(Routes.bottomBar);
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        cuatomSnackBar(
-                            text: 'Please complete all required fields.'),
-                      );
-                    }
-                  } else {
-                    nextScreen();
-                  }
-                },
-              ),
-            ),
-            verticalSpace(30.h),
-          ],
-        ),
-      ),
+    return BlocListener<UserDataCubit, UserDataState>(
+      listener: (context, state) {
+        if (state is PostUserDataSuccess) {
+          CasheHlper.saveData(key: 'id', value: state.userDataFormModel.id);
+          // context
+          //     .read<WorkoutCubit>()
+          //     .getWorkoutPlans(id: CasheHlper.getData(key: 'id'));
+          // context
+          //     .read<DietCubit>()
+          //     .getAllDietsPlan(id: CasheHlper.getData(key: 'id'));
+          context.pushNamed(Routes.bottomBar);
+        } else if (state is PostUserDataFailure) {
+          showErrorDialog(context, errorMessage: state.errorMessage);
+        } else {
+          uploadDataLoading(context);
+        }
+      },
+      child: const UserDataFormBody(category: 'all'),
     );
   }
 }
+
+
+
+ // List<Widget> getScreensBasedOnCategory(String category) {
+  //   if (category == 'diet') {
+  //     return dietScreens;
+  //   } else if (category == 'workout') {
+  //     return workoutScreens;
+  //   } else {
+  //     return formScreens;
+  //   }
+  // }
