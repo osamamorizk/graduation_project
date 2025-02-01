@@ -5,7 +5,7 @@ import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
-import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/custom_multi_selection.dart';
+import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/custom_single_selected_item.dart';
 
 class GoalSelectionScreen extends StatefulWidget {
   const GoalSelectionScreen({super.key});
@@ -16,18 +16,18 @@ class GoalSelectionScreen extends StatefulWidget {
 
 class GoalSelectionScreenState extends State<GoalSelectionScreen> {
   final List<String> goals = [
-    'Lose Weight',
     'Build Strength',
-    'Gain Weight',
+    'Lose Weight',
+
+    // 'Gain Weight',
     'Reduce Stress',
     'Improve Health',
   ];
 
-  List<String> selectedGoals = [];
+  int? selectedIndex;
 
   @override
   Widget build(BuildContext context) {
-    selectedGoals = context.read<UserDataCubit>().userGoals;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -45,23 +45,17 @@ class GoalSelectionScreenState extends State<GoalSelectionScreen> {
               itemCount: goals.length,
               itemBuilder: (context, index) {
                 final goal = goals[index];
-                final bool isSelected = selectedGoals.contains(goal);
                 return GestureDetector(
                   onTap: () {
                     setState(() {
-                      if (isSelected) {
-                        selectedGoals.remove(goal);
-                      } else {
-                        selectedGoals.add(goal);
-                      }
-                      BlocProvider.of<UserDataCubit>(context).userGoals =
-                          selectedGoals;
+                      selectedIndex = index;
+                      BlocProvider.of<UserDataCubit>(context).userGoals = index;
                     });
                   },
-                  child: CustomMultiSelectionItem(
-                    isSelected: isSelected,
-                    goal: goal,
+                  child: CustomSingleSelectedItem(
+                    isSelected: selectedIndex == index,
                     image: getImageForGoal(goal),
+                    title: goals[index],
                   ),
                 );
               },
@@ -78,8 +72,8 @@ class GoalSelectionScreenState extends State<GoalSelectionScreen> {
         return Image.asset(Assets.iconsLoseWeight);
       case 'Build Strength':
         return Image.asset(Assets.iconsStrenght);
-      case 'Gain Weight':
-        return Image.asset(Assets.iconsGainWeight);
+      // case 'Gain Weight':
+      //   return Image.asset(Assets.iconsGainWeight);
       case 'Reduce Stress':
         return Image.asset(Assets.iconsReduceStress);
       case 'Improve Health':

@@ -60,7 +60,8 @@ class _HealthConcernsViewState extends State<HealthConcernsView> {
                           selectedHealthConcerns.add(
                               userDataCubit.preferedExerciseController.text);
                         }
-                        userDataCubit.helthConcerns = selectedHealthConcerns;
+                        userDataCubit.helthConcerns =
+                            selectedHealthConcerns.join(' ,');
                       });
                     },
                     child: CustomMultiSelectionItem(

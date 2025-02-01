@@ -51,7 +51,7 @@ class _FitnessLevelViewState extends State<FitnessLevelView> {
                       setState(() {
                         selectedIndex = index;
                         BlocProvider.of<UserDataCubit>(context).fitnessLevel =
-                            titles[index];
+                            index;
                       });
                     },
                     child: CustomSingleSelectedItem(
