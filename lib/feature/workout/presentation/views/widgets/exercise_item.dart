@@ -6,15 +6,16 @@ import 'package:graduation_project/core/functions/show_exercise_dialog.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
+import 'package:graduation_project/feature/workout/data/models/exercise_model.dart';
 
 class ExerciseItem extends StatelessWidget {
-  const ExerciseItem({super.key});
-
+  const ExerciseItem({super.key, required this.exerciseModel});
+  final ExerciseModel exerciseModel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showExerciseVideoDialog(context);
+        showExerciseVideoDialog(context, videoUrl: exerciseModel.videoUrl);
       },
       child: Container(
         height: 120.h,
@@ -29,8 +30,7 @@ class ExerciseItem extends StatelessWidget {
               child: CachedNetworkImage(
                 fit: BoxFit.cover,
                 width: 80.w,
-                imageUrl:
-                    "https://img.youtube.com/vi/3DH2fwV5u1k/maxresdefault.jpg",
+                imageUrl: exerciseModel.image,
                 placeholder: (context, url) => Center(
                   child: SpinKitSpinningLines(
                     color: ColorsManger.darkBlue,
@@ -46,12 +46,12 @@ class ExerciseItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Squats',
+                  exerciseModel.name,
                   style: TextStyles.font16BlackBold,
                 ),
                 verticalSpace(8),
                 Text(
-                  '30 min',
+                  exerciseModel.sets,
                   style: TextStyles.font16BlackRegular,
                 ),
               ],

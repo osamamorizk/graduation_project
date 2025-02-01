@@ -20,7 +20,8 @@ import 'package:graduation_project/feature/user_data_form/data/repos/user_data_r
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/user_data_form.dart';
 import 'package:graduation_project/feature/workout/data/repos/workout_repo_impl.dart';
-import 'package:graduation_project/feature/workout/presentation/manger/cubit/workout_cubit.dart';
+import 'package:graduation_project/feature/workout/presentation/manger/exercise_cubit/exercise_cubit.dart';
+import 'package:graduation_project/feature/workout/presentation/manger/worlout_cubit/workout_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/exercise_list_view.dart';
 
 class AppRouter {
@@ -51,12 +52,15 @@ class AppRouter {
             providers: [
               BlocProvider(
                 create: (context) => WorkoutCubit(getIt.get<WorkoutRepoImpl>())
-                  ..getWorkoutPlans(id: CasheHlper.getData(key: 'id')),
+                  ..getWorkoutPlans(id: CasheHlper.getData(key: 'id') ?? 15),
               ),
               BlocProvider(
                 create: (context) => DietCubit(getIt.get<DietRepoImpl>())
-                  ..getAllDietsPlan(id: CasheHlper.getData(key: 'id')),
+                  ..getAllDietsPlan(id: CasheHlper.getData(key: 'id') ?? 15),
               ),
+              BlocProvider(
+                  create: (context) =>
+                      ExerciseCubit(getIt.get<WorkoutRepoImpl>())),
             ],
             child: const BottomBar(),
           ),
