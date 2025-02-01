@@ -5,6 +5,8 @@ import 'package:graduation_project/feature/user_data_form/data/models/user_data_
 abstract class UserDataFormRepo {
   Future<Either<Failure, UserDataFormModel>> postUserData(
       {required UserDataFormModel userDataFormModel});
-  // Future<Either<Failure, Response>> putDiet();
-  // Future<Either<Failure, Response>> pu();
+  Future<Either<Failure, UserDataFormModel>> putDiet(
+      {required UserDataFormModel userDataFormModel});
+  Future<Either<Failure, UserDataFormModel>> putWorkout(
+      {required UserDataFormModel userDataFormModel});
 }

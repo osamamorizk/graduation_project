@@ -39,6 +39,35 @@ class UserDataCubit extends Cubit<UserDataState> {
     );
   }
 
+  Future<void> putWorkout(
+      {required UserDataFormModel userDataFormModel}) async {
+    emit(PostUserDataLoading());
+    var result =
+        await userDataFormRepo.putWorkout(userDataFormModel: userDataFormModel);
+    result.fold(
+      (failure) {
+        emit(PostUserDataFailure(errorMessage: failure.errorMessage));
+      },
+      (userData) {
+        emit(PostUserDataSuccess(userDataFormModel: userDataFormModel));
+      },
+    );
+  }
+
+  Future<void> putDiet({required UserDataFormModel userDataFormModel}) async {
+    emit(PostUserDataLoading());
+    var result =
+        await userDataFormRepo.putDiet(userDataFormModel: userDataFormModel);
+    result.fold(
+      (failure) {
+        emit(PostUserDataFailure(errorMessage: failure.errorMessage));
+      },
+      (userData) {
+        emit(PostUserDataSuccess(userDataFormModel: userDataFormModel));
+      },
+    );
+  }
+
   bool validateAllData() {
     return validateDietData() && validateWorkoutData();
   }

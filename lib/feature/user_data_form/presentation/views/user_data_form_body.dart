@@ -107,11 +107,12 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
 
         if (widget.category == 'workout') {
           //put workout
-          userDataCubit.postUserData(userDataFormModel: userData);
+          userDataCubit.putWorkout(userDataFormModel: userData);
         } else if (widget.category == 'diet') {
           //pu diet
-          userDataCubit.postUserData(userDataFormModel: userData);
+          userDataCubit.putDiet(userDataFormModel: userData);
         } else {
+          //post user
           userDataCubit.postUserData(userDataFormModel: userData);
         }
         context.pushNamed(Routes.bottomBar);

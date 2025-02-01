@@ -17,12 +17,7 @@ class UserDataForm extends StatelessWidget {
       listener: (context, state) {
         if (state is PostUserDataSuccess) {
           CasheHlper.saveData(key: 'id', value: state.userDataFormModel.id);
-          // context
-          //     .read<WorkoutCubit>()
-          //     .getWorkoutPlans(id: CasheHlper.getData(key: 'id'));
-          // context
-          //     .read<DietCubit>()
-          //     .getAllDietsPlan(id: CasheHlper.getData(key: 'id'));
+
           context.pushNamed(Routes.bottomBar);
         } else if (state is PostUserDataFailure) {
           showErrorDialog(context, errorMessage: state.errorMessage);
