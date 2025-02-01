@@ -47,8 +47,7 @@ class _DiteKindViewState extends State<DiteKindView> {
                   onTap: () {
                     setState(() {
                       selectedIndex = index;
-                      BlocProvider.of<UserDataCubit>(context).dietKind =
-                          options[index];
+                      BlocProvider.of<UserDataCubit>(context).dietKind = index;
                     });
                   },
                   child: CustomSingleSelectedItem(

@@ -1,0 +1,10 @@
+import 'package:dartz/dartz.dart';
+import 'package:graduation_project/core/helpers/errors.dart';
+import 'package:graduation_project/feature/user_data_form/data/models/user_data_form_model.dart';
+
+abstract class UserDataFormRepo {
+  Future<Either<Failure, UserDataFormModel>> postUserData(
+      {required UserDataFormModel userDataFormModel});
+  // Future<Either<Failure, Response>> putDiet();
+  // Future<Either<Failure, Response>> pu();
+}

@@ -11,6 +11,7 @@ import 'package:graduation_project/feature/login/presentation/views/verification
 import 'package:graduation_project/feature/onboarding/presentation/views/onboarding_view.dart';
 import 'package:graduation_project/feature/profile/presentation/views/my_data_view.dart';
 import 'package:graduation_project/feature/sign_up/presentation/views/sign_up_view.dart';
+import 'package:graduation_project/feature/user_data_form/data/repos/user_data_repo_impl.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/user_data_form.dart';
 import 'package:graduation_project/feature/workout/data/repos/workout_repo_impl.dart';
@@ -52,10 +53,10 @@ class AppRouter {
       case Routes.dataForm:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => UserDataCubit(),
-            child: UserDataForm(
-              category: settings.arguments as String,
-            ),
+            create: (context) => UserDataCubit(getIt.get<UserDataRepoImpl>()),
+            child: const UserDataForm(
+                // category: settings.arguments as String,
+                ),
           ),
         );
 

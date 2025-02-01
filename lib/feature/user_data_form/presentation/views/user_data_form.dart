@@ -7,18 +7,28 @@ import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/widgets/custom_action_button.dart';
 import 'package:graduation_project/feature/user_data_form/data/constants.dart';
+import 'package:graduation_project/feature/user_data_form/data/models/user_data_form_model.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/form_bar.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 
-class UserDataForm extends StatefulWidget {
-  const UserDataForm({super.key, required this.category});
-  final String category;
+class UserDataForm extends StatelessWidget {
+  const UserDataForm({super.key});
+
   @override
-  State<UserDataForm> createState() => _UserDataFormState();
+  Widget build(BuildContext context) {
+    return const UserDataFormBody(category: 'all');
+  }
 }
 
-class _UserDataFormState extends State<UserDataForm> {
+class UserDataFormBody extends StatefulWidget {
+  const UserDataFormBody({super.key, required this.category});
+  final String category;
+  @override
+  State<UserDataFormBody> createState() => _UserDataFormBodyState();
+}
+
+class _UserDataFormBodyState extends State<UserDataFormBody> {
   int currentIndex = 0;
   late List<Widget> selectedScreens;
 
@@ -96,6 +106,22 @@ class _UserDataFormState extends State<UserDataForm> {
 
                   if (currentIndex == selectedScreens.length - 1) {
                     if (isValid) {
+                      userDataCubit.postUserData(
+                          userDataFormModel: UserDataFormModel(
+                        id: 'id',
+                        userName: 'userName',
+                        gender: userDataCubit.gender,
+                        age: userDataCubit.age,
+                        height: userDataCubit.tall,
+                        weight: userDataCubit.weight,
+                        fitnessLevel: userDataCubit.fitnessLevel,
+                        weeklyWorkoutDays: userDataCubit.workoutDays,
+                        workoutDuration: userDataCubit.workoutTime,
+                        goal: userDataCubit.userGoals,
+                        dietaryRestrictions: userDataCubit.dietaryRestrictions,
+                        preferredDiet: userDataCubit.dietKind,
+                        medicalConditions: userDataCubit.helthConcerns,
+                      ));
                       context.pushNamed(Routes.bottomBar);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
