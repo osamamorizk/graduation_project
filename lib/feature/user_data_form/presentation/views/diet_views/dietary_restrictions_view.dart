@@ -33,11 +33,11 @@ class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    otherDietaryRestrictionsController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   otherDietaryRestrictionsController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {

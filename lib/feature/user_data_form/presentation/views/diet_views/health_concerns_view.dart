@@ -33,11 +33,11 @@ class _HealthConcernsViewState extends State<HealthConcernsView> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    otherHelthConcernsController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   otherHelthConcernsController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {

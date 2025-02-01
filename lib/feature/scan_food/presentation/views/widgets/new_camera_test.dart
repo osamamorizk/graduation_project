@@ -1,12 +1,9 @@
 import 'dart:io';
-
-// import 'package:better_open_file/better_open_file.dart';
 import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
-import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
+import 'package:graduation_project/core/widgets/custom_circle_progress_indicator.dart';
 import 'package:graduation_project/feature/scan_food/presentation/views/widgets/image_preview.dart';
 
 class NewCameraTest extends StatelessWidget {
@@ -18,15 +15,12 @@ class NewCameraTest extends StatelessWidget {
       progressIndicator: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SpinKitSpinningLines(
-            color: ColorsManger.darkBlue,
-            size: 60.0,
-          ),
+          const CustomCircleProgressIndicator(),
           verticalSpace(16),
           Text(
             'Loading Camera',
             style: TextStyles.font16BlueBold,
-          )
+          ),
         ],
       ),
       sensorConfig: SensorConfig.single(

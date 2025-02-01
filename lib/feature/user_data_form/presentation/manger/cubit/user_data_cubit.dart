@@ -9,7 +9,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(this.userDataFormRepo) : super(UserDataInitial());
   final UserDataFormRepo userDataFormRepo;
   int gender = 0;
-  int tall = 160;
+  int tall = 140;
   int age = 25;
   int weight = 60;
   int userGoals = 100;

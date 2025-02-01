@@ -133,7 +133,7 @@ class _AboutUserState extends State<AboutUser> {
       inactiveColor: ColorsManger.darkBlue,
       showDividers: false,
       min: 10,
-      max: 90,
+      max: 80,
       value: age.toDouble(),
       interval: 90,
       showTicks: false,
