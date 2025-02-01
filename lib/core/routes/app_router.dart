@@ -13,6 +13,8 @@ import 'package:graduation_project/feature/login/presentation/views/login_view.d
 import 'package:graduation_project/feature/login/presentation/views/verification.dart';
 import 'package:graduation_project/feature/onboarding/presentation/views/onboarding_view.dart';
 import 'package:graduation_project/feature/profile/presentation/views/my_data_view.dart';
+import 'package:graduation_project/feature/sign_up/data/repos/sign_up_repo_implem.dart';
+import 'package:graduation_project/feature/sign_up/presentation/manger/cubit/signup_cubit.dart';
 import 'package:graduation_project/feature/sign_up/presentation/views/sign_up_view.dart';
 import 'package:graduation_project/feature/user_data_form/data/repos/user_data_repo_impl.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
@@ -38,7 +40,10 @@ class AppRouter {
 
       case Routes.signUp:
         return MaterialPageRoute(
-          builder: (_) => const SignUpView(),
+          builder: (_) => BlocProvider(
+            create: (context) => SignupCubit(getIt.get<SignUpRepoImplem>()),
+            child: const SignUpView(),
+          ),
         );
       case Routes.bottomBar:
         return MaterialPageRoute(
@@ -60,9 +65,9 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => UserDataCubit(getIt.get<UserDataRepoImpl>()),
-            child: const UserDataForm(
-                // category: settings.arguments as String,
-                ),
+            child: UserDataForm(
+              category: settings.arguments as String,
+            ),
           ),
         );
 

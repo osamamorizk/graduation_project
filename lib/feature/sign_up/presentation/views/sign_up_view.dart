@@ -5,6 +5,7 @@ import 'package:graduation_project/core/widgets/google_button.dart';
 import 'package:graduation_project/core/widgets/or_widget.dart';
 import 'package:graduation_project/feature/sign_up/presentation/views/widgets/have_account.dart';
 import 'package:graduation_project/feature/sign_up/presentation/views/widgets/sign_up_actions.dart';
+import 'package:graduation_project/feature/sign_up/presentation/views/widgets/sign_up_listener.dart';
 import 'package:graduation_project/feature/sign_up/presentation/views/widgets/signup_form.dart';
 import 'package:graduation_project/feature/sign_up/presentation/views/widgets/signup_texts.dart';
 
@@ -33,6 +34,7 @@ class SignUpView extends StatelessWidget {
               verticalSpace(16.h),
               const HaveAccount(),
               verticalSpace(16.h),
+              const SignUpListener()
             ],
           ),
         ),

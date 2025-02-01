@@ -9,8 +9,8 @@ import 'package:graduation_project/feature/user_data_form/presentation/manger/cu
 import 'package:graduation_project/feature/user_data_form/presentation/views/user_data_form_body.dart';
 
 class UserDataForm extends StatelessWidget {
-  const UserDataForm({super.key});
-
+  const UserDataForm({super.key, required this.category});
+  final String category;
   @override
   Widget build(BuildContext context) {
     return BlocListener<UserDataCubit, UserDataState>(
@@ -20,6 +20,7 @@ class UserDataForm extends StatelessWidget {
 
           context.pushNamed(Routes.bottomBar);
         } else if (state is PostUserDataFailure) {
+          context.pop();
           showErrorDialog(context, errorMessage: state.errorMessage);
         } else {
           showLoadingDialog(context,
@@ -27,7 +28,7 @@ class UserDataForm extends StatelessWidget {
                   'Uploading data...\nCreating your plan...\nThis may take a while, please wait.');
         }
       },
-      child: const UserDataFormBody(category: 'all'),
+      child: UserDataFormBody(category: category),
     );
   }
 }
