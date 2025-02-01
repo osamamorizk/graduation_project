@@ -8,18 +8,11 @@ import 'package:graduation_project/feature/workout/presentation/views/general_pl
 import 'package:graduation_project/core/widgets/custom_new_plan_button.dart';
 import 'package:graduation_project/feature/workout/presentation/views/your_plan_view.dart';
 
-class WorkoutView extends StatefulWidget {
+class WorkoutView extends StatelessWidget {
   const WorkoutView({super.key});
 
   @override
-  State<WorkoutView> createState() => _WorkoutViewState();
-}
-
-class _WorkoutViewState extends State<WorkoutView>
-    with AutomaticKeepAliveClientMixin {
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
     return DefaultTabController(
       initialIndex: 0,
       length: taps.length,
@@ -67,10 +60,6 @@ class _WorkoutViewState extends State<WorkoutView>
       ),
     );
   }
-
-  @override
-  // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
 }
 
 List<Widget> taps = [
