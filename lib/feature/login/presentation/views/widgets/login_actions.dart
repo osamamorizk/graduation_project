@@ -62,7 +62,6 @@ class _LoginActionsState extends State<LoginActions> {
         verticalSpace(16.h),
         CustomButton(
           onPressed: () {
-            context.pushNamed(Routes.bottomBar);
             if (context.read<LoginCubit>().formKey.currentState!.validate()) {
               context.read<LoginCubit>().login(
                     userName:

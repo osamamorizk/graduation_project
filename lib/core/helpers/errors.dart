@@ -13,7 +13,7 @@ class ServerFailure extends Failure {
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
         return ServerFailure(
-            errorMessage: 'Connection timed out. Check your internet.');
+            errorMessage: 'Connection timed out.\nCheck your internet.');
       case DioExceptionType.sendTimeout:
         return ServerFailure(errorMessage: 'Request took too long to send.');
       case DioExceptionType.receiveTimeout:
@@ -31,10 +31,10 @@ class ServerFailure extends Failure {
         if (dioException.message?.contains('SocketException') ?? false) {
           return ServerFailure(errorMessage: 'No internet connection.');
         }
-        return ServerFailure(errorMessage: 'Unexpected error. Try again.');
+        return ServerFailure(errorMessage: 'Unexpected error.\nTry again.');
       // ignore: unreachable_switch_default
       default:
-        return ServerFailure(errorMessage: 'Something went wrong. Try again.');
+        return ServerFailure(errorMessage: 'Something went wrong.\nTry again.');
     }
   }
 

@@ -6,6 +6,8 @@ import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/feature/bottom_nav_bar/presentation/views/bottom_bar.dart';
 import 'package:graduation_project/feature/diet/data/repos/diet_repo_impl.dart';
 import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_cubit.dart';
+import 'package:graduation_project/feature/login/data/repos/login_repo_impl.dart';
+import 'package:graduation_project/feature/login/presentation/manger/cubit/login_cubit.dart';
 import 'package:graduation_project/feature/login/presentation/views/forget_password.dart';
 import 'package:graduation_project/feature/login/presentation/views/login_view.dart';
 import 'package:graduation_project/feature/login/presentation/views/verification.dart';
@@ -28,7 +30,10 @@ class AppRouter {
         );
       case Routes.login:
         return MaterialPageRoute(
-          builder: (_) => const LoginView(),
+          builder: (_) => BlocProvider(
+            create: (context) => LoginCubit(getIt.get<LoginRepoImpl>()),
+            child: const LoginView(),
+          ),
         );
 
       case Routes.signUp:

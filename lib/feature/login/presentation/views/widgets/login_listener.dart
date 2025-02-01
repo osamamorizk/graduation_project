@@ -15,8 +15,9 @@ class LoginBlocListener extends StatelessWidget {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state is LoginLoading) {
-          showLoadingDialog(context, loadingMessage: 'Login..');
+          showLoadingDialog(context, loadingMessage: 'Please wait a moment.');
         } else if (state is LoginFailure) {
+          context.pop();
           showErrorDialog(context, errorMessage: state.errorMessage);
         } else if (state is LoginSuccess) {
           context.pop();

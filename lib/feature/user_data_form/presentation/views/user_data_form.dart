@@ -24,7 +24,7 @@ class UserDataForm extends StatelessWidget {
         } else {
           showLoadingDialog(context,
               loadingMessage:
-                  'Uploading your data...\nGenerating your diet and workout plan.\nPlease wait, this process may take some time.');
+                  'Uploading data...\nCreating your plan...\nThis may take a while, please wait.');
         }
       },
       child: const UserDataFormBody(category: 'all'),
