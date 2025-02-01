@@ -9,16 +9,32 @@ class NewBottomNavBar extends StatefulWidget {
 }
 
 class NewBottomNavBarState extends State<NewBottomNavBar> {
+  late PageController _pageController;
+
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    _pageController = PageController(initialPage: _selectedIndex);
+    super.initState();
+  }
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      _pageController.jumpToPage(index);
     });
   }
 
   void jumpToIndex(int index) {
     _onItemTapped(index);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -29,11 +45,17 @@ class NewBottomNavBarState extends State<NewBottomNavBar> {
         if (!didPop && _selectedIndex != 0) {
           setState(() {
             _selectedIndex = 0;
+            _pageController.jumpToPage(0);
           });
         }
       },
       child: Scaffold(
-        body: widgetOptions.elementAt(_selectedIndex),
+        body: PageView(
+          controller: _pageController,
+          physics: const NeverScrollableScrollPhysics(),
+          children: widgetOptions,
+        ),
+        // body: widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar: Container(
           decoration: const BoxDecoration(
               color: Colors.white,

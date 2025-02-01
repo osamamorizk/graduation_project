@@ -15,9 +15,11 @@ class WorkoutView extends StatefulWidget {
   State<WorkoutView> createState() => _WorkoutViewState();
 }
 
-class _WorkoutViewState extends State<WorkoutView> {
+class _WorkoutViewState extends State<WorkoutView>
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return DefaultTabController(
       initialIndex: 0,
       length: taps.length,
@@ -65,6 +67,10 @@ class _WorkoutViewState extends State<WorkoutView> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
 
 List<Widget> taps = [
