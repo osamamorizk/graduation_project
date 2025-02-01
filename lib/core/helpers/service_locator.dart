@@ -1,0 +1,21 @@
+import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
+import 'package:graduation_project/core/networking/api_service.dart';
+import 'package:graduation_project/feature/diet/data/repos/diet_repo_impl.dart';
+import 'package:graduation_project/feature/workout/data/repos/workout_repo_impl.dart';
+
+final getIt = GetIt.instance;
+
+void setupServiceLocator() {
+  getIt.registerSingleton<ApiService>(ApiService(Dio()));
+  getIt.registerSingleton<WorkoutRepoImpl>(
+    WorkoutRepoImpl(
+      getIt.get<ApiService>(),
+    ),
+  );
+  getIt.registerSingleton<DietRepoImpl>(
+    DietRepoImpl(
+      getIt.get<ApiService>(),
+    ),
+  );
+}
