@@ -24,27 +24,24 @@ class WorkoutGeneralPlansView extends StatelessWidget {
   }
 }
 
-
-
-
- //  Padding(
-    //   padding: const EdgeInsets.symmetric(horizontal: 16),
-    //   child: Column(
-    //     children: [
-    //       verticalSpace(8),
-    //       Expanded(
-    //         child: ListView.separated(
-    //             itemCount: fitnessPlans.length,
-    //             separatorBuilder: (context, index) => verticalSpace(16),
-    //             itemBuilder: (context, index) => GestureDetector(
-    //                   onTap: () {
-    //                     showCommingSoonDialog(context);
-    //                   },
-    //                   child: GeneralPlanItem(
-    //                     generalPLanModel: fitnessPlans[index],
-    //                   ),
-    //                 )),
-    //       ),
-    //     ],
-    //   ),
-    // );
+//  Padding(
+//   padding: const EdgeInsets.symmetric(horizontal: 16),
+//   child: Column(
+//     children: [
+//       verticalSpace(8),
+//       Expanded(
+//         child: ListView.separated(
+//             itemCount: fitnessPlans.length,
+//             separatorBuilder: (context, index) => verticalSpace(16),
+//             itemBuilder: (context, index) => GestureDetector(
+//                   onTap: () {
+//                     showCommingSoonDialog(context);
+//                   },
+//                   child: GeneralPlanItem(
+//                     generalPLanModel: fitnessPlans[index],
+//                   ),
+//                 )),
+//       ),
+//     ],
+//   ),
+// );

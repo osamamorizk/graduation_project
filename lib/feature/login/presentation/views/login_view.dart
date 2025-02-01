@@ -15,27 +15,25 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30.w),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                verticalSpace(50.h),
-                const WelcomeText(),
-                verticalSpace(36.h),
-                const EmailAndPassword(),
-                verticalSpace(16.h),
-                const LoginActions(),
-                verticalSpace(32.h),
-                const OrWidget(),
-                verticalSpace(32.h),
-                const GoogleButton(),
-                verticalSpace(50.h),
-                const DontHaveAccount(),
-              ],
-            ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 30.w),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              verticalSpace(60.h),
+              const WelcomeText(),
+              verticalSpace(36.h),
+              const EmailAndPassword(),
+              verticalSpace(16.h),
+              const LoginActions(),
+              verticalSpace(32.h),
+              const OrWidget(),
+              verticalSpace(32.h),
+              const GoogleButton(),
+              verticalSpace(50.h),
+              const DontHaveAccount(),
+            ],
           ),
         ),
       ),

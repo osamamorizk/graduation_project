@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/helpers/extensions.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/diet/presentation/views/diet_general_plans.dart';
@@ -6,33 +8,38 @@ import 'package:graduation_project/feature/diet/presentation/views/diet_your_pla
 
 import 'package:graduation_project/core/widgets/custom_new_plan_button.dart';
 
-class DietView extends StatelessWidget {
+class DietView extends StatefulWidget {
   const DietView({super.key});
 
   @override
+  State<DietView> createState() => _DietViewState();
+}
+
+class _DietViewState extends State<DietView>
+    with AutomaticKeepAliveClientMixin {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return DefaultTabController(
       initialIndex: 0,
       length: taps.length,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 40,
-          title: TweenAnimationBuilder(
-            duration: const Duration(milliseconds: 1500),
-            builder: (context, value, child) {
-              return Opacity(
-                opacity: value,
-                child: child,
-              );
-            },
-            tween: Tween<double>(begin: 0, end: 1),
-            child: Text(
-              'Diet',
-              style: TextStyles.font22BlueBold.copyWith(fontSize: 20),
-            ),
+          automaticallyImplyLeading: false,
+          toolbarHeight: 45,
+          elevation: .4,
+          title: Text(
+            'Diet',
+            style: TextStyles.font20BlueRegular,
           ),
-          actions: const [
-            CustomNewPlanButton(),
+          actions: [
+            CustomNewPlanButton(
+              type: 'diet',
+              buttonText: 'New diet plan',
+              onPressed: () {
+                context.pushNamed(Routes.dataForm, arguments: 'diet');
+              },
+            ),
           ],
           backgroundColor: Colors.white,
           bottom: TabBar(
@@ -47,7 +54,8 @@ class DietView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
             labelStyle: TextStyles.font14BlackRegular,
-            dividerColor: Colors.transparent,
+            dividerColor: Colors.grey.shade200,
+            dividerHeight: .6,
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorColor: ColorsManger.darkBlue,
             labelColor: Colors.black,
@@ -66,6 +74,10 @@ class DietView extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
 
 List<Widget> taps = [

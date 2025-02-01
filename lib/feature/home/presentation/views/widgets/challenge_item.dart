@@ -5,10 +5,11 @@ import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
+import 'package:graduation_project/feature/home/data/models/challenge_model.dart';
 
-class ChanllengItem extends StatelessWidget {
-  const ChanllengItem({super.key});
-
+class ChallengeItem extends StatelessWidget {
+  const ChallengeItem({super.key, required this.challengeModel});
+  final ChallengeModel challengeModel;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +21,7 @@ class ChanllengItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.asset(
-            Assets.imagesChallenge,
+            challengeModel.image,
             width: 80.w,
           ),
           horizontalSpace(16),
@@ -29,7 +30,7 @@ class ChanllengItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                ' Unbroken Streak',
+                challengeModel.title,
                 style: TextStyles.font14BlackBold,
               ),
               verticalSpace(16),
@@ -41,12 +42,12 @@ class ChanllengItem extends StatelessWidget {
                     Assets.svgsCalender,
                   ),
                   Text(
-                    '30 days  |  ',
+                    '${challengeModel.durationDays} days  |  ',
                     style: TextStyles.font14greyNormal
                         .copyWith(color: ColorsManger.blueGrey),
                   ),
                   Text(
-                    'Advanced',
+                    challengeModel.level,
                     style: TextStyles.font14greyNormal
                         .copyWith(color: ColorsManger.blueGrey),
                   ),

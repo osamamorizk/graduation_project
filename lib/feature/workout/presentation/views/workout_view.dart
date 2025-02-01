@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/helpers/extensions.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/workout/presentation/views/muscle_group_view.dart';
@@ -6,33 +8,35 @@ import 'package:graduation_project/feature/workout/presentation/views/general_pl
 import 'package:graduation_project/core/widgets/custom_new_plan_button.dart';
 import 'package:graduation_project/feature/workout/presentation/views/your_plan_view.dart';
 
-class WorkoutView extends StatelessWidget {
+class WorkoutView extends StatefulWidget {
   const WorkoutView({super.key});
 
   @override
+  State<WorkoutView> createState() => _WorkoutViewState();
+}
+
+class _WorkoutViewState extends State<WorkoutView>
+    with AutomaticKeepAliveClientMixin {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return DefaultTabController(
       initialIndex: 0,
       length: taps.length,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 40,
-          title: TweenAnimationBuilder(
-            duration: const Duration(milliseconds: 1500),
-            builder: (context, value, child) {
-              return Opacity(
-                opacity: value,
-                child: child,
-              );
-            },
-            tween: Tween<double>(begin: 0, end: 1),
-            child: Text(
-              'Workout',
-              style: TextStyles.font22BlueBold.copyWith(fontSize: 20),
+          elevation: .4,
+          automaticallyImplyLeading: false,
+          toolbarHeight: 45,
+          title: Text('Workout', style: TextStyles.font20BlueRegular),
+          actions: [
+            CustomNewPlanButton(
+              type: 'workout',
+              buttonText: 'New workout plan',
+              onPressed: () {
+                context.pushNamed(Routes.dataForm, arguments: 'workout');
+              },
             ),
-          ),
-          actions: const [
-            CustomNewPlanButton(),
           ],
           backgroundColor: Colors.white,
           bottom: TabBar(
@@ -40,7 +44,8 @@ class WorkoutView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
             labelStyle: TextStyles.font16BlackRegular,
-            dividerColor: Colors.transparent,
+            dividerColor: Colors.grey.shade200,
+            dividerHeight: .6,
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorColor: ColorsManger.darkBlue,
             labelColor: Colors.black,
@@ -62,6 +67,10 @@ class WorkoutView extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
 
 List<Widget> taps = [

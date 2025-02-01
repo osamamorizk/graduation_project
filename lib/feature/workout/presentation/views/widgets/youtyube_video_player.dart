@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YouTubeVideoPlayer extends StatefulWidget {
@@ -22,8 +21,10 @@ class YouTubeVideoPlayerState extends State<YouTubeVideoPlayer> {
     _controller = YoutubePlayerController(
       initialVideoId: videoId ?? '',
       flags: const YoutubePlayerFlags(
+        loop: true,
         autoPlay: true,
         mute: false,
+        enableCaption: false,
       ),
     );
   }
@@ -41,9 +42,16 @@ class YouTubeVideoPlayerState extends State<YouTubeVideoPlayer> {
         _controller.seekTo(const Duration(seconds: 0));
         _controller.play();
       },
+      bottomActions: const <Widget>[
+        SizedBox(width: 14.0),
+        CurrentPosition(),
+        SizedBox(width: 8.0),
+        ProgressBar(isExpanded: true),
+        RemainingDuration(),
+      ],
       controller: _controller,
       showVideoProgressIndicator: true,
-      progressIndicatorColor: ColorsManger.darkBlue,
+      progressIndicatorColor: Colors.amber,
     );
   }
 }

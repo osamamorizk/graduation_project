@@ -13,29 +13,27 @@ class SignUpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30.w),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                verticalSpace(50.h),
-                const SignupTexts(),
-                verticalSpace(30.h),
-                const SignupForm(),
-                verticalSpace(16.h),
-                const SignUpActions(),
-                verticalSpace(16.h),
-                const OrWidget(),
-                verticalSpace(16.h),
-                const GoogleButton(),
-                verticalSpace(16.h),
-                const HaveAccount(),
-                verticalSpace(16.h),
-              ],
-            ),
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 30.w),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              verticalSpace(60.h),
+              const SignupTexts(),
+              verticalSpace(30.h),
+              const SignupForm(),
+              verticalSpace(16.h),
+              const SignUpActions(),
+              verticalSpace(16.h),
+              const OrWidget(),
+              verticalSpace(16.h),
+              const GoogleButton(),
+              verticalSpace(16.h),
+              const HaveAccount(),
+              verticalSpace(16.h),
+            ],
           ),
         ),
       ),

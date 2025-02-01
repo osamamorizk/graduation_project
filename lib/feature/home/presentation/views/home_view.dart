@@ -4,6 +4,7 @@ import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 
 import 'package:graduation_project/core/themes/text_styles.dart';
+import 'package:graduation_project/feature/home/data/models/challenge_model.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/challenge_item.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/home_banner.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/scan_and_plan_box.dart';
@@ -14,24 +15,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          scrolledUnderElevation: 0,
-          titleSpacing: 0,
-          backgroundColor: Colors.white,
-          leading: Image.asset(Assets.iconsAppIcon),
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Welcome osama!',
-                style: TextStyles.font14BlackBold,
-              ),
-              Text(
-                'Every choice brings you closer to your best self.',
-                style: TextStyles.font14greyNormal.copyWith(fontSize: 11),
-              ),
-            ],
-          )),
+      appBar: homeAppBar(),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -63,13 +47,38 @@ class HomeView extends StatelessWidget {
               delegate: SliverChildBuilderDelegate(
                 (context, index) => GestureDetector(
                     onTap: () => showCommingSoonDialog(context),
-                    child: const ChanllengItem()),
-                childCount: 4,
+                    child: ChallengeItem(
+                      challengeModel: challengesList[index],
+                    )),
+                childCount: challengesList.length,
               ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  AppBar homeAppBar() {
+    return AppBar(
+        elevation: .4,
+        toolbarHeight: 50,
+        scrolledUnderElevation: .4,
+        titleSpacing: 0,
+        backgroundColor: Colors.white,
+        leading: Image.asset(Assets.iconsAppIcon),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Welcome osama!',
+              style: TextStyles.font16BlueBold,
+            ),
+            Text(
+              'Every choice brings you closer to your best self.',
+              style: TextStyles.font14greyNormal.copyWith(fontSize: 12),
+            ),
+          ],
+        ));
   }
 }

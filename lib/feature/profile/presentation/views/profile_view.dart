@@ -12,12 +12,15 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        toolbarHeight: 45,
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
+        elevation: .4,
         scrolledUnderElevation: 0,
-        centerTitle: true,
+        centerTitle: false,
         title: Text(
           'Profile',
-          style: TextStyles.font16BlueBold,
+          style: TextStyles.font16BlackRegular.copyWith(fontSize: 18),
         ),
         actions: [
           Padding(
@@ -25,12 +28,6 @@ class ProfileView extends StatelessWidget {
             child: IconButton(
                 onPressed: () {
                   showCommingSoonDialog(context);
-                  // PersistentNavBarNavigator.pushNewScreen(
-                  //   context,
-                  //   screen: const SettingsView(),
-                  //   withNavBar: true,
-                  //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  // );
                 },
                 icon: Icon(
                   Icons.settings,

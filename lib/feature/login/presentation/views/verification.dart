@@ -21,35 +21,33 @@ class Verification extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              verticalSpace(15),
-              Text(
-                'Verification',
-                style: TextStyles.font28DarkBlueBold,
-              ),
-              verticalSpace(16.h),
-              Text(
-                'Add a PIN number to make your account more secure and easy to sign in.',
-                style: TextStyles.font14greyNormal,
-              ),
-              verticalSpace(64.h),
-              const Center(child: OtpTextField()),
-              verticalSpace(64.h),
-              CustomButton(
-                text: 'Submit',
-                onPressed: () {
-                  context.pushNamedAndRemoveUntil(
-                    Routes.login,
-                    predicate: (route) => false,
-                  );
-                },
-              ),
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            verticalSpace(15),
+            Text(
+              'Verification',
+              style: TextStyles.font28DarkBlueBold,
+            ),
+            verticalSpace(16.h),
+            Text(
+              'Add a PIN number to make your account more secure and easy to sign in.',
+              style: TextStyles.font14greyNormal,
+            ),
+            verticalSpace(64.h),
+            const Center(child: OtpTextField()),
+            verticalSpace(64.h),
+            CustomButton(
+              text: 'Submit',
+              onPressed: () {
+                context.pushNamedAndRemoveUntil(
+                  Routes.login,
+                  predicate: (route) => false,
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

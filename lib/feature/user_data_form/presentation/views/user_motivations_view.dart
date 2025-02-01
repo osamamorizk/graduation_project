@@ -27,6 +27,7 @@ class _UserMotivationsViewState extends State<UserMotivationsView> {
   List<String> selectedMotivations = [];
   @override
   Widget build(BuildContext context) {
+    selectedMotivations = context.read<UserDataCubit>().userMotivation;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -51,13 +52,11 @@ class _UserMotivationsViewState extends State<UserMotivationsView> {
                     setState(() {
                       if (isMotivateed) {
                         selectedMotivations.remove(motivation);
-                        BlocProvider.of<UserDataCubit>(context).userMotivation =
-                            selectedMotivations;
                       } else {
                         selectedMotivations.add(motivation);
-                        BlocProvider.of<UserDataCubit>(context).userMotivation =
-                            selectedMotivations;
                       }
+                      BlocProvider.of<UserDataCubit>(context).userMotivation =
+                          selectedMotivations;
                     });
                   },
                 );

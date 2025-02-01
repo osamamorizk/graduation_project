@@ -4,6 +4,7 @@ import 'package:graduation_project/core/themes/colors_manger.dart';
 
 AppBar customDataFormBar(Widget icon, double? value) {
   return AppBar(
+    scrolledUnderElevation: .5,
     backgroundColor: Colors.white,
     leading: icon,
     title: SizedBox(

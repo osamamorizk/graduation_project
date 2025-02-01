@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/helpers/service_locator.dart';
+import 'package:graduation_project/core/networking/api_service.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/feature/bottom_nav_bar/presentation/views/bottom_bar.dart';
+import 'package:graduation_project/feature/diet/data/repos/diet_repo_impl.dart';
+import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_cubit.dart';
 import 'package:graduation_project/feature/login/presentation/views/forget_password.dart';
 import 'package:graduation_project/feature/login/presentation/views/login_view.dart';
 import 'package:graduation_project/feature/login/presentation/views/verification.dart';
@@ -10,6 +14,8 @@ import 'package:graduation_project/feature/profile/presentation/views/my_data_vi
 import 'package:graduation_project/feature/sign_up/presentation/views/sign_up_view.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/user_data_form.dart';
+import 'package:graduation_project/feature/workout/data/repos/workout_repo_impl.dart';
+import 'package:graduation_project/feature/workout/presentation/manger/cubit/workout_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/exercise_list_view.dart';
 
 class AppRouter {
@@ -30,13 +36,27 @@ class AppRouter {
         );
       case Routes.bottomBar:
         return MaterialPageRoute(
-          builder: (_) => const BottomBar(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => WorkoutCubit(getIt.get<WorkoutRepoImpl>())
+                  ..getWorkoutPlans(),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    DietCubit(getIt.get<DietRepoImpl>())..getAllDietsPlan(),
+              ),
+            ],
+            child: const BottomBar(),
+          ),
         );
       case Routes.dataForm:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => UserDataCubit(),
-            child: const UserDataForm(),
+            child: UserDataForm(
+              category: settings.arguments as String,
+            ),
           ),
         );
 

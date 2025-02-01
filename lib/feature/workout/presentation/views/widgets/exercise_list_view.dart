@@ -10,14 +10,13 @@ class ExerciseListView extends StatelessWidget {
   final String exerciseGroup;
   @override
   Widget build(BuildContext context) {
-    // final name = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 45,
         titleSpacing: 0,
         title: Text(
           '$exerciseGroup Exercises',
-          style: TextStyles.font18BlackBold,
+          style: TextStyles.font20BlueRegular,
         ),
         scrolledUnderElevation: 0,
         backgroundColor: Colors.white,

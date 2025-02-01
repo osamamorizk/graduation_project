@@ -9,11 +9,20 @@ class NewBottomNavBar extends StatefulWidget {
 }
 
 class NewBottomNavBarState extends State<NewBottomNavBar> {
+  late PageController _pageController;
+
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    _pageController = PageController(initialPage: _selectedIndex);
+    super.initState();
+  }
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      _pageController.jumpToPage(index);
     });
   }
 
@@ -22,34 +31,54 @@ class NewBottomNavBarState extends State<NewBottomNavBar> {
   }
 
   @override
+  void dispose() {
+    _pageController.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.shade300,
-                spreadRadius: 5,
-                blurRadius: 8,
-                offset: const Offset(0, 0),
-              ),
-            ],
-            borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-        child: BottomNavigationBar(
-         
-          elevation: 0,
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.transparent,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: bottomBarItems,
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
+    return PopScope(
+      canPop: _selectedIndex == 0,
+      onPopInvokedWithResult: (didPop, result) {
+        if (!didPop && _selectedIndex != 0) {
+          setState(() {
+            _selectedIndex = 0;
+            _pageController.jumpToPage(0);
+          });
+        }
+      },
+      child: Scaffold(
+        body: PageView(
+          controller: _pageController,
+          physics: const NeverScrollableScrollPhysics(),
+          children: widgetOptions,
+        ),
+        // body: widgetOptions.elementAt(_selectedIndex),
+        bottomNavigationBar: Container(
+          decoration: const BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey,
+                  spreadRadius: .1,
+                  blurRadius: 1,
+                  offset: Offset(0, 0),
+                ),
+              ],
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+          child: BottomNavigationBar(
+            elevation: 0,
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Colors.transparent,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            items: bottomBarItems,
+            currentIndex: _selectedIndex,
+            onTap: _onItemTapped,
+          ),
         ),
       ),
     );
