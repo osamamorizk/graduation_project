@@ -8,18 +8,11 @@ import 'package:graduation_project/feature/diet/presentation/views/diet_your_pla
 
 import 'package:graduation_project/core/widgets/custom_new_plan_button.dart';
 
-class DietView extends StatefulWidget {
+class DietView extends StatelessWidget {
   const DietView({super.key});
 
   @override
-  State<DietView> createState() => _DietViewState();
-}
-
-class _DietViewState extends State<DietView>
-    with AutomaticKeepAliveClientMixin {
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
     return DefaultTabController(
       initialIndex: 0,
       length: taps.length,
@@ -74,10 +67,6 @@ class _DietViewState extends State<DietView>
       ),
     );
   }
-
-  @override
-  // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
 }
 
 List<Widget> taps = [

@@ -98,7 +98,7 @@ class _AboutUserState extends State<AboutUser> {
       onChanged: (dynamic value) {
         setState(() {
           weight = value;
-          BlocProvider.of<UserDataCubit>(context).weight = weight;
+          BlocProvider.of<UserDataCubit>(context).weight = weight.toInt();
         });
       },
     );
@@ -113,7 +113,7 @@ class _AboutUserState extends State<AboutUser> {
       max: 200,
       value: height,
       interval: 20,
-      stepSize: .5,
+      stepSize: 1,
       showTicks: true,
       showLabels: true,
       enableTooltip: true,
@@ -121,7 +121,7 @@ class _AboutUserState extends State<AboutUser> {
       onChanged: (dynamic value) {
         setState(() {
           height = value;
-          BlocProvider.of<UserDataCubit>(context).tall = height;
+          BlocProvider.of<UserDataCubit>(context).tall = (height / 100).toInt();
         });
       },
     );

@@ -13,7 +13,8 @@ class WorkoutDayNumberView extends StatefulWidget {
   State<WorkoutDayNumberView> createState() => _WorkoutDayNumberViewState();
 }
 
-final List<String> options = ["2 Days", "3 Days", "4 Days", "5 Days"];
+final List<String> daysOptions = ["2 Days", "3 Days", "4 Days", "5 Days"];
+final List<int> daysNumbers = [2, 3, 4, 5];
 
 int? selectedIndex;
 
@@ -26,25 +27,28 @@ class _WorkoutDayNumberViewState extends State<WorkoutDayNumberView> {
         children: [
           verticalSpace(35.h),
           Text(
-            'How many days a week can you realistically workout?',
+            'How many days a week can you realistically workout? (Days)',
             style: TextStyles.font18BlackBold,
           ),
           verticalSpace(40.h),
           ListView.separated(
             shrinkWrap: true,
             separatorBuilder: (context, index) => verticalSpace(24.h),
-            itemCount: options.length,
+            itemCount: daysOptions.length,
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
                   setState(() {
                     selectedIndex = index;
                     BlocProvider.of<UserDataCubit>(context).workoutDays =
-                        options[index];
+                        daysNumbers[index];
                   });
                 },
                 child: CustomSingleSelectedItem(
-                    title: options[index], isSelected: selectedIndex == index),
+                  textAlign: TextAlign.center,
+                  title: daysOptions[index],
+                  isSelected: selectedIndex == index,
+                ),
               );
             },
           ),

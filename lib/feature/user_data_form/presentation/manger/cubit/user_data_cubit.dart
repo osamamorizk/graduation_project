@@ -7,22 +7,21 @@ part 'user_data_state.dart';
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit() : super(UserDataInitial());
   String gender = 'Male';
-  num tall = 160;
+  int tall = 160;
   int age = 25;
 
-  num weight = 60;
-  String heightUnit = 'cm';
-  String weightUnit = 'KG';
-  List<String> userGoals = [];
-  List<String> dietaryRestrictions = [];
+  int weight = 60;
+
+  int userGoals = 0;
+  String dietaryRestrictions = '';
   String activityLevel = '';
   TextEditingController otherDietaryRestrictionsController =
       TextEditingController();
   String dietKind = '';
-  List<String> helthConcerns = [];
+  String helthConcerns = '';
   TextEditingController otherHelthConcernsController = TextEditingController();
-  String fitnessLevel = '';
-  String workoutDays = '';
+  int fitnessLevel = 0;
+  int workoutDays = 2;
   String workoutTime = '';
   List<String> preferedExercise = [];
   TextEditingController preferedExerciseController = TextEditingController();
@@ -64,12 +63,12 @@ class UserDataCubit extends Cubit<UserDataState> {
     if (activityLevel.isEmpty) {
       return false;
     }
-    if (fitnessLevel.isEmpty) {
-      return false;
-    }
-    if (workoutDays.isEmpty) {
-      return false;
-    }
+    // if (fitnessLevel.isEmpty) {
+    //   return false;
+    // }
+    // if (workoutDays.isEmpty) {
+    //   return false;
+    // }
     if (workoutTime.isEmpty) {
       return false;
     }
@@ -77,9 +76,9 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   bool validateGeneralData() {
-    if (userGoals.isEmpty) {
-      return false;
-    }
+    // if (userGoals.isEmpty) {
+    //   return false;
+    // }
     if (userMotivation.isEmpty) {
       return false;
     }

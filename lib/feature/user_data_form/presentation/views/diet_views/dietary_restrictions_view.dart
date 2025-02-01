@@ -63,7 +63,7 @@ class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
                               userDataCubit.preferedExerciseController.text);
                         }
                         userDataCubit.dietaryRestrictions =
-                            selectedDietaryRestrictions;
+                            selectedDietaryRestrictions.join(' , ');
                       });
                     },
                     child: CustomMultiSelectionItem(
