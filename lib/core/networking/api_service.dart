@@ -22,15 +22,14 @@ class ApiService {
     return response.data;
   }
 
-  Future<Map<String, dynamic>> post(
-      {required String endPoints, required Map body}) async {
-    Response response = await dio.post(endPoints, data: body);
+  Future<dynamic> post({required String endPoints, required Map data}) async {
+    Response response = await dio.post(endPoints, data: data);
     return response.data;
   }
 
   Future<Map<String, dynamic>> put(
-      {required String endPoints, required Map body}) async {
-    Response response = await dio.put(endPoints, data: body);
+      {required String endPoints, required Map data}) async {
+    Response response = await dio.put(endPoints, data: data);
     return response.data;
   }
 }

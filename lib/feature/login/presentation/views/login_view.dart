@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/feature/login/presentation/views/widgets/dont_have_account.dart';
-import 'package:graduation_project/feature/login/presentation/views/widgets/email_and_password.dart';
+import 'package:graduation_project/feature/login/presentation/views/widgets/login_listener.dart';
+import 'package:graduation_project/feature/login/presentation/views/widgets/user_name_and_password.dart';
 import 'package:graduation_project/core/widgets/google_button.dart';
 import 'package:graduation_project/feature/login/presentation/views/widgets/login_actions.dart';
 import 'package:graduation_project/core/widgets/or_widget.dart';
@@ -24,7 +25,7 @@ class LoginView extends StatelessWidget {
               verticalSpace(60.h),
               const WelcomeText(),
               verticalSpace(36.h),
-              const EmailAndPassword(),
+              const UserNameAndPassword(),
               verticalSpace(16.h),
               const LoginActions(),
               verticalSpace(32.h),
@@ -33,6 +34,7 @@ class LoginView extends StatelessWidget {
               const GoogleButton(),
               verticalSpace(50.h),
               const DontHaveAccount(),
+              const LoginBlocListener()
             ],
           ),
         ),

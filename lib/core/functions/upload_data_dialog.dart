@@ -4,7 +4,8 @@ import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/custom_circle_progress_indicator.dart';
 
-void uploadDataLoading(BuildContext parentContext) {
+void showLoadingDialog(BuildContext parentContext,
+    {required String loadingMessage}) {
   showDialog(
     barrierDismissible: false,
     context: parentContext,
@@ -26,8 +27,8 @@ void uploadDataLoading(BuildContext parentContext) {
               const CustomCircleProgressIndicator(),
               verticalSpace(16),
               Text(
-                'Uploading your data...\nGenerating your diet and workout plan.\nPlease wait, this process may take some time.',
-                style: TextStyles.font16BlueBold,
+                loadingMessage,
+                style: TextStyles.font14BlueRegular,
               ),
             ],
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
@@ -6,6 +7,7 @@ import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/custom_action_button.dart';
+import 'package:graduation_project/feature/login/presentation/manger/cubit/login_cubit.dart';
 
 class LoginActions extends StatefulWidget {
   const LoginActions({
@@ -61,13 +63,14 @@ class _LoginActionsState extends State<LoginActions> {
         CustomButton(
           onPressed: () {
             context.pushNamed(Routes.bottomBar);
-            // if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-            //   context.read<LoginCubit>().login(
-            //         email: context.read<LoginCubit>().emailController.text,
-            //         password:
-            //             context.read<LoginCubit>().passwordController.text,
-            //       );
-            // }
+            if (context.read<LoginCubit>().formKey.currentState!.validate()) {
+              context.read<LoginCubit>().login(
+                    userName:
+                        context.read<LoginCubit>().userNameController.text,
+                    password:
+                        context.read<LoginCubit>().passwordController.text,
+                  );
+            }
           },
           text: 'Login',
         ),

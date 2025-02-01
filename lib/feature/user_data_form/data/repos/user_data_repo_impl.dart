@@ -14,8 +14,8 @@ class UserDataRepoImpl implements UserDataFormRepo {
       {required UserDataFormModel userDataFormModel}) async {
     try {
       final body = userDataFormModel.uerFormToJson();
-      final result = await apiService.post(endPoints: 'endPoints', body: body);
-      final userDataModel = UserDataFormModel.fromJson(result);
+      final result = await apiService.post(endPoints: 'endPoints', data: body);
+      final userDataModel = UserDataFormModel.fromJson(result['user']);
       return right(userDataModel);
     } catch (e) {
       if (e is DioException) {
@@ -31,8 +31,8 @@ class UserDataRepoImpl implements UserDataFormRepo {
       {required UserDataFormModel userDataFormModel}) async {
     try {
       final body = userDataFormModel.uerFormToJson();
-      final result = await apiService.put(endPoints: 'endPoints', body: body);
-      final userDataModel = UserDataFormModel.fromJson(result);
+      final result = await apiService.put(endPoints: 'endPoints', data: body);
+      final userDataModel = UserDataFormModel.fromJson(result['user']);
       return right(userDataModel);
     } catch (e) {
       if (e is DioException) {
@@ -48,8 +48,8 @@ class UserDataRepoImpl implements UserDataFormRepo {
       {required UserDataFormModel userDataFormModel}) async {
     try {
       final body = userDataFormModel.uerFormToJson();
-      final result = await apiService.put(endPoints: 'endPoints', body: body);
-      final userDataModel = UserDataFormModel.fromJson(result);
+      final result = await apiService.put(endPoints: 'endPoints', data: body);
+      final userDataModel = UserDataFormModel.fromJson(result['user']);
       return right(userDataModel);
     } catch (e) {
       if (e is DioException) {

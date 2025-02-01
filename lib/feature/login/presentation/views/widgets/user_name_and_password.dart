@@ -1,40 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/helpers/app_regex.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/widgets/custom_text_form_field.dart';
+import 'package:graduation_project/feature/login/presentation/manger/cubit/login_cubit.dart';
 
-class EmailAndPassword extends StatefulWidget {
-  const EmailAndPassword({super.key});
+class UserNameAndPassword extends StatefulWidget {
+  const UserNameAndPassword({super.key});
 
   @override
-  State<EmailAndPassword> createState() => _EmailAndPasswordState();
+  State<UserNameAndPassword> createState() => _UserNameAndPasswordState();
 }
 
-class _EmailAndPasswordState extends State<EmailAndPassword> {
+class _UserNameAndPasswordState extends State<UserNameAndPassword> {
   bool isSecure = true;
 
-  // late TextEditingController emailController;
-  // late TextEditingController passwordController;
+  late TextEditingController userNameController;
+  late TextEditingController passwordController;
   @override
-  // void initState() {
-  //   // emailController = context.read<LoginCubit>().emailController;
-  //   // passwordController = context.read<LoginCubit>().passwordController;
+  void initState() {
+    userNameController = context.read<LoginCubit>().userNameController;
+    passwordController = context.read<LoginCubit>().passwordController;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      // key: context.read<LoginCubit>().formKey,
+      key: context.read<LoginCubit>().formKey,
       child: Column(
         children: [
           CustomTextFormField(
             validator: (value) {
               if (value == null) {
-                return 'Please enter a valid username';
+                return 'Please enter a valid user name';
               }
             },
-            // controller: emailController,
-            keyboardType: TextInputType.emailAddress,
-            hintText: 'Username',
+            controller: userNameController,
+            keyboardType: TextInputType.text,
+            hintText: 'User Name',
           ),
           verticalSpace(20),
           CustomTextFormField(
@@ -45,7 +49,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
                 return 'Please enter a valid password';
               }
             },
-            // controller: passwordController,
+            controller: passwordController,
             keyboardType: TextInputType.visiblePassword,
             suffixIcon: IconButton(
                 onPressed: () {
@@ -63,9 +67,10 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
     );
   }
 
-  // @override
-  // void dispose() {
-  //   passwordController.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    passwordController.dispose();
+    userNameController.dispose();
+    super.dispose();
+  }
 }

@@ -22,7 +22,9 @@ class UserDataForm extends StatelessWidget {
         } else if (state is PostUserDataFailure) {
           showErrorDialog(context, errorMessage: state.errorMessage);
         } else {
-          uploadDataLoading(context);
+          showLoadingDialog(context,
+              loadingMessage:
+                  'Uploading your data...\nGenerating your diet and workout plan.\nPlease wait, this process may take some time.');
         }
       },
       child: const UserDataFormBody(category: 'all'),
