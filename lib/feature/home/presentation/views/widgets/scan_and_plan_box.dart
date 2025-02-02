@@ -9,10 +9,10 @@ class ScanAndPlanBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         const ScanFoodBox(),
-        horizontalSpace(10),
+        horizontalSpace(5),
         const YourPlanBox(),
       ],
     );

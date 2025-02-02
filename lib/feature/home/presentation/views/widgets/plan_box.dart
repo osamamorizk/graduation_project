@@ -19,7 +19,7 @@ class YourPlanBox extends StatelessWidget {
       },
       child: Container(
         height: 94.h,
-        width: MediaQuery.sizeOf(context).width / 2.4.w,
+        width: MediaQuery.sizeOf(context).width / 2.4,
         decoration: BoxDecoration(
           image: const DecorationImage(
               fit: BoxFit.fill,

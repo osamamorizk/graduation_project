@@ -16,7 +16,10 @@ class UserDataForm extends StatelessWidget {
     return BlocListener<UserDataCubit, UserDataState>(
       listener: (context, state) {
         if (state is PostUserDataSuccess) {
-          CasheHlper.saveData(key: 'id', value: state.userDataFormModel.id);
+          CasheHlper.saveSecuredData(
+              key: 'id', value: state.userDataFormModel.id);
+          CasheHlper.saveData(
+              key: 'user', value: state.userDataFormModel.userName);
 
           context.pushNamed(Routes.bottomBar);
         } else if (state is PostUserDataFailure) {

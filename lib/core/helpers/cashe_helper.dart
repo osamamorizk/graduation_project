@@ -31,7 +31,7 @@ class CasheHlper {
     return await flutterSecureStorage.write(key: key, value: value);
   }
 
-  static Future<String?> getSecuredData({required String key}) async {
+  static dynamic getSecuredData({required String key}) async {
     const flutterSecureStorage = FlutterSecureStorage();
     return await flutterSecureStorage.read(key: key);
   }
