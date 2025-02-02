@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_cubit.dart';
+import 'package:graduation_project/feature/diet/presentation/views/widgets/diet_shimmer.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/meal_item.dart';
 
 class DietMealsListView extends StatelessWidget {
@@ -31,7 +32,7 @@ class DietMealsListView extends StatelessWidget {
         } else if (state is GetMealsByDayFailure) {
           return Text(state.errorMessage);
         } else {
-          return const CircularProgressIndicator();
+          return const DietShimmer();
         }
       },
     );

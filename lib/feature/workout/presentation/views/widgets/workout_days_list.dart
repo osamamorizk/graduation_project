@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/widgets/day_container.dart';
+import 'package:graduation_project/core/widgets/days_list_shimmer.dart';
 import 'package:graduation_project/feature/workout/presentation/manger/worlout_cubit/workout_cubit.dart';
 
 class WorkoutDaysList extends StatefulWidget {
@@ -45,9 +46,9 @@ class _WorkoutDaysListState extends State<WorkoutDaysList>
               },
             );
           } else if (state is AllWorkoutFailure) {
-            return Text(state.errorMessage);
+            return const SizedBox.shrink();
           } else {
-            return const Center(child: CircularProgressIndicator());
+            return const DaysListShimmer();
           }
         },
       ),

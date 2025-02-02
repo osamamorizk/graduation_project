@@ -15,6 +15,7 @@ class DietCubit extends Cubit<DietCubitState> {
     result.fold(
       (failure) {
         emit(GetAllDietFailure(errorMessage: failure.errorMessage));
+        emit(GetMealsByDayFailure(errorMessage: failure.errorMessage));
       },
       (allDietList) {
         emit(GetAllDietSuccess(allDietList: allDietList));

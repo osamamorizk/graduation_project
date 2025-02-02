@@ -17,6 +17,7 @@ class WorkoutCubit extends Cubit<WorkoutState> {
     result.fold(
       (failure) {
         emit(AllWorkoutFailure(errorMessage: failure.errorMessage));
+        emit(WorkoutByDayFailure(errorMessage: failure.errorMessage));
       },
       (workoutList) {
         emit(AllWorkoutSuccess(workoutPlansList: workoutList));
