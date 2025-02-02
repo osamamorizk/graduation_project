@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -93,9 +95,9 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
           id: 'id',
           userName: 'userName',
           gender: userDataCubit.gender,
-          age: userDataCubit.age,
-          height: userDataCubit.tall,
-          weight: userDataCubit.weight,
+          age: userDataCubit.age.toInt(),
+          height: userDataCubit.tall.toInt(),
+          weight: userDataCubit.weight.toInt(),
           fitnessLevel: userDataCubit.fitnessLevel,
           weeklyWorkoutDays: userDataCubit.workoutDays,
           workoutDuration: userDataCubit.workoutTime,
@@ -106,9 +108,11 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
         );
 
         if (widget.category == 'workout') {
+          log('workout , put');
           //put workout
           userDataCubit.putWorkout(userDataFormModel: userData);
         } else if (widget.category == 'diet') {
+          log('diet , put');
           //pu diet
           userDataCubit.putDiet(userDataFormModel: userData);
         } else {

@@ -9,9 +9,9 @@ class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(this.userDataFormRepo) : super(UserDataInitial());
   final UserDataFormRepo userDataFormRepo;
   int gender = 0;
-  int tall = 140;
-  int age = 25;
-  int weight = 60;
+  num tall = 140;
+  num age = 25;
+  num weight = 60;
   int userGoals = 100;
   String dietaryRestrictions = '';
   String activityLevel = '';

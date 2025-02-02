@@ -19,9 +19,16 @@ class AboutUser extends StatefulWidget {
 }
 
 class _AboutUserState extends State<AboutUser> {
-  int age = 20;
-  double height = 170;
-  double weight = 54;
+  late num age;
+  late num height;
+  late num weight;
+  @override
+  void initState() {
+    age = BlocProvider.of<UserDataCubit>(context).age;
+    height = BlocProvider.of<UserDataCubit>(context).tall;
+    weight = BlocProvider.of<UserDataCubit>(context).weight;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +52,7 @@ class _AboutUserState extends State<AboutUser> {
               verticalSpace(16.h),
               const Center(child: GenderToggleButtons()),
               verticalSpace(30.h),
-              HowOldContainer(age: age),
+              HowOldContainer(age: age.toInt()),
               oldSlider(context),
               verticalSpace(20.h),
               Row(
@@ -98,7 +105,7 @@ class _AboutUserState extends State<AboutUser> {
       onChanged: (dynamic value) {
         setState(() {
           weight = value;
-          BlocProvider.of<UserDataCubit>(context).weight = weight.toInt();
+          BlocProvider.of<UserDataCubit>(context).weight = weight;
         });
       },
     );
@@ -121,7 +128,7 @@ class _AboutUserState extends State<AboutUser> {
       onChanged: (dynamic value) {
         setState(() {
           height = value;
-          BlocProvider.of<UserDataCubit>(context).tall = (height / 100).toInt();
+          BlocProvider.of<UserDataCubit>(context).tall = height;
         });
       },
     );
@@ -134,14 +141,14 @@ class _AboutUserState extends State<AboutUser> {
       showDividers: false,
       min: 10,
       max: 80,
-      value: age.toDouble(),
+      value: age,
       interval: 90,
       showTicks: false,
       showLabels: false,
       enableTooltip: true,
       onChanged: (dynamic value) {
         setState(() {
-          age = value.toInt();
+          age = value;
           BlocProvider.of<UserDataCubit>(context).age = age;
         });
       },

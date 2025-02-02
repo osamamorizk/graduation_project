@@ -27,8 +27,8 @@ class UserDataForm extends StatelessWidget {
           showErrorDialog(context, errorMessage: state.errorMessage);
         } else {
           showLoadingDialog(context,
-              loadingMessage:
-                  'Uploading data...\nCreating your plan...\nThis may take a while, please wait.');
+              loadingMessage: 'This may take a while,\nplease wait.',
+              textAlign: TextAlign.center);
         }
       },
       child: UserDataFormBody(category: category),

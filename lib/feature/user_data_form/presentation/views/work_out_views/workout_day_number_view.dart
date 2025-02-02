@@ -27,7 +27,7 @@ class _WorkoutDayNumberViewState extends State<WorkoutDayNumberView> {
         children: [
           verticalSpace(35.h),
           Text(
-            'How many days a week can you realistically workout? (Days)',
+            'How many days a week can you realistically workout?',
             style: TextStyles.font18BlackBold,
           ),
           verticalSpace(40.h),

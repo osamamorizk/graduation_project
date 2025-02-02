@@ -25,6 +25,11 @@ class GoalSelectionScreenState extends State<GoalSelectionScreen> {
   ];
 
   int? selectedIndex;
+  @override
+  void initState() {
+    selectedIndex = BlocProvider.of<UserDataCubit>(context).userGoals;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
