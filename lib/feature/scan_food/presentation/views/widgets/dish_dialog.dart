@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/scan_food/data/models/scan_food_model.dart';
@@ -14,25 +15,31 @@ void showDishDialog(BuildContext context, ScanFoodModel foodModel,
       return Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(foodModel.item, style: TextStyles.font22BlueBold),
-              verticalSpace(16),
+              Text(
+                foodModel.item,
+                style: TextStyles.font28DarkBlueBold,
+              ),
+              verticalSpace(10),
               AspectRatio(
                 aspectRatio: 1,
                 child: Image.file(
                   File(imagePath!),
-                  fit: BoxFit.contain,
-                  height: 150,
-                  width: 170,
+                  fit: BoxFit.fill,
                 ),
               ),
               verticalSpace(16),
+              Text(
+                'Your dish details(per 100 gms): ',
+                style: TextStyles.font16BlackBold,
+              ),
+              verticalSpace(12),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   NutrientInfo(
                       icon: Icons.local_fire_department,
@@ -48,27 +55,30 @@ void showDishDialog(BuildContext context, ScanFoodModel foodModel,
               ),
               verticalSpace(16),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   NutrientInfo(
-                      icon: Icons.water_drop,
+                      icon: Icons.water_drop_outlined,
                       value: "${foodModel.fats} gm",
                       label: "Fat",
-                      color: Colors.blue),
+                      color: Colors.black),
                   NutrientInfo(
-                      icon: Icons.grain,
+                      icon: FontAwesomeIcons.cookieBite,
                       value: "${foodModel.carbs} gm",
                       label: "Carbs",
-                      color: Colors.brown),
+                      color: Colors.green),
                 ],
               ),
               verticalSpace(16),
-              Center(
-                child: NutrientInfo(
-                    icon: Icons.cake,
-                    value: "${foodModel.sugar} gm",
-                    label: "Sugar",
-                    color: Colors.red),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  NutrientInfo(
+                      icon: FontAwesomeIcons.apple,
+                      value: "${foodModel.sugar} gm",
+                      label: "Sugar",
+                      color: Colors.red),
+                ],
               ),
             ],
           ),

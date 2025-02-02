@@ -22,10 +22,10 @@ class ImagePreviewScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Spacer(),
+            const Spacer(flex: 2),
             Image.file(
               File(imagePath),
-              fit: BoxFit.contain,
+              fit: BoxFit.cover,
             ),
             const Spacer(flex: 2),
             ImagePreviewActions(imagePath: imagePath),

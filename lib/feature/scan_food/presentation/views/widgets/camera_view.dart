@@ -45,6 +45,7 @@ class CameraView extends StatelessWidget {
       },
       middleContentBuilder: (state) {
         return const SizedBox.shrink();
+        //  AwesomeFocusIndicator(position: Offset(0, 240),);
       },
       bottomActionsBuilder: (state) {
         return AwesomeBottomActions(
