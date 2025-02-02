@@ -6,8 +6,8 @@ import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/custom_circle_progress_indicator.dart';
 import 'package:graduation_project/feature/scan_food/presentation/views/widgets/image_preview.dart';
 
-class NewCameraTest extends StatelessWidget {
-  const NewCameraTest({super.key});
+class CameraView extends StatelessWidget {
+  const CameraView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,10 @@ class NewCameraTest extends StatelessWidget {
         ],
       ),
       sensorConfig: SensorConfig.single(
+          aspectRatio: CameraAspectRatios.ratio_1_1,
           sensor: Sensor.position(
-        SensorPosition.back,
-      )),
+            SensorPosition.back,
+          )),
       topActionsBuilder: (state) {
         return AwesomeTopActions(
           state: state,

@@ -21,7 +21,8 @@ class ApiService {
     return response.data;
   }
 
-  Future<dynamic> post({required String endPoints, required Map data}) async {
+  Future<dynamic> post(
+      {required String endPoints, required dynamic data}) async {
     Response response = await dio.post(endPoints, data: data);
     return response.data;
   }

@@ -13,6 +13,8 @@ import 'package:graduation_project/feature/login/presentation/views/login_view.d
 import 'package:graduation_project/feature/login/presentation/views/verification.dart';
 import 'package:graduation_project/feature/onboarding/presentation/views/onboarding_view.dart';
 import 'package:graduation_project/feature/profile/presentation/views/my_data_view.dart';
+import 'package:graduation_project/feature/scan_food/data/repos/scan_food_repo_impl.dart';
+import 'package:graduation_project/feature/scan_food/presentation/manger/cubit/scan_food_cubit.dart';
 import 'package:graduation_project/feature/sign_up/data/repos/sign_up_repo_implem.dart';
 import 'package:graduation_project/feature/sign_up/presentation/manger/cubit/signup_cubit.dart';
 import 'package:graduation_project/feature/sign_up/presentation/views/sign_up_view.dart';
@@ -59,8 +61,13 @@ class AppRouter {
                   ..getAllDietsPlan(id: CasheHlper.getData(key: 'id') ?? 15),
               ),
               BlocProvider(
-                  create: (context) =>
-                      ExerciseCubit(getIt.get<WorkoutRepoImpl>())),
+                create: (context) =>
+                    ExerciseCubit(getIt.get<WorkoutRepoImpl>()),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    ScanFoodCubit(getIt.get<ScanFoodRepoImpl>()),
+              ),
             ],
             child: const BottomBar(),
           ),
