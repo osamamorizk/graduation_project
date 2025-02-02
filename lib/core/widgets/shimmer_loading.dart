@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:shimmer/shimmer.dart';
 
-class DietShimmer extends StatelessWidget {
-  const DietShimmer({super.key});
+class ShimmerLoadingWidget extends StatelessWidget {
+  const ShimmerLoadingWidget({
+    super.key,
+    this.hight,
+    this.itemCount,
+  });
+  final double? hight;
+  final int? itemCount;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,7 @@ class DietShimmer extends StatelessWidget {
         highlightColor: Colors.grey.shade400,
         child: ListView.builder(
           scrollDirection: Axis.vertical,
-          itemCount: 4,
+          itemCount: itemCount ?? 4,
           itemBuilder: (context, index) {
             return Container(
               margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
@@ -26,13 +31,7 @@ class DietShimmer extends StatelessWidget {
                 border: Border.all(color: ColorsManger.darkerGrey, width: .6),
               ),
               child: Row(
-                children: [
-                  Text(
-                    'Exercise',
-                    style: TextStyles.font14BlackBold,
-                  ),
-                  verticalSpace(40)
-                ],
+                children: [verticalSpace(hight ?? 40)],
               ),
             );
           },

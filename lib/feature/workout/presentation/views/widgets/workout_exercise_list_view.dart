@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/widgets/shimmer_loading.dart';
 import 'package:graduation_project/feature/workout/presentation/manger/worlout_cubit/workout_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/workout_item.dart';
-import 'package:graduation_project/feature/workout/presentation/views/widgets/workout_shimer_list.dart';
 
 class WorkoutExerciseListView extends StatelessWidget {
   const WorkoutExerciseListView({
@@ -28,7 +28,9 @@ class WorkoutExerciseListView extends StatelessWidget {
         } else if (state is WorkoutByDayFailure) {
           return Text(state.errorMessage);
         } else {
-          return const Workoutshimerlist();
+          return const ShimmerLoadingWidget(
+            hight: 140,
+          );
         }
       },
     );
