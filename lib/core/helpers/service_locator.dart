@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:graduation_project/core/networking/api_service.dart';
 import 'package:graduation_project/feature/diet/data/repos/diet_repo_impl.dart';
 import 'package:graduation_project/feature/login/data/repos/login_repo_impl.dart';
+import 'package:graduation_project/feature/profile/data/repos/profile_repo_impl.dart';
 import 'package:graduation_project/feature/scan_food/data/repos/scan_food_repo_impl.dart';
 import 'package:graduation_project/feature/sign_up/data/repos/sign_up_repo_implem.dart';
 import 'package:graduation_project/feature/user_data_form/data/repos/user_data_repo_impl.dart';
@@ -41,6 +42,11 @@ void setupServiceLocator() {
   );
   getIt.registerSingleton<ScanFoodRepoImpl>(
     ScanFoodRepoImpl(
+      getIt.get<ApiService>(),
+    ),
+  );
+  getIt.registerSingleton<ProfileRepoImpl>(
+    ProfileRepoImpl(
       getIt.get<ApiService>(),
     ),
   );

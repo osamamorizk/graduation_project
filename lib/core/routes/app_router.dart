@@ -12,6 +12,8 @@ import 'package:graduation_project/feature/login/presentation/views/forget_passw
 import 'package:graduation_project/feature/login/presentation/views/login_view.dart';
 import 'package:graduation_project/feature/login/presentation/views/verification.dart';
 import 'package:graduation_project/feature/onboarding/presentation/views/onboarding_view.dart';
+import 'package:graduation_project/feature/profile/data/repos/profile_repo_impl.dart';
+import 'package:graduation_project/feature/profile/presentation/manger/cubit/profile_cubit.dart';
 import 'package:graduation_project/feature/profile/presentation/views/my_data_view.dart';
 import 'package:graduation_project/feature/scan_food/data/repos/scan_food_repo_impl.dart';
 import 'package:graduation_project/feature/scan_food/presentation/manger/cubit/scan_food_cubit.dart';
@@ -92,7 +94,10 @@ class AppRouter {
         );
       case Routes.myDataView:
         return MaterialPageRoute(
-          builder: (_) => const MyDataView(),
+          builder: (_) => BlocProvider(
+            create: (context) => ProfileCubit(getIt.get<ProfileRepoImpl>()),
+            child: const MyDataView(),
+          ),
         );
 
       case Routes.exerciseListView:
