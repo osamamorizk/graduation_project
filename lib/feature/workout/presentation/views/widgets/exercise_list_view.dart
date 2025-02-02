@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
-import 'package:graduation_project/core/widgets/custom_circle_progress_indicator.dart';
+import 'package:graduation_project/core/widgets/error_view.dart';
+import 'package:graduation_project/core/widgets/shimmer_loading.dart';
 import 'package:graduation_project/feature/workout/presentation/manger/exercise_cubit/exercise_cubit.dart';
-import 'package:graduation_project/feature/workout/presentation/views/widgets/exercise_item.dart';
 
 class ExerciseListView extends StatelessWidget {
   const ExerciseListView({
@@ -28,22 +28,25 @@ class ExerciseListView extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: BlocBuilder<ExerciseCubit, ExerciseState>(
-          builder: (context, state) {
-            if (state is ExerciseSuccess) {
-              return ListView.builder(
-                itemBuilder: (context, index) => ExerciseItem(
-                  exerciseModel: state.exerciseList[index],
-                ),
-                itemCount: state.exerciseList.length,
-              );
-            } else if (state is ExerciseFailure) {
-              return Text(state.errorMessage);
-            } else {
-              return const CustomCircleProgressIndicator();
-            }
-          },
-        ),
+        child: Builder(builder: (context) {
+          return BlocBuilder<ExerciseCubit, ExerciseState>(
+            builder: (context, state) {
+              if (state is ExerciseFailure) {
+                return Center(
+                    child: ErrorView(errorMessage: state.errorMessage));
+              } else {
+                return const Column(
+                  children: [
+                    ShimmerLoadingWidget(
+                      itemCount: 6,
+                      hight: 80,
+                    ),
+                  ],
+                );
+              }
+            },
+          );
+        }),
       ),
     );
   }

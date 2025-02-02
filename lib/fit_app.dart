@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/core/helpers/service_locator.dart';
 import 'package:graduation_project/core/routes/app_router.dart';
 import 'package:graduation_project/core/routes/routes.dart';
+import 'package:graduation_project/feature/workout/data/repos/workout_repo_impl.dart';
+import 'package:graduation_project/feature/workout/presentation/manger/exercise_cubit/exercise_cubit.dart';
 
 class FitApp extends StatelessWidget {
   const FitApp({super.key, required this.appRouter});
@@ -12,11 +16,14 @@ class FitApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      child: MaterialApp(
-        theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-        debugShowCheckedModeBanner: false,
-        onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.bottomBar,
+      child: BlocProvider(
+        create: (context) => ExerciseCubit(getIt.get<WorkoutRepoImpl>()),
+        child: MaterialApp(
+          theme: ThemeData(scaffoldBackgroundColor: Colors.white),
+          debugShowCheckedModeBanner: false,
+          onGenerateRoute: appRouter.generateRoute,
+          initialRoute: Routes.bottomBar,
+        ),
       ),
     );
   }

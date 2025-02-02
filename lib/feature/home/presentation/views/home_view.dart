@@ -26,6 +26,7 @@ class HomeView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      verticalSpace(10),
                       const HomeBanner(),
                       verticalSpace(20),
                       const ScanAndPlanBox(),
@@ -69,6 +70,7 @@ class HomeView extends StatelessWidget {
         leading: Image.asset(Assets.iconsAppIcon),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
               'Welcome osama!',
@@ -76,7 +78,7 @@ class HomeView extends StatelessWidget {
             ),
             Text(
               'Every choice brings you closer to your best self.',
-              style: TextStyles.font14greyNormal.copyWith(fontSize: 12),
+              style: TextStyles.font14greyNormal.copyWith(fontSize: 13),
             ),
           ],
         ));
