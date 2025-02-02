@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
@@ -19,8 +18,7 @@ class DietRepoImpl implements DietRepo {
     try {
       var result =
           await apiService.get(endPoints: 'endPoints', queryParams: {'id': id});
-      for (var dietDay in json.decode(jsonData)['WeeklyPlans'][0]
-          ['DailyPlans']) {
+      for (var dietDay in result['WeeklyPlans'][0]['DailyPlans']) {
         daysDietList.add(DailyPlan.fromJson(dietDay));
       }
       return right(daysDietList);

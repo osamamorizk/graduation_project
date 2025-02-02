@@ -15,7 +15,7 @@ class ApiService {
     );
   }
 
-  Future<Map<String, dynamic>> get(
+  Future<dynamic> get(
       {Map<String, dynamic>? queryParams, required String endPoints}) async {
     Response response = await dio.get(endPoints, queryParameters: queryParams);
     return response.data;

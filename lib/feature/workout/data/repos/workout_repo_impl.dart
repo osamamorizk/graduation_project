@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
@@ -22,7 +21,7 @@ class WorkoutRepoImpl implements WorkoutRepo {
       var result = await apiService
           .get(endPoints: specializationEndPoints, queryParams: {'id': id});
 
-      for (var workout in (json.decode(jsonData))['plan']['DailyPlans']) {
+      for (var workout in result['plan']['DailyPlans']) {
         workoutPlansList.add(WorkoutPlanModel.fromJson(workout));
       }
       return right(workoutPlansList);
@@ -66,9 +65,8 @@ class WorkoutRepoImpl implements WorkoutRepo {
       var result =
           await apiService.get(endPoints: 'endPoints', queryParams: {'id': id});
 
-      List<ExerciseModel> exerciseList = result[0]
-          .map((exercise) => ExerciseModel.fromJson(exercise))
-          .toList();
+      List<ExerciseModel> exerciseList =
+          result.map((exercise) => ExerciseModel.fromJson(exercise)).toList();
       return right(exerciseList);
     } catch (e) {
       if (e is DioException) {
