@@ -39,7 +39,7 @@ class ExerciseListView extends StatelessWidget {
                   children: [
                     ShimmerLoadingWidget(
                       itemCount: 6,
-                      hight: 80,
+                      // hight: 80,
                     ),
                   ],
                 );

@@ -30,8 +30,8 @@ class WorkoutExerciseListView extends StatelessWidget {
           return ErrorView(errorMessage: state.errorMessage);
         } else {
           return const ShimmerLoadingWidget(
-            hight: 140,
-          );
+              // hight: 140,
+              );
         }
       },
     );
