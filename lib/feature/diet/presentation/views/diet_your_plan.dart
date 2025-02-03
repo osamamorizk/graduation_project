@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/helpers/cashe_helper.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/widgets/sticky_hidder_for_days.dart';
@@ -17,7 +18,9 @@ class DietYourPlan extends StatelessWidget {
       color: Colors.white,
       backgroundColor: ColorsManger.darkBlue,
       onRefresh: () async {
-        return context.read<DietCubit>().getAllDietsPlan(id: 15);
+        return context
+            .read<DietCubit>()
+            .getAllDietsPlan(id: CasheHlper.getData(key: 'id') ?? 15);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
