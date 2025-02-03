@@ -90,7 +90,8 @@ class AppRouter {
       case Routes.myDataView:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => ProfileCubit(getIt.get<ProfileRepoImpl>()),
+            create: (context) => ProfileCubit(getIt.get<ProfileRepoImpl>())
+              ..getProfile(id: '15'),
             child: const MyDataView(),
           ),
         );

@@ -29,8 +29,10 @@ class MyDataView extends StatelessWidget {
           if (state is ProfileSuccess) {
             return MyDataViewBody(userModel: state.userModel);
           } else if (state is ProfileFailure) {
-            return ErrorView(
-              errorMessage: state.errorMessage,
+            return Center(
+              child: ErrorView(
+                errorMessage: state.errorMessage,
+              ),
             );
           } else {
             return const CustomCircleProgressIndicator();
