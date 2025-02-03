@@ -18,8 +18,8 @@ class SliverShimmerLoading extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (context, index) {
           return Shimmer.fromColors(
-            baseColor: Colors.grey.shade200,
-            highlightColor: Colors.grey.shade400,
+            baseColor: Colors.grey.shade100,
+            highlightColor: Colors.grey.shade300,
             child: Container(
               margin: const EdgeInsets.symmetric(vertical: 8),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
