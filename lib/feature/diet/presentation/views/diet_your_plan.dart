@@ -26,14 +26,11 @@ class DietYourPlan extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(child: verticalSpace(16)),
-            SliverPadding(
-              padding: const EdgeInsets.only(bottom: 8),
-              sliver: SliverPersistentHeader(
-                pinned: true,
-                delegate: StickyHeaderDelegate(
-                  child: const DietDaysList(),
-                ),
+            SliverPersistentHeader(
+              floating: true,
+              pinned: true,
+              delegate: StickyHeaderDelegate(
+                child: const DietDaysList(),
               ),
             ),
             SliverToBoxAdapter(child: verticalSpace(8)),

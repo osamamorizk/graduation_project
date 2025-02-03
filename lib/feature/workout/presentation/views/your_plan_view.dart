@@ -22,8 +22,8 @@ class WorkoutYourPlanView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(child: verticalSpace(16)),
             SliverPersistentHeader(
+              floating: true,
               pinned: true,
               delegate: StickyHeaderDelegate(
                 child: const WorkoutDaysList(),
