@@ -3,7 +3,7 @@ import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/container_info.dart';
-import 'package:graduation_project/feature/diet/data/models/diet/meal.model.dart';
+import 'package:graduation_project/feature/diet/data/models/diet_plan_model/meal.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/food_meal_item.dart';
 
 class MealItem extends StatelessWidget {
@@ -28,12 +28,13 @@ class MealItem extends StatelessWidget {
       title: Row(
         children: [
           Text(
-            meal.name ?? 'Meal',
+            meal.mealType ?? 'Meal',
             style: TextStyles.font16BlackBold,
           ),
           const Spacer(),
           ContainerIformation(
-            data: '${meal.items![0].calories} Cal',
+            data:
+                '${meal.alternatives![0].calories!.toInt() + meal.foodMealModel!.calories!.toInt()} Cal',
           ),
         ],
       ),
@@ -44,11 +45,9 @@ class MealItem extends StatelessWidget {
           endIndent: 15,
           height: 1,
         ),
-        for (var item in meal.items ?? [])
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: FoodMealItem(item: item),
-          ),
+        FoodMealItem(
+          meal: meal,
+        ),
         verticalSpace(16),
         verticalSpace(16)
       ],

@@ -36,14 +36,12 @@ class UserDataForm extends StatelessWidget {
   }
 }
 
-
-
- // List<Widget> getScreensBasedOnCategory(String category) {
-  //   if (category == 'diet') {
-  //     return dietScreens;
-  //   } else if (category == 'workout') {
-  //     return workoutScreens;
-  //   } else {
-  //     return formScreens;
-  //   }
-  // }
+// List<Widget> getScreensBasedOnCategory(String category) {
+//   if (category == 'diet') {
+//     return dietScreens;
+//   } else if (category == 'workout') {
+//     return workoutScreens;
+//   } else {
+//     return formScreens;
+//   }
+// }

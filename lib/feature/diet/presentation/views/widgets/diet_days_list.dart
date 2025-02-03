@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/widgets/day_container.dart';
-import 'package:graduation_project/core/widgets/days_list_shimmer.dart';
 import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_cubit.dart';
 
 class DietDaysList extends StatefulWidget {
@@ -22,9 +21,7 @@ class _DietDaysListState extends State<DietDaysList>
       height: 30,
       child: BlocBuilder<DietCubit, DietCubitState>(
         buildWhen: (previous, current) =>
-            current is GetAllDietSuccess ||
-            current is GetAllDietFailure ||
-            current is GetAllDietLoading,
+            current is GetAllDietSuccess || current is GetAllDietFailure,
         builder: (context, state) {
           if (state is GetAllDietSuccess) {
             return ListView.builder(
@@ -49,7 +46,7 @@ class _DietDaysListState extends State<DietDaysList>
           } else if (state is GetAllDietFailure) {
             return const SizedBox.shrink();
           } else {
-            return const DaysListShimmer();
+            return const SizedBox.shrink();
           }
         },
       ),

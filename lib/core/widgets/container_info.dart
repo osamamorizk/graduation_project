@@ -8,7 +8,7 @@ class ContainerIformation extends StatelessWidget {
     super.key,
     required this.data,
   });
-  final String data;
+  final dynamic data;
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -8,7 +8,7 @@ final class DietCubitInitial extends DietCubitState {}
 final class GetAllDietLoading extends DietCubitState {}
 
 final class GetAllDietSuccess extends DietCubitState {
-  final List<DailyPlan> allDietList;
+  final List<DietPlanModel> allDietList;
 
   GetAllDietSuccess({required this.allDietList});
 }

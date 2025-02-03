@@ -18,7 +18,7 @@ class StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get maxExtent => 35; // Adjust the height as needed
+  double get maxExtent => 30; // Adjust the height as needed
   @override
   double get minExtent => 30; // Keep min and max the same
 

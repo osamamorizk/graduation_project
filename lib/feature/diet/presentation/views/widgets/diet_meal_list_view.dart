@@ -13,8 +13,8 @@ class DietMealsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DietCubit, DietCubitState>(
-      // buildWhen: (previous, current) =>
-      //     current is GetMealsByDaySuccess || current is GetMealsByDayFailure,
+      buildWhen: (previous, current) =>
+          current is GetMealsByDaySuccess || current is GetMealsByDayFailure,
       builder: (context, state) {
         if (state is GetMealsByDaySuccess) {
           return SliverList(

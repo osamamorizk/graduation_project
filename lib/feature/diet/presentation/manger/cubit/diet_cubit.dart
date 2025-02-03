@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:graduation_project/feature/diet/data/models/diet/daily_plan.model.dart';
-import 'package:graduation_project/feature/diet/data/models/diet/meal.model.dart';
+
+import 'package:graduation_project/feature/diet/data/models/diet_plan_model/diet_plan_model.dart';
+import 'package:graduation_project/feature/diet/data/models/diet_plan_model/meal.dart';
 import 'package:graduation_project/feature/diet/data/repos/diet_repo.dart';
 import 'package:meta/meta.dart';
 
@@ -19,7 +20,7 @@ class DietCubit extends Cubit<DietCubitState> {
       },
       (allDietList) {
         emit(GetAllDietSuccess(allDietList: allDietList));
-        getMealsByDay(day: allDietList[0].day ?? 'day');
+        getMealsByDay(day: allDietList[0].day ?? 'saturday');
       },
     );
   }
