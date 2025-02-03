@@ -23,7 +23,9 @@ class _WorkoutDaysListState extends State<WorkoutDaysList>
       height: 32,
       child: BlocBuilder<WorkoutCubit, WorkoutState>(
         buildWhen: (previous, current) =>
-            current is AllWorkoutSuccess || current is AllWorkoutFailure,
+            current is AllWorkoutSuccess ||
+            current is AllWorkoutFailure ||
+            current is AllWorkoutLoading,
         builder: (context, state) {
           if (state is AllWorkoutSuccess) {
             return ListView.builder(
