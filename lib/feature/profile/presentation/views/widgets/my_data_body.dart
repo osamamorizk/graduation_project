@@ -8,28 +8,29 @@ class MyDataViewBody extends StatelessWidget {
   final UserModel userModel;
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
+      child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: SingleChildScrollView(
-          child: Column(
-            spacing: 20,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset(Assets.imagesProfieIcon),
-              userDataItem('Name', userModel.userName,
-                  trailingIcon: Icons.check),
-              userDataItem('User goal', goals[userModel.goal]),
-              userDataItem(
-                  'Preferred Diet', dietOptions[userModel.preferredDiet]),
-              userDataItem('Weight', userModel.weight.toString(),
-                  trailingUnite: 'Kg'),
-              userDataItem('Tall', userModel.height.toString(),
-                  trailingUnite: 'cm'),
-              userDataItem('Gender', userModel.gender == 0 ? 'Male' : 'Female'),
-              userDataItem('Age', userModel.age.toString()),
-            ],
-          ),
-        ));
+        child: Column(
+          spacing: 20,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(Assets.imagesProfieIcon),
+            userDataItem('Name', userModel.userName, trailingIcon: Icons.check),
+            userDataItem('User goal', goals[userModel.goal]),
+            userDataItem(
+                'Preferred Diet', dietOptions[userModel.preferredDiet]),
+            userDataItem('Weight', userModel.weight.toString(),
+                trailingUnite: 'Kg'),
+            userDataItem('Tall', userModel.height.toString(),
+                trailingUnite: 'cm'),
+            userDataItem('Gender', userModel.gender == 0 ? 'Male' : 'Female'),
+            userDataItem('Age', userModel.age.toString()),
+          ],
+        ),
+      ),
+    );
   }
 }
 

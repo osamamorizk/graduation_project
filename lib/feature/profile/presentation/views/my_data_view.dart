@@ -24,20 +24,30 @@ class MyDataView extends StatelessWidget {
         centerTitle: true,
         iconTheme: IconThemeData(color: ColorsManger.darkBlue),
       ),
-      body: BlocBuilder<ProfileCubit, ProfileState>(
-        builder: (context, state) {
-          if (state is ProfileSuccess) {
-            return MyDataViewBody(userModel: state.userModel);
-          } else if (state is ProfileFailure) {
-            return Center(
-              child: ErrorView(
-                errorMessage: state.errorMessage,
-              ),
-            );
-          } else {
-            return const CustomCircleProgressIndicator();
-          }
+      body: RefreshIndicator(
+        backgroundColor: ColorsManger.darkBlue,
+        color: Colors.white,
+        onRefresh: () async {
+          return context.read<ProfileCubit>().getProfile(id: '10');
         },
+        child: BlocBuilder<ProfileCubit, ProfileState>(
+          builder: (context, state) {
+            if (state is ProfileSuccess) {
+              return MyDataViewBody(userModel: state.userModel);
+            } else if (state is ProfileFailure) {
+              return SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Center(
+                  child: ErrorView(
+                    errorMessage: state.errorMessage,
+                  ),
+                ),
+              );
+            } else {
+              return const CustomCircleProgressIndicator();
+            }
+          },
+        ),
       ),
     );
   }
