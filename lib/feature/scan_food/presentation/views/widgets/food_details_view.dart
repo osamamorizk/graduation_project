@@ -32,6 +32,7 @@ class FoodDetailsPage extends StatelessWidget {
           AspectRatio(
             aspectRatio: 1,
             child: Image.file(
+              height: 300,
               File(imagePath),
               fit: BoxFit.fill,
             ),

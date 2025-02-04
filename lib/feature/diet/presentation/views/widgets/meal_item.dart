@@ -33,8 +33,7 @@ class MealItem extends StatelessWidget {
           ),
           const Spacer(),
           ContainerIformation(
-            data:
-                '${meal.alternatives![0].calories!.toInt() + meal.foodMealModel!.calories!.toInt()} Cal',
+            data: '${meal.alternatives![0].calories!.toInt()} Cal',
           ),
         ],
       ),
