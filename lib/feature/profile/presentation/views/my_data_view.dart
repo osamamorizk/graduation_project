@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
+import 'package:graduation_project/core/functions/show_warrning_dailog.dart';
+import 'package:graduation_project/core/helpers/extensions.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/custom_circle_progress_indicator.dart';
@@ -23,6 +27,20 @@ class MyDataView extends StatelessWidget {
         ),
         centerTitle: true,
         iconTheme: IconThemeData(color: ColorsManger.darkBlue),
+        actions: [
+          IconButton(
+            onPressed: () {
+              warningDialog(context, () {
+                context.pushNamed(Routes.dataForm, arguments: 'all');
+              }, 'Do you want to update your data and create new plans?');
+            },
+            icon: Icon(
+              FontAwesomeIcons.rotate,
+              color: ColorsManger.darkBlue,
+              size: 20,
+            ),
+          ),
+        ],
       ),
       body: RefreshIndicator(
         backgroundColor: ColorsManger.darkBlue,

@@ -15,11 +15,6 @@ class SignupForm extends StatefulWidget {
 
 class _SignupFormState extends State<SignupForm> {
   bool isSecure = true;
-  bool hasLowerCase = false;
-  bool hasUpperCase = false;
-  bool hasNaumber = false;
-  bool hasSpecialCharcter = false;
-  bool hasMinLength = false;
 
   late TextEditingController emailController;
   late TextEditingController passwordController;

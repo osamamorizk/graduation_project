@@ -26,7 +26,7 @@ class HomeView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      verticalSpace(10),
+                      verticalSpace(4),
                       const HomeBanner(),
                       verticalSpace(20),
                       const ScanAndPlanBox(),
@@ -62,9 +62,9 @@ class HomeView extends StatelessWidget {
 
   AppBar homeAppBar() {
     return AppBar(
-        elevation: .4,
+        elevation: .5,
         toolbarHeight: 50,
-        scrolledUnderElevation: .4,
+        scrolledUnderElevation: .5,
         titleSpacing: 0,
         backgroundColor: Colors.white,
         leading: Image.asset(Assets.iconsAppIcon),

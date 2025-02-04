@@ -33,12 +33,12 @@ class _UserNameAndPasswordState extends State<UserNameAndPassword> {
           CustomTextFormField(
             validator: (value) {
               if (value == null) {
-                return 'Please enter a valid user name';
+                return 'Please enter a valid username';
               }
             },
             controller: userNameController,
             keyboardType: TextInputType.text,
-            hintText: 'User Name',
+            hintText: 'Username',
           ),
           verticalSpace(20),
           CustomTextFormField(
