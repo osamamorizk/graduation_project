@@ -16,14 +16,6 @@ class ScanFoodModel {
   });
 
   factory ScanFoodModel.fromJson(foodJson) {
-    // final List<dynamic>? nutritionalInfo = json['nutritional_info'];
-
-    // if (nutritionalInfo == null || nutritionalInfo.isEmpty) {
-    //   throw Exception("No nutritional info available");
-    // }
-
-    // final Map<String, dynamic> foodJson = nutritionalInfo.first;
-
     return ScanFoodModel(
       item: foodJson["Item"],
       calories: foodJson["Calories per 100 gms"],

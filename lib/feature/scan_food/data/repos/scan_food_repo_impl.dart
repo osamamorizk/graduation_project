@@ -10,18 +10,21 @@ class ScanFoodRepoImpl implements ScanFoodRepo {
 
   ScanFoodRepoImpl(this.apiService);
   @override
-  Future<Either<Failure, ScanFoodModel>> postScanFood(
+  Future<Either<Failure, List<ScanFoodModel>>> postScanFood(
       {required String imagePath}) async {
     try {
       String fileName = imagePath.split('/').last;
       FormData formData = FormData.fromMap({
         "file": await MultipartFile.fromFile(imagePath, filename: fileName),
       });
-
+      List<ScanFoodModel> scanedFoodList = [];
       var result =
           await apiService.post(endPoints: 'endPoints', data: formData);
+      for (var element in result['nutritional_info']) {
+        scanedFoodList.add(ScanFoodModel.fromJson(element));
+      }
 
-      return right(ScanFoodModel.fromJson(result['nutritional_info']));
+      return right(scanedFoodList);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

@@ -16,7 +16,7 @@ class ScanFoodListner extends StatelessWidget {
           showLoadingDialog(context,
               loadingMessage: 'Scanning food..\nPlease wait');
         } else if (state is ScanFoodSuccess) {
-          showDishDialog(context, state.scanFoodModel);
+          showDishDialog(context, state.scanFoodList[0]);
         } else if (state is ScanFoodFailure) {
           showErrorDialog(context, errorMessage: state.errorMessage);
         }

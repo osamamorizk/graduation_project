@@ -19,7 +19,7 @@ class ScanFoodCubit extends Cubit<ScanFoodState> {
         emit(ScanFoodFailure(errorMessage: failure.errorMessage));
       },
       (scanResponse) {
-        emit(ScanFoodSuccess(scanFoodModel: scanResponse));
+        emit(ScanFoodSuccess(scanFoodList: scanResponse));
       },
     );
   }
