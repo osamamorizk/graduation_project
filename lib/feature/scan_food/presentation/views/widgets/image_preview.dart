@@ -6,6 +6,7 @@ import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 
 import 'package:graduation_project/feature/scan_food/presentation/views/widgets/image_preview_actions.dart';
+import 'package:graduation_project/feature/scan_food/presentation/views/widgets/scan_food_listner.dart';
 
 class ImagePreviewScreen extends StatelessWidget {
   final String imagePath;
@@ -30,6 +31,9 @@ class ImagePreviewScreen extends StatelessWidget {
             const Spacer(flex: 2),
             ImagePreviewActions(imagePath: imagePath),
             const Spacer(flex: 2),
+            ScanFoodListner(
+              imagePath: imagePath,
+            )
           ],
         ),
       ),

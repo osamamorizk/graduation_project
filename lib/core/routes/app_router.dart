@@ -15,8 +15,10 @@ import 'package:graduation_project/feature/onboarding/presentation/views/onboard
 import 'package:graduation_project/feature/profile/data/repos/profile_repo_impl.dart';
 import 'package:graduation_project/feature/profile/presentation/manger/cubit/profile_cubit.dart';
 import 'package:graduation_project/feature/profile/presentation/views/my_data_view.dart';
+import 'package:graduation_project/feature/scan_food/data/models/scan_food_model.dart';
 import 'package:graduation_project/feature/scan_food/data/repos/scan_food_repo_impl.dart';
 import 'package:graduation_project/feature/scan_food/presentation/manger/cubit/scan_food_cubit.dart';
+import 'package:graduation_project/feature/scan_food/presentation/views/widgets/food_details_view.dart';
 import 'package:graduation_project/feature/sign_up/data/repos/sign_up_repo_implem.dart';
 import 'package:graduation_project/feature/sign_up/presentation/manger/cubit/signup_cubit.dart';
 import 'package:graduation_project/feature/sign_up/presentation/views/sign_up_view.dart';
@@ -76,6 +78,15 @@ class AppRouter {
             child: UserDataForm(
               category: settings.arguments as String,
             ),
+          ),
+        );
+
+      case Routes.foodDetailsView:
+        final args = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (_) => FoodDetailsPage(
+            scanedFoodList: args['scanedFoodList'] as List<ScanFoodModel>,
+            imagePath: args['imagePath'] as String,
           ),
         );
 
