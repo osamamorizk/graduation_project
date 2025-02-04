@@ -30,6 +30,7 @@ void showErrorDialog(BuildContext parentContext,
               verticalSpace(16),
               Text(
                 errorMessage,
+                textAlign: TextAlign.center,
                 style: TextStyles.font16BlueBold,
               ),
             ],

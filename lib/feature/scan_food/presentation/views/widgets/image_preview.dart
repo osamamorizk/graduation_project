@@ -16,10 +16,10 @@ class ImagePreviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsManger.lighterGrey,
+      backgroundColor: Colors.white,
       appBar: imgePreviewAppBar(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -45,7 +45,7 @@ class ImagePreviewScreen extends StatelessWidget {
       iconTheme: IconThemeData(color: ColorsManger.darkBlue, size: 22),
       titleSpacing: 0,
       toolbarHeight: 50,
-      elevation: .5,
+      elevation: .7,
       backgroundColor: Colors.white,
       scrolledUnderElevation: .2,
       actionsIconTheme: IconThemeData(color: ColorsManger.darkBlue),

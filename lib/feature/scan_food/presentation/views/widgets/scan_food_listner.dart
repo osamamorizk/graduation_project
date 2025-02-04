@@ -20,6 +20,7 @@ class ScanFoodListner extends StatelessWidget {
           showLoadingDialog(context,
               loadingMessage: 'Scanning food..\nPlease wait');
         } else if (state is ScanFoodSuccess) {
+          context.pop();
           context.pushNamed(
             Routes.foodDetailsView,
             arguments: {
@@ -29,6 +30,7 @@ class ScanFoodListner extends StatelessWidget {
           );
           // showDishDialog(context, state.scanFoodList[0]);
         } else if (state is ScanFoodFailure) {
+          context.pop();
           showErrorDialog(context, errorMessage: state.errorMessage);
         }
       },

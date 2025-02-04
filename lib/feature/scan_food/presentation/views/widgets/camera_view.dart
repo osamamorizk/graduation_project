@@ -26,7 +26,7 @@ class CameraView extends StatelessWidget {
         ],
       ),
       sensorConfig: SensorConfig.single(
-          aspectRatio: CameraAspectRatios.ratio_4_3,
+          aspectRatio: CameraAspectRatios.ratio_1_1,
           sensor: Sensor.position(
             SensorPosition.back,
           )),
