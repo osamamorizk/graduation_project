@@ -4,7 +4,8 @@ import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 
-Future<dynamic> logoutDialog(BuildContext context) {
+Future<dynamic> logoutDialog(BuildContext context,
+    {void Function()? onPressed}) {
   return showDialog(
     builder: (context) => AlertDialog(
       backgroundColor: Colors.white,
@@ -34,9 +35,7 @@ Future<dynamic> logoutDialog(BuildContext context) {
         ElevatedButton(
           style: ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(ColorsManger.darkBlue)),
-          onPressed: () {
-            Navigator.of(context).pop;
-          },
+          onPressed: onPressed,
           child: Text(
             'Log out',
             style: TextStyles.font14WhiteBold,

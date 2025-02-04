@@ -39,16 +39,23 @@ class ProfileOptionList extends StatelessWidget {
           },
         ),
         verticalSpace(32),
-        const ProfileOptionItem(
+        ProfileOptionItem(
           image: Assets.svgsProfileContactUs,
           text: 'Contact us',
+          onTap: () => showCommingSoonDialog(context),
         ),
         verticalSpace(32),
         ProfileOptionItem(
           image: Assets.svgsProfileLogOut,
           text: 'Log out',
           onTap: () {
-            logoutDialog(context);
+            logoutDialog(
+              context,
+              onPressed: () {
+                context.pop();
+                showCommingSoonDialog(context);
+              },
+            );
           },
         ),
       ],

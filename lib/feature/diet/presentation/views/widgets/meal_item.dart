@@ -45,6 +45,7 @@ class MealItem extends StatelessWidget {
           endIndent: 15,
           height: 1,
         ),
+        verticalSpace(10),
         FoodMealItem(
           meal: meal,
         ),
