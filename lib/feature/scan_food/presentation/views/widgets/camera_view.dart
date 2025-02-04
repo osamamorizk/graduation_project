@@ -53,22 +53,7 @@ class CameraView extends StatelessWidget {
         return AwesomeBottomActions(
           left: const SizedBox.shrink(),
           right: IconButton(
-            onPressed: () async {
-              final ImagePicker picker = ImagePicker();
-
-              final XFile? image =
-                  await picker.pickImage(source: ImageSource.gallery);
-              if (image != null && image.path.isNotEmpty) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ImagePreviewScreen(
-                      imagePath: image.path,
-                    ),
-                  ),
-                );
-              }
-            },
+            onPressed: () => pickImageFromGallery(context),
             icon: const Icon(
               size: 30,
               FontAwesomeIcons.images,
@@ -76,9 +61,7 @@ class CameraView extends StatelessWidget {
             ),
           ),
           state: state,
-          onMediaTap: (mediaCapture) {
-            // OpenFile.open(mediaCapture.captureRequest.path);
-          },
+          onMediaTap: (mediaCapture) {},
           padding: const EdgeInsets.only(bottom: 16),
         );
       },
@@ -102,5 +85,24 @@ class CameraView extends StatelessWidget {
         }
       },
     );
+  }
+}
+
+void pickImageFromGallery(BuildContext context) async {
+  final ImagePicker picker = ImagePicker();
+  try {
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null && image.path.isNotEmpty) {
+      if (File(image.path).existsSync()) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ImagePreviewScreen(imagePath: image.path),
+          ),
+        );
+      }
+    }
+  } catch (e) {
+    debugPrint("Error picking image: $e");
   }
 }
