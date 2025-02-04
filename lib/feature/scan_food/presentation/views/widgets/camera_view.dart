@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/custom_circle_progress_indicator.dart';
 import 'package:graduation_project/feature/scan_food/presentation/views/widgets/image_preview.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CameraView extends StatelessWidget {
   const CameraView({super.key});
@@ -24,7 +26,7 @@ class CameraView extends StatelessWidget {
         ],
       ),
       sensorConfig: SensorConfig.single(
-          aspectRatio: CameraAspectRatios.ratio_1_1,
+          aspectRatio: CameraAspectRatios.ratio_4_3,
           sensor: Sensor.position(
             SensorPosition.back,
           )),
@@ -49,11 +51,35 @@ class CameraView extends StatelessWidget {
       },
       bottomActionsBuilder: (state) {
         return AwesomeBottomActions(
+          left: const SizedBox.shrink(),
+          right: IconButton(
+            onPressed: () async {
+              final ImagePicker picker = ImagePicker();
+
+              final XFile? image =
+                  await picker.pickImage(source: ImageSource.gallery);
+              if (image != null && image.path.isNotEmpty) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ImagePreviewScreen(
+                      imagePath: image.path,
+                    ),
+                  ),
+                );
+              }
+            },
+            icon: const Icon(
+              size: 30,
+              FontAwesomeIcons.images,
+              color: Colors.white,
+            ),
+          ),
+          state: state,
           onMediaTap: (mediaCapture) {
             // OpenFile.open(mediaCapture.captureRequest.path);
           },
           padding: const EdgeInsets.only(bottom: 16),
-          state: state,
         );
       },
       theme: AwesomeTheme(
