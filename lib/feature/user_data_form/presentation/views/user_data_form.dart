@@ -21,7 +21,8 @@ class UserDataForm extends StatelessWidget {
               key: 'userId', value: state.userDataFormModel.id);
 
           showSuccessToast('Registration process completed successfully');
-          context.pushNamed(
+          context.pushNamedAndRemoveUntil(
+            predicate: (route) => false,
             Routes.bottomBar,
           );
         } else if (state is PutDietPlanSuccess) {
@@ -34,6 +35,14 @@ class UserDataForm extends StatelessWidget {
           context.pop();
           context.pushNamedAndRemoveUntil(Routes.bottomBar,
               predicate: (route) => false);
+        } else if (state is PutUserSuccess) {
+          showSuccessToast('User data and plans updated successfully');
+          context.pop();
+          context.pushNamedAndRemoveUntil(Routes.bottomBar,
+              predicate: (route) => false);
+        } else if (state is PostUserDataFailure) {
+          context.pop();
+          showErrorDialog(context, errorMessage: state.errorMessage);
         } else if (state is PostUserDataFailure) {
           context.pop();
           showErrorDialog(context, errorMessage: state.errorMessage);
@@ -45,6 +54,7 @@ class UserDataForm extends StatelessWidget {
           showErrorDialog(context, errorMessage: state.errorMessage);
         } else if (state is PostUserDataLoading ||
             state is PutDietPlanLoading ||
+            state is PutUserLoading ||
             state is PutWorkoutPlanLoading) {
           showLoadingDialog(
             context,

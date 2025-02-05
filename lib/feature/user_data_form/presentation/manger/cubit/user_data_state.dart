@@ -48,3 +48,19 @@ final class PutWorkoutPlanFailure extends UserDataState {
 
   PutWorkoutPlanFailure({required this.errorMessage});
 }
+
+final class PutUserLoading extends UserDataState {}
+
+// Success state with updated user data
+final class PutUserSuccess extends UserDataState {
+  final UserDataFormModel userDataFormModel;
+
+  PutUserSuccess({required this.userDataFormModel});
+}
+
+// Failure state with an error message
+final class PutUserFailure extends UserDataState {
+  final String errorMessage;
+
+  PutUserFailure({required this.errorMessage});
+}

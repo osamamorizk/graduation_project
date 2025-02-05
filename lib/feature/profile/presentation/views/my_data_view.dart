@@ -32,7 +32,7 @@ class MyDataView extends StatelessWidget {
           IconButton(
             onPressed: () {
               warningDialog(context, () {
-                context.pushNamed(Routes.dataForm, arguments: 'all');
+                context.pushNamed(Routes.dataForm, arguments: 'putUser');
               }, 'Do you want to update your data and create new plans?');
             },
             icon: Icon(
