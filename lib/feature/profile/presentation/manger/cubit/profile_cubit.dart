@@ -10,7 +10,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   final ProfileRepo profileRepo;
 
-  Future<void> getProfile({required String id}) async {
+  Future<void> getProfile({required int id}) async {
     emit(ProfileLoading());
     var result = await profileRepo.getProfileData(id: id);
     result.fold(

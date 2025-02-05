@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:graduation_project/core/functions/show_warrning_dailog.dart';
+import 'package:graduation_project/core/helpers/cashe_helper.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
@@ -46,7 +47,8 @@ class MyDataView extends StatelessWidget {
         backgroundColor: ColorsManger.darkBlue,
         color: Colors.white,
         onRefresh: () async {
-          return context.read<ProfileCubit>().getProfile(id: '10');
+          int userId = CasheHlper.getData(key: 'userId') ?? 4;
+          return context.read<ProfileCubit>().getProfile(id: userId);
         },
         child: BlocBuilder<ProfileCubit, ProfileState>(
           builder: (context, state) {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
+import 'package:graduation_project/core/helpers/cashe_helper.dart';
+import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/feature/profile/data/models/user_model.dart';
 import 'package:graduation_project/feature/profile/presentation/views/widgets/user_data_item.dart';
 
@@ -17,16 +19,18 @@ class MyDataViewBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(Assets.imagesProfieIcon),
-            userDataItem('Name', userModel.userName, trailingIcon: Icons.check),
+            userDataItem('Name', CasheHlper.getData(key: 'name') ?? 'user',
+                trailingIcon: Icons.check),
             userDataItem('User goal', goals[userModel.goal]),
             userDataItem(
                 'Preferred Diet', dietOptions[userModel.preferredDiet]),
             userDataItem('Weight', userModel.weight.toString(),
                 trailingUnite: 'Kg'),
             userDataItem('Tall', userModel.height.toString(),
-                trailingUnite: 'cm'),
+                trailingUnite: 'm'),
             userDataItem('Gender', userModel.gender == 0 ? 'Male' : 'Female'),
             userDataItem('Age', userModel.age.toString()),
+            verticalSpace(16)
           ],
         ),
       ),

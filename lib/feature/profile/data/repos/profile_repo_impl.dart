@@ -10,13 +10,11 @@ class ProfileRepoImpl implements ProfileRepo {
 
   ProfileRepoImpl(this.apiService);
   @override
-  Future<Either<Failure, UserModel>> getProfileData(
-      {required String id}) async {
+  Future<Either<Failure, UserModel>> getProfileData({required int id}) async {
     try {
-      final result =
-          await apiService.get(endPoints: 'endPoints', queryParams: {'id': id});
+      final result = await apiService.get(endPoints: 'User/$id');
 
-      return right(result);
+      return right(UserModel.fromJson(result));
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

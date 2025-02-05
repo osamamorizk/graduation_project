@@ -1,6 +1,5 @@
 class UserModel {
-  final String id;
-  final String userName;
+  final int id;
   final int gender;
   final int age;
   final int height;
@@ -15,7 +14,6 @@ class UserModel {
 
   UserModel({
     required this.id,
-    required this.userName,
     required this.gender,
     required this.age,
     required this.height,
@@ -32,7 +30,6 @@ class UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       id: json['id'] ?? '',
-      userName: json['userName'],
       gender: json['gender'],
       age: json['age'],
       height: json['height'],
