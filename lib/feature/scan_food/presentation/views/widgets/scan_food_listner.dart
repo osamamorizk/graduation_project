@@ -21,7 +21,7 @@ class ScanFoodListner extends StatelessWidget {
               loadingMessage: 'Scanning food..\nPlease wait');
         } else if (state is ScanFoodSuccess) {
           context.pop();
-          context.pushNamed(
+          context.pushReplacementNamed(
             Routes.foodDetailsView,
             arguments: {
               'scanedFoodList': state.scanFoodList,

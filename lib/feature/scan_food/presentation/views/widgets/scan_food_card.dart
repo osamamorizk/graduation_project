@@ -62,7 +62,7 @@ class FoodElementCardItem extends StatelessWidget {
                     color: Colors.green),
               ],
             ),
-            verticalSpace(16),
+            verticalSpace(5),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

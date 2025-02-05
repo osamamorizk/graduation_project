@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/helpers/cashe_helper.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/scan_food/presentation/manger/cubit/scan_food_cubit.dart';
@@ -37,19 +38,8 @@ class ImagePreviewActions extends StatelessWidget {
           style: ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(ColorsManger.darkBlue)),
           onPressed: () {
-            context.read<ScanFoodCubit>().scanFood(imagePath: imagePath);
-
-            // Map<String, dynamic> sampleJson = {
-            //   "Item": "Salad",
-            //   "Calories per 100 gms": "200",
-            //   "Protein per 100 gms": "16",
-            //   "Carbs per 100 gms": "20",
-            //   "Fats per 100 gms": "10",
-            //   "Sugar per 100 gms": "5",
-            // };
-
-            // ScanFoodModel foodItem = ScanFoodModel.fromJson(sampleJson);
-            // showDishDialog(context, foodItem, imagePath: imagePath);
+            context.read<ScanFoodCubit>().scanFood(
+                imagePath: imagePath, id: CasheHlper.getData(key: 'id') ?? 2);
           },
           icon: const Icon(
             Icons.compare,

@@ -26,9 +26,9 @@ class ExerciseItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             AspectRatio(
-              aspectRatio: 1,
+              aspectRatio: 1.2,
               child: CachedNetworkImage(
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.cover,
                 imageUrl: exerciseModel.image,
                 placeholder: (context, url) => Center(
                   child: SpinKitSpinningLines(

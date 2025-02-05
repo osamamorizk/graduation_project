@@ -10,9 +10,9 @@ class ScanFoodCubit extends Cubit<ScanFoodState> {
 
   final ScanFoodRepo scanFoodRepo;
 
-  Future<void> scanFood({required String imagePath}) async {
+  Future<void> scanFood({required String imagePath, required int id}) async {
     emit(ScanFoodLoading());
-    var result = await scanFoodRepo.postScanFood(imagePath: imagePath);
+    var result = await scanFoodRepo.postScanFood(imagePath: imagePath, id: id);
 
     result.fold(
       (failure) {

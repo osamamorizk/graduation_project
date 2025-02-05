@@ -24,8 +24,10 @@ class ApiService {
   }
 
   Future<dynamic> post(
-      {required String endPoints, required dynamic data}) async {
-    Response response = await dio.post(endPoints, data: data);
+      {required String endPoints,
+      required dynamic data,
+      Options? options}) async {
+    Response response = await dio.post(endPoints, data: data, options: options);
     return response.data;
   }
 

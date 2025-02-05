@@ -43,7 +43,7 @@ class ServerFailure extends Failure {
       return ServerFailure(
           errorMessage: response is String ? response : response['title']);
     } else if (statusCode == 404) {
-      return ServerFailure(errorMessage: 'Request not found.');
+      return ServerFailure(errorMessage: 'Request not found 444.');
     } else if (statusCode == 500) {
       return ServerFailure(errorMessage: 'Server error. Try again later.');
     } else {
