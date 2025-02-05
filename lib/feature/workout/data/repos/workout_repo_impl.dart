@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:graduation_project/core/helpers/errors.dart';
 import 'package:graduation_project/core/networking/api_service.dart';
-import 'package:graduation_project/core/networking/end_points.dart';
 import 'package:graduation_project/feature/workout/data/models/exercise_model.dart';
 import 'package:graduation_project/feature/workout/data/models/workout_model/workout_plan_model.dart';
 import 'package:graduation_project/feature/workout/data/models/workout_model/exercise.dart';
@@ -18,10 +17,9 @@ class WorkoutRepoImpl implements WorkoutRepo {
   Future<Either<Failure, List<WorkoutPlanModel>>> getAllWorkoutPlans(
       {required int id}) async {
     try {
-      var result = await apiService
-          .get(endPoints: specializationEndPoints, queryParams: {'id': id});
+      var result = await apiService.get(endPoints: 'Plan/workout-plan/2');
 
-      for (var workout in result['plan']['DailyPlans']) {
+      for (var workout in result['daily_plans']) {
         workoutPlansList.add(WorkoutPlanModel.fromJson(workout));
       }
       return right(workoutPlansList);

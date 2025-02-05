@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+
 import 'package:graduation_project/core/helpers/errors.dart';
 import 'package:graduation_project/core/networking/api_service.dart';
 
@@ -18,11 +19,12 @@ class DietRepoImpl implements DietRepo {
   Future<Either<Failure, List<DietPlanModel>>> getAllDiet(
       {required int id}) async {
     try {
-      // var result =
-      //     await apiService.get(endPoints: 'endPoints', queryParams: {'id': id});
+      var result = await apiService.get(endPoints: 'Plan/diet-plan/4');
+
       // Convert the map to the desired list structure
       final List<Map<String, dynamic>> transformedResponse =
-          convertToDesiredStructure(originalResponse);
+          convertToDesiredStructure(result);
+      log(transformedResponse.toString());
       for (var dietDay in transformedResponse) {
         daysDietList.add(DietPlanModel.fromJson(dietDay));
       }
