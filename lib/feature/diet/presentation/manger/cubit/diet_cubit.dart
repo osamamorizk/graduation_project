@@ -26,7 +26,6 @@ class DietCubit extends Cubit<DietCubitState> {
   }
 
   Future<void> getMealsByDay({required String day}) async {
-    emit(GetAllDietLoading());
     var result = await dietRepo.getMealsByDay(day: day);
     result.fold(
       (failure) {

@@ -28,7 +28,6 @@ class ScanFoodListner extends StatelessWidget {
               'imagePath': imagePath,
             },
           );
-          // showDishDialog(context, state.scanFoodList[0]);
         } else if (state is ScanFoodFailure) {
           context.pop();
           showErrorDialog(context, errorMessage: state.errorMessage);

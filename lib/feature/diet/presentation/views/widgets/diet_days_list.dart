@@ -22,7 +22,9 @@ class _DietDaysListState extends State<DietDaysList>
       height: 30,
       child: BlocBuilder<DietCubit, DietCubitState>(
         buildWhen: (previous, current) =>
-            current is GetAllDietSuccess || current is GetAllDietFailure,
+            current is GetAllDietLoading ||
+            current is GetAllDietSuccess ||
+            current is GetAllDietFailure,
         builder: (context, state) {
           if (state is GetAllDietSuccess) {
             return ListView.builder(
