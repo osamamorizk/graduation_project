@@ -18,8 +18,7 @@ class UserDataForm extends StatelessWidget {
       listener: (context, state) {
         if (state is PostUserDataSuccess) {
           CasheHlper.saveData(key: 'id', value: state.userDataFormModel.id);
-          // log(CasheHlper.saveData(
-          //     key: 'user', value: state.userDataFormModel.userName) as String);
+
           // CasheHlper.saveData(
           //     key: 'user', value: state.userDataFormModel.userName);
           showSuccessToast('Registration process completed successfuly');
