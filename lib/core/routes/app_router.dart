@@ -56,11 +56,11 @@ class AppRouter {
             providers: [
               BlocProvider(
                 create: (context) => WorkoutCubit(getIt.get<WorkoutRepoImpl>())
-                  ..getWorkoutPlans(id: CasheHlper.getData(key: 'id') ?? 15),
+                  ..getWorkoutPlans(id: CasheHlper.getData(key: 'id') ?? 0),
               ),
               BlocProvider(
                 create: (context) => DietCubit(getIt.get<DietRepoImpl>())
-                  ..getAllDietsPlan(id: CasheHlper.getData(key: 'id') ?? 15),
+                  ..getAllDietsPlan(id: CasheHlper.getData(key: 'id') ?? 0),
               ),
             ],
             child: const BottomBar(),

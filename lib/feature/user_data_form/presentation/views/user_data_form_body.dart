@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/functions/custom_snack_bar.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
-import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/widgets/custom_action_button.dart';
 import 'package:graduation_project/feature/user_data_form/data/constants.dart';
@@ -92,11 +91,10 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
     if (currentIndex == selectedScreens.length - 1) {
       if (isValid) {
         final userData = UserDataFormModel(
-          id: 'id',
-          userName: 'userName',
+          id: 0,
           gender: userDataCubit.gender,
           age: userDataCubit.age.toInt(),
-          height: userDataCubit.tall.toInt(),
+          height: (userDataCubit.tall / 100).toInt(),
           weight: userDataCubit.weight.toInt(),
           fitnessLevel: userDataCubit.fitnessLevel,
           weeklyWorkoutDays: userDataCubit.workoutDays,
@@ -104,22 +102,19 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
           goal: userDataCubit.userGoals,
           dietaryRestrictions: userDataCubit.dietaryRestrictions,
           preferredDiet: userDataCubit.dietKind,
-          medicalConditions: userDataCubit.helthConcerns,
+          medicalConditions: 'userDataCubit.helthConcerns',
         );
-
-        if (widget.category == 'workout') {
-          log('workout , put');
-          //put workout
-          userDataCubit.putWorkout(userDataFormModel: userData);
-        } else if (widget.category == 'diet') {
-          log('diet , put');
-          //pu diet
-          userDataCubit.putDiet(userDataFormModel: userData);
-        } else {
-          //post user
-          userDataCubit.postUserData(userDataFormModel: userData);
-        }
-        context.pushNamed(Routes.bottomBar);
+        userDataCubit.postUserData(userDataFormModel: userData);
+        // if (widget.category == 'workout') {
+        //   userDataCubit.putWorkout(userDataFormModel: userData);
+        // } else if (widget.category == 'diet') {
+        //   log('diet , put');
+        //   //pu diet
+        //   userDataCubit.putDiet(userDataFormModel: userData);
+        // } else {
+        //   //post user
+        //   userDataCubit.postUserData(userDataFormModel: userData);
+        // }
       } else {
         showCustomSnackBar(
             text: 'Please complete all required fields.', context);

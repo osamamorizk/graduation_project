@@ -40,9 +40,7 @@ class ServerFailure extends Failure {
 
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(
-          errorMessage:
-              response is String ? response : 'Unauthorized request.');
+      return ServerFailure(errorMessage: response['title']);
     } else if (statusCode == 404) {
       return ServerFailure(errorMessage: 'Request not found.');
     } else if (statusCode == 500) {

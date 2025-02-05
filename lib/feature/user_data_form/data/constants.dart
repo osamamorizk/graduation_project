@@ -32,7 +32,7 @@ List<Widget> dietScreens = <Widget>[
 
 List<Widget> workoutScreens = <Widget>[
   const GoalSelectionScreen(),
-  const ActivityGoalView(),
+  // const ActivityGoalView(),
   const HealthConcernsView(),
   const FitnessLevelView(),
   const WorkoutDayNumberView(),

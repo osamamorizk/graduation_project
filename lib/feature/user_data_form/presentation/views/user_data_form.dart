@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/functions/custom_snack_bar.dart';
 import 'package:graduation_project/core/functions/error_dialog.dart';
 import 'package:graduation_project/core/functions/upload_data_dialog.dart';
 import 'package:graduation_project/core/helpers/cashe_helper.dart';
@@ -16,12 +19,14 @@ class UserDataForm extends StatelessWidget {
     return BlocListener<UserDataCubit, UserDataState>(
       listener: (context, state) {
         if (state is PostUserDataSuccess) {
-          CasheHlper.saveSecuredData(
-              key: 'id', value: state.userDataFormModel.id);
-          CasheHlper.saveData(
-              key: 'user', value: state.userDataFormModel.userName);
-
-          context.pushNamed(Routes.bottomBar);
+          CasheHlper.saveData(key: 'id', value: state.userDataFormModel.id);
+          // log(CasheHlper.saveData(
+          //     key: 'user', value: state.userDataFormModel.userName) as String);
+          // CasheHlper.saveData(
+          //     key: 'user', value: state.userDataFormModel.userName);
+          showSuccessToast('Registration process completed successfuly');
+          context.pushNamedAndRemoveUntil(Routes.bottomBar,
+              predicate: (route) => false);
         } else if (state is PostUserDataFailure) {
           context.pop();
           showErrorDialog(context, errorMessage: state.errorMessage);

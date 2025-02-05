@@ -9,9 +9,9 @@ class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(this.userDataFormRepo) : super(UserDataInitial());
   final UserDataFormRepo userDataFormRepo;
   int gender = 0;
-  num tall = 140;
-  num age = 25;
-  num weight = 60;
+  double tall = 140;
+  double age = 25;
+  double weight = 60;
   int userGoals = 100;
   String dietaryRestrictions = '';
   String activityLevel = '';
@@ -39,34 +39,34 @@ class UserDataCubit extends Cubit<UserDataState> {
     );
   }
 
-  Future<void> putWorkout(
-      {required UserDataFormModel userDataFormModel}) async {
-    emit(PostUserDataLoading());
-    var result =
-        await userDataFormRepo.putWorkout(userDataFormModel: userDataFormModel);
-    result.fold(
-      (failure) {
-        emit(PostUserDataFailure(errorMessage: failure.errorMessage));
-      },
-      (userData) {
-        emit(PostUserDataSuccess(userDataFormModel: userDataFormModel));
-      },
-    );
-  }
+  // Future<void> putWorkout(
+  //     {required UserDataFormModel userDataFormModel}) async {
+  //   emit(PostUserDataLoading());
+  //   var result =
+  //       await userDataFormRepo.putWorkout(userDataFormModel: userDataFormModel);
+  //   result.fold(
+  //     (failure) {
+  //       emit(PostUserDataFailure(errorMessage: failure.errorMessage));
+  //     },
+  //     (userData) {
+  //       emit(PostUserDataSuccess(userDataFormModel: userDataFormModel));
+  //     },
+  //   );
+  // }
 
-  Future<void> putDiet({required UserDataFormModel userDataFormModel}) async {
-    emit(PostUserDataLoading());
-    var result =
-        await userDataFormRepo.putDiet(userDataFormModel: userDataFormModel);
-    result.fold(
-      (failure) {
-        emit(PostUserDataFailure(errorMessage: failure.errorMessage));
-      },
-      (userData) {
-        emit(PostUserDataSuccess(userDataFormModel: userDataFormModel));
-      },
-    );
-  }
+  // Future<void> putDiet({required UserDataFormModel userDataFormModel}) async {
+  //   emit(PostUserDataLoading());
+  //   var result =
+  //       await userDataFormRepo.putDiet(userDataFormModel: userDataFormModel);
+  //   result.fold(
+  //     (failure) {
+  //       emit(PostUserDataFailure(errorMessage: failure.errorMessage));
+  //     },
+  //     (userData) {
+  //       emit(PostUserDataSuccess(userDataFormModel: userDataFormModel));
+  //     },
+  //   );
+  // }
 
   bool validateAllData() {
     return validateDietData() && validateWorkoutData();

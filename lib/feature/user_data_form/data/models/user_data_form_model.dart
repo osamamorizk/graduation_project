@@ -1,21 +1,21 @@
 class UserDataFormModel {
-  final String id;
-  final String userName;
+  final int id;
+
   final int gender;
   final int age;
   final int height;
   final int weight;
   final int fitnessLevel;
   final int weeklyWorkoutDays;
-  final String workoutDuration;
+  final int preferredDiet;
   final int goal;
   final String dietaryRestrictions;
-  final int preferredDiet;
+  final String workoutDuration;
+
   final String medicalConditions;
 
   UserDataFormModel({
     required this.id,
-    required this.userName,
     required this.gender,
     required this.age,
     required this.height,
@@ -32,7 +32,6 @@ class UserDataFormModel {
   factory UserDataFormModel.fromJson(Map<String, dynamic> json) {
     return UserDataFormModel(
       id: json['id'] ?? '',
-      userName: json['userName'],
       gender: json['gender'],
       age: json['age'],
       height: json['height'],
@@ -49,16 +48,16 @@ class UserDataFormModel {
 
   Map<String, dynamic> uerFormToJson() {
     return {
-      'gender': gender,
       'age': age,
+      'gender': gender,
       'height': height,
       'weight': weight,
       'fitnessLevel': fitnessLevel,
       'weeklyWorkoutDays': weeklyWorkoutDays,
       'workoutDuration': workoutDuration,
       'goal': goal,
-      'preferredDiet': preferredDiet,
       'dietaryRestrictions': dietaryRestrictions,
+      'preferredDiet': preferredDiet,
       'medicalConditions': medicalConditions,
     };
   }

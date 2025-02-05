@@ -19,9 +19,9 @@ class AboutUser extends StatefulWidget {
 }
 
 class _AboutUserState extends State<AboutUser> {
-  late num age;
-  late num height;
-  late num weight;
+  late double age;
+  late double height;
+  late double weight;
   @override
   void initState() {
     age = BlocProvider.of<UserDataCubit>(context).age;
@@ -142,6 +142,7 @@ class _AboutUserState extends State<AboutUser> {
       min: 10,
       max: 80,
       value: age,
+      stepSize: 1,
       interval: 90,
       showTicks: false,
       showLabels: false,
