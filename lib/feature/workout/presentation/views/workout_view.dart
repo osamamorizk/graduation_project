@@ -27,6 +27,8 @@ class WorkoutView extends StatelessWidget {
               type: 'Do you want to create new workout plan?',
               buttonText: 'New workout plan',
               onPressed: () {
+                context.pop();
+
                 context.pushNamed(Routes.dataForm, arguments: 'workout');
               },
             ),

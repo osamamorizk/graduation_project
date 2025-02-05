@@ -9,7 +9,6 @@ import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/widgets/custom_action_button.dart';
 import 'package:graduation_project/feature/user_data_form/data/constants.dart';
-import 'package:graduation_project/feature/user_data_form/data/models/user_data_form_model.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/form_bar.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
@@ -88,37 +87,41 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
   void handleFormSubmission(BuildContext context) {
     final userDataCubit = context.read<UserDataCubit>();
     bool isValid = userDataCubit.validateAllData();
-
+    final data = {
+      'age': userDataCubit.age.toInt(),
+      'gender': userDataCubit.gender,
+      'height': (userDataCubit.tall / 100).toInt(),
+      'weight': userDataCubit.weight.toInt(),
+      'fitnessLevel': userDataCubit.fitnessLevel,
+      'weeklyWorkoutDays': userDataCubit.workoutDays,
+      'workoutDuration': userDataCubit.workoutTime,
+      'goal': userDataCubit.userGoals,
+      'dietaryRestrictions': userDataCubit.dietaryRestrictions,
+      'preferredDiet': userDataCubit.dietKind,
+      'medicalConditions': userDataCubit.helthConcerns,
+    };
     if (currentIndex == selectedScreens.length - 1) {
       if (isValid) {
-        final userData = UserDataFormModel(
-          id: 0,
-          gender: userDataCubit.gender,
-          age: userDataCubit.age.toInt(),
-          height: (userDataCubit.tall / 100).toInt(),
-          weight: userDataCubit.weight.toInt(),
-          fitnessLevel: userDataCubit.fitnessLevel,
-          weeklyWorkoutDays: userDataCubit.workoutDays,
-          workoutDuration: userDataCubit.workoutTime,
-          goal: userDataCubit.userGoals,
-          dietaryRestrictions: userDataCubit.dietaryRestrictions,
-          preferredDiet: userDataCubit.dietKind,
-          medicalConditions: userDataCubit.helthConcerns,
-        );
         if (widget.category == 'workout') {
           log('workout , put');
+          int userId = CasheHlper.getData(key: 'userId') ?? 4;
           userDataCubit.putWorkout(
-              userDataFormModel: userData,
-              id: CasheHlper.getData(key: 'id') ?? 2);
+            data: data,
+            id: userId,
+          );
         } else if (widget.category == 'diet') {
           log('diet , put');
+          int userId = CasheHlper.getData(key: 'userId') ?? 4;
 
           userDataCubit.putDiet(
-              userDataFormModel: userData,
-              id: CasheHlper.getData(key: 'id') ?? 2);
+            data: data,
+            id: userId,
+          );
         } else {
           log('post');
-          userDataCubit.postUserData(userDataFormModel: userData);
+          userDataCubit.postUserData(
+            data: data,
+          );
         }
       } else {
         showCustomSnackBar(

@@ -1,6 +1,5 @@
 class UserDataFormModel {
   final int id;
-
   final int gender;
   final int age;
   final int height;
@@ -31,7 +30,7 @@ class UserDataFormModel {
 
   factory UserDataFormModel.fromJson(Map<String, dynamic> json) {
     return UserDataFormModel(
-      id: json['id'] ?? '',
+      id: json['id'],
       gender: json['gender'],
       age: json['age'],
       height: json['height'],
@@ -44,21 +43,5 @@ class UserDataFormModel {
       preferredDiet: json['preferredDiet'],
       medicalConditions: json['medicalConditions'],
     );
-  }
-
-  Map<String, dynamic> uerFormToJson() {
-    return {
-      'age': age,
-      'gender': gender,
-      'height': height,
-      'weight': weight,
-      'fitnessLevel': fitnessLevel,
-      'weeklyWorkoutDays': weeklyWorkoutDays,
-      'workoutDuration': workoutDuration,
-      'goal': goal,
-      'dietaryRestrictions': dietaryRestrictions,
-      'preferredDiet': preferredDiet,
-      'medicalConditions': medicalConditions,
-    };
   }
 }

@@ -20,7 +20,7 @@ class ProfileBody extends StatelessWidget {
             Image.asset(Assets.imagesProfieIcon),
             verticalSpace(16),
             Text(
-              CasheHlper.getData(key: 'user') ?? 'user',
+              CasheHlper.getString(key: 'user'),
               style: TextStyles.font16BlackBold,
             ),
             verticalSpace(32),

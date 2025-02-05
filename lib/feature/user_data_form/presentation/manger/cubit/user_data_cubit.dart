@@ -24,11 +24,11 @@ class UserDataCubit extends Cubit<UserDataState> {
   int workoutDays = 100;
   String workoutTime = '';
 
-  Future<void> postUserData(
-      {required UserDataFormModel userDataFormModel}) async {
+  Future<void> postUserData({
+    required Map data,
+  }) async {
     emit(PostUserDataLoading());
-    var result = await userDataFormRepo.postUserData(
-        userDataFormModel: userDataFormModel);
+    var result = await userDataFormRepo.postUserData(data: data);
     result.fold(
       (failure) {
         emit(PostUserDataFailure(errorMessage: failure.errorMessage));
@@ -36,17 +36,15 @@ class UserDataCubit extends Cubit<UserDataState> {
       (userData) {
         Future.delayed(
           const Duration(seconds: 20),
-          () => emit(PostUserDataSuccess(userDataFormModel: userDataFormModel)),
+          () => emit(PostUserDataSuccess(userDataFormModel: userData)),
         );
       },
     );
   }
 
-  Future<void> putWorkout(
-      {required UserDataFormModel userDataFormModel, required int id}) async {
+  Future<void> putWorkout({required Map data, required int id}) async {
     emit(PutWorkoutPlanLoading());
-    var result = await userDataFormRepo.putWorkout(
-        userDataFormModel: userDataFormModel, id: id);
+    var result = await userDataFormRepo.putWorkout(data: data, id: id);
     result.fold(
       (failure) {
         emit(PutWorkoutPlanFailure(errorMessage: failure.errorMessage));
@@ -54,18 +52,15 @@ class UserDataCubit extends Cubit<UserDataState> {
       (userData) {
         Future.delayed(
           const Duration(seconds: 20),
-          () =>
-              emit(PutWorkoutPlanSuccess(userDataFormModel: userDataFormModel)),
+          () => emit(PutWorkoutPlanSuccess(userDataFormModel: userData)),
         );
       },
     );
   }
 
-  Future<void> putDiet(
-      {required UserDataFormModel userDataFormModel, required int id}) async {
+  Future<void> putDiet({required Map data, required int id}) async {
     emit(PutDietPlanLoading());
-    var result = await userDataFormRepo.putDiet(
-        userDataFormModel: userDataFormModel, id: id);
+    var result = await userDataFormRepo.putDiet(data: data, id: id);
     result.fold(
       (failure) {
         emit(PutDietPlanFailure(errorMessage: failure.errorMessage));
@@ -73,7 +68,7 @@ class UserDataCubit extends Cubit<UserDataState> {
       (userData) {
         Future.delayed(
           const Duration(seconds: 20),
-          () => emit(PutDietPlanSuccess(userDataFormModel: userDataFormModel)),
+          () => emit(PutDietPlanSuccess(userDataFormModel: userData)),
         );
       },
     );

@@ -15,12 +15,15 @@ class UserDataForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<UserDataCubit, UserDataState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is PostUserDataSuccess) {
-          CasheHlper.saveData(key: 'id', value: state.userDataFormModel.id);
+          await CasheHlper.saveInt(
+              key: 'userId', value: state.userDataFormModel.id);
+
           showSuccessToast('Registration process completed successfully');
-          context.pushNamedAndRemoveUntil(Routes.bottomBar,
-              predicate: (route) => false);
+          context.pushNamed(
+            Routes.bottomBar,
+          );
         } else if (state is PutDietPlanSuccess) {
           showSuccessToast('Diet plan updated successfully');
           context.pop();
