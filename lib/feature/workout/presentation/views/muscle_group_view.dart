@@ -19,8 +19,13 @@ class MuscleGroupView extends StatelessWidget {
             context
                 .read<ExerciseCubit>()
                 .getExerciseList(id: exerciseList[index].id);
-            context.pushNamed(Routes.exerciseListView,
-                arguments: exerciseList[index].name);
+            context.pushNamed(
+              Routes.exerciseListView,
+              arguments: {
+                'exerciseGroup': exerciseList[index].name,
+                'id': exerciseList[index].id,
+              },
+            );
           },
           child: Padding(
             padding: EdgeInsets.only(bottom: 16, top: index == 0 ? 16 : 0),

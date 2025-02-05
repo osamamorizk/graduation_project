@@ -11,8 +11,10 @@ class ExerciseListView extends StatelessWidget {
   const ExerciseListView({
     super.key,
     required this.exerciseGroup,
+    required this.exerciseId,
   });
   final String exerciseGroup;
+  final int exerciseId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +34,7 @@ class ExerciseListView extends StatelessWidget {
         color: Colors.white,
         backgroundColor: ColorsManger.darkBlue,
         onRefresh: () {
-          return context.read<ExerciseCubit>().getExerciseList(id: 15);
+          return context.read<ExerciseCubit>().getExerciseList(id: exerciseId);
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

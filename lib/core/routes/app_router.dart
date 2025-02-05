@@ -56,11 +56,11 @@ class AppRouter {
             providers: [
               BlocProvider(
                 create: (context) => WorkoutCubit(getIt.get<WorkoutRepoImpl>())
-                  ..getWorkoutPlans(id: CasheHlper.getData(key: 'id') ?? 0),
+                  ..getWorkoutPlans(id: CasheHlper.getData(key: 'id') ?? 1),
               ),
               BlocProvider(
                 create: (context) => DietCubit(getIt.get<DietRepoImpl>())
-                  ..getAllDietsPlan(id: CasheHlper.getData(key: 'id') ?? 0),
+                  ..getAllDietsPlan(id: CasheHlper.getData(key: 'id') ?? 1),
               ),
             ],
             child: const BottomBar(),
@@ -103,9 +103,11 @@ class AppRouter {
         );
 
       case Routes.exerciseListView:
+        final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (context) => ExerciseListView(
-            exerciseGroup: settings.arguments as String,
+            exerciseGroup: args['exerciseGroup'] as String,
+            exerciseId: args['id'] as int,
           ),
         );
 

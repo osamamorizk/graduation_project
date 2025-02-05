@@ -59,12 +59,13 @@ class WorkoutRepoImpl implements WorkoutRepo {
   @override
   Future<Either<Failure, List<ExerciseModel>>> getExerciseList(
       {required int id}) async {
+    List<ExerciseModel> exerciseList = [];
     try {
-      var result =
-          await apiService.get(endPoints: 'endPoints', queryParams: {'id': id});
+      var result = await apiService.get(endPoints: 'Exercises/$id');
+      for (var exercise in result) {
+        exerciseList.add(ExerciseModel.fromJson(exercise));
+      }
 
-      List<ExerciseModel> exerciseList =
-          result.map((exercise) => ExerciseModel.fromJson(exercise)).toList();
       return right(exerciseList);
     } catch (e) {
       if (e is DioException) {
