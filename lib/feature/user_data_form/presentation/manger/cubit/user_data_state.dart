@@ -18,3 +18,33 @@ final class PostUserDataFailure extends UserDataState {
 
   PostUserDataFailure({required this.errorMessage});
 }
+
+// States for updating diet plan
+final class PutDietPlanLoading extends UserDataState {}
+
+final class PutDietPlanSuccess extends UserDataState {
+  final UserDataFormModel userDataFormModel;
+
+  PutDietPlanSuccess({required this.userDataFormModel});
+}
+
+final class PutDietPlanFailure extends UserDataState {
+  final String errorMessage;
+
+  PutDietPlanFailure({required this.errorMessage});
+}
+
+// States for updating workout plan
+final class PutWorkoutPlanLoading extends UserDataState {}
+
+final class PutWorkoutPlanSuccess extends UserDataState {
+  final UserDataFormModel userDataFormModel;
+
+  PutWorkoutPlanSuccess({required this.userDataFormModel});
+}
+
+final class PutWorkoutPlanFailure extends UserDataState {
+  final String errorMessage;
+
+  PutWorkoutPlanFailure({required this.errorMessage});
+}

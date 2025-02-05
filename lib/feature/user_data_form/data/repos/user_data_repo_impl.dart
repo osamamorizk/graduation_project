@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:graduation_project/core/helpers/end_points_const.dart';
@@ -17,7 +15,7 @@ class UserDataRepoImpl implements UserDataFormRepo {
       {required UserDataFormModel userDataFormModel}) async {
     try {
       final body = userDataFormModel.uerFormToJson();
-      log(body.toString());
+
       final result =
           await apiService.post(endPoints: postDataEndPoint, data: body);
       final userDataModel = UserDataFormModel.fromJson(result['user']);
@@ -33,11 +31,11 @@ class UserDataRepoImpl implements UserDataFormRepo {
 
   @override
   Future<Either<Failure, UserDataFormModel>> putDiet(
-      {required UserDataFormModel userDataFormModel}) async {
+      {required UserDataFormModel userDataFormModel, required int id}) async {
     try {
       final body = userDataFormModel.uerFormToJson();
       final result =
-          await apiService.put(endPoints: postDataEndPoint, data: body);
+          await apiService.put(endPoints: 'update-diet-plan/$id', data: body);
       final userDataModel = UserDataFormModel.fromJson(result['user']);
       return right(userDataModel);
     } catch (e) {
@@ -51,10 +49,11 @@ class UserDataRepoImpl implements UserDataFormRepo {
 
   @override
   Future<Either<Failure, UserDataFormModel>> putWorkout(
-      {required UserDataFormModel userDataFormModel}) async {
+      {required UserDataFormModel userDataFormModel, required int id}) async {
     try {
       final body = userDataFormModel.uerFormToJson();
-      final result = await apiService.put(endPoints: 'endPoints', data: body);
+      final result = await apiService.put(
+          endPoints: 'update-workout-plan/$id', data: body);
       final userDataModel = UserDataFormModel.fromJson(result['user']);
       return right(userDataModel);
     } catch (e) {

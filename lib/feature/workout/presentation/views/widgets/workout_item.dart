@@ -24,11 +24,18 @@ class WorkoutItem extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text(
-                exercise.name ?? 'Exercise',
-                style: TextStyles.font14BlackBold,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      exercise.name ?? 'Exercise',
+                      style: TextStyles.font14BlackBold,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               ),
-              const Spacer(),
               ContainerIformation(data: exercise.muscleGroup ?? 'Chest')
             ],
           ),

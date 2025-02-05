@@ -18,19 +18,36 @@ class UserDataForm extends StatelessWidget {
       listener: (context, state) {
         if (state is PostUserDataSuccess) {
           CasheHlper.saveData(key: 'id', value: state.userDataFormModel.id);
-
-          // CasheHlper.saveData(
-          //     key: 'user', value: state.userDataFormModel.userName);
-          showSuccessToast('Registration process completed successfuly');
+          showSuccessToast('Registration process completed successfully');
+          context.pushNamedAndRemoveUntil(Routes.bottomBar,
+              predicate: (route) => false);
+        } else if (state is PutDietPlanSuccess) {
+          showSuccessToast('Diet plan updated successfully');
+          context.pop();
+          context.pushNamedAndRemoveUntil(Routes.bottomBar,
+              predicate: (route) => false);
+        } else if (state is PutWorkoutPlanSuccess) {
+          showSuccessToast('Workout plan updated successfully');
+          context.pop();
           context.pushNamedAndRemoveUntil(Routes.bottomBar,
               predicate: (route) => false);
         } else if (state is PostUserDataFailure) {
           context.pop();
           showErrorDialog(context, errorMessage: state.errorMessage);
-        } else {
-          showLoadingDialog(context,
-              loadingMessage: 'This may take a while,\nplease wait.',
-              textAlign: TextAlign.center);
+        } else if (state is PutDietPlanFailure) {
+          context.pop();
+          showErrorDialog(context, errorMessage: state.errorMessage);
+        } else if (state is PutWorkoutPlanFailure) {
+          context.pop();
+          showErrorDialog(context, errorMessage: state.errorMessage);
+        } else if (state is PostUserDataLoading ||
+            state is PutDietPlanLoading ||
+            state is PutWorkoutPlanLoading) {
+          showLoadingDialog(
+            context,
+            loadingMessage: 'This may take a while,\nplease wait.',
+            textAlign: TextAlign.center,
+          );
         }
       },
       child: UserDataFormBody(category: category),

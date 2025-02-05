@@ -43,30 +43,38 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   Future<void> putWorkout(
-      {required UserDataFormModel userDataFormModel}) async {
-    emit(PostUserDataLoading());
-    var result =
-        await userDataFormRepo.putWorkout(userDataFormModel: userDataFormModel);
+      {required UserDataFormModel userDataFormModel, required int id}) async {
+    emit(PutWorkoutPlanLoading());
+    var result = await userDataFormRepo.putWorkout(
+        userDataFormModel: userDataFormModel, id: id);
     result.fold(
       (failure) {
-        emit(PostUserDataFailure(errorMessage: failure.errorMessage));
+        emit(PutWorkoutPlanFailure(errorMessage: failure.errorMessage));
       },
       (userData) {
-        emit(PostUserDataSuccess(userDataFormModel: userDataFormModel));
+        Future.delayed(
+          const Duration(seconds: 20),
+          () =>
+              emit(PutWorkoutPlanSuccess(userDataFormModel: userDataFormModel)),
+        );
       },
     );
   }
 
-  Future<void> putDiet({required UserDataFormModel userDataFormModel}) async {
-    emit(PostUserDataLoading());
-    var result =
-        await userDataFormRepo.putDiet(userDataFormModel: userDataFormModel);
+  Future<void> putDiet(
+      {required UserDataFormModel userDataFormModel, required int id}) async {
+    emit(PutDietPlanLoading());
+    var result = await userDataFormRepo.putDiet(
+        userDataFormModel: userDataFormModel, id: id);
     result.fold(
       (failure) {
-        emit(PostUserDataFailure(errorMessage: failure.errorMessage));
+        emit(PutDietPlanFailure(errorMessage: failure.errorMessage));
       },
       (userData) {
-        emit(PostUserDataSuccess(userDataFormModel: userDataFormModel));
+        Future.delayed(
+          const Duration(seconds: 20),
+          () => emit(PutDietPlanSuccess(userDataFormModel: userDataFormModel)),
+        );
       },
     );
   }
