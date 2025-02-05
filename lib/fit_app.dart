@@ -33,7 +33,7 @@ class FitApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           onGenerateRoute: appRouter.generateRoute,
           initialRoute: CasheHlper.getData(key: 'login') ?? false
-              ? Routes.bottomBar
+              ? Routes.signUp
               : Routes.onboarding,
         ),
       ),

@@ -53,7 +53,11 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
         appBar: customDataFormBar(
           IconButton(
             onPressed: () {
-              currentIndex == 0 ? context.pop() : previousScreen();
+              currentIndex == 0
+                  ? (widget.category == 'all')
+                      ? null
+                      : context.pop()
+                  : previousScreen();
             },
             icon: Icon(
               size: 22,

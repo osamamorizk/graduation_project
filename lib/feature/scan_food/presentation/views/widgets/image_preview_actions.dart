@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project/core/helpers/cashe_helper.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/scan_food/presentation/manger/cubit/scan_food_cubit.dart';
@@ -38,8 +37,7 @@ class ImagePreviewActions extends StatelessWidget {
           style: ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(ColorsManger.darkBlue)),
           onPressed: () {
-            context.read<ScanFoodCubit>().scanFood(
-                imagePath: imagePath, id: CasheHlper.getData(key: 'id') ?? 2);
+            context.read<ScanFoodCubit>().scanFood(imagePath: imagePath, id: 1);
           },
           icon: const Icon(
             Icons.compare,

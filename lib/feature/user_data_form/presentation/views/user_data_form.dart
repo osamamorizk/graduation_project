@@ -21,6 +21,7 @@ class UserDataForm extends StatelessWidget {
               key: 'userId', value: state.userDataFormModel.id);
 
           showSuccessToast('Registration process completed successfully');
+          // ignore: use_build_context_synchronously
           context.pushNamedAndRemoveUntil(
             predicate: (route) => false,
             Routes.bottomBar,
