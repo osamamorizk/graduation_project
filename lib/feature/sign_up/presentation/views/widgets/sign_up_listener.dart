@@ -21,8 +21,9 @@ class SignUpListener extends StatelessWidget {
           showErrorDialog(context, errorMessage: state.errorMessage);
         } else if (state is SignupSuccess) {
           context.pop();
-          cuatomSnackBar(text: state.signupMessage);
-          context.pushNamed(Routes.dataForm, arguments: 'all');
+          showSuccessToast(state.signupMessage);
+          context.pushNamedAndRemoveUntil(Routes.dataForm,
+              predicate: (route) => false, arguments: 'all');
         }
       },
       child: const SizedBox.shrink(),

@@ -5,13 +5,13 @@ class ApiService {
 
   ApiService(this.dio) {
     dio.options = BaseOptions(
-      baseUrl: 'https://example.com/api',
+      baseUrl: 'https://nutrixia.us.kg/api/',
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 60),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
+      // headers: {
+      //   'Content-Type': 'application/json',
+      //   'Accept': 'application/json',
+      // },
     );
   }
 

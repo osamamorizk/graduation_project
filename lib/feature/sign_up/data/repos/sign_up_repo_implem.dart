@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:graduation_project/core/helpers/end_points_const.dart';
 import 'package:graduation_project/core/helpers/errors.dart';
 import 'package:graduation_project/core/networking/api_service.dart';
 import 'package:graduation_project/feature/sign_up/data/models/sign_up_data.dart';
@@ -14,14 +15,14 @@ class SignUpRepoImplem implements SignupRepo {
       {required SignUpData signUpData}) async {
     try {
       var result = await apiService.post(
-        endPoints: 'signUpEndPoints',
+        endPoints: registerEndPoint,
         data: {
-          'name': signUpData.username,
+          'username': signUpData.username,
           'email': signUpData.email,
           'password': signUpData.password,
         },
       );
-      return right(result.data);
+      return right(result);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

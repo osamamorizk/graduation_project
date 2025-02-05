@@ -21,9 +21,12 @@ class LoginBlocListener extends StatelessWidget {
           showErrorDialog(context, errorMessage: state.errorMessage);
         } else if (state is LoginSuccess) {
           context.pop();
-          context.pushNamed(Routes.bottomBar);
 
-          cuatomSnackBar(text: state.loginDone);
+          showSuccessToast(state.loginDone);
+          context.pushNamedAndRemoveUntil(
+            Routes.bottomBar,
+            predicate: (route) => false,
+          );
         }
       },
       child: const SizedBox.shrink(),

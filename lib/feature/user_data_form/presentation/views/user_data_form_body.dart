@@ -121,9 +121,8 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
         }
         context.pushNamed(Routes.bottomBar);
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          cuatomSnackBar(text: 'Please complete all required fields.'),
-        );
+        showCustomSnackBar(
+            text: 'Please complete all required fields.', context);
       }
     } else {
       nextScreen();
