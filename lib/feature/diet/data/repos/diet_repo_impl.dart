@@ -20,11 +20,11 @@ class DietRepoImpl implements DietRepo {
       {required int id}) async {
     try {
       var result = await apiService.get(endPoints: 'Plan/diet-plan/4');
+      daysDietList.clear();
 
-      // Convert the map to the desired list structure
       final List<Map<String, dynamic>> transformedResponse =
           convertToDesiredStructure(result);
-      log(transformedResponse.toString());
+
       for (var dietDay in transformedResponse) {
         daysDietList.add(DietPlanModel.fromJson(dietDay));
       }
@@ -63,113 +63,6 @@ class DietRepoImpl implements DietRepo {
         .meals;
   }
 }
-
-// Original JSON response (map)
-final Map<String, dynamic> originalResponse = {
-  "saturday": {
-    "breakfast": {
-      "main": {
-        "name": "Foul Medames",
-        "portion": "1 bowl",
-        "calories": 350,
-        "macronutrients": {"carbs": 45, "protein": 15, "fat": 10}
-      },
-      "alternatives": [
-        {
-          "name": "Taameya Sandwich",
-          "portion": "1 pita sandwich",
-          "calories": 290,
-          "macronutrients": {"carbs": 40, "protein": 10, "fat": 8}
-        }
-      ]
-    },
-    "lunch": {
-      "main": {
-        "name": "Grilled Chicken with Rice",
-        "portion": "1 chicken breast with 1 cup of rice",
-        "calories": 500,
-        "macronutrients": {"carbs": 60, "protein": 35, "fat": 8}
-      },
-      "alternatives": [
-        {
-          "name": "Koshari",
-          "portion": "1 serving",
-          "calories": 600,
-          "macronutrients": {"carbs": 95, "protein": 20, "fat": 10}
-        }
-      ]
-    },
-    "dinner": {
-      "main": {
-        "name": "Lentil Soup",
-        "portion": "1 bowl",
-        "calories": 250,
-        "macronutrients": {"carbs": 30, "protein": 15, "fat": 5}
-      },
-      "alternatives": [
-        {
-          "name": "Molokhia with Beef",
-          "portion": "1 serving",
-          "calories": 400,
-          "macronutrients": {"carbs": 20, "protein": 35, "fat": 15}
-        }
-      ]
-    }
-  },
-  "sunday": {
-    "breakfast": {
-      "main": {
-        "name": "Cheese with Tomatoes and Cucumbers",
-        "portion": "1 plate",
-        "calories": 280,
-        "macronutrients": {"carbs": 15, "protein": 12, "fat": 18}
-      },
-      "alternatives": [
-        {
-          "name": "Oats with Honey",
-          "portion": "1 bowl",
-          "calories": 320,
-          "macronutrients": {"carbs": 60, "protein": 10, "fat": 6}
-        }
-      ]
-    },
-    "lunch": {
-      "main": {
-        "name": "Stuffed Bell Peppers",
-        "portion": "2 peppers",
-        "calories": 400,
-        "macronutrients": {"carbs": 50, "protein": 20, "fat": 10}
-      },
-      "alternatives": [
-        {
-          "name": "Fattah",
-          "portion": "1 serving",
-          "calories": 550,
-          "macronutrients": {"carbs": 70, "protein": 20, "fat": 20}
-        }
-      ]
-    },
-    "dinner": {
-      "main": {
-        "name": "Roasted Vegetables with Quinoa",
-        "portion": "1 plate",
-        "calories": 300,
-        "macronutrients": {"carbs": 50, "protein": 10, "fat": 5}
-      },
-      "alternatives": [
-        {
-          "name": "Shakshuka",
-          "portion": "1 skillet",
-          "calories": 350,
-          "macronutrients": {"carbs": 25, "protein": 20, "fat": 15}
-        }
-      ]
-    }
-  }
-};
-
-// Print the transformed response
-// print(transformedResponse);
 
 List<Map<String, dynamic>> convertToDesiredStructure(
     Map<String, dynamic> originalResponse) {

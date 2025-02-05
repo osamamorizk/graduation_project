@@ -18,6 +18,7 @@ class WorkoutRepoImpl implements WorkoutRepo {
       {required int id}) async {
     try {
       var result = await apiService.get(endPoints: 'Plan/workout-plan/2');
+      workoutPlansList.clear();
 
       for (var workout in result['daily_plans']) {
         workoutPlansList.add(WorkoutPlanModel.fromJson(workout));

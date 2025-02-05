@@ -31,38 +31,38 @@ class UserDataRepoImpl implements UserDataFormRepo {
     }
   }
 
-  // @override
-  // Future<Either<Failure, UserDataFormModel>> putDiet(
-  //     {required UserDataFormModel userDataFormModel}) async {
-  //   try {
-  //     final body = userDataFormModel.uerFormToJson();
-  //     final result =
-  //         await apiService.put(endPoints: postDataEndPoint, data: body);
-  //     final userDataModel = UserDataFormModel.fromJson(result['user']);
-  //     return right(userDataModel);
-  //   } catch (e) {
-  //     if (e is DioException) {
-  //       return left(ServerFailure.fromDioException(e));
-  //     } else {
-  //       return left(ServerFailure(errorMessage: e.toString()));
-  //     }
-  //   }
-  // }
+  @override
+  Future<Either<Failure, UserDataFormModel>> putDiet(
+      {required UserDataFormModel userDataFormModel}) async {
+    try {
+      final body = userDataFormModel.uerFormToJson();
+      final result =
+          await apiService.put(endPoints: postDataEndPoint, data: body);
+      final userDataModel = UserDataFormModel.fromJson(result['user']);
+      return right(userDataModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
+    }
+  }
 
-  // @override
-  // Future<Either<Failure, UserDataFormModel>> putWorkout(
-  //     {required UserDataFormModel userDataFormModel}) async {
-  //   try {
-  //     final body = userDataFormModel.uerFormToJson();
-  //     final result = await apiService.put(endPoints: 'endPoints', data: body);
-  //     final userDataModel = UserDataFormModel.fromJson(result['user']);
-  //     return right(userDataModel);
-  //   } catch (e) {
-  //     if (e is DioException) {
-  //       return left(ServerFailure.fromDioException(e));
-  //     } else {
-  //       return left(ServerFailure(errorMessage: e.toString()));
-  //     }
-  //   }
-  // }
+  @override
+  Future<Either<Failure, UserDataFormModel>> putWorkout(
+      {required UserDataFormModel userDataFormModel}) async {
+    try {
+      final body = userDataFormModel.uerFormToJson();
+      final result = await apiService.put(endPoints: 'endPoints', data: body);
+      final userDataModel = UserDataFormModel.fromJson(result['user']);
+      return right(userDataModel);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
+    }
+  }
 }

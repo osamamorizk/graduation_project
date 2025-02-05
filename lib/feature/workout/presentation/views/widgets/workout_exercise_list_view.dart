@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/helpers/extensions.dart';
+import 'package:graduation_project/core/routes/routes.dart';
+import 'package:graduation_project/core/widgets/custom_action_button.dart';
 import 'package:graduation_project/core/widgets/error_view.dart';
 import 'package:graduation_project/core/widgets/sliver_shimmer_loading.dart';
 import 'package:graduation_project/feature/workout/presentation/manger/worlout_cubit/workout_cubit.dart';
@@ -30,7 +33,18 @@ class WorkoutExerciseListView extends StatelessWidget {
           );
         } else if (state is WorkoutByDayFailure) {
           return SliverToBoxAdapter(
-              child: ErrorView(errorMessage: state.errorMessage));
+              child: Column(
+            children: [
+              ErrorView(errorMessage: state.errorMessage),
+              if (state.errorMessage == 'Not Found')
+                CustomButton(
+                  text: 'Update your data and create new plan',
+                  onPressed: () {
+                    context.pushNamed(Routes.dataForm, arguments: 'all');
+                  },
+                )
+            ],
+          ));
         } else {
           return const SliverShimmerLoading(
             hight: 140,

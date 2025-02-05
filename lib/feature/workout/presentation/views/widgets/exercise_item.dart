@@ -26,35 +26,40 @@ class ExerciseItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             AspectRatio(
-              aspectRatio: 1.5,
+              aspectRatio: 1,
               child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                width: 80.w,
+                fit: BoxFit.fitWidth,
                 imageUrl: exerciseModel.image,
                 placeholder: (context, url) => Center(
                   child: SpinKitSpinningLines(
                     color: ColorsManger.darkBlue,
-                    size: 60.0,
+                    size: 30.0,
+                    itemCount: 3,
                   ),
                 ),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
             horizontalSpace(16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  exerciseModel.name,
-                  style: TextStyles.font16BlackBold,
-                ),
-                verticalSpace(8),
-                Text(
-                  exerciseModel.sets,
-                  style: TextStyles.font16BlackRegular,
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    softWrap: true,
+                    exerciseModel.name,
+                    style: TextStyles.font16BlackBold,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                  verticalSpace(8),
+                  Text(
+                    exerciseModel.sets,
+                    style: TextStyles.font16BlackRegular,
+                  ),
+                ],
+              ),
             ),
           ],
         ),

@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/feature/user_data_form/data/models/user_data_form_model.dart';
 import 'package:graduation_project/feature/user_data_form/data/repos/user_data_form_repo.dart';
 
@@ -34,39 +34,42 @@ class UserDataCubit extends Cubit<UserDataState> {
         emit(PostUserDataFailure(errorMessage: failure.errorMessage));
       },
       (userData) {
+        Future.delayed(
+          const Duration(seconds: 20),
+          () => emit(PostUserDataSuccess(userDataFormModel: userDataFormModel)),
+        );
+      },
+    );
+  }
+
+  Future<void> putWorkout(
+      {required UserDataFormModel userDataFormModel}) async {
+    emit(PostUserDataLoading());
+    var result =
+        await userDataFormRepo.putWorkout(userDataFormModel: userDataFormModel);
+    result.fold(
+      (failure) {
+        emit(PostUserDataFailure(errorMessage: failure.errorMessage));
+      },
+      (userData) {
         emit(PostUserDataSuccess(userDataFormModel: userDataFormModel));
       },
     );
   }
 
-  // Future<void> putWorkout(
-  //     {required UserDataFormModel userDataFormModel}) async {
-  //   emit(PostUserDataLoading());
-  //   var result =
-  //       await userDataFormRepo.putWorkout(userDataFormModel: userDataFormModel);
-  //   result.fold(
-  //     (failure) {
-  //       emit(PostUserDataFailure(errorMessage: failure.errorMessage));
-  //     },
-  //     (userData) {
-  //       emit(PostUserDataSuccess(userDataFormModel: userDataFormModel));
-  //     },
-  //   );
-  // }
-
-  // Future<void> putDiet({required UserDataFormModel userDataFormModel}) async {
-  //   emit(PostUserDataLoading());
-  //   var result =
-  //       await userDataFormRepo.putDiet(userDataFormModel: userDataFormModel);
-  //   result.fold(
-  //     (failure) {
-  //       emit(PostUserDataFailure(errorMessage: failure.errorMessage));
-  //     },
-  //     (userData) {
-  //       emit(PostUserDataSuccess(userDataFormModel: userDataFormModel));
-  //     },
-  //   );
-  // }
+  Future<void> putDiet({required UserDataFormModel userDataFormModel}) async {
+    emit(PostUserDataLoading());
+    var result =
+        await userDataFormRepo.putDiet(userDataFormModel: userDataFormModel);
+    result.fold(
+      (failure) {
+        emit(PostUserDataFailure(errorMessage: failure.errorMessage));
+      },
+      (userData) {
+        emit(PostUserDataSuccess(userDataFormModel: userDataFormModel));
+      },
+    );
+  }
 
   bool validateAllData() {
     return validateDietData() && validateWorkoutData();
