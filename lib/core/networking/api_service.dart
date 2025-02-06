@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class ApiService {
   final Dio dio;
@@ -12,6 +13,13 @@ class ApiService {
       //   'Content-Type': 'application/json',
       //   'Accept': 'application/json',
       // },
+    );
+    dio.interceptors.add(
+      PrettyDioLogger(
+        requestBody: true,
+        requestHeader: true,
+        responseHeader: true,
+      ),
     );
   }
 

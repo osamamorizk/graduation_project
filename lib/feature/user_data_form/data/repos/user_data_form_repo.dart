@@ -9,7 +9,7 @@ abstract class UserDataFormRepo {
   Future<Either<Failure, UserDataFormModel>> putDiet(
       {required Map data, required int id});
   Future<Either<Failure, UserDataFormModel>> putUser(
-      {required Map data, required int id});
+      {required Map<String, dynamic> data, required int id});
   Future<Either<Failure, UserDataFormModel>> putWorkout(
       {required Map data, required int id});
 }

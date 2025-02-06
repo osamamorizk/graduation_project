@@ -8,6 +8,7 @@ part 'user_data_state.dart';
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(this.userDataFormRepo) : super(UserDataInitial());
   final UserDataFormRepo userDataFormRepo;
+  int duration = 15;
   int gender = 0;
   double tall = 140;
   double age = 25;
@@ -35,7 +36,7 @@ class UserDataCubit extends Cubit<UserDataState> {
       },
       (userData) {
         Future.delayed(
-          const Duration(seconds: 20),
+          Duration(seconds: duration),
           () => emit(PostUserDataSuccess(userDataFormModel: userData)),
         );
       },
@@ -51,7 +52,7 @@ class UserDataCubit extends Cubit<UserDataState> {
       },
       (userData) {
         Future.delayed(
-          const Duration(seconds: 20),
+          Duration(seconds: duration),
           () => emit(PutWorkoutPlanSuccess(userDataFormModel: userData)),
         );
       },
@@ -67,14 +68,15 @@ class UserDataCubit extends Cubit<UserDataState> {
       },
       (userData) {
         Future.delayed(
-          const Duration(seconds: 20),
+          Duration(seconds: duration),
           () => emit(PutDietPlanSuccess(userDataFormModel: userData)),
         );
       },
     );
   }
 
-  Future<void> putUser({required Map data, required int id}) async {
+  Future<void> putUser(
+      {required Map<String, dynamic> data, required int id}) async {
     emit(PutUserLoading());
     var result = await userDataFormRepo.putUser(data: data, id: id);
     result.fold(
@@ -83,7 +85,7 @@ class UserDataCubit extends Cubit<UserDataState> {
       },
       (userData) {
         Future.delayed(
-          const Duration(seconds: 20),
+          Duration(seconds: duration),
           () => emit(PutUserSuccess(userDataFormModel: userData)),
         );
       },

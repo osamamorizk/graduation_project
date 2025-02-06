@@ -118,6 +118,7 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
         if (widget.category == 'workout') {
           log('workout , put');
           int userId = CasheHlper.getData(key: 'userId') ?? 4;
+          print(userId);
           userDataCubit.putWorkout(
             data: data,
             id: userId,
@@ -131,8 +132,9 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
             id: userId,
           );
         } else if (widget.category == 'putUser') {
-          log('user , put');
+          log('user , putpiiiiiiii');
           int userId = CasheHlper.getData(key: 'userId') ?? 4;
+          print(userId);
 
           userDataCubit.putUser(
             data: data,
