@@ -25,7 +25,7 @@ class SignUpListener extends StatelessWidget {
 
           context.pushNamedAndRemoveUntil(Routes.dataForm,
               predicate: (route) => false, arguments: 'all');
-          showSuccessToast(state.signupMessage);
+          showSuccessToast("let's complete user data");
           CasheHlper.saveData(key: 'login', value: true);
         }
       },

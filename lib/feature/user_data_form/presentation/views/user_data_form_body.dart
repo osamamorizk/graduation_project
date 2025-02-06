@@ -10,6 +10,8 @@ import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/widgets/custom_action_button.dart';
 import 'package:graduation_project/feature/user_data_form/data/constants.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
+import 'package:graduation_project/feature/user_data_form/presentation/views/diet_views/dietary_restrictions_view.dart';
+import 'package:graduation_project/feature/user_data_form/presentation/views/diet_views/health_concerns_view.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/form_bar.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 
@@ -28,6 +30,13 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
   void initState() {
     super.initState();
     selectedScreens = formScreens;
+  }
+
+  @override
+  void dispose() {
+    selectedDietaryRestrictions.clear();
+    selectedHealthConcerns.clear();
+    super.dispose();
   }
 
   void nextScreen() {

@@ -56,11 +56,11 @@ class AppRouter {
             providers: [
               BlocProvider(
                 create: (context) => WorkoutCubit(getIt.get<WorkoutRepoImpl>())
-                  ..getWorkoutPlans(id: CasheHlper.getInt(key: 'id')),
+                  ..getWorkoutPlans(id: CasheHlper.getInt(key: 'userId')),
               ),
               BlocProvider(
                 create: (context) => DietCubit(getIt.get<DietRepoImpl>())
-                  ..getAllDietsPlan(id: CasheHlper.getInt(key: 'id')),
+                  ..getAllDietsPlan(id: CasheHlper.getInt(key: 'userId')),
               ),
             ],
             child: const BottomBar(),
@@ -71,7 +71,7 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (context) => UserDataCubit(getIt.get<UserDataRepoImpl>()),
             child: UserDataForm(
-              category: settings.arguments as String,
+              category: (settings.arguments as String?) ?? 'all',
             ),
           ),
         );

@@ -10,7 +10,10 @@ import 'package:graduation_project/feature/user_data_form/presentation/manger/cu
 import 'package:graduation_project/feature/user_data_form/presentation/views/user_data_form_body.dart';
 
 class UserDataForm extends StatelessWidget {
-  const UserDataForm({super.key, this.category = 'all'});
+  const UserDataForm({
+    super.key,
+    required this.category,
+  });
   final String category;
   @override
   Widget build(BuildContext context) {
