@@ -16,10 +16,10 @@ class CameraButton extends StatelessWidget {
           border: Border.all(color: Colors.white, width: 2),
         ),
         child: CircleAvatar(
-          radius: 40,
+          radius: 38,
           backgroundColor: Colors.transparent,
           child: CircleAvatar(
-            radius: 37,
+            radius: 35,
             backgroundColor: Colors.white,
             child: Icon(
               Icons.camera_alt,

@@ -40,21 +40,26 @@ class ScanFoodUI extends StatelessWidget {
                       padding: EdgeInsets.only(top: 40.h),
                       child: Text(
                         'Scan your meal',
-                        style:
-                            TextStyles.font14WhiteBold.copyWith(fontSize: 20),
+                        style: TextStyles.font13whiteRegular
+                            .copyWith(fontSize: 20),
                         textAlign: TextAlign.center,
                       ),
                     ),
                     const Spacer(),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        IconButton(
-                          onPressed: () => pickImageFromGallery(context),
-                          icon: const Icon(
-                            size: 30,
-                            FontAwesomeIcons.images,
-                            color: Colors.white,
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.bottomLeft,
+                            child: IconButton(
+                              padding: const EdgeInsets.only(left: 24),
+                              onPressed: () => pickImageFromGallery(context),
+                              icon: const Icon(
+                                size: 26,
+                                FontAwesomeIcons.images,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
                         CameraButton(
@@ -74,7 +79,8 @@ class ScanFoodUI extends StatelessWidget {
                             }
                           },
                         ),
-                        const SizedBox(width: 46)
+                        const Expanded(
+                            child: SizedBox()), // Pushes everything equally
                       ],
                     ),
                     verticalSpace(15),

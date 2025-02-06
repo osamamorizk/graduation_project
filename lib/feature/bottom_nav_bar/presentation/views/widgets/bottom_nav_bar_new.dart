@@ -56,7 +56,7 @@ class NewBottomNavBarState extends State<NewBottomNavBar> {
           children: widgetOptions,
         ),
         bottomNavigationBar: Container(
-          height: 70,
+          height: 62,
           decoration: const BoxDecoration(
               color: Colors.white,
               boxShadow: [

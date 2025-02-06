@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
+import 'package:graduation_project/core/widgets/error_view.dart';
 import 'package:graduation_project/feature/scan_food/data/models/scan_food_model.dart';
 import 'package:graduation_project/feature/scan_food/presentation/views/widgets/scan_food_card.dart';
 
@@ -31,6 +32,7 @@ class FoodDetailsPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               verticalSpace(10),
               AspectRatio(
@@ -44,22 +46,35 @@ class FoodDetailsPage extends StatelessWidget {
                 ),
               ),
               verticalSpace(16),
-              Text(
-                'Your dish details(per 100 gms): ',
-                style: TextStyles.font16BlackBold,
-                textAlign: TextAlign.start,
-              ),
+              scanedFoodList.isNotEmpty
+                  ? Text(
+                      'Your dish details(per 100 gms): ',
+                      style: TextStyles.font16BlackBold,
+                      textAlign: TextAlign.start,
+                    )
+                  : const SizedBox.shrink(),
               verticalSpace(10),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: scanedFoodList.length,
-                itemBuilder: (context, index) {
-                  return FoodElementCardItem(
-                    scanFoodModel: scanedFoodList[index],
-                  );
-                },
-              ),
+              scanedFoodList.isEmpty
+                  ? Center(
+                      child: Column(
+                        children: [
+                          const ErrorView(
+                            errorMessage: "Can't detect food !",
+                          ),
+                          verticalSpace(30)
+                        ],
+                      ),
+                    )
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: scanedFoodList.length,
+                      itemBuilder: (context, index) {
+                        return FoodElementCardItem(
+                          scanFoodModel: scanedFoodList[index],
+                        );
+                      },
+                    ),
             ],
           ),
         ),
