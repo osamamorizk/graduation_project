@@ -8,9 +8,14 @@ import 'package:graduation_project/core/widgets/custom_circle_progress_indicator
 import 'package:graduation_project/feature/scan_food/presentation/views/widgets/image_preview.dart';
 import 'package:image_picker/image_picker.dart';
 
-class CameraView extends StatelessWidget {
+class CameraView extends StatefulWidget {
   const CameraView({super.key});
 
+  @override
+  State<CameraView> createState() => _CameraViewState();
+}
+
+class _CameraViewState extends State<CameraView> {
   @override
   Widget build(BuildContext context) {
     return CameraAwesomeBuilder.awesome(
@@ -26,7 +31,7 @@ class CameraView extends StatelessWidget {
         ],
       ),
       sensorConfig: SensorConfig.single(
-          aspectRatio: CameraAspectRatios.ratio_1_1,
+          aspectRatio: CameraAspectRatios.ratio_16_9,
           sensor: Sensor.position(
             SensorPosition.back,
           )),
@@ -51,8 +56,7 @@ class CameraView extends StatelessWidget {
       },
       bottomActionsBuilder: (state) {
         return AwesomeBottomActions(
-          left: const SizedBox.shrink(),
-          right: IconButton(
+          left: IconButton(
             onPressed: () => pickImageFromGallery(context),
             icon: const Icon(
               size: 30,

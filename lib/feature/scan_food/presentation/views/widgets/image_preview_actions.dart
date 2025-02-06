@@ -19,6 +19,7 @@ class ImagePreviewActions extends StatelessWidget {
       children: [
         ElevatedButton.icon(
           style: const ButtonStyle(
+              fixedSize: WidgetStatePropertyAll(Size(140, 45)),
               backgroundColor: WidgetStatePropertyAll(Colors.lightBlue)),
           onPressed: () {
             Navigator.pop(context);
@@ -35,6 +36,7 @@ class ImagePreviewActions extends StatelessWidget {
         ),
         ElevatedButton.icon(
           style: ButtonStyle(
+              fixedSize: const WidgetStatePropertyAll(Size(145, 45)),
               backgroundColor: WidgetStatePropertyAll(ColorsManger.darkBlue)),
           onPressed: () {
             context.read<ScanFoodCubit>().scanFood(imagePath: imagePath, id: 1);

@@ -8,7 +8,7 @@ class ApiService {
     dio.options = BaseOptions(
       baseUrl: 'https://nutrixia.us.kg/api/',
       connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 100),
+      receiveTimeout: const Duration(seconds: 30),
       // headers: {
       //   'Content-Type': 'application/json',
       //   'Accept': 'application/json',

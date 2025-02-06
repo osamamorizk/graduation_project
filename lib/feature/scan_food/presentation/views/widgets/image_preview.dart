@@ -24,11 +24,13 @@ class ImagePreviewScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Spacer(flex: 2),
-            SizedBox(
-              height: 450,
-              child: Image.file(
-                File(imagePath),
-                // fit: BoxFit.fitWidth,
+            AspectRatio(
+              aspectRatio: 1,
+              child: SizedBox(
+                child: Image.file(
+                  File(imagePath),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             const Spacer(flex: 2),

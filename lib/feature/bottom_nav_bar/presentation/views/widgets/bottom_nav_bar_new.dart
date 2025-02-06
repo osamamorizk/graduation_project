@@ -55,8 +55,8 @@ class NewBottomNavBarState extends State<NewBottomNavBar> {
           physics: const NeverScrollableScrollPhysics(),
           children: widgetOptions,
         ),
-        // body: widgetOptions.elementAt(_selectedIndex),
         bottomNavigationBar: Container(
+          height: 70,
           decoration: const BoxDecoration(
               color: Colors.white,
               boxShadow: [
