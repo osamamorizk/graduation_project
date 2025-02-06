@@ -26,9 +26,15 @@ List<String> descriptions = [
   "I have been working out for 24+ months",
 ];
 
-int? selectedIndex;
-
 class _FitnessLevelViewState extends State<FitnessLevelView> {
+  int? selectedIndex;
+
+  @override
+  void initState() {
+    selectedIndex = BlocProvider.of<UserDataCubit>(context).fitnessLevel;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(

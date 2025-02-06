@@ -16,9 +16,14 @@ class WorkoutDayNumberView extends StatefulWidget {
 final List<String> daysOptions = ["2 Days", "3 Days", "4 Days", "5 Days"];
 final List<int> daysNumbers = [2, 3, 4, 5];
 
-int? selectedIndex;
-
 class _WorkoutDayNumberViewState extends State<WorkoutDayNumberView> {
+  int? selectedIndex;
+  @override
+  void initState() {
+    selectedIndex = BlocProvider.of<UserDataCubit>(context).workoutDays;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(

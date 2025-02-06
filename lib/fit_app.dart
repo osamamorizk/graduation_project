@@ -32,8 +32,10 @@ class FitApp extends StatelessWidget {
           theme: ThemeData(scaffoldBackgroundColor: Colors.white),
           debugShowCheckedModeBanner: false,
           onGenerateRoute: appRouter.generateRoute,
-          initialRoute: CasheHlper.getData(key: 'login') ?? false
-              ? Routes.signUp
+          initialRoute: (CasheHlper.getData(key: 'login') ?? false)
+              ? (CasheHlper.getData(key: 'dataDone') ?? false)
+                  ? Routes.bottomBar
+                  : Routes.dataForm
               : Routes.onboarding,
         ),
       ),

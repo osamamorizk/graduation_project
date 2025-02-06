@@ -10,7 +10,7 @@ import 'package:graduation_project/feature/user_data_form/presentation/manger/cu
 import 'package:graduation_project/feature/user_data_form/presentation/views/user_data_form_body.dart';
 
 class UserDataForm extends StatelessWidget {
-  const UserDataForm({super.key, required this.category});
+  const UserDataForm({super.key, this.category = 'all'});
   final String category;
   @override
   Widget build(BuildContext context) {
@@ -37,11 +37,12 @@ class UserDataForm extends StatelessWidget {
           context.pushNamedAndRemoveUntil(Routes.bottomBar,
               predicate: (route) => false);
         } else if (state is PutUserSuccess) {
-          showSuccessToast('User data and plans updated successfully');
           context.pop();
+          showSuccessToast('User data and plans updated successfully');
+
           context.pushNamedAndRemoveUntil(Routes.bottomBar,
               predicate: (route) => false);
-        } else if (state is PostUserDataFailure) {
+        } else if (state is PutUserFailure) {
           context.pop();
           showErrorDialog(context, errorMessage: state.errorMessage);
         } else if (state is PostUserDataFailure) {

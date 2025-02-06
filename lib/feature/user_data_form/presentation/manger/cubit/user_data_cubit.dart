@@ -44,7 +44,7 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   Future<void> putWorkout({required Map data, required int id}) async {
     emit(PutWorkoutPlanLoading());
-    var result = await userDataFormRepo.putUser(data: data, id: id);
+    var result = await userDataFormRepo.putWorkout(data: data, id: id);
     result.fold(
       (failure) {
         emit(PutWorkoutPlanFailure(errorMessage: failure.errorMessage));
@@ -76,7 +76,7 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   Future<void> putUser({required Map data, required int id}) async {
     emit(PutUserLoading());
-    var result = await userDataFormRepo.putDiet(data: data, id: id);
+    var result = await userDataFormRepo.putUser(data: data, id: id);
     result.fold(
       (failure) {
         emit(PutUserFailure(errorMessage: failure.errorMessage));
@@ -84,7 +84,7 @@ class UserDataCubit extends Cubit<UserDataState> {
       (userData) {
         Future.delayed(
           const Duration(seconds: 20),
-          () => emit(PutDietPlanSuccess(userDataFormModel: userData)),
+          () => emit(PutUserSuccess(userDataFormModel: userData)),
         );
       },
     );

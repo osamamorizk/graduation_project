@@ -28,6 +28,8 @@ class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
   late TextEditingController otherDietaryRestrictionsController;
   @override
   void initState() {
+    BlocProvider.of<UserDataCubit>(context).dietaryRestrictions =
+        selectedDietaryRestrictions.join(' ,');
     otherDietaryRestrictionsController = BlocProvider.of<UserDataCubit>(context)
         .otherDietaryRestrictionsController;
     super.initState();

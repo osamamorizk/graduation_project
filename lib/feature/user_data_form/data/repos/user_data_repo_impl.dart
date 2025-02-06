@@ -29,12 +29,11 @@ class UserDataRepoImpl implements UserDataFormRepo {
   }
 
   @override
-  Future<Either<Failure, UserDataFormModel>> putDiet(
+  Future<Either<Failure, UserDataFormModel>> putUser(
       {required Map data, required int id}) async {
     try {
-      final result = await apiService.put(
-          endPoints: 'Plan/update-diet-plan/$id', data: data);
-      final userDataModel = UserDataFormModel.fromJson(result['user']);
+      final result = await apiService.put(endPoints: 'User/$id', data: data);
+      final userDataModel = UserDataFormModel.fromJson(result);
       return right(userDataModel);
     } catch (e) {
       if (e is DioException) {
@@ -46,11 +45,12 @@ class UserDataRepoImpl implements UserDataFormRepo {
   }
 
   @override
-  Future<Either<Failure, UserDataFormModel>> putUser(
+  Future<Either<Failure, UserDataFormModel>> putDiet(
       {required Map data, required int id}) async {
     try {
-      final result = await apiService.put(endPoints: 'User/$id', data: data);
-      final userDataModel = UserDataFormModel.fromJson(result);
+      final result = await apiService.put(
+          endPoints: 'Plan/update-diet-plan/$id', data: data);
+      final userDataModel = UserDataFormModel.fromJson(result['user']);
       return right(userDataModel);
     } catch (e) {
       if (e is DioException) {

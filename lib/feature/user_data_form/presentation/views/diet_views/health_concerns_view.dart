@@ -28,6 +28,8 @@ class _HealthConcernsViewState extends State<HealthConcernsView> {
   late TextEditingController otherHelthConcernsController;
   @override
   void initState() {
+    BlocProvider.of<UserDataCubit>(context).helthConcerns =
+        selectedHealthConcerns.join(' ,');
     otherHelthConcernsController =
         BlocProvider.of<UserDataCubit>(context).otherHelthConcernsController;
     super.initState();

@@ -19,9 +19,16 @@ List<String> options = [
   "More than 60 minutes"
 ];
 
-int? selectedIndex;
-
 class _WorkoutTimeViewState extends State<WorkoutTimeView> {
+  int? selectedIndex;
+  @override
+  void initState() {
+    String? workoutTime = BlocProvider.of<UserDataCubit>(context).workoutTime;
+
+    selectedIndex = options.indexOf(workoutTime);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -21,9 +21,14 @@ List<String> options = [
   "Low carb"
 ];
 
-int? selectedIndex;
-
 class _DiteKindViewState extends State<DiteKindView> {
+  int? selectedIndex;
+  @override
+  void initState() {
+    selectedIndex = BlocProvider.of<UserDataCubit>(context).dietKind;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(

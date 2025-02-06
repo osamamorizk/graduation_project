@@ -117,7 +117,7 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
           log('diet , put');
           int userId = CasheHlper.getData(key: 'userId') ?? 4;
 
-          userDataCubit.putUser(
+          userDataCubit.putDiet(
             data: data,
             id: userId,
           );
