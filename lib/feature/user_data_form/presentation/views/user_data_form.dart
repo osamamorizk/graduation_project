@@ -19,7 +19,7 @@ class UserDataForm extends StatelessWidget {
         if (state is PostUserDataSuccess) {
           await CasheHlper.saveInt(
               key: 'userId', value: state.userDataFormModel.id);
-
+          await CasheHlper.saveData(key: 'dataDone', value: true);
           showSuccessToast('Registration process completed successfully');
           // ignore: use_build_context_synchronously
           context.pushNamedAndRemoveUntil(
