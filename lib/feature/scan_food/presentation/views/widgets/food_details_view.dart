@@ -55,14 +55,9 @@ class FoodDetailsPage extends StatelessWidget {
                   : const SizedBox.shrink(),
               verticalSpace(10),
               scanedFoodList.isEmpty
-                  ? Center(
-                      child: Column(
-                        children: [
-                          const ErrorView(
-                            errorMessage: "Can't detect food !",
-                          ),
-                          verticalSpace(30)
-                        ],
+                  ? const Center(
+                      child: ErrorView(
+                        errorMessage: "Can't detect food !",
                       ),
                     )
                   : ListView.builder(

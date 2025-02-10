@@ -9,6 +9,7 @@ class ApiService {
       baseUrl: 'https://nutrixia.us.kg/api/',
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 15),
+      sendTimeout: const Duration(seconds: 5),
       // headers: {
       //   'Content-Type': 'application/json',
       //   'Accept': 'application/json',

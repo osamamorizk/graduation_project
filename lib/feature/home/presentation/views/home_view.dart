@@ -73,7 +73,7 @@ class HomeView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              'Welcome osama!',
+              'Welcome',
               style: TextStyles.font16BlueBold,
             ),
             Text(
