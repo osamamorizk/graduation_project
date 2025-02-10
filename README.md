@@ -1,16 +1,26 @@
-# graduation_project
+# Nutrix – AI-Powered Fitness & Nutrition App  
 
-A new Flutter project.
+Nutrix is an **AI-driven fitness and nutrition platform** available as a **mobile and web application**. It provides **personalized workout and diet plans**, **AI-powered food scanning**, and **exercise tracking** to help users achieve their health goals efficiently.  
 
-## Getting Started
+## 📌 Project Overview  
+Nutrix is designed to empower users with customized **nutrition and fitness guidance**. Whether you're a beginner or an advanced athlete, Nutrix adapts to your **fitness level** and **dietary preferences**.  
 
-This project is a starting point for a Flutter application.
+## 🚀 Key Features  
 
-A few resources to get you started if this is your first Flutter project:
+### 🔹 Personalized Workout & Diet Plans  
+- AI-based **workout plans** tailored to user fitness levels.  
+- Dynamic **diet plans** with meal suggestions based on user preferences.  
+- Users can **update, modify, or regenerate** plans anytime.  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 🔹 AI-Powered Food Scanning  
+- **Scan food items** using the phone's camera.  
+- AI-powered analysis retrieves detailed **nutritional information** (calories, macronutrients, ingredients).  
+- Helps users maintain a **balanced diet** by evaluating food compatibility with their diet plan.  
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 🔹 Exercise Library & YouTube Integration  
+- **Extensive workout database** with exercise details.  
+- **Embedded YouTube videos** for guided workout sessions using `Flutter YouTube Player`.  
+- Users can **play, pause, and control** exercise videos directly within the app.  
+
+
+
