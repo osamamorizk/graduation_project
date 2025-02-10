@@ -25,6 +25,16 @@ List<String> restrictionsOptions = [
 List<String> selectedDietaryRestrictions = [];
 
 class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
+  late TextEditingController otherDietaryRestrictionsController;
+  @override
+  void initState() {
+    BlocProvider.of<UserDataCubit>(context).dietaryRestrictions =
+        selectedDietaryRestrictions.join(' ,');
+    otherDietaryRestrictionsController = BlocProvider.of<UserDataCubit>(context)
+        .otherDietaryRestrictionsController;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final userDataCubit = BlocProvider.of<UserDataCubit>(context);
@@ -59,8 +69,8 @@ class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
                         }
 
                         if (index == restrictionsOptions.length - 1) {
-                          selectedDietaryRestrictions.add(
-                              userDataCubit.preferedExerciseController.text);
+                          selectedDietaryRestrictions.add(userDataCubit
+                              .otherDietaryRestrictionsController.text);
                         }
                         userDataCubit.dietaryRestrictions =
                             selectedDietaryRestrictions.join(' , ');

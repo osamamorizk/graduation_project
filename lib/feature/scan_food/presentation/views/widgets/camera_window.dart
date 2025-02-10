@@ -1,7 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-
-import 'package:graduation_project/feature/scan_food/presentation/views/widgets/scan_food_ui.dart';
+import 'package:graduation_project/feature/scan_food/presentation/views/widgets/camera_ui.dart';
 
 class CameraWindow extends StatefulWidget {
   const CameraWindow({super.key});

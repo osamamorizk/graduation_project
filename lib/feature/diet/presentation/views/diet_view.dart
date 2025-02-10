@@ -27,7 +27,7 @@ class DietView extends StatelessWidget {
           ),
           actions: [
             CustomNewPlanButton(
-              type: 'diet',
+              type: 'Do you want to create new diet plan?',
               buttonText: 'New diet plan',
               onPressed: () {
                 context.pushNamed(Routes.dataForm, arguments: 'diet');

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/about_user_view.dart';
-import 'package:graduation_project/feature/user_data_form/presentation/views/work_out_views/activity_goal_view.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/diet_views/dietary_restrictions_view.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/diet_views/dite_kind_view.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/work_out_views/fitness_level_view.dart';
@@ -32,7 +31,7 @@ List<Widget> dietScreens = <Widget>[
 
 List<Widget> workoutScreens = <Widget>[
   const GoalSelectionScreen(),
-  const ActivityGoalView(),
+  // const ActivityGoalView(),
   const HealthConcernsView(),
   const FitnessLevelView(),
   const WorkoutDayNumberView(),

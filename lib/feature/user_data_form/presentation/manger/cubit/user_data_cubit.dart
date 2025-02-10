@@ -1,85 +1,134 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation_project/feature/user_data_form/presentation/views/work_out_views/type_of_exercise_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/feature/user_data_form/data/models/user_data_form_model.dart';
+import 'package:graduation_project/feature/user_data_form/data/repos/user_data_form_repo.dart';
 
 part 'user_data_state.dart';
 
 class UserDataCubit extends Cubit<UserDataState> {
-  UserDataCubit() : super(UserDataInitial());
-  String gender = 'Male';
-  int tall = 160;
-  int age = 25;
-
-  int weight = 60;
-
-  int userGoals = 0;
+  UserDataCubit(this.userDataFormRepo) : super(UserDataInitial());
+  final UserDataFormRepo userDataFormRepo;
+  int duration = 15;
+  int gender = 0;
+  double tall = 140;
+  double age = 25;
+  double weight = 60;
+  int userGoals = 100;
   String dietaryRestrictions = '';
   String activityLevel = '';
   TextEditingController otherDietaryRestrictionsController =
       TextEditingController();
-  String dietKind = '';
+  int dietKind = 100;
   String helthConcerns = '';
   TextEditingController otherHelthConcernsController = TextEditingController();
-  int fitnessLevel = 0;
-  int workoutDays = 2;
+  int fitnessLevel = 100;
+  int workoutDays = 100;
   String workoutTime = '';
-  List<String> preferedExercise = [];
-  TextEditingController preferedExerciseController = TextEditingController();
 
-  List<String> userMotivation = [];
+  Future<void> postUserData({
+    required Map data,
+  }) async {
+    emit(PostUserDataLoading());
+    var result = await userDataFormRepo.postUserData(data: data);
+    result.fold(
+      (failure) {
+        emit(PostUserDataFailure(errorMessage: failure.errorMessage));
+      },
+      (userData) {
+        Future.delayed(
+          Duration(seconds: duration),
+          () => emit(PostUserDataSuccess(userDataFormModel: userData)),
+        );
+      },
+    );
+  }
+
+  Future<void> putWorkout({required Map data, required int id}) async {
+    emit(PutWorkoutPlanLoading());
+    var result = await userDataFormRepo.putWorkout(data: data, id: id);
+    result.fold(
+      (failure) {
+        emit(PutWorkoutPlanFailure(errorMessage: failure.errorMessage));
+      },
+      (userData) {
+        Future.delayed(
+          Duration(seconds: duration),
+          () => emit(PutWorkoutPlanSuccess(userDataFormModel: userData)),
+        );
+      },
+    );
+  }
+
+  Future<void> putDiet({required Map data, required int id}) async {
+    emit(PutDietPlanLoading());
+    var result = await userDataFormRepo.putDiet(data: data, id: id);
+    result.fold(
+      (failure) {
+        emit(PutDietPlanFailure(errorMessage: failure.errorMessage));
+      },
+      (userData) {
+        Future.delayed(
+          Duration(seconds: duration),
+          () => emit(PutDietPlanSuccess(userDataFormModel: userData)),
+        );
+      },
+    );
+  }
+
+  Future<void> putUser(
+      {required Map<String, dynamic> data, required int id}) async {
+    emit(PutUserLoading());
+    var result = await userDataFormRepo.putUser(data: data, id: id);
+    result.fold(
+      (failure) {
+        emit(PutUserFailure(errorMessage: failure.errorMessage));
+      },
+      (userData) {
+        Future.delayed(
+          Duration(seconds: duration),
+          () => emit(PutUserSuccess(userDataFormModel: userData)),
+        );
+      },
+    );
+  }
+
   bool validateAllData() {
-    return validateDietData() && validateWorkoutData() && validateGeneralData();
+    return validateDietData() && validateWorkoutData();
   }
 
   bool validateDietData() {
     if (dietaryRestrictions.isEmpty) {
       return false;
     }
-    if (dietaryRestrictions.contains('Other health concerns') &&
-        otherDietaryRestrictionsController.text.isEmpty) {
+
+    if (helthConcerns.isEmpty) {
       return false;
     }
-    if (dietKind.isEmpty) {
+
+    return true;
+  }
+
+  bool validateWorkoutData() {
+    if (userGoals == 100) {
+      return false;
+    }
+    if (dietaryRestrictions.isEmpty) {
+      return false;
+    }
+
+    if (dietKind == 100) {
       return false;
     }
     if (helthConcerns.isEmpty) {
       return false;
     }
-    if (helthConcerns.contains('Other health concerns') &&
-        otherHelthConcernsController.text.isEmpty) {
+    if (fitnessLevel == 100) {
       return false;
     }
-    return true;
-  }
-
-  bool validateWorkoutData() {
-    if (typeOfPreferedExercise.isEmpty) {
+    if (workoutDays == 100) {
       return false;
     }
-    if (typeOfPreferedExercise.contains('Other') &&
-        preferedExerciseController.text.isEmpty) {
-      return false;
-    }
-    if (activityLevel.isEmpty) {
-      return false;
-    }
-    // if (fitnessLevel.isEmpty) {
-    //   return false;
-    // }
-    // if (workoutDays.isEmpty) {
-    //   return false;
-    // }
     if (workoutTime.isEmpty) {
-      return false;
-    }
-    return true;
-  }
-
-  bool validateGeneralData() {
-    // if (userGoals.isEmpty) {
-    //   return false;
-    // }
-    if (userMotivation.isEmpty) {
       return false;
     }
     return true;

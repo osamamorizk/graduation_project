@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/widgets/or_widget.dart';
-import 'package:graduation_project/feature/diet/data/models/diet/item.model.dart';
+import 'package:graduation_project/feature/diet/data/models/diet_plan_model/meal.dart';
 
 import 'package:graduation_project/feature/diet/presentation/views/widgets/meal_listtile_with_ingrediants.dart';
 
 class FoodMealItem extends StatelessWidget {
   const FoodMealItem({
     super.key,
-    required this.item,
     this.color,
+    required this.meal,
   });
-  final Item item;
+  final Meal meal;
   final Color? color;
   @override
   Widget build(BuildContext context) {
@@ -24,19 +24,18 @@ class FoodMealItem extends StatelessWidget {
       child: Column(
         children: [
           MealListTileWithDetails(
-            item: item,
+            foodMealModel: meal.foodMealModel!,
           ),
-          if (item.alternatives != null && item.alternatives!.isNotEmpty)
+          if (meal.alternatives != null && meal.alternatives!.isNotEmpty)
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const OrWidget(),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                  child: FoodMealItem(
-                    color: Colors.white,
-                    item: item.alternatives![0],
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                  ),
+                  child: MealListTileWithDetails(
+                    foodMealModel: meal.alternatives![0],
                   ),
                 ),
               ],

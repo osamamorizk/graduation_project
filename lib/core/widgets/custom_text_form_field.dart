@@ -30,7 +30,7 @@ class CustomTextFormField extends StatelessWidget {
           return validator!(value);
         },
         obscureText: obscureText ?? false,
-        style: TextStyle(color: ColorsManger.grey),
+        style: TextStyle(color: ColorsManger.darkBlue),
         decoration: InputDecoration(
           hintText: hintText,
           isDense: true,

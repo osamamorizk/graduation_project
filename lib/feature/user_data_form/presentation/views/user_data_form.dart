@@ -1,118 +1,84 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/functions/custom_snack_bar.dart';
+import 'package:graduation_project/core/functions/error_dialog.dart';
+import 'package:graduation_project/core/functions/upload_data_dialog.dart';
+import 'package:graduation_project/core/helpers/cashe_helper.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/routes/routes.dart';
-import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/widgets/custom_action_button.dart';
-import 'package:graduation_project/feature/user_data_form/data/constants.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
-import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/form_bar.dart';
-import 'package:graduation_project/core/helpers/spacing.dart';
+import 'package:graduation_project/feature/user_data_form/presentation/views/user_data_form_body.dart';
 
-class UserDataForm extends StatefulWidget {
-  const UserDataForm({super.key, required this.category});
+class UserDataForm extends StatelessWidget {
+  const UserDataForm({
+    super.key,
+    required this.category,
+  });
   final String category;
   @override
-  State<UserDataForm> createState() => _UserDataFormState();
-}
-
-class _UserDataFormState extends State<UserDataForm> {
-  int currentIndex = 0;
-  late List<Widget> selectedScreens;
-
-  @override
-  void initState() {
-    super.initState();
-    selectedScreens = getScreensBasedOnCategory(widget.category);
-  }
-
-  List<Widget> getScreensBasedOnCategory(String category) {
-    if (category == 'diet') {
-      return dietScreens;
-    } else if (category == 'workout') {
-      return workoutScreens;
-    } else {
-      return formScreens;
-    }
-  }
-
-  void nextScreen() {
-    if (currentIndex < formScreens.length - 1) {
-      setState(() {
-        currentIndex++;
-      });
-    }
-  }
-
-  void previousScreen() {
-    if (currentIndex > 0) {
-      setState(() {
-        currentIndex--;
-      });
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return RepaintBoundary(
-      child: Scaffold(
-        appBar: customDataFormBar(
-          IconButton(
-            onPressed: () {
-              currentIndex == 0 ? context.pop() : previousScreen();
-            },
-            icon: Icon(
-              size: 22,
-              Icons.arrow_back,
-              color: ColorsManger.darkBlue,
-            ),
-          ),
-          (currentIndex + 1) / selectedScreens.length,
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: selectedScreens[currentIndex],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: CustomButton(
-                text: currentIndex != selectedScreens.length - 1
-                    ? 'Continue'
-                    : 'submit',
-                onPressed: () {
-                  final userDataCubit = context.read<UserDataCubit>();
+    return BlocListener<UserDataCubit, UserDataState>(
+      listener: (context, state) async {
+        if (state is PostUserDataSuccess) {
+          await CasheHlper.saveInt(
+              key: 'userId', value: state.userDataFormModel.id);
+          await CasheHlper.saveData(key: 'dataDone', value: true);
+          showSuccessToast('Registration process completed successfully');
+          // ignore: use_build_context_synchronously
+          context.pushNamedAndRemoveUntil(
+            predicate: (route) => false,
+            Routes.bottomBar,
+          );
+        } else if (state is PutDietPlanSuccess) {
+          showSuccessToast('Diet plan updated successfully');
+          context.pop();
+          context.pushNamedAndRemoveUntil(Routes.bottomBar,
+              predicate: (route) => false);
+        } else if (state is PutWorkoutPlanSuccess) {
+          showSuccessToast('Workout plan updated successfully');
+          context.pop();
+          context.pushNamedAndRemoveUntil(Routes.bottomBar,
+              predicate: (route) => false);
+        } else if (state is PutUserSuccess) {
+          context.pop();
+          showSuccessToast('User data and plans updated successfully');
 
-                  bool isValid = false;
-                  if (widget.category == 'diet') {
-                    isValid = userDataCubit.validateDietData();
-                  } else if (widget.category == 'workout') {
-                    isValid = userDataCubit.validateWorkoutData();
-                  } else {
-                    isValid = userDataCubit.validateAllData();
-                  }
-
-                  if (currentIndex == selectedScreens.length - 1) {
-                    if (isValid) {
-                      context.pushNamed(Routes.bottomBar);
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        cuatomSnackBar(
-                            text: 'Please complete all required fields.'),
-                      );
-                    }
-                  } else {
-                    nextScreen();
-                  }
-                },
-              ),
-            ),
-            verticalSpace(30.h),
-          ],
-        ),
-      ),
+          context.pushNamedAndRemoveUntil(Routes.bottomBar,
+              predicate: (route) => false);
+        } else if (state is PutUserFailure) {
+          context.pop();
+          showErrorDialog(context, errorMessage: state.errorMessage);
+        } else if (state is PostUserDataFailure) {
+          context.pop();
+          showErrorDialog(context, errorMessage: state.errorMessage);
+        } else if (state is PutDietPlanFailure) {
+          context.pop();
+          showErrorDialog(context, errorMessage: state.errorMessage);
+        } else if (state is PutWorkoutPlanFailure) {
+          context.pop();
+          showErrorDialog(context, errorMessage: state.errorMessage);
+        } else if (state is PostUserDataLoading ||
+            state is PutDietPlanLoading ||
+            state is PutUserLoading ||
+            state is PutWorkoutPlanLoading) {
+          showLoadingDialog(
+            context,
+            loadingMessage: 'This may take a while,\nplease wait.',
+            textAlign: TextAlign.center,
+          );
+        }
+      },
+      child: UserDataFormBody(category: category),
     );
   }
 }
+
+// List<Widget> getScreensBasedOnCategory(String category) {
+//   if (category == 'diet') {
+//     return dietScreens;
+//   } else if (category == 'workout') {
+//     return workoutScreens;
+//   } else {
+//     return formScreens;
+//   }
+// }

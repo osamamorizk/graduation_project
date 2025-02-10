@@ -11,8 +11,20 @@ class GenderToggleButtons extends StatefulWidget {
   GenderToggleButtonsState createState() => GenderToggleButtonsState();
 }
 
+int selectedIndex = 0;
+
 class GenderToggleButtonsState extends State<GenderToggleButtons> {
   List<bool> selected = [true, false];
+  @override
+  void initState() {
+    selectedIndex = BlocProvider.of<UserDataCubit>(context).gender;
+    setState(() {
+      for (int i = 0; i < selected.length; i++) {
+        selected[i] = i == selectedIndex;
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +33,18 @@ class GenderToggleButtonsState extends State<GenderToggleButtons> {
       onPressed: (int index) {
         if (index == 0) {
           setState(() {
-            BlocProvider.of<UserDataCubit>(context).gender = 'Male';
+            selectedIndex = index;
+            BlocProvider.of<UserDataCubit>(context).gender = index;
           });
-        } else {
+        } else if (index == 1) {
           setState(() {
-            BlocProvider.of<UserDataCubit>(context).gender = 'Female';
+            selectedIndex = index;
+            BlocProvider.of<UserDataCubit>(context).gender = index;
           });
         }
         setState(() {
           for (int i = 0; i < selected.length; i++) {
-            selected[i] = i == index;
+            selected[i] = i == selectedIndex;
           }
         });
       },
@@ -42,7 +56,9 @@ class GenderToggleButtonsState extends State<GenderToggleButtons> {
       selectedBorderColor: ColorsManger.darkBlue,
       textStyle: const TextStyle(fontSize: 14),
       constraints: BoxConstraints(
-          minHeight: 50, minWidth: MediaQuery.of(context).size.width / 2.25),
+        minHeight: 50,
+        minWidth: MediaQuery.of(context).size.width / 2.25,
+      ),
       children: const [
         Text('Male'),
         Text('Female'),

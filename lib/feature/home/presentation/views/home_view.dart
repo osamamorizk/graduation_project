@@ -26,6 +26,7 @@ class HomeView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      verticalSpace(4),
                       const HomeBanner(),
                       verticalSpace(20),
                       const ScanAndPlanBox(),
@@ -61,22 +62,23 @@ class HomeView extends StatelessWidget {
 
   AppBar homeAppBar() {
     return AppBar(
-        elevation: .4,
+        elevation: .5,
         toolbarHeight: 50,
-        scrolledUnderElevation: .4,
+        scrolledUnderElevation: .5,
         titleSpacing: 0,
         backgroundColor: Colors.white,
         leading: Image.asset(Assets.iconsAppIcon),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              'Welcome osama!',
+              'Welcome',
               style: TextStyles.font16BlueBold,
             ),
             Text(
               'Every choice brings you closer to your best self.',
-              style: TextStyles.font14greyNormal.copyWith(fontSize: 12),
+              style: TextStyles.font14greyNormal.copyWith(fontSize: 13),
             ),
           ],
         ));

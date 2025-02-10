@@ -21,45 +21,47 @@ List<String> options = [
   "Low carb"
 ];
 
-int? selectedIndex;
-
 class _DiteKindViewState extends State<DiteKindView> {
+  int? selectedIndex;
+  @override
+  void initState() {
+    selectedIndex = BlocProvider.of<UserDataCubit>(context).dietKind;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            verticalSpace(35.h),
-            Text(
-              'What kind of diet do you prefer?',
-              style: TextStyles.font18BlackBold,
-            ),
-            verticalSpace(40.h),
-            ListView.separated(
-              shrinkWrap: true,
-              separatorBuilder: (context, index) => verticalSpace(24.h),
-              itemCount: options.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = index;
-                      BlocProvider.of<UserDataCubit>(context).dietKind =
-                          options[index];
-                    });
-                  },
-                  child: CustomSingleSelectedItem(
-                      textAlign: TextAlign.center,
-                      title: options[index],
-                      isSelected: selectedIndex == index),
-                );
-              },
-            ),
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          verticalSpace(35.h),
+          Text(
+            'What kind of diet do you prefer?',
+            style: TextStyles.font18BlackBold,
+          ),
+          verticalSpace(40.h),
+          ListView.separated(
+            shrinkWrap: true,
+            separatorBuilder: (context, index) => verticalSpace(24.h),
+            itemCount: options.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedIndex = index;
+                    BlocProvider.of<UserDataCubit>(context).dietKind = index;
+                  });
+                },
+                child: CustomSingleSelectedItem(
+                    textAlign: TextAlign.center,
+                    title: options[index],
+                    isSelected: selectedIndex == index),
+              );
+            },
+          ),
+        ],
       ),
     );
   }

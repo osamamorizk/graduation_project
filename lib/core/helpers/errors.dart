@@ -13,7 +13,7 @@ class ServerFailure extends Failure {
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
         return ServerFailure(
-            errorMessage: 'Connection timed out. Check your internet.');
+            errorMessage: 'Connection timed out.\nCheck your internet.');
       case DioExceptionType.sendTimeout:
         return ServerFailure(errorMessage: 'Request took too long to send.');
       case DioExceptionType.receiveTimeout:
@@ -31,18 +31,17 @@ class ServerFailure extends Failure {
         if (dioException.message?.contains('SocketException') ?? false) {
           return ServerFailure(errorMessage: 'No internet connection.');
         }
-        return ServerFailure(errorMessage: 'Unexpected error. Try again.');
+        return ServerFailure(errorMessage: 'Unexpected error.\nTry again.');
       // ignore: unreachable_switch_default
       default:
-        return ServerFailure(errorMessage: 'Something went wrong. Try again.');
+        return ServerFailure(errorMessage: 'Something went wrong.\nTry again.');
     }
   }
 
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       return ServerFailure(
-          errorMessage:
-              response is String ? response : 'Unauthorized request.');
+          errorMessage: response is String ? response : response['title']);
     } else if (statusCode == 404) {
       return ServerFailure(errorMessage: 'Request not found.');
     } else if (statusCode == 500) {

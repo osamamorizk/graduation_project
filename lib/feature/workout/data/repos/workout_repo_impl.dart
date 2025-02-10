@@ -1,10 +1,10 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:graduation_project/core/helpers/errors.dart';
 import 'package:graduation_project/core/networking/api_service.dart';
+import 'package:graduation_project/feature/workout/data/models/exercise_model.dart';
 import 'package:graduation_project/feature/workout/data/models/workout_model/workout_plan_model.dart';
 import 'package:graduation_project/feature/workout/data/models/workout_model/exercise.dart';
 import 'package:graduation_project/feature/workout/data/repos/workout_repo.dart';
@@ -14,11 +14,13 @@ class WorkoutRepoImpl implements WorkoutRepo {
   List<WorkoutPlanModel> workoutPlansList = [];
   WorkoutRepoImpl(this.apiService);
   @override
-  Future<Either<Failure, List<WorkoutPlanModel>>> getAllWorkoutPlans() async {
+  Future<Either<Failure, List<WorkoutPlanModel>>> getAllWorkoutPlans(
+      {required int id}) async {
     try {
-      // var result = await apiService.get(endPoints: specializationEndPoints);
+      var result = await apiService.get(endPoints: 'Plan/workout-plan/2');
+      workoutPlansList.clear();
 
-      for (var workout in (json.decode(jsonData))['plan']['DailyPlans']) {
+      for (var workout in result['daily_plans']) {
         workoutPlansList.add(WorkoutPlanModel.fromJson(workout));
       }
       return right(workoutPlansList);
@@ -53,6 +55,26 @@ class WorkoutRepoImpl implements WorkoutRepo {
           (exercise) => exercise.day == day,
         )
         .exercises;
+  }
+
+  @override
+  Future<Either<Failure, List<ExerciseModel>>> getExerciseList(
+      {required int id}) async {
+    List<ExerciseModel> exerciseList = [];
+    try {
+      var result = await apiService.get(endPoints: 'Exercises/$id');
+      for (var exercise in result) {
+        exerciseList.add(ExerciseModel.fromJson(exercise));
+      }
+
+      return right(exerciseList);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
+    }
   }
 }
 

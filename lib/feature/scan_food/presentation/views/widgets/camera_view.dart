@@ -1,38 +1,40 @@
 import 'dart:io';
-
-// import 'package:better_open_file/better_open_file.dart';
 import 'package:camerawesome/camerawesome_plugin.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
-import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
+import 'package:graduation_project/core/widgets/custom_circle_progress_indicator.dart';
 import 'package:graduation_project/feature/scan_food/presentation/views/widgets/image_preview.dart';
+import 'package:image_picker/image_picker.dart';
 
-class NewCameraTest extends StatelessWidget {
-  const NewCameraTest({super.key});
+class CameraView extends StatefulWidget {
+  const CameraView({super.key});
 
+  @override
+  State<CameraView> createState() => _CameraViewState();
+}
+
+class _CameraViewState extends State<CameraView> {
   @override
   Widget build(BuildContext context) {
     return CameraAwesomeBuilder.awesome(
       progressIndicator: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SpinKitSpinningLines(
-            color: ColorsManger.darkBlue,
-            size: 60.0,
-          ),
+          const CustomCircleProgressIndicator(),
           verticalSpace(16),
           Text(
             'Loading Camera',
             style: TextStyles.font16BlueBold,
-          )
+          ),
         ],
       ),
       sensorConfig: SensorConfig.single(
+          aspectRatio: CameraAspectRatios.ratio_16_9,
           sensor: Sensor.position(
-        SensorPosition.back,
-      )),
+            SensorPosition.back,
+          )),
       topActionsBuilder: (state) {
         return AwesomeTopActions(
           state: state,
@@ -50,14 +52,21 @@ class NewCameraTest extends StatelessWidget {
       },
       middleContentBuilder: (state) {
         return const SizedBox.shrink();
+        //  AwesomeFocusIndicator(position: Offset(0, 240),);
       },
       bottomActionsBuilder: (state) {
         return AwesomeBottomActions(
-          onMediaTap: (mediaCapture) {
-            // OpenFile.open(mediaCapture.captureRequest.path);
-          },
-          padding: const EdgeInsets.only(bottom: 16),
+          left: IconButton(
+            onPressed: () => pickImageFromGallery(context),
+            icon: const Icon(
+              size: 30,
+              FontAwesomeIcons.images,
+              color: Colors.white,
+            ),
+          ),
           state: state,
+          onMediaTap: (mediaCapture) {},
+          padding: const EdgeInsets.only(bottom: 16),
         );
       },
       theme: AwesomeTheme(
@@ -80,5 +89,24 @@ class NewCameraTest extends StatelessWidget {
         }
       },
     );
+  }
+}
+
+void pickImageFromGallery(BuildContext context) async {
+  final ImagePicker picker = ImagePicker();
+  try {
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null && image.path.isNotEmpty) {
+      if (File(image.path).existsSync()) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ImagePreviewScreen(imagePath: image.path),
+          ),
+        );
+      }
+    }
+  } catch (e) {
+    debugPrint("Error picking image: $e");
   }
 }

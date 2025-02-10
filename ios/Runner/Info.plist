@@ -4,13 +4,10 @@
 	<dict>
 		<key>NSCameraUsageDescription</key>
 		<string>Your own description</string>
-
 		<key>NSMicrophoneUsageDescription</key>
 		<string>To enable microphone access when recording video</string>
-
 		<key>NSLocationWhenInUseUsageDescription</key>
 		<string>To enable GPS location access for Exif data</string>
-
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>App needs access to photo lib for profile images</string>
 		<key>NSCameraUsageDescription</key>
@@ -29,7 +26,7 @@
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
-		<string>CURA</string>
+		<string>NUTRIX</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
@@ -71,6 +68,5 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
-		
 	</dict>
 </plist>

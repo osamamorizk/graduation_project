@@ -14,7 +14,7 @@ class DayContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(right: 16),
+      margin: const EdgeInsets.only(right: 16, top: 10, bottom: 10),
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
         color: isSelected ? ColorsManger.darkBlue : ColorsManger.grey,

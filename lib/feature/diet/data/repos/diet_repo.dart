@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:graduation_project/core/helpers/errors.dart';
-import 'package:graduation_project/feature/diet/data/models/diet/daily_plan.model.dart';
-import 'package:graduation_project/feature/diet/data/models/diet/meal.model.dart';
+
+import 'package:graduation_project/feature/diet/data/models/diet_plan_model/diet_plan_model.dart';
+import 'package:graduation_project/feature/diet/data/models/diet_plan_model/meal.dart';
 
 abstract class DietRepo {
-  Future<Either<Failure, List<DailyPlan>>> getAllDiet();
+  Future<Either<Failure, List<DietPlanModel>>> getAllDiet({required int id});
   Future<Either<Failure, List<Meal>>> getMealsByDay({required String day});
 }

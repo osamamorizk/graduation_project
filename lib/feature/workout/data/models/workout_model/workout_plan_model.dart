@@ -9,17 +9,11 @@ class WorkoutPlanModel {
 
   factory WorkoutPlanModel.fromJson(Map<String, dynamic> json) =>
       WorkoutPlanModel(
-        day: json['Day'] as String?,
-        focus: json['Focus'] as String?,
-        exercises: (json['Exercises'] as List<dynamic>?)
+        day: json['day'] as String?,
+        focus: json['focus'] as String?,
+        exercises: (json['exercises'] as List<dynamic>?)
             ?.map(
                 (e) => WorkoutExerciseModel.fromJson(e as Map<String, dynamic>))
             .toList(),
       );
-
-  Map<String, dynamic> toJson() => {
-        'Day': day,
-        'Focus': focus,
-        'Exercises': exercises?.map((e) => e.toJson()).toList(),
-      };
 }

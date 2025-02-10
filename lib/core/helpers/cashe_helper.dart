@@ -8,6 +8,10 @@ class CasheHlper {
     sharedPref = await SharedPreferences.getInstance();
   }
 
+  static Future<void> saveInt({required String key, required int value}) async {
+    await sharedPref.setInt(key, value);
+  }
+
   static Future<bool> saveData(
       {required String key, required dynamic value}) async {
     if (value is String) {
@@ -25,13 +29,25 @@ class CasheHlper {
     return sharedPref.get(key);
   }
 
+  static int getInt({required String key}) {
+    return sharedPref.getInt(key) ?? 2;
+  }
+
+  static String getString({required String key}) {
+    return sharedPref.getString(key) ?? 'user';
+  }
+
+  static bool getBool({required String key}) {
+    return sharedPref.getBool(key) ?? false;
+  }
+
   static Future<void> saveSecuredData(
       {required String key, required dynamic value}) async {
     const flutterSecureStorage = FlutterSecureStorage();
     return await flutterSecureStorage.write(key: key, value: value);
   }
 
-  static Future<String?> getSecuredData({required String key}) async {
+  static dynamic getSecuredData({required String key}) async {
     const flutterSecureStorage = FlutterSecureStorage();
     return await flutterSecureStorage.read(key: key);
   }

@@ -25,6 +25,16 @@ List<String> healthConcerns = [
 final List<String> selectedHealthConcerns = [];
 
 class _HealthConcernsViewState extends State<HealthConcernsView> {
+  late TextEditingController otherHelthConcernsController;
+  @override
+  void initState() {
+    BlocProvider.of<UserDataCubit>(context).helthConcerns =
+        selectedHealthConcerns.join(' ,');
+    otherHelthConcernsController =
+        BlocProvider.of<UserDataCubit>(context).otherHelthConcernsController;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final userDataCubit = BlocProvider.of<UserDataCubit>(context);
@@ -58,7 +68,7 @@ class _HealthConcernsViewState extends State<HealthConcernsView> {
                         }
                         if (index == healthConcerns.length - 1) {
                           selectedHealthConcerns.add(
-                              userDataCubit.preferedExerciseController.text);
+                              userDataCubit.otherHelthConcernsController.text);
                         }
                         userDataCubit.helthConcerns =
                             selectedHealthConcerns.join(' ,');

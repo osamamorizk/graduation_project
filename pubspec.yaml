@@ -43,12 +43,18 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   flutter_spinkit: ^5.2.1
   flutter_svg: ^2.0.16
-  fluttertoast: ^8.2.8
+  fluttertoast: ^8.2.10
+  font_awesome_icon_class: ^0.0.6
   gal: ^2.3.0
   get_it: ^8.0.3
+  http_parser: ^4.1.2
+  image_picker: ^1.1.2
+  permission_handler: ^11.3.1
   pinput: ^5.0.0
+  pretty_dio_logger: ^1.4.0
   share_plus: ^10.1.4
   shared_preferences: ^2.3.3
+  shimmer: ^3.0.0
   smooth_page_indicator: ^1.2.0+3
   syncfusion_flutter_sliders: ^28.1.39
   url_launcher: ^6.3.1

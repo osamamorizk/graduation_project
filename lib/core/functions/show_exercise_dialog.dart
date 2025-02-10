@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/youtyube_video_player.dart';
 
-void showExerciseVideoDialog(BuildContext context) {
+void showExerciseVideoDialog(BuildContext context, {required String videoUrl}) {
   showDialog(
     barrierDismissible: false,
     context: context,
@@ -29,11 +29,10 @@ void showExerciseVideoDialog(BuildContext context) {
                       Icons.close,
                     )),
               ),
-              const Center(
+              Center(
                 child: FittedBox(
                   fit: BoxFit.contain,
-                  child: YouTubeVideoPlayer(
-                      videoUrl: 'https://www.youtube.com/embed/SNFj4cBJ6ds'),
+                  child: YouTubeVideoPlayer(videoUrl: videoUrl),
                 ),
               ),
             ],

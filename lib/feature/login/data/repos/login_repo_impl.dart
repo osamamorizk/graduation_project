@@ -1,31 +1,30 @@
-// import 'package:advance_flutter/core/errors/failures.dart';
-// import 'package:advance_flutter/core/networking/api_service.dart';
-// import 'package:advance_flutter/core/models/user_model.dart';
-// import 'package:advance_flutter/core/networking/end_points.dart';
-// import 'package:advance_flutter/feature/login/data/repos/login_repo.dart';
-// import 'package:dartz/dartz.dart';
-// import 'package:dio/dio.dart';
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:graduation_project/core/helpers/end_points_const.dart';
+import 'package:graduation_project/core/helpers/errors.dart';
+import 'package:graduation_project/core/networking/api_service.dart';
+import 'package:graduation_project/feature/login/data/repos/login_repo.dart';
 
-// class LoginRepoImpl implements LoginRepo {
-//   final ApiService apiService;
+class LoginRepoImpl implements LoginRepo {
+  final ApiService apiService;
 
-//   LoginRepoImpl(this.apiService);
+  LoginRepoImpl(this.apiService);
 
-//   @override
-//   Future<Either<Failure, UserModel>> login(
-//       {required String email, required String password}) async {
-//     try {
-//       var data = await apiService.post(
-//         endPoints: loginEndPoints,
-//         body: {'email': email, 'password': password},
-//       );
-//       return right(UserModel.fromJson(data));
-//     } catch (e) {
-//       if (e is DioException) {
-//         return left(ServerFailure.fromDioException(e));
-//       } else {
-//         return left(ServerFailure(errorMessage: e.toString()));
-//       }
-//     }
-//   }
-// }
+  @override
+  Future<Either<Failure, String>> login(
+      {required String userName, required String password}) async {
+    try {
+      var result = await apiService.post(
+        endPoints: loginEndPoint,
+        data: {'username': userName, 'password': password},
+      );
+      return right(result);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
+    }
+  }
+}
