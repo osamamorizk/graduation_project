@@ -16,7 +16,8 @@ class CustomMultiSelectionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      curve: Curves.bounceOut,
       decoration: BoxDecoration(
         color: isSelected ? ColorsManger.lighterBlue : Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -25,6 +26,7 @@ class CustomMultiSelectionItem extends StatelessWidget {
           color: isSelected ? ColorsManger.darkBlue : Colors.grey.shade300,
         ),
       ),
+      duration: const Duration(milliseconds: 500),
       child: ListTile(
         minTileHeight: 55.h,
         leading: image,
