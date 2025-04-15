@@ -57,9 +57,9 @@ class NewBottomNavBarState extends State<NewBottomNavBar> {
         ),
         bottomNavigationBar: Container(
           height: 62,
-          decoration: const BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
+          decoration: BoxDecoration(
+              color: Theme.of(context).scaffoldBackgroundColor,
+              boxShadow: const [
                 BoxShadow(
                   color: Colors.grey,
                   spreadRadius: .1,
@@ -67,9 +67,11 @@ class NewBottomNavBarState extends State<NewBottomNavBar> {
                   offset: Offset(0, 0),
                 ),
               ],
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20))),
           child: BottomNavigationBar(
+            selectedIconTheme: Theme.of(context).iconTheme,
+            unselectedIconTheme: Theme.of(context).iconTheme,
             elevation: 0,
             type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.transparent,

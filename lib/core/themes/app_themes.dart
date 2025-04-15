@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:graduation_project/core/themes/colors_manger.dart';
+
+class AppThemes {
+  static final darkTheme = ThemeData(
+      iconTheme: const IconThemeData(color: Colors.amber),
+      tabBarTheme: TabBarTheme(
+        dividerColor: Colors.grey.shade200,
+        dividerHeight: .6,
+        indicatorSize: TabBarIndicatorSize.tab,
+        indicatorColor: ColorsManger.darkBlue,
+        labelColor: Colors.amber,
+        unselectedLabelColor: Colors.lightBlue,
+      ),
+      brightness: Brightness.dark,
+      primaryColor: Colors.white,
+      textTheme: const TextTheme());
+
+  static final lightTheme = ThemeData(
+    iconTheme: const IconThemeData(color: Colors.amber),
+    tabBarTheme: TabBarTheme(
+      labelPadding: const EdgeInsets.all(0),
+      dividerColor: Colors.grey.shade200,
+      dividerHeight: .6,
+      indicatorSize: TabBarIndicatorSize.tab,
+      indicatorColor: ColorsManger.darkBlue,
+      labelColor: Colors.black,
+      unselectedLabelColor: ColorsManger.darkerGrey,
+    ),
+    appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
+    scaffoldBackgroundColor: Colors.white,
+    brightness: Brightness.light,
+    primaryColor: ColorsManger.darkBlue,
+  );
+}

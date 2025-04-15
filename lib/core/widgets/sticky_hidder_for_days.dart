@@ -10,7 +10,6 @@ class StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return SizedBox.expand(
       child: Material(
-        color: Colors.white,
         elevation: 0,
         child: child,
       ),

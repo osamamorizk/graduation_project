@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/routes/routes.dart';
-import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/workout/presentation/views/muscle_group_view.dart';
 import 'package:graduation_project/feature/workout/presentation/views/general_plans_view.dart';
@@ -33,18 +32,17 @@ class WorkoutView extends StatelessWidget {
               },
             ),
           ],
-          backgroundColor: Colors.white,
           bottom: TabBar(
             labelPadding: const EdgeInsets.all(0),
             padding: const EdgeInsets.symmetric(horizontal: 16),
             indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
             labelStyle: TextStyles.font16BlackRegular,
-            dividerColor: Colors.grey.shade200,
-            dividerHeight: .6,
-            indicatorSize: TabBarIndicatorSize.tab,
-            indicatorColor: ColorsManger.darkBlue,
-            labelColor: Colors.black,
-            unselectedLabelColor: ColorsManger.darkerGrey,
+            // dividerColor: Colors.grey.shade200,
+            // dividerHeight: .6,
+            // indicatorSize: TabBarIndicatorSize.tab,
+            // indicatorColor: ColorsManger.darkBlue,
+            // labelColor: Colors.black,
+            // unselectedLabelColor: ColorsManger.darkerGrey,
             tabs: const [
               Tab(
                 text: 'Your plan',

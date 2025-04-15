@@ -14,10 +14,14 @@ class ErrorView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(
-            Assets.imagesSadMan,
-            height: 150,
+          const Icon(
+            Icons.error,
+            size: 60,
           ),
+          // Image.asset(
+          //   Assets.imagesSadMan,
+          //   height: 150,
+          // ),
           verticalSpace(20),
           Text(
             errorMessage,
