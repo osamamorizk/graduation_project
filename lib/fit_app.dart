@@ -29,7 +29,7 @@ class FitApp extends StatelessWidget {
             create: (context) => ScanFoodCubit(getIt.get<ScanFoodRepoImpl>()),
           ),
           BlocProvider(
-            create: (context) => ThemeCubit(),
+            create: (context) => ThemeCubit()..loadTheme(),
           )
         ],
         child: BlocBuilder<ThemeCubit, ThemeMode>(
