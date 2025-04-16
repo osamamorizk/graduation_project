@@ -21,7 +21,7 @@ class AppThemes {
   );
 
   static final lightTheme = ThemeData(
-    iconTheme: const IconThemeData(color: Colors.amber),
+    iconTheme: const IconThemeData(color: Colors.black),
     tabBarTheme: TabBarTheme(
       labelPadding: const EdgeInsets.all(0),
       dividerColor: Colors.grey.shade200,

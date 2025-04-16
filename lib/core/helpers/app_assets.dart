@@ -126,6 +126,10 @@ class Assets {
   /// assets/images/exercises/stretches.png
   static const String imagesExercisesStretches = "assets/images/exercises/stretches.png";
 
+  /// Assets for imagesGeneralPlansGeneralDiet
+  /// assets/images/general_plans/general_diet.png
+  static const String imagesGeneralPlansGeneralDiet = "assets/images/general_plans/general_diet.png";
+
   /// Assets for imagesHydration
   /// assets/images/hydration.png
   static const String imagesHydration = "assets/images/hydration.png";
@@ -226,9 +230,17 @@ class Assets {
   /// assets/svgs/calender.svg
   static const String svgsCalender = "assets/svgs/calender.svg";
 
+  /// Assets for svgsCalories
+  /// assets/svgs/calories.svg
+  static const String svgsCalories = "assets/svgs/calories.svg";
+
   /// Assets for svgsCameraIcon
   /// assets/svgs/camera_icon.svg
   static const String svgsCameraIcon = "assets/svgs/camera_icon.svg";
+
+  /// Assets for svgsClock
+  /// assets/svgs/clock.svg
+  static const String svgsClock = "assets/svgs/clock.svg";
 
   /// Assets for svgsCommingSoon
   /// assets/svgs/comming_soon.svg
