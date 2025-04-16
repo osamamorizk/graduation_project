@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/core/helpers/extensions.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/day_container.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/diet_general_plan_item.dart';
@@ -67,9 +69,13 @@ class _GeneralDietPlanDetailsViewState
             SliverList.builder(
               itemCount: 3,
               itemBuilder: (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.only(bottom: 8),
-                  child: GpMealItem(),
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: GestureDetector(
+                      onTap: () {
+                        context.pushNamed(Routes.generalDietMealDetails);
+                      },
+                      child: const GpMealItem()),
                 );
               },
             )

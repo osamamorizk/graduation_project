@@ -25,7 +25,7 @@ class AppThemes {
     tabBarTheme: TabBarTheme(
       labelPadding: const EdgeInsets.all(0),
       dividerColor: Colors.grey.shade200,
-      dividerHeight: .6,
+      dividerHeight: .4,
       indicatorSize: TabBarIndicatorSize.tab,
       indicatorColor: ColorsManger.darkBlue,
       labelColor: Colors.black,
