@@ -20,13 +20,13 @@ class PlayingVideoWidget extends StatelessWidget {
             height: 55.h,
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(16),
-                  bottomRight: Radius.circular(16)),
+                  topRight: Radius.circular(30),
+                  bottomRight: Radius.circular(30)),
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  color: ColorsManger.grey,
-                  blurRadius: 20,
+                  color: ColorsManger.darkGrey,
+                  blurRadius: 10,
                   spreadRadius: 0,
                   offset: const Offset(0, 10),
                 ),
