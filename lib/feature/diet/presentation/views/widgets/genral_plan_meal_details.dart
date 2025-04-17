@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/helpers/app_assets.dart';
-import 'package:graduation_project/core/helpers/extensions.dart';
+
 import 'package:graduation_project/core/helpers/spacing.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
+import 'package:graduation_project/core/widgets/image_and_title_widget.dart';
 import 'package:graduation_project/core/widgets/playing_video_widget.dart';
-import 'package:graduation_project/feature/diet/presentation/views/widgets/general_plan_diet_info.dart';
+import 'package:graduation_project/core/widgets/calories_and_time.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/general_plan_meal_info.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/nutrition_info.dart';
 
@@ -16,7 +15,7 @@ class GenralPlanMealDetails extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
+          const SliverAppBar(
             floating: true,
             pinned: true,
             stretch: true,
@@ -24,38 +23,7 @@ class GenralPlanMealDetails extends StatelessWidget {
             scrolledUnderElevation: 0,
             expandedHeight: 250,
             toolbarHeight: 0,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Image.asset(
-                    Assets.imagesGeneralPlansGeneralDiet,
-                    fit: BoxFit.cover,
-                  ),
-                  Positioned(
-                    top: 50,
-                    left: 10,
-                    child: IconButton(
-                      onPressed: () => context.pop(),
-                      icon: const Icon(
-                        Icons.arrow_back_rounded,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 90,
-                    left: 20,
-                    child: Text(
-                      'Green beans with tomatoes and eggs',
-                      style: TextStyles.font16whiteBold.copyWith(
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            flexibleSpace: FlexibleSpaceBar(background: ImageAndTitleWidget()),
           ),
           SliverToBoxAdapter(child: verticalSpace(50)),
           const SliverToBoxAdapter(
@@ -65,7 +33,7 @@ class GenralPlanMealDetails extends StatelessWidget {
                 Positioned(
                   top: -50,
                   right: 20,
-                  child: GpDietInfo(),
+                  child: CalorisAndTimeWidget(),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -75,11 +43,6 @@ class GenralPlanMealDetails extends StatelessWidget {
                     NutritionItem(title: 'Carbs', value: '13.5 g'),
                   ],
                 ),
-                // Positioned(
-                //   top: -70,
-                //   right: 20,
-                //   child: GpDietInfo(),
-                // ),
               ],
             ),
           ),

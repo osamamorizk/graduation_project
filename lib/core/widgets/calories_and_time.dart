@@ -4,10 +4,14 @@ import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 
-class GpDietInfo extends StatelessWidget {
-  const GpDietInfo({
+class CalorisAndTimeWidget extends StatelessWidget {
+  const CalorisAndTimeWidget({
     super.key,
+    this.widget,
+    this.additional,
   });
+  final Widget? widget;
+  final Widget? additional;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +33,7 @@ class GpDietInfo extends StatelessWidget {
           ),
           Text(
             '135 kcal',
-            style: TextStyles.font14BlackBold.copyWith(fontSize: 12),
+            style: TextStyles.font14BlackRegular.copyWith(fontSize: 12),
           ),
           SizedBox(
             height: 12,
@@ -46,8 +50,9 @@ class GpDietInfo extends StatelessWidget {
           ),
           Text(
             '10 min',
-            style: TextStyles.font14BlackBold.copyWith(fontSize: 12),
+            style: TextStyles.font14BlackRegular.copyWith(fontSize: 12),
           ),
+          widget ?? const SizedBox.shrink(),
         ],
       ),
     );

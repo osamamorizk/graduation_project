@@ -13,4 +13,7 @@ abstract class Routes {
   static const String foodDetailsView = 'foodDetailsView';
   static const String generalDietPlanDetailsView = 'generalDietPlanDetailsView';
   static const String generalDietMealDetails = 'generalDietMealDetails';
+  static const String generalWorkoutPlansDays = 'generalWorkoutPlansDays';
+  static const String exercisesByDay = 'exercisesByDay';
+  static const String workoutExerciseDetails = 'workoutExerciseDetails';
 }

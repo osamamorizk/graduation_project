@@ -130,6 +130,10 @@ class Assets {
   /// assets/images/general_plans/general_diet.png
   static const String imagesGeneralPlansGeneralDiet = "assets/images/general_plans/general_diet.png";
 
+  /// Assets for imagesGeneralPlansGenralWorkout
+  /// assets/images/general_plans/genral_workout.png
+  static const String imagesGeneralPlansGenralWorkout = "assets/images/general_plans/genral_workout.png";
+
   /// Assets for imagesHydration
   /// assets/images/hydration.png
   static const String imagesHydration = "assets/images/hydration.png";

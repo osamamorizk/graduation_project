@@ -29,6 +29,9 @@ import 'package:graduation_project/feature/user_data_form/presentation/views/use
 import 'package:graduation_project/feature/workout/data/repos/workout_repo_impl.dart';
 import 'package:graduation_project/feature/workout/presentation/manger/worlout_cubit/workout_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/exercise_list_view.dart';
+import 'package:graduation_project/feature/workout/presentation/views/widgets/general_workout_plan_exercises.dart';
+import 'package:graduation_project/feature/workout/presentation/views/widgets/workout_exercise_details.dart';
+import 'package:graduation_project/feature/workout/presentation/views/widgets/workout_general_plan_days.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
@@ -122,6 +125,18 @@ class AppRouter {
       case Routes.generalDietMealDetails:
         return MaterialPageRoute(
           builder: (context) => const GenralPlanMealDetails(),
+        );
+      case Routes.generalWorkoutPlansDays:
+        return MaterialPageRoute(
+          builder: (context) => const WorkoutGeneralPlanDays(),
+        );
+      case Routes.exercisesByDay:
+        return MaterialPageRoute(
+          builder: (context) => const GeneralWorkoutPlanExercises(),
+        );
+      case Routes.workoutExerciseDetails:
+        return MaterialPageRoute(
+          builder: (context) => const WorkoutExerciseDetails(),
         );
 
       default:
