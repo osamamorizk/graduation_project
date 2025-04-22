@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:graduation_project/core/functions/custom_snack_bar.dart';
+import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
@@ -22,6 +24,8 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
     {'time': '10:00 AM', 'amount': '400 ml'},
     {'time': '9:00 AM', 'amount': '400 ml'},
     {'time': '8:00 AM', 'amount': '400 ml'},
+    {'time': '8:00 AM', 'amount': '400 ml'},
+    {'time': '8:00 AM', 'amount': '400 ml'},
   ];
 
   @override
@@ -29,42 +33,44 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
     double percent = currentIntake / dailyTarget;
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        scrolledUnderElevation: 0,
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Drinking water tracker",
-              style: TextStyles.font18BlackBold,
-            ),
-            Text(
-              "It is your reminder to drink water",
-              style: TextStyle(color: ColorsManger.darkerGrey),
-            ),
-            verticalSpace(24),
-            PercentIndicatorWidget(
-              onTap: () {
-                setState(() {
-                  if (currentIntake < dailyTarget) {
-                    if ((dailyTarget - currentIntake) < 400) {
-                      currentIntake += (dailyTarget - currentIntake);
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Drinking water tracker",
+                style: TextStyles.font18BlackBold,
+              ),
+              Text(
+                "It is your reminder to drink water",
+                style: TextStyle(color: ColorsManger.darkerGrey),
+              ),
+              verticalSpace(24),
+              PercentIndicatorWidget(
+                onTap: () {
+                  setState(() {
+                    if (currentIntake < dailyTarget) {
+                      if ((dailyTarget - currentIntake) < 400) {
+                        currentIntake += (dailyTarget - currentIntake);
+                      } else {
+                        currentIntake += 400;
+                      }
                     } else {
-                      currentIntake += 400;
+                      showCustomSnackBar(context,
+                          text: 'Already reach the target !');
                     }
-                  } else {
-                    showCustomSnackBar(context,
-                        text: 'Already reach the target !');
-                  }
-                });
-              },
-              percent: percent,
-              currentIntake: currentIntake,
-              dailyTarget: dailyTarget,
-            ),
-            Expanded(
-              child: Container(
+                  });
+                },
+                percent: percent,
+                currentIntake: currentIntake,
+                dailyTarget: dailyTarget,
+              ),
+              Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
@@ -82,11 +88,33 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
                           style: TextStyles.font16BlackBold,
                         ),
                       ),
+                      ListTile(
+                        leading: Padding(
+                          padding: const EdgeInsets.all(6),
+                          child: SvgPicture.asset(
+                            Assets.svgsClock,
+                            height: 26,
+                          ),
+                        ),
+                        title: Text(
+                          '10:00 AM',
+                          style: TextStyles.font14BlackRegular,
+                        ),
+                        subtitle: Text(
+                          'Next time',
+                          style: TextStyles.font14BlackRegular
+                              .copyWith(color: ColorsManger.grey),
+                        ),
+                        trailing: Text(
+                          '400 ml',
+                          style: TextStyles.font14BlackRegular,
+                        ),
+                      ),
                       DrinkWaterRecordsItem(records: records),
                     ],
-                  )),
-            )
-          ],
+                  ))
+            ],
+          ),
         ),
       ),
     );

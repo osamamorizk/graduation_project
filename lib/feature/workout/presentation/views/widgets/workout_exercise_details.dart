@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/helpers/spacing.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/calories_and_time.dart';
 import 'package:graduation_project/core/widgets/details_section.dart';
 import 'package:graduation_project/core/widgets/image_and_title_widget.dart';

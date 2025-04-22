@@ -35,7 +35,7 @@ class PercentIndicatorBody extends StatelessWidget {
           ),
           Text(
             "Your daily target",
-            style: TextStyles.font16BlackRegular,
+            style: TextStyles.font14BlackRegular,
           ),
           verticalSpace(20),
           Text(

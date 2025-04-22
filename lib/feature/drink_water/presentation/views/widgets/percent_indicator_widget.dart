@@ -26,7 +26,7 @@ class PercentIndicatorWidget extends StatelessWidget {
           child: CircularPercentIndicator(
             arcType: ArcType.HALF,
             radius: 150,
-            lineWidth: 8,
+            lineWidth: 7,
             animation: true,
             arcBackgroundColor: ColorsManger.grey,
             percent: percent > 1 ? 1 : percent,
