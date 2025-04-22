@@ -1,5 +1,6 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/themes/colors_manger.dart';
 
 void showSuccessToast(String message) {
   Fluttertoast.showToast(
@@ -31,11 +32,11 @@ void showCustomSnackBar(BuildContext context, {required String text}) {
         textAlign: TextAlign.center,
         style: const TextStyle(color: Colors.white),
       ),
-      backgroundColor: Colors.red,
+      backgroundColor: ColorsManger.darkBlue,
       behavior: SnackBarBehavior.floating,
-      // margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+      margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(12),
       ),
       duration: const Duration(seconds: 3),
     ),
