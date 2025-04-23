@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/functions/custom_snack_bar.dart';
-import 'package:graduation_project/core/helpers/app_assets.dart';
+import 'package:graduation_project/core/helpers/const.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
-import 'package:graduation_project/feature/drink_water/presentation/views/widgets/drink_water_records.dart';
+import 'package:graduation_project/feature/drink_water/data/models/water_record_model.dart';
+import 'package:graduation_project/feature/drink_water/presentation/manger/cubit/water_record_cubit.dart';
 import 'package:graduation_project/feature/drink_water/presentation/views/widgets/percent_indicator_widget.dart';
+import 'package:graduation_project/feature/drink_water/presentation/views/widgets/record_details_body.dart';
+import 'package:hive/hive.dart';
 
 class WaterTrackerScreen extends StatefulWidget {
   const WaterTrackerScreen({super.key});
@@ -16,17 +19,30 @@ class WaterTrackerScreen extends StatefulWidget {
 }
 
 class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
-  double dailyTarget = 2440;
+  int dailyTarget = 2440;
+  int currentIntake = 0;
+  final drinkedWater = Hive.box(kDrinkedWater);
+  final now = DateTime.now();
 
-  double currentIntake = 1000;
+  @override
+  void initState() {
+    currentIntake = drinkedWater.get('currentIntake') ?? 0;
+    final today = DateTime.now();
+    final lastOpenDate = drinkedWater.get(kLastOpenDate) as DateTime?;
 
-  final List<Map<String, String>> records = [
-    {'time': '10:00 AM', 'amount': '400 ml'},
-    {'time': '9:00 AM', 'amount': '400 ml'},
-    {'time': '8:00 AM', 'amount': '400 ml'},
-    {'time': '8:00 AM', 'amount': '400 ml'},
-    {'time': '8:00 AM', 'amount': '400 ml'},
-  ];
+    if (lastOpenDate == null ||
+        lastOpenDate.day != today.day ||
+        lastOpenDate.month != today.month ||
+        lastOpenDate.year != today.year) {
+      currentIntake = 0;
+      drinkedWater.put('currentIntake', currentIntake);
+      Hive.box<WaterRecordModel>(kWaterRimenderBox).clear();
+      drinkedWater.put(kLastOpenDate, today);
+    } else {
+      currentIntake = drinkedWater.get('currentIntake') ?? 0;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,14 +72,20 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
                   setState(() {
                     if (currentIntake < dailyTarget) {
                       if ((dailyTarget - currentIntake) < 400) {
+                        context
+                            .read<WaterRecordCubit>()
+                            .addRecord((dailyTarget - currentIntake));
                         currentIntake += (dailyTarget - currentIntake);
                       } else {
                         currentIntake += 400;
+                        context.read<WaterRecordCubit>().addRecord(400);
                       }
                     } else {
                       showCustomSnackBar(context,
                           text: 'Already reach the target !');
                     }
+                    drinkedWater.put('currentIntake', currentIntake);
+                    drinkedWater.put('lastOpenDate', now);
                   });
                 },
                 percent: percent,
@@ -71,48 +93,15 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
                 dailyTarget: dailyTarget,
               ),
               Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      width: .2,
-                      color: ColorsManger.grey,
-                    ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    width: .2,
+                    color: ColorsManger.grey,
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10, left: 12),
-                        child: Text(
-                          "Today's records",
-                          style: TextStyles.font16BlackBold,
-                        ),
-                      ),
-                      ListTile(
-                        leading: Padding(
-                          padding: const EdgeInsets.all(6),
-                          child: SvgPicture.asset(
-                            Assets.svgsClock,
-                            height: 26,
-                          ),
-                        ),
-                        title: Text(
-                          '10:00 AM',
-                          style: TextStyles.font14BlackRegular,
-                        ),
-                        subtitle: Text(
-                          'Next time',
-                          style: TextStyles.font14BlackRegular
-                              .copyWith(color: ColorsManger.grey),
-                        ),
-                        trailing: Text(
-                          '400 ml',
-                          style: TextStyles.font14BlackRegular,
-                        ),
-                      ),
-                      DrinkWaterRecordsItem(records: records),
-                    ],
-                  ))
+                ),
+                child: const RecordsDetailsWidget(),
+              )
             ],
           ),
         ),

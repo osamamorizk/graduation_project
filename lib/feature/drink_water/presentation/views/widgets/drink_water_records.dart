@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
+import 'package:graduation_project/feature/drink_water/data/models/water_record_model.dart';
+import 'package:intl/intl.dart';
 
 class DrinkWaterRecordsItem extends StatelessWidget {
-  const DrinkWaterRecordsItem({super.key, required this.records});
-  final List records;
+  const DrinkWaterRecordsItem({super.key, required this.waterRecordModel});
+  final List<WaterRecordModel> waterRecordModel;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: records.length,
+      itemCount: waterRecordModel.length,
       itemBuilder: (context, index) {
-        final record = records[index];
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: ListTile(
@@ -22,11 +23,11 @@ class DrinkWaterRecordsItem extends StatelessWidget {
               width: 40,
             ),
             title: Text(
-              record['time']!,
+              DateFormat('hh:mm a').format(waterRecordModel[index].time),
               style: TextStyles.font14BlackRegular,
             ),
             trailing: Text(
-              record['amount'],
+              "${waterRecordModel[index].amount.toString()} ml",
               style: TextStyles.font14BlackRegular,
             ),
           ),

@@ -11,8 +11,8 @@ class PercentIndicatorBody extends StatelessWidget {
     this.onTap,
   });
 
-  final double currentIntake;
-  final double dailyTarget;
+  final int currentIntake;
+  final int dailyTarget;
   final Function()? onTap;
 
   @override

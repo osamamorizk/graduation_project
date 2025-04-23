@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/functions/show_comming_soon_dialog.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
+import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 
 import 'package:graduation_project/core/themes/text_styles.dart';
-import 'package:graduation_project/feature/drink_water/presentation/views/drink_water_view.dart';
 import 'package:graduation_project/feature/home/data/models/challenge_model.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/challenge_item.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/home_banner.dart';
@@ -70,11 +71,7 @@ class HomeView extends StatelessWidget {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         leading: GestureDetector(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => WaterTrackerScreen(),
-                  ));
+              context.pushNamed(Routes.drinkWaterRoute);
             },
             child: Image.asset(Assets.iconsAppIcon)),
         title: Column(

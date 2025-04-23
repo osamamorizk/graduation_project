@@ -17,7 +17,7 @@ class GenneralPlanDietItem extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         image: const DecorationImage(
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
           image: AssetImage(Assets.imagesGeneralPlansGeneralDiet),
         ),
       ),

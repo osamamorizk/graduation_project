@@ -16,4 +16,5 @@ abstract class Routes {
   static const String generalWorkoutPlansDays = 'generalWorkoutPlansDays';
   static const String exercisesByDay = 'exercisesByDay';
   static const String workoutExerciseDetails = 'workoutExerciseDetails';
+  static const String drinkWaterRoute = 'drinkWaterRoute';
 }
