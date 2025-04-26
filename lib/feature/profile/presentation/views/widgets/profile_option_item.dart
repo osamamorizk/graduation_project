@@ -28,7 +28,8 @@ class ProfileOptionItem extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: ColorsManger.lighterGrey,
-              blurRadius: 8,
+              blurRadius: 4,
+              spreadRadius: 0,
               offset: const Offset(0, 4),
             ),
           ],

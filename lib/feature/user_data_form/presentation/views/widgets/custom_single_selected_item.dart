@@ -21,7 +21,8 @@ class CustomSingleSelectedItem extends StatelessWidget {
   final TextAlign? textAlign;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      curve: Curves.bounceInOut,
       height: 57.h,
       decoration: BoxDecoration(
           color: !isSelected ? Colors.white : ColorsManger.lighterBlue,
@@ -30,6 +31,9 @@ class CustomSingleSelectedItem extends StatelessWidget {
               width: .5,
               color:
                   !isSelected ? Colors.grey.shade300 : ColorsManger.darkBlue)),
+      duration: const Duration(
+        milliseconds: 350,
+      ),
       child: ListTile(
         titleAlignment: titleAlignment,
         minTileHeight: 57.h,

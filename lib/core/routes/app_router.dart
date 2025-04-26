@@ -6,6 +6,11 @@ import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/feature/bottom_nav_bar/presentation/views/bottom_bar.dart';
 import 'package:graduation_project/feature/diet/data/repos/diet_repo_impl.dart';
 import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_cubit.dart';
+import 'package:graduation_project/feature/diet/presentation/views/widgets/general_plan_details_view.dart';
+import 'package:graduation_project/feature/diet/presentation/views/widgets/genral_plan_meal_details.dart';
+import 'package:graduation_project/feature/drink_water/data/repos/water_repo_impl.dart';
+import 'package:graduation_project/feature/drink_water/presentation/manger/cubit/water_record_cubit.dart';
+import 'package:graduation_project/feature/drink_water/presentation/views/drink_water_view.dart';
 import 'package:graduation_project/feature/login/data/repos/login_repo_impl.dart';
 import 'package:graduation_project/feature/login/presentation/manger/cubit/login_cubit.dart';
 import 'package:graduation_project/feature/login/presentation/views/forget_password.dart';
@@ -27,6 +32,9 @@ import 'package:graduation_project/feature/user_data_form/presentation/views/use
 import 'package:graduation_project/feature/workout/data/repos/workout_repo_impl.dart';
 import 'package:graduation_project/feature/workout/presentation/manger/worlout_cubit/workout_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/exercise_list_view.dart';
+import 'package:graduation_project/feature/workout/presentation/views/widgets/general_workout_plan_exercises.dart';
+import 'package:graduation_project/feature/workout/presentation/views/widgets/workout_exercise_details.dart';
+import 'package:graduation_project/feature/workout/presentation/views/widgets/workout_general_plan_days.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
@@ -109,6 +117,37 @@ class AppRouter {
           builder: (context) => ExerciseListView(
             exerciseGroup: args['exerciseGroup'] as String,
             exerciseId: args['id'] as int,
+          ),
+        );
+
+      case Routes.generalDietPlanDetailsView:
+        return MaterialPageRoute(
+          builder: (context) => const GeneralDietPlanDetailsView(),
+        );
+
+      case Routes.generalDietMealDetails:
+        return MaterialPageRoute(
+          builder: (context) => const GenralPlanMealDetails(),
+        );
+      case Routes.generalWorkoutPlansDays:
+        return MaterialPageRoute(
+          builder: (context) => const WorkoutGeneralPlanDays(),
+        );
+      case Routes.exercisesByDay:
+        return MaterialPageRoute(
+          builder: (context) => const GeneralWorkoutPlanExercises(),
+        );
+      case Routes.workoutExerciseDetails:
+        return MaterialPageRoute(
+          builder: (context) => const WorkoutExerciseDetails(),
+        );
+
+      case Routes.drinkWaterRoute:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => WaterRecordCubit(getIt.get<WaterRepoImpl>())
+              ..featchWaterRecords(),
+            child: const WaterTrackerScreen(),
           ),
         );
 

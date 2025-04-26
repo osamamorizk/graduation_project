@@ -2,13 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/helpers/cashe_helper.dart';
+import 'package:graduation_project/core/helpers/const.dart';
 import 'package:graduation_project/core/helpers/my_bloc_observer.dart';
 import 'package:graduation_project/core/helpers/service_locator.dart';
 import 'package:graduation_project/core/routes/app_router.dart';
+import 'package:graduation_project/feature/drink_water/data/models/water_record_model.dart';
 import 'package:graduation_project/fit_app.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter<WaterRecordModel>(WaterRecordModelAdapter());
+  await Hive.openBox<WaterRecordModel>(kWaterRimenderBox);
+  await Hive.openBox(kDrinkedWater);
   setupServiceLocator();
   Bloc.observer = MyBlocObserver();
   await CasheHlper.casheIntialization();

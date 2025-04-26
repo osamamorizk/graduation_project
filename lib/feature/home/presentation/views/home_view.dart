@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/functions/show_comming_soon_dialog.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
+import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/home/data/models/challenge_model.dart';
@@ -15,7 +17,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: homeAppBar(),
+      appBar: homeAppBar(context),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -60,14 +62,18 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  AppBar homeAppBar() {
+  AppBar homeAppBar(BuildContext context) {
     return AppBar(
         elevation: .5,
         toolbarHeight: 50,
         scrolledUnderElevation: .5,
         titleSpacing: 0,
-        backgroundColor: Colors.white,
-        leading: Image.asset(Assets.iconsAppIcon),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        leading: GestureDetector(
+            onTap: () {
+              context.pushNamed(Routes.drinkWaterRoute);
+            },
+            child: Image.asset(Assets.iconsAppIcon)),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.end,

@@ -78,6 +78,10 @@ class Assets {
   /// assets/images/android_12.png
   static const String imagesAndroid12 = "assets/images/android_12.png";
 
+  /// Assets for imagesBottel
+  /// assets/images/bottel.png
+  static const String imagesBottel = "assets/images/bottel.png";
+
   /// Assets for imagesCameraButton
   /// assets/images/camera_button.png
   static const String imagesCameraButton = "assets/images/camera_button.png";
@@ -126,6 +130,14 @@ class Assets {
   /// assets/images/exercises/stretches.png
   static const String imagesExercisesStretches = "assets/images/exercises/stretches.png";
 
+  /// Assets for imagesGeneralPlansGeneralDiet
+  /// assets/images/general_plans/general_diet.png
+  static const String imagesGeneralPlansGeneralDiet = "assets/images/general_plans/general_diet.png";
+
+  /// Assets for imagesGeneralPlansGenralWorkout
+  /// assets/images/general_plans/genral_workout.png
+  static const String imagesGeneralPlansGenralWorkout = "assets/images/general_plans/genral_workout.png";
+
   /// Assets for imagesHydration
   /// assets/images/hydration.png
   static const String imagesHydration = "assets/images/hydration.png";
@@ -134,9 +146,17 @@ class Assets {
   /// assets/images/icon_app.png
   static const String imagesIconApp = "assets/images/icon_app.png";
 
+  /// Assets for imagesLessWater
+  /// assets/images/less_water.png
+  static const String imagesLessWater = "assets/images/less_water.png";
+
   /// Assets for imagesManHomeBanner
   /// assets/images/man_home_banner.png
   static const String imagesManHomeBanner = "assets/images/man_home_banner.png";
+
+  /// Assets for imagesMoreWater
+  /// assets/images/more_water.png
+  static const String imagesMoreWater = "assets/images/more_water.png";
 
   /// Assets for imagesOnboarding1
   /// assets/images/onboarding_1.png
@@ -173,6 +193,14 @@ class Assets {
   /// Assets for imagesUnbroken
   /// assets/images/unbroken.png
   static const String imagesUnbroken = "assets/images/unbroken.png";
+
+  /// Assets for imagesWater
+  /// assets/images/water.png
+  static const String imagesWater = "assets/images/water.png";
+
+  /// Assets for imagesWaterBottel
+  /// assets/images/water_bottel.png
+  static const String imagesWaterBottel = "assets/images/water_bottel.png";
 
   /// Assets for svgsAppIcon
   /// assets/svgs/app_icon.svg
@@ -226,9 +254,17 @@ class Assets {
   /// assets/svgs/calender.svg
   static const String svgsCalender = "assets/svgs/calender.svg";
 
+  /// Assets for svgsCalories
+  /// assets/svgs/calories.svg
+  static const String svgsCalories = "assets/svgs/calories.svg";
+
   /// Assets for svgsCameraIcon
   /// assets/svgs/camera_icon.svg
   static const String svgsCameraIcon = "assets/svgs/camera_icon.svg";
+
+  /// Assets for svgsClock
+  /// assets/svgs/clock.svg
+  static const String svgsClock = "assets/svgs/clock.svg";
 
   /// Assets for svgsCommingSoon
   /// assets/svgs/comming_soon.svg
