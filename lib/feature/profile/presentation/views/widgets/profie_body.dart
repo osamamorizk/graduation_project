@@ -4,7 +4,7 @@ import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/cashe_helper.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
-import 'package:graduation_project/feature/bottom_nav_bar/presentation/manger/cubit/theme_cubit_cubit.dart';
+import 'package:graduation_project/feature/drink_water/presentation/manger/cubit/notification_cubit.dart';
 import 'package:graduation_project/feature/profile/presentation/views/widgets/profile_option_list.dart';
 
 class ProfileBody extends StatelessWidget {
@@ -27,11 +27,20 @@ class ProfileBody extends StatelessWidget {
             ),
             verticalSpace(32),
             const ProfileOptionList(),
-            IconButton(
-                onPressed: () {
-                  context.read<ThemeCubit>().toggleTheme();
-                },
-                icon: const Icon(Icons.brightness_6_outlined))
+            BlocBuilder<NotificationCubit, bool>(
+              builder: (context, isEnabled) {
+                return SwitchListTile(
+                  title: Text(
+                    'Enable Notifications',
+                    style: TextStyles.font14BlackRegular,
+                  ),
+                  value: isEnabled,
+                  onChanged: (value) {
+                    context.read<NotificationCubit>().toggleNotification(value);
+                  },
+                );
+              },
+            ),
           ],
         ),
       ),

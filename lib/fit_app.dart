@@ -6,6 +6,8 @@ import 'package:graduation_project/core/routes/app_router.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/app_themes.dart';
 import 'package:graduation_project/feature/bottom_nav_bar/presentation/manger/cubit/theme_cubit_cubit.dart';
+import 'package:graduation_project/feature/drink_water/data/repos/notification_repo.dart';
+import 'package:graduation_project/feature/drink_water/presentation/manger/cubit/notification_cubit.dart';
 import 'package:graduation_project/feature/scan_food/data/repos/scan_food_repo_impl.dart';
 import 'package:graduation_project/feature/scan_food/presentation/manger/cubit/scan_food_cubit.dart';
 import 'package:graduation_project/feature/workout/data/repos/workout_repo_impl.dart';
@@ -30,7 +32,14 @@ class FitApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => ThemeCubit()..loadTheme(),
-          )
+          ),
+          BlocProvider(
+            create: (_) =>
+                NotificationCubit(getIt.get<NotificationRepository>())
+                  ..initialize()
+                  ..requestPermissions()
+                  ..loadNotificationStatus(),
+          ),
         ],
         child: BlocBuilder<ThemeCubit, ThemeMode>(
           builder: (context, themMode) {

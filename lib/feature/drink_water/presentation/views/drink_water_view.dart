@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/functions/custom_snack_bar.dart';
 import 'package:graduation_project/core/helpers/const.dart';
-import 'package:graduation_project/core/helpers/notification_serivce.dart';
-import 'package:graduation_project/core/helpers/service_locator.dart';
+
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/drink_water/data/models/water_record_model.dart';
-import 'package:graduation_project/feature/drink_water/presentation/manger/cubit/water_record_cubit.dart';
+import 'package:graduation_project/feature/drink_water/presentation/manger/cubit/notification_cubit.dart';
+import 'package:graduation_project/feature/drink_water/presentation/manger/drink_water_cubit/water_record_cubit.dart';
 import 'package:graduation_project/feature/drink_water/presentation/views/widgets/percent_indicator_widget.dart';
 import 'package:graduation_project/feature/drink_water/presentation/views/widgets/record_details_body.dart';
 import 'package:hive/hive.dart';
@@ -36,7 +36,7 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
       currentIntake = 0;
       drinkWaterPramters.put('currentIntake', currentIntake);
       Hive.box<WaterRecordModel>(kWaterRimenderBox).clear();
-      // drinkWaterPramters.put(kLastOpenDate, now);
+      drinkWaterPramters.put(kLastOpenDate, now);
     } else {
       currentIntake = drinkWaterPramters.get('currentIntake');
     }
@@ -49,6 +49,14 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () async {
+                context.read<NotificationCubit>().tryShowNotification(
+                    'Notification title', 'notification Body');
+              },
+              icon: const Icon(Icons.add_ic_call))
+        ],
         scrolledUnderElevation: 0,
       ),
       body: Padding(
@@ -74,19 +82,15 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
                           .read<WaterRecordCubit>()
                           .addRecord((dailyTarget - currentIntake));
                       currentIntake += (dailyTarget - currentIntake);
-                      await getIt<NotificationService>().scheduleNotification(
-                        title: 'Drink Water Reminder',
-                        body: "it's time to drink water ",
-                        scheduledTime: now.add(const Duration(hours: 1)),
-                      );
+                      context
+                          .read<NotificationCubit>()
+                          .remindToDrink(now, context);
                     } else {
                       currentIntake += 400;
                       context.read<WaterRecordCubit>().addRecord(400);
-                      await getIt<NotificationService>().scheduleNotification(
-                        title: 'Stay Hydrated',
-                        body: "It’s time for your next glass of water.",
-                        scheduledTime: now.add(const Duration(hours: 1)),
-                      );
+                      context
+                          .read<NotificationCubit>()
+                          .remindToDrink(now, context);
                     }
                     setState(() {});
                   } else {
@@ -94,7 +98,7 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
                         text: 'Already reach the target !');
                   }
                   drinkWaterPramters.put('currentIntake', currentIntake);
-                  drinkWaterPramters.put('lastOpenDate', now);
+                  drinkWaterPramters.put(kLastOpenDate, now);
                 },
                 percent: percent,
                 currentIntake: currentIntake,
