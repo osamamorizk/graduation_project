@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/feature/drink_water/data/repos/notification_repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,11 +27,13 @@ class NotificationCubit extends Cubit<bool> {
       'Reminder to Stay Hydrated',
       'It\'s time to drink some water!',
       9,
+      Routes.drinkWaterRoute,
     );
     await dailyReminder(
       'Time to Get Active!',
       'Your workout session is waiting for you!',
       14,
+      Routes.bottomBar,
     );
   }
 
@@ -50,10 +53,15 @@ class NotificationCubit extends Cubit<bool> {
     }
   }
 
-  Future<void> dailyReminder(String title, String body, int hour) async {
+  Future<void> dailyReminder(
+      String title, String body, int hour, String payload) async {
     if (state) {
       await notificationRepository.dailyReminderNotification(
-          title: title, body: body, hour: hour);
+        title: title,
+        body: body,
+        hour: hour,
+        payload: payload,
+      );
     }
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/core/helpers/const.dart';
 import 'package:graduation_project/core/helpers/service_locator.dart';
 import 'package:graduation_project/core/routes/app_router.dart';
 import 'package:graduation_project/core/routes/routes.dart';
@@ -16,6 +17,7 @@ import 'package:graduation_project/feature/workout/presentation/manger/exercise_
 class FitApp extends StatelessWidget {
   const FitApp({super.key, required this.appRouter});
   final AppRouter appRouter;
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -36,14 +38,13 @@ class FitApp extends StatelessWidget {
           BlocProvider(
             create: (_) =>
                 NotificationCubit(getIt.get<NotificationRepository>())
-                  ..initialize()
-                  ..requestPermissions()
                   ..loadNotificationStatus(),
           ),
         ],
         child: BlocBuilder<ThemeCubit, ThemeMode>(
           builder: (context, themMode) {
             return MaterialApp(
+              key: navigatorKey,
               theme: AppThemes.lightTheme,
               darkTheme: AppThemes.darkTheme,
               themeMode: themMode,

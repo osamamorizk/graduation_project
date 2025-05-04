@@ -1,6 +1,9 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:graduation_project/core/functions/ask_permission_dailog.dart';
+import 'package:graduation_project/core/helpers/const.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:timezone/timezone.dart' as tz;
 
@@ -14,7 +17,19 @@ class NotificationRepository {
     const initSettings =
         InitializationSettings(android: androidInit, iOS: iosInit);
 
-    await notificationsPlugin.initialize(initSettings);
+    await notificationsPlugin.initialize(
+      initSettings,
+      onDidReceiveNotificationResponse:
+          (NotificationResponse notificationResponse) async {
+        final String? payload = notificationResponse.payload;
+        log("Received notification with payload: $payload");
+
+        if (payload != null && payload == Routes.drinkWaterRoute) {
+          await Future.delayed(const Duration(milliseconds: 100));
+          navigatorKey.currentState?.pushNamed(Routes.drinkWaterRoute);
+        }
+      },
+    );
   }
 
   Future<void> requestPermissions() async {
@@ -27,6 +42,10 @@ class NotificationRepository {
         .resolvePlatformSpecificImplementation<
             IOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(alert: true, badge: true, sound: true);
+
+    await Permission.scheduleExactAlarm.isDenied.then(
+      (value) => Permission.scheduleExactAlarm.request(),
+    );
   }
 
   Future<void> scheduleDrinkReminder(DateTime now, BuildContext context) async {

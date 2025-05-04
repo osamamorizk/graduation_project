@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/cashe_helper.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/drink_water/presentation/manger/cubit/notification_cubit.dart';
 import 'package:graduation_project/feature/profile/presentation/views/widgets/profile_option_list.dart';
@@ -41,6 +42,19 @@ class ProfileBody extends StatelessWidget {
                 );
               },
             ),
+            IconButton(
+                onPressed: () async {
+                  await context.read<NotificationCubit>().scheduleNotification(
+                        'title',
+                        'body',
+                        DateTime.now().add(const Duration(seconds: 10)),
+                        payload: Routes.drinkWaterRoute,
+                      );
+                },
+                icon: const Icon(
+                  size: 100,
+                  Icons.dangerous,
+                )),
           ],
         ),
       ),
