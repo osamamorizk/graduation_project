@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:graduation_project/core/helpers/notification_serivce.dart';
 import 'package:graduation_project/core/networking/api_service.dart';
 import 'package:graduation_project/feature/diet/data/repos/diet_repo_impl.dart';
 import 'package:graduation_project/feature/drink_water/data/repos/water_repo_impl.dart';
@@ -54,4 +55,6 @@ void setupServiceLocator() {
   getIt.registerSingleton<WaterRepoImpl>(
     WaterRepoImpl(),
   );
+
+  getIt.registerSingleton<NotificationService>(NotificationService());
 }

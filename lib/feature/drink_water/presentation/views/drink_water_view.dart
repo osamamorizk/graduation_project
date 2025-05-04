@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/functions/custom_snack_bar.dart';
 import 'package:graduation_project/core/helpers/const.dart';
+import 'package:graduation_project/core/helpers/notification_serivce.dart';
+import 'package:graduation_project/core/helpers/service_locator.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
@@ -65,25 +67,34 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
               ),
               verticalSpace(24),
               PercentIndicatorWidget(
-                onTap: () {
-                  setState(() {
-                    if (currentIntake < dailyTarget) {
-                      if ((dailyTarget - currentIntake) < 400) {
-                        context
-                            .read<WaterRecordCubit>()
-                            .addRecord((dailyTarget - currentIntake));
-                        currentIntake += (dailyTarget - currentIntake);
-                      } else {
-                        currentIntake += 400;
-                        context.read<WaterRecordCubit>().addRecord(400);
-                      }
+                onTap: () async {
+                  if (currentIntake < dailyTarget) {
+                    if ((dailyTarget - currentIntake) < 400) {
+                      context
+                          .read<WaterRecordCubit>()
+                          .addRecord((dailyTarget - currentIntake));
+                      currentIntake += (dailyTarget - currentIntake);
+                      await getIt<NotificationService>().scheduleNotification(
+                        title: 'Drink Water Reminder',
+                        body: "it's time to drink water ",
+                        scheduledTime: now.add(const Duration(hours: 1)),
+                      );
                     } else {
-                      showCustomSnackBar(context,
-                          text: 'Already reach the target !');
+                      currentIntake += 400;
+                      context.read<WaterRecordCubit>().addRecord(400);
+                      await getIt<NotificationService>().scheduleNotification(
+                        title: 'Stay Hydrated',
+                        body: "It’s time for your next glass of water.",
+                        scheduledTime: now.add(const Duration(hours: 1)),
+                      );
                     }
-                    drinkWaterPramters.put('currentIntake', currentIntake);
-                    drinkWaterPramters.put('lastOpenDate', now);
-                  });
+                    setState(() {});
+                  } else {
+                    showCustomSnackBar(context,
+                        text: 'Already reach the target !');
+                  }
+                  drinkWaterPramters.put('currentIntake', currentIntake);
+                  drinkWaterPramters.put('lastOpenDate', now);
                 },
                 percent: percent,
                 currentIntake: currentIntake,
