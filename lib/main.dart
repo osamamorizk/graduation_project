@@ -16,7 +16,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter<WaterRecordModel>(WaterRecordModelAdapter());
   await Hive.openBox<WaterRecordModel>(kWaterRimenderBox);
-  await Hive.openBox(kDrinkedWater);
+  await Hive.openBox(kDrinkWaterParmeters);
   setupServiceLocator();
   Bloc.observer = MyBlocObserver();
   await CasheHlper.casheIntialization();

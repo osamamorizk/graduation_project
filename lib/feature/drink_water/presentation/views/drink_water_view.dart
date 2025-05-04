@@ -21,25 +21,22 @@ class WaterTrackerScreen extends StatefulWidget {
 class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
   int dailyTarget = 2440;
   int currentIntake = 0;
-  final drinkedWater = Hive.box(kDrinkedWater);
+  final drinkWaterPramters = Hive.box(kDrinkWaterParmeters);
   final now = DateTime.now();
 
   @override
   void initState() {
-    currentIntake = drinkedWater.get('currentIntake') ?? 0;
-    final today = DateTime.now();
-    final lastOpenDate = drinkedWater.get(kLastOpenDate) as DateTime?;
+    currentIntake = drinkWaterPramters.get('currentIntake') ?? 0;
 
-    if (lastOpenDate == null ||
-        lastOpenDate.day != today.day ||
-        lastOpenDate.month != today.month ||
-        lastOpenDate.year != today.year) {
+    final lastOpenDate = drinkWaterPramters.get(kLastOpenDate) as DateTime?;
+
+    if (lastOpenDate == null || lastOpenDate.day != now.day) {
       currentIntake = 0;
-      drinkedWater.put('currentIntake', currentIntake);
+      drinkWaterPramters.put('currentIntake', currentIntake);
       Hive.box<WaterRecordModel>(kWaterRimenderBox).clear();
-      drinkedWater.put(kLastOpenDate, today);
+      // drinkWaterPramters.put(kLastOpenDate, now);
     } else {
-      currentIntake = drinkedWater.get('currentIntake') ?? 0;
+      currentIntake = drinkWaterPramters.get('currentIntake');
     }
     super.initState();
   }
@@ -84,8 +81,8 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
                       showCustomSnackBar(context,
                           text: 'Already reach the target !');
                     }
-                    drinkedWater.put('currentIntake', currentIntake);
-                    drinkedWater.put('lastOpenDate', now);
+                    drinkWaterPramters.put('currentIntake', currentIntake);
+                    drinkWaterPramters.put('lastOpenDate', now);
                   });
                 },
                 percent: percent,

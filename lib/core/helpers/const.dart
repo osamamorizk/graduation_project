@@ -1,3 +1,3 @@
-const kWaterRimenderBox = 'kWaterRimenderBox_7';
-const kDrinkedWater = 'currentIntake1';
-const kLastOpenDate = 'lastOpenDate';
+const kWaterRimenderBox = 'kWaterRimenderBox_8';
+const kDrinkWaterParmeters = 'currentIntake3';
+const kLastOpenDate = 'lastOpenDate1';
