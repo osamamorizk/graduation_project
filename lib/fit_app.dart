@@ -27,6 +27,13 @@ class FitApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
+            create: (_) =>
+                NotificationCubit(getIt.get<NotificationRepository>())
+                  ..initialize()
+                  ..loadNotificationStatus()
+                  ..requestPermissions(),
+          ),
+          BlocProvider(
             create: (context) => ExerciseCubit(getIt.get<WorkoutRepoImpl>()),
           ),
           BlocProvider(
@@ -34,11 +41,6 @@ class FitApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => ThemeCubit()..loadTheme(),
-          ),
-          BlocProvider(
-            create: (_) =>
-                NotificationCubit(getIt.get<NotificationRepository>())
-                  ..loadNotificationStatus(),
           ),
         ],
         child: BlocBuilder<ThemeCubit, ThemeMode>(

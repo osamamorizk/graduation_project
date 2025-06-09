@@ -1,9 +1,6 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:graduation_project/core/functions/ask_permission_dailog.dart';
-import 'package:graduation_project/core/helpers/const.dart';
-import 'package:graduation_project/core/routes/routes.dart';
+
 import 'package:permission_handler/permission_handler.dart';
 import 'package:timezone/timezone.dart' as tz;
 
@@ -19,20 +16,24 @@ class NotificationRepository {
 
     await notificationsPlugin.initialize(
       initSettings,
-      onDidReceiveNotificationResponse:
-          (NotificationResponse notificationResponse) async {
-        final String? payload = notificationResponse.payload;
-        log("Received notification with payload: $payload");
+      // onDidReceiveNotificationResponse:
+      //     (NotificationResponse notificationResponse) async {
+      //   final String? payload = notificationResponse.payload;
+      //   log("Received notification with payload: $payload");
 
-        if (payload != null && payload == Routes.drinkWaterRoute) {
-          await Future.delayed(const Duration(milliseconds: 100));
-          navigatorKey.currentState?.pushNamed(Routes.drinkWaterRoute);
-        }
-      },
+      //   if (payload != null && payload == Routes.drinkWaterRoute) {
+      //     await Future.delayed(const Duration(milliseconds: 100));
+      //     navigatorKey.currentState?.pushNamed(Routes.drinkWaterRoute);
+      //   }
+      // },
     );
   }
 
   Future<void> requestPermissions() async {
+    await notificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestExactAlarmsPermission();
     await notificationsPlugin
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
@@ -43,18 +44,18 @@ class NotificationRepository {
             IOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(alert: true, badge: true, sound: true);
 
-    await Permission.scheduleExactAlarm.isDenied.then(
-      (value) => Permission.scheduleExactAlarm.request(),
+    await Permission.ignoreBatteryOptimizations.isDenied.then(
+      (value) => Permission.ignoreBatteryOptimizations.request(),
     );
   }
 
   Future<void> scheduleDrinkReminder(DateTime now, BuildContext context) async {
     final status = await Permission.notification.status;
 
-    if (status.isPermanentlyDenied) {
-      await askPermissionDialog(context);
-      return;
-    }
+    // if (status.isPermanentlyDenied) {
+    //   await askPermissionDialog(context);
+    //   return;
+    // }
 
     if (status.isDenied || status.isRestricted || status.isLimited) {
       final result = await Permission.notification.request();
@@ -102,7 +103,7 @@ class NotificationRepository {
     await scheduleNotification(
       title: title,
       body: body,
-      scheduledTime: _nextInstanceOfTime(hour: 10),
+      scheduledTime: _nextInstanceOfTime(hour: hour ?? 12),
     );
   }
 
