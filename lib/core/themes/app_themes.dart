@@ -69,7 +69,7 @@ class AppThemes {
         color: ColorsManger.lightTextPrimary,
       ),
       labelSmall: TextStyle(
-        fontSize: 12.sp,
+        fontSize: 13.sp,
         fontWeight: FontWeight.w400,
         color: ColorsManger.lightTextSecondary,
       ),
@@ -139,7 +139,7 @@ class AppThemes {
         color: ColorsManger.darkTextPrimary,
       ),
       labelSmall: TextStyle(
-        fontSize: 12.sp,
+        fontSize: 13.sp,
         fontWeight: FontWeight.w400,
         color: ColorsManger.darkTextSecondary,
       ),

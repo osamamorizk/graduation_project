@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -21,6 +20,7 @@ class CustomTextFormField extends StatelessWidget {
   final Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SizedBox(
       width: double.infinity,
       child: TextFormField(
@@ -30,7 +30,7 @@ class CustomTextFormField extends StatelessWidget {
           return validator!(value);
         },
         obscureText: obscureText ?? false,
-        style: TextStyle(color: ColorsManger.darkBlue),
+        style: Theme.of(context).textTheme.labelLarge,
         decoration: InputDecoration(
           hintText: hintText,
           isDense: true,
@@ -38,11 +38,13 @@ class CustomTextFormField extends StatelessWidget {
           filled: true,
           contentPadding:
               EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
-          fillColor: ColorsManger.lightGrey,
-          hintStyle: TextStyles.font14greyNormal,
+          fillColor:
+              isDarkMode ? ColorsManger.darkSurface : ColorsManger.lightGrey,
+          hintStyle: Theme.of(context).textTheme.labelSmall,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
-            borderSide: BorderSide(width: 1, color: ColorsManger.darkGrey),
+            borderSide:
+                const BorderSide(width: .5, color: ColorsManger.darkGrey),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),

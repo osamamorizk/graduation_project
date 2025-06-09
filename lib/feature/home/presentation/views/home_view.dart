@@ -81,7 +81,7 @@ class HomeView extends StatelessWidget {
           ),
           Text(
             'Your future body is built today',
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.labelSmall,
           ),
         ],
       ),

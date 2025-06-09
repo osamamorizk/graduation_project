@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 
 class WelcomeText extends StatelessWidget {
   const WelcomeText({
@@ -11,15 +10,18 @@ class WelcomeText extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Welcome Back',
-          style: TextStyles.font28DarkBlueBold,
-        ),
+        Text('Welcome Back',
+            style: Theme.of(context)
+                .textTheme
+                .headlineLarge
+                ?.copyWith(fontSize: 24)),
         const SizedBox(height: 16),
         Text(
-          'We\'re excited to have you back, can\'t wait to see what you\'ve been up to since you last logged in.',
-          style: TextStyles.font14greyNormal,
-        ),
+            'We\'re excited to have you back, can\'t wait to see what you\'ve been up to since you last logged in.',
+            style: Theme.of(context)
+                .textTheme
+                .titleSmall
+                ?.copyWith(fontWeight: FontWeight.normal)),
       ],
     );
   }
