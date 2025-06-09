@@ -38,16 +38,22 @@ class PercentIndicatorBody extends StatelessWidget {
             style: TextStyles.font14BlackRegular,
           ),
           verticalSpace(20),
-          Text(
-            "400 ml",
-            style: TextStyles.font16BlackRegular,
-          ),
-          verticalSpace(8),
           GestureDetector(
-              onTap: onTap,
-              child: Image.asset(
-                Assets.imagesWaterBottel,
-              ))
+            onTap: onTap,
+            child: Column(
+              children: [
+                Text(
+                  "400 ml",
+                  style: TextStyles.font16BlackRegular,
+                ),
+                verticalSpace(8),
+                Image.asset(
+                  Assets.imagesWaterBottel,
+                ),
+                verticalSpace(8),
+              ],
+            ),
+          )
         ],
       ),
     );

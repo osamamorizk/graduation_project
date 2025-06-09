@@ -5,7 +5,7 @@ import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/error_view.dart';
-import 'package:graduation_project/feature/drink_water/presentation/manger/cubit/water_record_cubit.dart';
+import 'package:graduation_project/feature/drink_water/presentation/manger/drink_water_cubit/water_record_cubit.dart';
 import 'package:graduation_project/feature/drink_water/presentation/views/widgets/drink_water_records.dart';
 import 'package:intl/intl.dart';
 
