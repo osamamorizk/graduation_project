@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/routes/routes.dart';
-import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/diet/presentation/views/diet_general_plans.dart';
 import 'package:graduation_project/feature/diet/presentation/views/diet_your_plan.dart';
@@ -20,10 +19,9 @@ class DietView extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           toolbarHeight: 45,
-          elevation: .4,
           title: Text(
             'Diet',
-            style: TextStyles.font20BlueRegular,
+            style: Theme.of(context).textTheme.headlineLarge,
           ),
           actions: [
             CustomNewPlanButton(
@@ -35,17 +33,10 @@ class DietView extends StatelessWidget {
             ),
           ],
           bottom: TabBar(
-            indicator: UnderlineTabIndicator(
-              borderSide: BorderSide(
-                color: ColorsManger.darkBlue,
-                width: 2.2,
-              ),
-              insets: const EdgeInsets.symmetric(horizontal: 25.0),
-            ),
             labelPadding: const EdgeInsets.all(0),
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
-            labelStyle: TextStyles.font14BlackRegular,
+            indicatorPadding: const EdgeInsets.symmetric(horizontal: 24),
+            labelStyle: TextStyles.font14Regular,
             tabs: const [
               Tab(
                 text: 'Your plan',

@@ -7,9 +7,14 @@ class DaysListShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    final baseColor = isDarkMode ? Colors.grey.shade800 : Colors.grey.shade100;
+    final highlightColor =
+        isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300;
     return Shimmer.fromColors(
-      baseColor: Colors.grey.shade200,
-      highlightColor: Colors.grey.shade300,
+      baseColor: baseColor,
+      highlightColor: highlightColor,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: 4,

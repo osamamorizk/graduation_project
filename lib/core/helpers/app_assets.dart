@@ -262,6 +262,10 @@ class Assets {
   /// assets/svgs/camera_icon.svg
   static const String svgsCameraIcon = "assets/svgs/camera_icon.svg";
 
+  /// Assets for svgsChatIconUIA
+  /// assets/svgs/Chat_Icon_UIA.svg
+  static const String svgsChatIconUIA = "assets/svgs/Chat_Icon_UIA.svg";
+
   /// Assets for svgsClock
   /// assets/svgs/clock.svg
   static const String svgsClock = "assets/svgs/clock.svg";
@@ -309,6 +313,10 @@ class Assets {
   /// Assets for svgsProfileShare
   /// assets/svgs/profile/Share.svg
   static const String svgsProfileShare = "assets/svgs/profile/Share.svg";
+
+  /// Assets for svgsSettingIconUIA
+  /// assets/svgs/Setting_Icon_UIA.svg
+  static const String svgsSettingIconUIA = "assets/svgs/Setting_Icon_UIA.svg";
 
   /// Assets for svgsYourPlan
   /// assets/svgs/your_plan.svg

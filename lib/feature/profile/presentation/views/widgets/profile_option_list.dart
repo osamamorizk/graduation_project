@@ -18,16 +18,18 @@ class ProfileOptionList extends StatelessWidget {
     return Column(
       children: [
         ProfileOptionItem(
-          image: Assets.svgsProfileMyProgress,
-          text: 'My Progress',
-          onTap: () => showCommingSoonDialog(context),
-        ),
-        verticalSpace(32),
-        ProfileOptionItem(
           image: Assets.svgsProfileMyData,
           text: 'My Data',
           onTap: () {
             context.pushNamed(Routes.myDataView);
+          },
+        ),
+        verticalSpace(32),
+        ProfileOptionItem(
+          image: Assets.svgsSettingIconUIA,
+          text: 'Settings',
+          onTap: () {
+            context.pushNamed(Routes.settingsView);
           },
         ),
         verticalSpace(32),

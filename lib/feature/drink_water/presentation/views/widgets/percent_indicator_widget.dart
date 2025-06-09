@@ -20,6 +20,7 @@ class PercentIndicatorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Stack(
       children: [
         Center(
@@ -30,7 +31,8 @@ class PercentIndicatorWidget extends StatelessWidget {
             animation: true,
             arcBackgroundColor: ColorsManger.grey,
             percent: percent > 1 ? 1 : percent,
-            progressColor: ColorsManger.darkBlue,
+            progressColor:
+                isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue,
             center: PercentIndicatorBody(
               onTap: onTap,
               currentIntake: currentIntake,

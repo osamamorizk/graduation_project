@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 
 class ProfileOptionItem extends StatelessWidget {
   const ProfileOptionItem({
@@ -16,6 +16,7 @@ class ProfileOptionItem extends StatelessWidget {
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -23,12 +24,14 @@ class ProfileOptionItem extends StatelessWidget {
         height: 64.h,
         width: MediaQuery.sizeOf(context).width,
         decoration: BoxDecoration(
-          color: ColorsManger.lighterGrey,
+          color: isDark ? ColorsManger.darkCard : ColorsManger.lighterGrey,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: ColorsManger.lighterGrey,
-              blurRadius: 4,
+              color: isDark
+                  ? const Color.fromARGB(255, 34, 33, 33)
+                  : ColorsManger.lighterGrey,
+              blurRadius: 9,
               spreadRadius: 0,
               offset: const Offset(0, 4),
             ),
@@ -37,13 +40,18 @@ class ProfileOptionItem extends StatelessWidget {
         child: Row(
           children: [
             SvgPicture.asset(
+              height: 24,
               image,
+              colorFilter: ColorFilter.mode(
+                isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue,
+                BlendMode.srcIn,
+              ),
             ),
-            const SizedBox(width: 16),
+            horizontalSpace(16),
             Text(
               text,
-              style: TextStyles.font14BlackBold,
-            ),
+              style: Theme.of(context).textTheme.bodyMedium,
+            )
           ],
         ),
       ),

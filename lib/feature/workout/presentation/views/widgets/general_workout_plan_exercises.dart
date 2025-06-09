@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/calories_and_time.dart';
 import 'package:graduation_project/core/widgets/image_and_title_widget.dart';
 
@@ -25,10 +25,11 @@ class GeneralWorkoutPlanExercises extends StatelessWidget {
                 children: [
                   Positioned(
                     top: -25,
+                    left: MediaQuery.of(context).size.width / 20,
                     child: CalorisAndTimeWidget(
                       widget: Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                             child: VerticalDivider(
                               thickness: 1.5,
@@ -38,8 +39,7 @@ class GeneralWorkoutPlanExercises extends StatelessWidget {
                           ),
                           Text(
                             'Easy',
-                            style: TextStyles.font14BlackRegular
-                                .copyWith(fontSize: 12),
+                            style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ],
                       ),
@@ -51,7 +51,7 @@ class GeneralWorkoutPlanExercises extends StatelessWidget {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: 5,
-                      separatorBuilder: (context, index) => Divider(
+                      separatorBuilder: (context, index) => const Divider(
                         color: ColorsManger.lighterGrey,
                       ),
                       itemBuilder: (context, index) {
@@ -85,23 +85,33 @@ class TitleAndTimeWidget extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return ListTile(
+      tileColor: Colors.transparent,
       leading: Text(
         title,
-        style: TextStyles.font16BlackBold,
+        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              fontSize: 16.sp,
+            ),
       ),
       trailing: FittedBox(
         child: Row(
           spacing: 5,
           children: [
             SvgPicture.asset(
+              colorFilter: ColorFilter.mode(
+                isDarkMode ? ColorsManger.neonPurple : ColorsManger.darkBlue,
+                BlendMode.srcIn,
+              ),
               Assets.svgsClock,
               height: 18,
             ),
             Text(
               '10 min',
-              style: TextStyles.font14BlackBold
-                  .copyWith(fontWeight: FontWeight.normal),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(fontWeight: FontWeight.normal),
             )
           ],
         ),

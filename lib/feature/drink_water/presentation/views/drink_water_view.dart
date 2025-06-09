@@ -5,7 +5,6 @@ import 'package:graduation_project/core/helpers/const.dart';
 
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/drink_water/data/models/water_record_model.dart';
 import 'package:graduation_project/feature/drink_water/presentation/manger/cubit/notification_cubit.dart';
 import 'package:graduation_project/feature/drink_water/presentation/manger/drink_water_cubit/water_record_cubit.dart';
@@ -49,14 +48,6 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () async {
-                context.read<NotificationCubit>().tryShowNotification(
-                    'Notification title', 'notification Body');
-              },
-              icon: const Icon(Icons.add_ic_call))
-        ],
         scrolledUnderElevation: 0,
       ),
       body: Padding(
@@ -67,9 +58,9 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
             children: [
               Text(
                 "Drinking water tracker",
-                style: TextStyles.font18BlackBold,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
-              Text(
+              const Text(
                 "It is your reminder to drink water",
                 style: TextStyle(color: ColorsManger.darkerGrey),
               ),

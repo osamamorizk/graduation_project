@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/helpers/app_regex.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/custom_text_form_field.dart';
 import 'package:graduation_project/feature/sign_up/presentation/manger/cubit/signup_cubit.dart';
 
@@ -105,9 +104,8 @@ class _SignupFormState extends State<SignupForm> {
           ),
           verticalSpace(8),
           Text(
-            'Note: The password must be at least 8 characters long and include a combination of uppercase letters, lowercase letters, and special characters.',
-            style: TextStyles.font14greyNormal,
-          ),
+              'Note: The password must be at least 8 characters long and include a combination of uppercase letters, lowercase letters, and special characters.',
+              style: Theme.of(context).textTheme.labelSmall),
         ],
       ),
     );

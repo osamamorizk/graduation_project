@@ -5,8 +5,8 @@ import 'package:graduation_project/core/widgets/image_and_title_widget.dart';
 import 'package:graduation_project/core/widgets/playing_video_widget.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/level_category_widget.dart';
 
-class WorkoutExerciseDetails extends StatelessWidget {
-  const WorkoutExerciseDetails({super.key});
+class GeneralPlanWorkoutExerciseDetails extends StatelessWidget {
+  const GeneralPlanWorkoutExerciseDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +38,16 @@ class WorkoutExerciseDetails extends StatelessWidget {
                 spacing: 8,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  DetailsSection(title: 'How to do', details: [
-                    'Start Position: Stand upright with feet hip-width apart.'
-                        'Step Forward: Take a big step forward with one leg.'
-                        'Lower Body: Bend both knees until the back knee is close to the floor.'
-                        'Push Up: Press through the front heel to return to the starting position.'
-                        'Repeat: Switch legs and repeat.',
-                  ]),
+                  DetailsSection(
+                    title: 'How to do',
+                    details: [
+                      'Start Position: Stand upright with feet hip-width apart.'
+                          'Step Forward: Take a big step forward with one leg.'
+                          'Lower Body: Bend both knees until the back knee is close to the floor.'
+                          'Push Up: Press through the front heel to return to the starting position.'
+                          'Repeat: Switch legs and repeat.',
+                    ],
+                  ),
                   DetailsSection(title: 'Key Feature', details: [
                     'Targets: Quads, hamstrings, glutes.'
                         'Improves: Balance, stability, lower body strength.'

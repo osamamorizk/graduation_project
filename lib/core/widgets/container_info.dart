@@ -24,7 +24,7 @@ class ContainerIformation extends StatelessWidget {
         child: Center(
           child: Text(
             data,
-            style: TextStyles.font14BlackRegular,
+            style: TextStyles.font14Regular,
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),

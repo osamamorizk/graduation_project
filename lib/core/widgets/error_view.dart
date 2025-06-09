@@ -24,7 +24,7 @@ class ErrorView extends StatelessWidget {
           verticalSpace(20),
           Text(
             errorMessage,
-            style: TextStyles.font16BlackRegular,
+            style: TextStyles.font16Regular,
             textAlign: TextAlign.center,
           ),
         ],

@@ -27,7 +27,7 @@ class GpMealItem extends StatelessWidget {
           ),
           Text(
             'Green beans, tomatoes, eggs',
-            style: TextStyles.font14BlackRegular,
+            style: TextStyles.font14Regular,
           ),
           Row(
             spacing: 6,
@@ -37,7 +37,7 @@ class GpMealItem extends StatelessWidget {
                 '135 kcal',
                 style: TextStyles.font14BlueRegular.copyWith(fontSize: 12),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
                 child: VerticalDivider(
                   thickness: 1.5,

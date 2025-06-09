@@ -30,7 +30,7 @@ class ExerciseItem extends StatelessWidget {
               child: CachedNetworkImage(
                 fit: BoxFit.cover,
                 imageUrl: exerciseModel.image,
-                placeholder: (context, url) => Center(
+                placeholder: (context, url) => const Center(
                   child: SpinKitSpinningLines(
                     color: ColorsManger.darkBlue,
                     size: 30.0,
@@ -56,7 +56,7 @@ class ExerciseItem extends StatelessWidget {
                   verticalSpace(8),
                   Text(
                     exerciseModel.sets,
-                    style: TextStyles.font16BlackRegular,
+                    style: TextStyles.font16Regular,
                   ),
                 ],
               ),

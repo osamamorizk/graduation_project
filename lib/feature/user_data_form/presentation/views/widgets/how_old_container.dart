@@ -28,7 +28,7 @@ class HowOldContainer extends StatelessWidget {
           child: Center(
             child: Text(
               '$age',
-              style: TextStyles.font16BlackRegular,
+              style: TextStyles.font16Regular,
             ),
           ),
         ),
