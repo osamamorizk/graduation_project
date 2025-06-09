@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/calories_and_time.dart';
 import 'package:graduation_project/core/widgets/image_and_title_widget.dart';
+import 'package:graduation_project/feature/workout/presentation/views/widgets/general_workout_plan_exercises.dart';
 
 class WorkoutGeneralPlanDays extends StatelessWidget {
   const WorkoutGeneralPlanDays({super.key});
@@ -25,6 +23,7 @@ class WorkoutGeneralPlanDays extends StatelessWidget {
                 children: [
                   Positioned(
                     top: -25,
+                    left: MediaQuery.of(context).size.width / 20,
                     child: CalorisAndTimeWidget(
                       widget: Row(
                         children: [
@@ -38,8 +37,7 @@ class WorkoutGeneralPlanDays extends StatelessWidget {
                           ),
                           Text(
                             'Easy',
-                            style:
-                                TextStyles.font14Regular.copyWith(fontSize: 12),
+                            style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ],
                       ),
@@ -48,54 +46,27 @@ class WorkoutGeneralPlanDays extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: ListView.separated(
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: 4,
                       separatorBuilder: (context, index) => const Divider(
                         color: ColorsManger.lighterGrey,
+                        thickness: .4,
                       ),
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                            onTap: () {
-                              context.pushNamed(Routes.exercisesByDay);
-                            },
-                            child: const DaysAndTimeWidget());
+                          onTap: () {
+                            context.pushNamed(Routes.exercisesByDay);
+                          },
+                          child: const TitleAndTimeWidget(
+                            title: 'Day 1',
+                          ),
+                        );
                       },
                     ),
                   ),
                 ],
               ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class DaysAndTimeWidget extends StatelessWidget {
-  const DaysAndTimeWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Text(
-        'Day 1',
-        style: TextStyles.font16BlackBold,
-      ),
-      trailing: FittedBox(
-        child: Row(
-          spacing: 5,
-          children: [
-            SvgPicture.asset(
-              Assets.svgsClock,
-              height: 18,
-            ),
-            Text(
-              '10 min',
-              style: TextStyles.font14Regular
-                  .copyWith(fontWeight: FontWeight.normal),
             )
           ],
         ),

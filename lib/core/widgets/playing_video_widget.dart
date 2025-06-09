@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 
 class PlayingVideoWidget extends StatelessWidget {
   const PlayingVideoWidget({
@@ -10,6 +9,7 @@ class PlayingVideoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Align(
       alignment: Alignment.centerRight,
       child: Stack(
@@ -22,10 +22,11 @@ class PlayingVideoWidget extends StatelessWidget {
               borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(30),
                   bottomRight: Radius.circular(30)),
-              color: Colors.white,
+              color: !isDarkMode ? Colors.white : ColorsManger.darkCard,
               boxShadow: [
                 BoxShadow(
-                  color: ColorsManger.darkGrey,
+                  color:
+                      !isDarkMode ? ColorsManger.darkGrey : Colors.transparent,
                   blurRadius: 10,
                   spreadRadius: 0,
                   offset: const Offset(0, 10),
@@ -35,16 +36,18 @@ class PlayingVideoWidget extends StatelessWidget {
             child: Center(
                 child: Text(
               'Watch Video',
-              style: TextStyles.font14BlackBold,
+              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                    fontSize: 16,
+                  ),
             )),
           ),
-          Positioned(
-            left: -50,
-            bottom: -8,
+          const Positioned(
+            left: -49,
+            bottom: -6,
             child: CircleAvatar(
               radius: 32,
               backgroundColor: ColorsManger.darkBlue,
-              child: const Icon(
+              child: Icon(
                 Icons.play_arrow_rounded,
                 size: 50,
                 color: Colors.white,

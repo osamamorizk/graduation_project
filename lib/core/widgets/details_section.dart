@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 
 class DetailsSection extends StatelessWidget {
   const DetailsSection({
@@ -16,7 +15,12 @@ class DetailsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: TextStyles.font16BlackBold),
+        Text(
+          title,
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontSize: 16.sp,
+              ),
+        ),
         NumberedDetailsList(details),
       ],
     );
@@ -36,7 +40,7 @@ class NumberedDetailsList extends StatelessWidget {
           padding: EdgeInsets.only(top: 4.h),
           child: Text(
             '${index + 1}.  ${items[index]}',
-            style: TextStyles.font14greyNormal,
+            style: Theme.of(context).textTheme.bodySmall,
           ),
         );
       }),

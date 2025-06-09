@@ -34,7 +34,7 @@ import 'package:graduation_project/feature/workout/data/repos/workout_repo_impl.
 import 'package:graduation_project/feature/workout/presentation/manger/worlout_cubit/workout_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/exercise_list_view.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/general_workout_plan_exercises.dart';
-import 'package:graduation_project/feature/workout/presentation/views/widgets/workout_exercise_details.dart';
+import 'package:graduation_project/feature/workout/presentation/views/widgets/general_plan_workout_exercise_details.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/workout_general_plan_days.dart';
 
 class AppRouter {
@@ -140,7 +140,7 @@ class AppRouter {
         );
       case Routes.workoutExerciseDetails:
         return MaterialPageRoute(
-          builder: (context) => const WorkoutExerciseDetails(),
+          builder: (context) => const GeneralPlanWorkoutExerciseDetails(),
         );
 
       case Routes.settingsView:

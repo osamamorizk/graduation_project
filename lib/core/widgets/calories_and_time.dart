@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 
 class CalorisAndTimeWidget extends StatelessWidget {
   const CalorisAndTimeWidget({
@@ -15,11 +14,12 @@ class CalorisAndTimeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Container(
       height: 60,
       width: 320,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isDarkMode ? ColorsManger.darkBackground : Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
@@ -29,11 +29,14 @@ class CalorisAndTimeWidget extends StatelessWidget {
           SvgPicture.asset(
             height: 16,
             Assets.svgsCalories,
-            colorFilter: const ColorFilter.mode(Colors.black, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(
+              isDarkMode ? ColorsManger.neonPurple : ColorsManger.darkBlue,
+              BlendMode.srcIn,
+            ),
           ),
           Text(
             '135 kcal',
-            style: TextStyles.font14Regular.copyWith(fontSize: 12),
+            style: Theme.of(context).textTheme.bodySmall,
           ),
           const SizedBox(
             height: 12,
@@ -46,11 +49,14 @@ class CalorisAndTimeWidget extends StatelessWidget {
           SvgPicture.asset(
             height: 16,
             Assets.svgsClock,
-            colorFilter: const ColorFilter.mode(Colors.black, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(
+              isDarkMode ? ColorsManger.neonPurple : ColorsManger.darkBlue,
+              BlendMode.srcIn,
+            ),
           ),
           Text(
             '10 min',
-            style: TextStyles.font14Regular.copyWith(fontSize: 12),
+            style: Theme.of(context).textTheme.bodySmall,
           ),
           widget ?? const SizedBox.shrink(),
         ],
