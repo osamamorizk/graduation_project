@@ -33,9 +33,9 @@ class CalorisAndTimeWidget extends StatelessWidget {
           ),
           Text(
             '135 kcal',
-            style: TextStyles.font14BlackRegular.copyWith(fontSize: 12),
+            style: TextStyles.font14Regular.copyWith(fontSize: 12),
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
             child: VerticalDivider(
               thickness: 1.5,
@@ -50,7 +50,7 @@ class CalorisAndTimeWidget extends StatelessWidget {
           ),
           Text(
             '10 min',
-            style: TextStyles.font14BlackRegular.copyWith(fontSize: 12),
+            style: TextStyles.font14Regular.copyWith(fontSize: 12),
           ),
           widget ?? const SizedBox.shrink(),
         ],

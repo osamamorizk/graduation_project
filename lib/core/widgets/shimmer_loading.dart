@@ -9,23 +9,33 @@ class ShimmerLoadingWidget extends StatelessWidget {
     this.hight,
     this.itemCount,
   });
+
   final double? hight;
   final int? itemCount;
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    final baseColor = isDarkMode ? Colors.grey.shade800 : Colors.grey.shade100;
+    final highlightColor =
+        isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300;
+
     return ListView.builder(
       itemCount: itemCount ?? 4,
       itemBuilder: (context, index) => Shimmer.fromColors(
-        baseColor: Colors.grey.shade100,
-        highlightColor: Colors.grey.shade300,
+        baseColor: baseColor,
+        highlightColor: highlightColor,
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
           decoration: BoxDecoration(
-            color: Colors.blue,
+            color: isDarkMode ? Colors.grey.shade900 : Colors.white,
             borderRadius: BorderRadius.circular(12.0),
-            border: Border.all(color: ColorsManger.darkerGrey, width: .6),
+            border: Border.all(
+              color: ColorsManger.darkerGrey,
+              width: 0.6,
+            ),
           ),
           child: Row(
             children: [verticalSpace(hight ?? 40)],

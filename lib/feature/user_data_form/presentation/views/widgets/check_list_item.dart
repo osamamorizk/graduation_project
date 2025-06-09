@@ -25,7 +25,7 @@ class CheckListItem extends StatelessWidget {
           textAlign: TextAlign.start,
           style: isSelected
               ? TextStyles.font14BlackBold.copyWith(fontWeight: FontWeight.w500)
-              : TextStyles.font14BlackRegular,
+              : TextStyles.font14Regular,
           text,
           textDirection: TextDirection.ltr,
         ),

@@ -2,26 +2,47 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/helpers/cashe_helper.dart';
 
-part 'theme_cubit_state.dart';
-
 class ThemeCubit extends Cubit<ThemeMode> {
   ThemeCubit() : super(ThemeMode.light);
-  final String themeKey = 'theme_mode';
-
+  final String themeModeKey = 'themeMode';
+  final String kLight = 'light';
+  final String kDark = 'dark';
+  final String kSystem = 'system';
   void loadTheme() {
-    final themeMode = CasheHlper.getData(key: themeKey);
-    if (themeMode != null) {
-      emit(themeMode == 'light' ? ThemeMode.light : ThemeMode.dark);
+    final curretnThemeMode = CasheHlper.getData(key: themeModeKey);
+    if (curretnThemeMode != null) {
+      if (curretnThemeMode == kLight) {
+        emit(ThemeMode.light);
+      } else if (curretnThemeMode == kDark) {
+        emit(ThemeMode.dark);
+      } else {
+        emit(ThemeMode.system);
+      }
+    } else {
+      emit(ThemeMode.system);
     }
   }
 
-  void toggleTheme() async {
-    final newTheme =
-        state == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
-    emit(newTheme);
+  void setTheme(ThemeMode theme) async {
+    emit(theme);
+
     await CasheHlper.saveData(
-      key: themeKey,
-      value: newTheme == ThemeMode.light ? 'light' : 'dark',
+      key: themeModeKey,
+      value: theme == ThemeMode.system
+          ? kSystem
+          : theme == ThemeMode.light
+              ? kLight
+              : kDark,
     );
   }
+
+  // void toggleTheme() {
+  //   final newTheme =
+  //       state == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+  //   emit(newTheme);
+  //   // await CacheHelper.saveData(
+  //   //   key: themeModeKey,
+  //   //   value: newTheme == ThemeMode.light ? 'light' : 'dark',
+  //   // );
+  // }
 }

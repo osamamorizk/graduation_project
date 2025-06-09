@@ -17,6 +17,7 @@ class DrinkWaterRecordsItem extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: ListTile(
+            tileColor: Colors.transparent,
             leading: Image.asset(
               Assets.imagesBottel,
               height: 50,
@@ -24,11 +25,11 @@ class DrinkWaterRecordsItem extends StatelessWidget {
             ),
             title: Text(
               DateFormat('hh:mm a').format(waterRecordModel[index].time),
-              style: TextStyles.font14BlackRegular,
+              style: TextStyles.font14Regular,
             ),
             trailing: Text(
               "${waterRecordModel[index].amount.toString()} ml",
-              style: TextStyles.font14BlackRegular,
+              style: TextStyles.font14Regular,
             ),
           ),
         );

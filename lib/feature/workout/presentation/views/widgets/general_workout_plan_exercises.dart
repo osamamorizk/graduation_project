@@ -28,7 +28,7 @@ class GeneralWorkoutPlanExercises extends StatelessWidget {
                     child: CalorisAndTimeWidget(
                       widget: Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                             child: VerticalDivider(
                               thickness: 1.5,
@@ -38,8 +38,8 @@ class GeneralWorkoutPlanExercises extends StatelessWidget {
                           ),
                           Text(
                             'Easy',
-                            style: TextStyles.font14BlackRegular
-                                .copyWith(fontSize: 12),
+                            style:
+                                TextStyles.font14Regular.copyWith(fontSize: 12),
                           ),
                         ],
                       ),
@@ -51,7 +51,7 @@ class GeneralWorkoutPlanExercises extends StatelessWidget {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: 5,
-                      separatorBuilder: (context, index) => Divider(
+                      separatorBuilder: (context, index) => const Divider(
                         color: ColorsManger.lighterGrey,
                       ),
                       itemBuilder: (context, index) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
+import 'package:graduation_project/core/themes/colors_manger.dart';
 
 class PercentIndicatorBody extends StatelessWidget {
   const PercentIndicatorBody({
@@ -17,12 +17,13 @@ class PercentIndicatorBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       height: 275,
       width: 275,
-      decoration: const BoxDecoration(
-        image: DecorationImage(image: AssetImage(Assets.imagesWater)),
-        color: Colors.white,
+      decoration: BoxDecoration(
+        image: const DecorationImage(image: AssetImage(Assets.imagesWater)),
+        color: isDark ? ColorsManger.darkBackground : Colors.white,
         shape: BoxShape.circle,
       ),
       child: Column(
@@ -30,21 +31,27 @@ class PercentIndicatorBody extends StatelessWidget {
         children: [
           verticalSpace(60),
           Text(
-            "${currentIntake.toInt()}/${dailyTarget.toInt()} ml",
-            style: TextStyles.font18BlackBold.copyWith(fontSize: 20),
+            "${currentIntake.toInt()} /${dailyTarget.toInt()} ml",
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  color: ColorsManger.darkBlue,
+                ),
           ),
           Text(
             "Your daily target",
-            style: TextStyles.font14BlackRegular,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  color: Colors.black,
+                ),
           ),
-          verticalSpace(20),
+          verticalSpace(15),
           GestureDetector(
             onTap: onTap,
             child: Column(
               children: [
                 Text(
                   "400 ml",
-                  style: TextStyles.font16BlackRegular,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Colors.black,
+                      ),
                 ),
                 verticalSpace(8),
                 Image.asset(

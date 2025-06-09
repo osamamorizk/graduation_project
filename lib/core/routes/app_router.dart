@@ -20,6 +20,7 @@ import 'package:graduation_project/feature/onboarding/presentation/views/onboard
 import 'package:graduation_project/feature/profile/data/repos/profile_repo_impl.dart';
 import 'package:graduation_project/feature/profile/presentation/manger/cubit/profile_cubit.dart';
 import 'package:graduation_project/feature/profile/presentation/views/my_data_view.dart';
+import 'package:graduation_project/feature/profile/presentation/views/widgets/settings_view.dart';
 import 'package:graduation_project/feature/scan_food/data/models/scan_food_model.dart';
 
 import 'package:graduation_project/feature/scan_food/presentation/views/widgets/food_details_view.dart';
@@ -140,6 +141,11 @@ class AppRouter {
       case Routes.workoutExerciseDetails:
         return MaterialPageRoute(
           builder: (context) => const WorkoutExerciseDetails(),
+        );
+
+      case Routes.settingsView:
+        return MaterialPageRoute(
+          builder: (context) => const SettingsView(),
         );
 
       case Routes.drinkWaterRoute:

@@ -25,7 +25,7 @@ class RecordsDetailsWidget extends StatelessWidget {
                   padding: const EdgeInsets.all(16),
                   child: Text(
                     'There is no water records today',
-                    style: TextStyles.font16BlackRegular,
+                    style: TextStyles.font16Regular,
                   ),
                 ))
               : Column(
@@ -35,10 +35,11 @@ class RecordsDetailsWidget extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 10, left: 12),
                       child: Text(
                         "Today's records",
-                        style: TextStyles.font16BlackBold,
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
                     ListTile(
+                      tileColor: Colors.transparent,
                       leading: Padding(
                         padding: const EdgeInsets.all(6),
                         child: SvgPicture.asset(
@@ -49,16 +50,16 @@ class RecordsDetailsWidget extends StatelessWidget {
                       title: Text(
                         DateFormat('hh:mm a')
                             .format(state.waterRecordModel[0].nextTime),
-                        style: TextStyles.font14BlackRegular,
+                        style: TextStyles.font14Regular,
                       ),
                       subtitle: Text(
                         'Next time',
-                        style: TextStyles.font14BlackRegular
+                        style: TextStyles.font14Regular
                             .copyWith(color: ColorsManger.grey),
                       ),
                       trailing: Text(
                         '400 ml',
-                        style: TextStyles.font14BlackRegular,
+                        style: TextStyles.font14Regular,
                       ),
                     ),
                     DrinkWaterRecordsItem(

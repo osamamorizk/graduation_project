@@ -20,7 +20,10 @@ class WorkoutView extends StatelessWidget {
           elevation: .4,
           automaticallyImplyLeading: false,
           toolbarHeight: 45,
-          title: Text('Workout', style: TextStyles.font20BlueRegular),
+          title: Text(
+            'Workout',
+            style: Theme.of(context).textTheme.headlineLarge,
+          ),
           actions: [
             CustomNewPlanButton(
               type: 'Do you want to create new workout plan?',
@@ -36,13 +39,7 @@ class WorkoutView extends StatelessWidget {
             labelPadding: const EdgeInsets.all(0),
             padding: const EdgeInsets.symmetric(horizontal: 16),
             indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
-            labelStyle: TextStyles.font16BlackRegular,
-            // dividerColor: Colors.grey.shade200,
-            // dividerHeight: .6,
-            // indicatorSize: TabBarIndicatorSize.tab,
-            // indicatorColor: ColorsManger.darkBlue,
-            // labelColor: Colors.black,
-            // unselectedLabelColor: ColorsManger.darkerGrey,
+            labelStyle: TextStyles.font14Regular,
             tabs: const [
               Tab(
                 text: 'Your plan',

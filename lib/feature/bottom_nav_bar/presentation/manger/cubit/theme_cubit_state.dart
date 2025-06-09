@@ -1,6 +1,5 @@
-part of 'theme_cubit_cubit.dart';
+part of 'theme_cubit.dart';
 
-@immutable
-sealed class ThemeCubitState {}
+sealed class ThemeState {}
 
-final class ThemeCubitInitial extends ThemeCubitState {}
+final class ThemeInitial extends ThemeState {}

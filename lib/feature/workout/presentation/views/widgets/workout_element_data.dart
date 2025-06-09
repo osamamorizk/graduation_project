@@ -16,11 +16,11 @@ class WorkoutElementDataItem extends StatelessWidget {
       children: [
         Text(
           data1,
-          style: TextStyles.font14BlackRegular,
+          style: TextStyles.font14Regular,
         ),
         Text(
           data2,
-          style: TextStyles.font14BlackRegular,
+          style: TextStyles.font14Regular,
         ),
       ],
     );

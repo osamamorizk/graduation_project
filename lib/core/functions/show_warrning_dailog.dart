@@ -14,11 +14,11 @@ Future<dynamic> warningDialog(
       title: Text(message ?? ' create new $type plan ?',
           textAlign: TextAlign.center, style: TextStyles.font22BlueBold),
       content: Text('You will lost the current plan',
-          textAlign: TextAlign.center, style: TextStyles.font16BlackRegular),
+          textAlign: TextAlign.center, style: TextStyles.font16Regular),
       actions: <Widget>[
         ElevatedButton(
-          style: ButtonStyle(
-              backgroundColor: const WidgetStatePropertyAll(Colors.white),
+          style: const ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(Colors.white),
               side: WidgetStatePropertyAll(
                   BorderSide(color: ColorsManger.darkBlue, width: .3))),
           onPressed: () {
@@ -31,7 +31,7 @@ Future<dynamic> warningDialog(
         ),
         horizontalSpace(10),
         ElevatedButton(
-          style: ButtonStyle(
+          style: const ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(ColorsManger.darkBlue)),
           onPressed: onPressed,
           child: Text(

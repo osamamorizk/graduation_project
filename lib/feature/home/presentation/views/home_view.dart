@@ -4,8 +4,6 @@ import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/routes/routes.dart';
-
-import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/home/data/models/challenge_model.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/challenge_item.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/home_banner.dart';
@@ -35,7 +33,7 @@ class HomeView extends StatelessWidget {
                       verticalSpace(16),
                       Text(
                         'Challenges',
-                        style: TextStyles.font18BlackBold,
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                       verticalSpace(8),
                     ],
@@ -49,10 +47,11 @@ class HomeView extends StatelessWidget {
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) => GestureDetector(
-                    onTap: () => showCommingSoonDialog(context),
-                    child: ChallengeItem(
-                      challengeModel: challengesList[index],
-                    )),
+                  onTap: () => showCommingSoonDialog(context),
+                  child: ChallengeItem(
+                    challengeModel: challengesList[index],
+                  ),
+                ),
                 childCount: challengesList.length,
               ),
             ),
@@ -64,29 +63,28 @@ class HomeView extends StatelessWidget {
 
   AppBar homeAppBar(BuildContext context) {
     return AppBar(
-        elevation: .5,
-        toolbarHeight: 50,
-        scrolledUnderElevation: .5,
-        titleSpacing: 0,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        leading: GestureDetector(
-            onTap: () {
-              context.pushNamed(Routes.drinkWaterRoute);
-            },
-            child: Image.asset(Assets.iconsAppIcon)),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              'Welcome',
-              style: TextStyles.font16BlueBold,
-            ),
-            Text(
-              'Every choice brings you closer to your best self.',
-              style: TextStyles.font14greyNormal.copyWith(fontSize: 13),
-            ),
-          ],
-        ));
+      toolbarHeight: 50,
+      titleSpacing: 0,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      leading: GestureDetector(
+          onTap: () {
+            context.pushNamed(Routes.drinkWaterRoute);
+          },
+          child: Image.asset(Assets.iconsAppIcon)),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Hi, Osama',
+            style: Theme.of(context).textTheme.headlineLarge,
+          ),
+          Text(
+            'Your future body is built today',
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -14,12 +14,17 @@ class SliverShimmerLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
+    final baseColor = isDarkMode ? Colors.grey.shade800 : Colors.grey.shade100;
+    final highlightColor =
+        isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300;
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
           return Shimmer.fromColors(
-            baseColor: Colors.grey.shade100,
-            highlightColor: Colors.grey.shade300,
+            baseColor: baseColor,
+            highlightColor: highlightColor,
             child: Container(
               margin: const EdgeInsets.symmetric(vertical: 8),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),

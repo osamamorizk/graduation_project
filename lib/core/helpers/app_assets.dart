@@ -310,6 +310,10 @@ class Assets {
   /// assets/svgs/profile/Share.svg
   static const String svgsProfileShare = "assets/svgs/profile/Share.svg";
 
+  /// Assets for svgsSettingIconUIA
+  /// assets/svgs/Setting_Icon_UIA.svg
+  static const String svgsSettingIconUIA = "assets/svgs/Setting_Icon_UIA.svg";
+
   /// Assets for svgsYourPlan
   /// assets/svgs/your_plan.svg
   static const String svgsYourPlan = "assets/svgs/your_plan.svg";

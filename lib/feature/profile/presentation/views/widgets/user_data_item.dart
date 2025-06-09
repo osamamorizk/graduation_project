@@ -11,7 +11,7 @@ Widget userDataItem(String label, String value,
     children: [
       Text(
         label,
-        style: TextStyles.font14BlackRegular,
+        style: TextStyles.font14Regular,
       ),
       verticalSpace(5),
       Container(

@@ -28,7 +28,7 @@ class WorkoutGeneralPlanDays extends StatelessWidget {
                     child: CalorisAndTimeWidget(
                       widget: Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                             child: VerticalDivider(
                               thickness: 1.3,
@@ -38,8 +38,8 @@ class WorkoutGeneralPlanDays extends StatelessWidget {
                           ),
                           Text(
                             'Easy',
-                            style: TextStyles.font14BlackRegular
-                                .copyWith(fontSize: 12),
+                            style:
+                                TextStyles.font14Regular.copyWith(fontSize: 12),
                           ),
                         ],
                       ),
@@ -50,7 +50,7 @@ class WorkoutGeneralPlanDays extends StatelessWidget {
                     child: ListView.separated(
                       shrinkWrap: true,
                       itemCount: 4,
-                      separatorBuilder: (context, index) => Divider(
+                      separatorBuilder: (context, index) => const Divider(
                         color: ColorsManger.lighterGrey,
                       ),
                       itemBuilder: (context, index) {
@@ -94,7 +94,7 @@ class DaysAndTimeWidget extends StatelessWidget {
             ),
             Text(
               '10 min',
-              style: TextStyles.font14BlackRegular
+              style: TextStyles.font14Regular
                   .copyWith(fontWeight: FontWeight.normal),
             )
           ],

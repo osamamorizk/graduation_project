@@ -61,13 +61,13 @@ class WorkoutItem extends StatelessWidget {
           ),
           ListTile(
             contentPadding: const EdgeInsets.only(top: 10),
-            leading: Icon(
+            leading: const Icon(
               Icons.error_outline,
               color: ColorsManger.darkBlue,
             ),
             title: Text(
               '  ${exercise.notes}',
-              style: TextStyles.font14BlackRegular,
+              style: TextStyles.font14Regular,
             ),
           )
         ],

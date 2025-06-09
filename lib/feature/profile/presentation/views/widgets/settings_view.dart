@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
-import 'package:graduation_project/feature/profile/presentation/views/widgets/settings_option_list.dart';
+import 'package:graduation_project/feature/drink_water/presentation/manger/cubit/notification_cubit.dart';
+import 'package:graduation_project/feature/profile/presentation/views/widgets/theme_selection_widget.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -15,16 +17,40 @@ class SettingsView extends StatelessWidget {
         titleSpacing: 0,
         title: Text(
           'Settings',
-          style: TextStyles.font16BlueBold,
+          style: Theme.of(context).textTheme.headlineLarge,
         ),
-        scrolledUnderElevation: 0,
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: true,
-        iconTheme: IconThemeData(color: ColorsManger.darkBlue, size: 22),
       ),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: SettingstOptionsList(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            verticalSpace(16),
+            const ThemeSelectionWidget(),
+            verticalSpace(24),
+            BlocBuilder<NotificationCubit, bool>(
+              builder: (context, isEnabled) {
+                return SwitchListTile(
+                  shape: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: ColorsManger.lighterGrey,
+                      width: .05,
+                    ),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  title: Text(
+                    'Enable Notifications',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  value: isEnabled,
+                  onChanged: (value) {
+                    context.read<NotificationCubit>().toggleNotification(value);
+                  },
+                );
+              },
+            ),
+            verticalSpace(16),
+          ],
+        ),
       ),
     );
   }
