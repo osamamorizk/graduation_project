@@ -47,13 +47,13 @@ class ImagePreviewScreen extends StatelessWidget {
 
   AppBar imgePreviewAppBar() {
     return AppBar(
-      iconTheme: IconThemeData(color: ColorsManger.darkBlue, size: 22),
+      iconTheme: const IconThemeData(color: ColorsManger.darkBlue, size: 22),
       titleSpacing: 0,
       toolbarHeight: 50,
       elevation: .7,
       backgroundColor: Colors.white,
       scrolledUnderElevation: .2,
-      actionsIconTheme: IconThemeData(color: ColorsManger.darkBlue),
+      actionsIconTheme: const IconThemeData(color: ColorsManger.darkBlue),
       centerTitle: false,
       title: Text(
         'Preview Image',

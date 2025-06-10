@@ -27,7 +27,7 @@ class MyDataView extends StatelessWidget {
           style: TextStyles.font16BlueBold,
         ),
         centerTitle: true,
-        iconTheme: IconThemeData(color: ColorsManger.darkBlue),
+        iconTheme: const IconThemeData(color: ColorsManger.darkBlue),
         actions: [
           IconButton(
             onPressed: () {
@@ -35,7 +35,7 @@ class MyDataView extends StatelessWidget {
                 context.pushNamed(Routes.dataForm, arguments: 'putUser');
               }, 'Do you want to update your data and create new plans?');
             },
-            icon: Icon(
+            icon: const Icon(
               FontAwesomeIcons.rotate,
               color: ColorsManger.darkBlue,
               size: 20,

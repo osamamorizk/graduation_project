@@ -4,6 +4,7 @@ import 'package:graduation_project/core/helpers/cashe_helper.dart';
 import 'package:graduation_project/core/helpers/service_locator.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/feature/bottom_nav_bar/presentation/views/bottom_bar.dart';
+import 'package:graduation_project/feature/chatbot/presentation/views/chatbot_view.dart';
 import 'package:graduation_project/feature/diet/data/repos/diet_repo_impl.dart';
 import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_cubit.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/general_plan_details_view.dart';
@@ -146,6 +147,11 @@ class AppRouter {
       case Routes.settingsView:
         return MaterialPageRoute(
           builder: (context) => const SettingsView(),
+        );
+
+      case Routes.chatbot:
+        return MaterialPageRoute(
+          builder: (context) => const ChatbotView(),
         );
 
       case Routes.drinkWaterRoute:

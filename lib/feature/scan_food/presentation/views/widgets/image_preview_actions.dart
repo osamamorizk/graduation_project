@@ -35,8 +35,8 @@ class ImagePreviewActions extends StatelessWidget {
           ),
         ),
         ElevatedButton.icon(
-          style: ButtonStyle(
-              fixedSize: const WidgetStatePropertyAll(Size(145, 40)),
+          style: const ButtonStyle(
+              fixedSize: WidgetStatePropertyAll(Size(145, 40)),
               backgroundColor: WidgetStatePropertyAll(ColorsManger.darkBlue)),
           onPressed: () {
             context.read<ScanFoodCubit>().scanFood(imagePath: imagePath, id: 1);

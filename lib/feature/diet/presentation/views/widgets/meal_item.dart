@@ -20,10 +20,10 @@ class MealItem extends StatelessWidget {
       ),
       expandedCrossAxisAlignment: CrossAxisAlignment.start,
       collapsedShape: RoundedRectangleBorder(
-          side: BorderSide(color: ColorsManger.darkerGrey, width: .5),
+          side: const BorderSide(color: ColorsManger.darkerGrey, width: .5),
           borderRadius: BorderRadius.circular(24)),
       shape: RoundedRectangleBorder(
-          side: BorderSide(color: ColorsManger.darkBlue, width: .5),
+          side: const BorderSide(color: ColorsManger.darkBlue, width: .5),
           borderRadius: BorderRadius.circular(24)),
       title: Row(
         children: [

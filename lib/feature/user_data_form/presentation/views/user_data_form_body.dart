@@ -68,7 +68,7 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
                       : context.pop()
                   : previousScreen();
             },
-            icon: Icon(
+            icon: const Icon(
               size: 22,
               Icons.arrow_back,
               color: ColorsManger.darkBlue,

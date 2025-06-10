@@ -15,7 +15,7 @@ class CameraButton extends StatelessWidget {
           shape: BoxShape.circle,
           border: Border.all(color: Colors.white, width: 2),
         ),
-        child: CircleAvatar(
+        child: const CircleAvatar(
           radius: 38,
           backgroundColor: Colors.transparent,
           child: CircleAvatar(
