@@ -18,13 +18,13 @@ class MessageWidget extends StatelessWidget {
           : CrossAxisAlignment.start,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width / 1.8,
+          // width: MediaQuery.of(context).size.width / 1.8,
           padding: const EdgeInsets.all(16),
-          margin: const EdgeInsets.symmetric(vertical: 8),
+          margin: const EdgeInsets.symmetric(vertical: 4),
           decoration: BoxDecoration(
             color: messageModel.isUserMessage
                 ? messageColor
-                : ColorsManger.darkerGrey,
+                : Colors.grey.shade200,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(messageModel.isUserMessage ? 12 : 0),
                 topRight: Radius.circular(messageModel.isUserMessage ? 0 : 12),
@@ -33,7 +33,9 @@ class MessageWidget extends StatelessWidget {
           ),
           child: Text(
             messageModel.content,
-            style: TextStyles.font14WhiteBold,
+            style: messageModel.isUserMessage
+                ? TextStyles.font14WhiteBold
+                : TextStyles.font14BlackBold,
           ),
         ),
         Padding(
@@ -42,9 +44,10 @@ class MessageWidget extends StatelessWidget {
               left: messageModel.isUserMessage ? 0 : 4),
           child: Text(
             DateFormat('hh:mm a').format(DateTime.now()),
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: ColorsManger.grey,
-                ),
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall
+                ?.copyWith(color: ColorsManger.grey, fontSize: 12),
           ),
         ),
       ],
