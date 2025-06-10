@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_typing_indicator/flutter_typing_indicator.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/widgets/custom_text_form_field.dart';
 import 'package:graduation_project/feature/chatbot/data/models/message_model.dart';
@@ -9,30 +10,48 @@ import 'package:graduation_project/feature/chatbot/presentation/views/widgets/me
 class ChatbotBody extends StatefulWidget {
   const ChatbotBody({
     super.key,
-    required this.messages,
-    required this.messageController,
   });
-
-  final List<MessageModel> messages;
-  final TextEditingController messageController;
 
   @override
   State<ChatbotBody> createState() => _ChatbotBodyState();
 }
 
 class _ChatbotBodyState extends State<ChatbotBody> {
+  late List<MessageModel> messages = [];
+  late final TextEditingController _messageController;
+  final ScrollController _scrollController = ScrollController();
+  @override
+  void initState() {
+    _messageController = TextEditingController();
+
+    super.initState();
+    // BlocProvider.of<ChatbootCubit>(context).getMessages();
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
+    const String typingIndicatorText = 'typingIndicatorText';
     return Column(
       children: [
         Expanded(
           child: BlocListener<ChatbootCubit, ChatbootState>(
             listener: (context, state) {
-              if (state is ChatbootSuccess) {
+              if (state is ChatbootLoading) {
                 setState(() {
-                  widget.messages.add(
+                  messages.add(
+                    MessageModel(
+                      content: typingIndicatorText,
+                      timestamp: DateTime.now(),
+                      isUserMessage: false,
+                    ),
+                  );
+                });
+              } else if (state is ChatbootSuccess) {
+                setState(() {
+                  messages
+                      .removeWhere((msg) => msg.content == typingIndicatorText);
+                  messages.add(
                     MessageModel(
                       content: state.text,
                       timestamp: DateTime.now(),
@@ -41,6 +60,11 @@ class _ChatbotBodyState extends State<ChatbotBody> {
                   );
                 });
               } else if (state is ChatbootError) {
+                setState(() {
+                  messages
+                      .removeWhere((msg) => msg.content == typingIndicatorText);
+                });
+
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(state.errorMessage),
@@ -50,17 +74,19 @@ class _ChatbotBodyState extends State<ChatbotBody> {
               }
             },
             child: ListView.builder(
-              itemCount: widget.messages.length,
+              controller: _scrollController,
+              itemCount: messages.length,
               itemBuilder: (context, index) {
+                final msg = messages[index];
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: MessageWidget(
-                    messageModel: MessageModel(
-                      content: widget.messages[index].content,
-                      timestamp: widget.messages[index].timestamp,
-                      isUserMessage: widget.messages[index].isUserMessage,
-                    ),
-                  ),
+                  child: msg.content == typingIndicatorText
+                      ? const TypingIndicator(
+                          dotColor: ColorsManger.neonPurple,
+                          dotSize: 9.0,
+                          padding: 12.0,
+                        )
+                      : MessageWidget(messageModel: msg),
                 );
               },
             ),
@@ -76,7 +102,7 @@ class _ChatbotBodyState extends State<ChatbotBody> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 8),
                 child: CustomTextFormField(
-                  controller: widget.messageController,
+                  controller: _messageController,
                   validator: null,
                   hintText: 'Ask me anything...',
                 ),
@@ -84,22 +110,9 @@ class _ChatbotBodyState extends State<ChatbotBody> {
             ),
             IconButton(
               onPressed: () {
-                setState(() {
-                  if (widget.messageController.text.isEmpty) return;
-                  widget.messages.add(
-                    MessageModel(
-                      content: widget.messageController.text,
-                      timestamp: DateTime.now(),
-                      isUserMessage: true,
-                    ),
-                  );
+                sendMessage(context);
 
-                  context.read<ChatbootCubit>().getText(
-                        widget.messageController.text,
-                      );
-                });
-
-                widget.messageController.clear();
+                _messageController.clear();
               },
               tooltip: 'Send message',
               icon: Icon(
@@ -114,5 +127,35 @@ class _ChatbotBodyState extends State<ChatbotBody> {
         ),
       ],
     );
+  }
+
+  void sendMessage(BuildContext context) {
+    return setState(() {
+      if (_messageController.text.isEmpty) return;
+      messages.add(
+        MessageModel(
+          content: _messageController.text,
+          timestamp: DateTime.now(),
+          isUserMessage: true,
+        ),
+      );
+      context.read<ChatbootCubit>().getText(
+            _messageController.text,
+          );
+      context.read<ChatbootCubit>().saveMessage(
+            MessageModel(
+              content: _messageController.text,
+              timestamp: DateTime.now(),
+              isUserMessage: true,
+            ),
+          );
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      });
+    });
   }
 }

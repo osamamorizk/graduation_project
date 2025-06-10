@@ -7,6 +7,7 @@ import 'package:graduation_project/core/helpers/const.dart';
 import 'package:graduation_project/core/helpers/my_bloc_observer.dart';
 import 'package:graduation_project/core/helpers/service_locator.dart';
 import 'package:graduation_project/core/routes/app_router.dart';
+import 'package:graduation_project/feature/chatbot/data/models/message_model.dart';
 import 'package:graduation_project/feature/drink_water/data/models/water_record_model.dart';
 import 'package:graduation_project/fit_app.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -20,8 +21,11 @@ Future<void> main() async {
   tz.setLocalLocation(tz.getLocation(await FlutterTimezone.getLocalTimezone()));
   await Hive.initFlutter();
   Hive.registerAdapter<WaterRecordModel>(WaterRecordModelAdapter());
+  Hive.registerAdapter<MessageModel>(MessageModelAdapter());
   await Hive.openBox<WaterRecordModel>(kWaterRimenderBox);
+  await Hive.openBox<MessageModel>(kChatMessages);
   await Hive.openBox(kDrinkWaterParmeters);
+
   setupServiceLocator();
   Bloc.observer = MyBlocObserver();
 

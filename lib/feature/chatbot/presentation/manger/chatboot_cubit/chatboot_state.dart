@@ -18,3 +18,15 @@ final class ChatbootError extends ChatbootState {
 
   ChatbootError(this.errorMessage);
 }
+
+final class ChatbootMessagesLoaded extends ChatbootState {
+  final List<MessageModel> messages;
+
+  ChatbootMessagesLoaded(this.messages);
+}
+
+final class ChatbootMessageSaved extends ChatbootState {
+  final MessageModel message;
+
+  ChatbootMessageSaved(this.message);
+}

@@ -154,7 +154,8 @@ class AppRouter {
       case Routes.chatbot:
         return MaterialPageRoute(
           builder: (context) => BlocProvider(
-            create: (context) => ChatbootCubit(getIt.get<ChatBotRepo>()),
+            create: (context) =>
+                ChatbootCubit(getIt.get<ChatBotRepo>())..getMessages(),
             child: const ChatbotView(),
           ),
         );
