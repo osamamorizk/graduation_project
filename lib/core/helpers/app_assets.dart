@@ -266,6 +266,10 @@ class Assets {
   /// assets/svgs/Chat_Icon_UIA.svg
   static const String svgsChatIconUIA = "assets/svgs/Chat_Icon_UIA.svg";
 
+  /// Assets for svgsChatbotLogo
+  /// assets/svgs/chatbot_logo.svg
+  static const String svgsChatbotLogo = "assets/svgs/chatbot_logo.svg";
+
   /// Assets for svgsClock
   /// assets/svgs/clock.svg
   static const String svgsClock = "assets/svgs/clock.svg";
