@@ -9,7 +9,7 @@ import 'package:graduation_project/core/helpers/service_locator.dart';
 import 'package:graduation_project/core/routes/app_router.dart';
 import 'package:graduation_project/feature/chatbot/data/models/message_model.dart';
 import 'package:graduation_project/feature/drink_water/data/models/water_record_model.dart';
-import 'package:graduation_project/fit_app.dart';
+import 'package:graduation_project/nutrix_app.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -33,7 +33,7 @@ Future<void> main() async {
   await ScreenUtil.ensureScreenSize();
 
   runApp(
-    FitApp(
+    NutrixApp(
       appRouter: AppRouter(),
     ),
   );

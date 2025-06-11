@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_typing_indicator/flutter_typing_indicator.dart';
+import 'package:graduation_project/core/helpers/const.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/widgets/custom_text_form_field.dart';
 import 'package:graduation_project/feature/chatbot/data/models/message_model.dart';
 import 'package:graduation_project/feature/chatbot/presentation/manger/chatboot_cubit/chatboot_cubit.dart';
 import 'package:graduation_project/feature/chatbot/presentation/views/widgets/messge_widget.dart';
+import 'package:hive/hive.dart';
 
 class ChatbotBody extends StatefulWidget {
   const ChatbotBody({
@@ -17,15 +19,15 @@ class ChatbotBody extends StatefulWidget {
 }
 
 class _ChatbotBodyState extends State<ChatbotBody> {
-  late List<MessageModel> messages = [];
+  late List<MessageModel> messages;
   late final TextEditingController _messageController;
   final ScrollController _scrollController = ScrollController();
   @override
   void initState() {
     _messageController = TextEditingController();
-
+    messages = getMessages();
+    scrollToLastMessage();
     super.initState();
-    // BlocProvider.of<ChatbootCubit>(context).getMessages();
   }
 
   @override
@@ -37,6 +39,11 @@ class _ChatbotBodyState extends State<ChatbotBody> {
         Expanded(
           child: BlocListener<ChatbootCubit, ChatbootState>(
             listener: (context, state) {
+              if (state is ChatbootMessagesLoaded) {
+                setState(() {
+                  messages = state.messages;
+                });
+              }
               if (state is ChatbootLoading) {
                 setState(() {
                   messages.add(
@@ -47,7 +54,7 @@ class _ChatbotBodyState extends State<ChatbotBody> {
                     ),
                   );
                 });
-              } else if (state is ChatbootSuccess) {
+              } else if (state is ChatbootResponseSuccess) {
                 setState(() {
                   messages
                       .removeWhere((msg) => msg.content == typingIndicatorText);
@@ -58,6 +65,7 @@ class _ChatbotBodyState extends State<ChatbotBody> {
                       isUserMessage: false,
                     ),
                   );
+                  scrollToLastMessage();
                 });
               } else if (state is ChatbootError) {
                 setState(() {
@@ -132,6 +140,10 @@ class _ChatbotBodyState extends State<ChatbotBody> {
   void sendMessage(BuildContext context) {
     return setState(() {
       if (_messageController.text.isEmpty) return;
+
+      context.read<ChatbootCubit>().getAiResponse(
+            _messageController.text,
+          );
       messages.add(
         MessageModel(
           content: _messageController.text,
@@ -139,23 +151,25 @@ class _ChatbotBodyState extends State<ChatbotBody> {
           isUserMessage: true,
         ),
       );
-      context.read<ChatbootCubit>().getText(
-            _messageController.text,
-          );
-      context.read<ChatbootCubit>().saveMessage(
-            MessageModel(
-              content: _messageController.text,
-              timestamp: DateTime.now(),
-              isUserMessage: true,
-            ),
-          );
-      WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollToLastMessage();
+    });
+  }
+
+  void scrollToLastMessage() {
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
         );
-      });
-    });
+      },
+    );
   }
+}
+
+List<MessageModel> getMessages() {
+  var box = Hive.box<MessageModel>(kChatMessages);
+  List<MessageModel> messages = box.values.toList();
+  return messages;
 }

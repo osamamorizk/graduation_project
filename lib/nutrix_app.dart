@@ -14,8 +14,8 @@ import 'package:graduation_project/feature/scan_food/presentation/manger/cubit/s
 import 'package:graduation_project/feature/workout/data/repos/workout_repo_impl.dart';
 import 'package:graduation_project/feature/workout/presentation/manger/exercise_cubit/exercise_cubit.dart';
 
-class FitApp extends StatelessWidget {
-  const FitApp({super.key, required this.appRouter});
+class NutrixApp extends StatelessWidget {
+  const NutrixApp({super.key, required this.appRouter});
   final AppRouter appRouter;
 
   @override

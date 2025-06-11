@@ -7,10 +7,10 @@ final class ChatbootInitial extends ChatbootState {}
 
 final class ChatbootLoading extends ChatbootState {}
 
-final class ChatbootSuccess extends ChatbootState {
+final class ChatbootResponseSuccess extends ChatbootState {
   final String text;
 
-  ChatbootSuccess(this.text);
+  ChatbootResponseSuccess(this.text);
 }
 
 final class ChatbootError extends ChatbootState {

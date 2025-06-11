@@ -11,11 +11,18 @@ class ChatbootCubit extends Cubit<ChatbootState> {
 
   final ChatBotRepo chatBotRepo;
 
-  Future<void> getText(String message) async {
+  Future<void> getAiResponse(String message) async {
+    saveMessage(
+      MessageModel(
+        content: message,
+        timestamp: DateTime.now(),
+        isUserMessage: false,
+      ),
+    );
     emit(ChatbootLoading());
     final result = await chatBotRepo.getText(message);
     result.fold((failure) => emit(ChatbootError(failure.errorMessage)), (text) {
-      emit(ChatbootSuccess(text));
+      emit(ChatbootResponseSuccess(text));
       saveMessage(
         MessageModel(
           content: text,
@@ -38,6 +45,5 @@ class ChatbootCubit extends Cubit<ChatbootState> {
     await chatBotRepo.saveMessage(message);
 
     emit(ChatbootMessageSaved(message));
-    getMessages();
   }
 }
