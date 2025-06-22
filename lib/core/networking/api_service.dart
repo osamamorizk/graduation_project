@@ -23,6 +23,54 @@ class ApiService {
           options.headers['Authorization'] = 'Bearer $token ';
           return handler.next(options);
         },
+        onError: (error, handler) async {
+          // If token expired
+          if (error.response?.statusCode == 401) {
+            final refreshToken =
+                await CacheHelper.getSecuredData(key: 'refreshToken');
+            final token = await CacheHelper.getSecuredData(key: 'token');
+
+            if (refreshToken != null) {
+              try {
+                // Call refresh token API
+                final response = await dio.post('Auth/refresh-token', data: {
+                  'token': token,
+                  'refreshToken': refreshToken,
+                });
+
+                final newAccessToken = response.data['token'];
+                final newRefreshToken = response.data['refreshToken'];
+
+                // Save new tokens
+                await CacheHelper.saveSecuredData(
+                    key: 'token', value: newAccessToken);
+                await CacheHelper.saveSecuredData(
+                    key: 'refreshToken', value: newRefreshToken);
+
+                // // Retry original request with new token
+                // final originalRequest = error.requestOptions;
+                // originalRequest.headers['Authorization'] =
+                //     'Bearer $newAccessToken';
+
+                // final clonedResponse = await dio.request(
+                //   originalRequest.path,
+                //   options: Options(
+                //     method: originalRequest.method,
+                //     headers: originalRequest.headers,
+                //   ),
+                //   data: originalRequest.data,
+                //   queryParameters: originalRequest.queryParameters,
+                // );
+
+                // return handler.resolve(clonedResponse);
+              } catch (e) {
+                return handler.reject(error);
+              }
+            }
+          }
+
+          return handler.next(error);
+        },
       ),
       PrettyDioLogger(
         requestBody: true,

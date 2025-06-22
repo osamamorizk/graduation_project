@@ -73,8 +73,8 @@ class AppRouter {
                   ..getWorkoutPlans(id: CacheHelper.getInt(key: 'userId')),
               ),
               BlocProvider(
-                create: (context) => DietCubit(getIt.get<DietRepoImpl>())
-                  ..getAllDietsPlan(id: CacheHelper.getInt(key: 'userId')),
+                create: (context) =>
+                    DietCubit(getIt.get<DietRepoImpl>())..getAllDietsPlan(),
               ),
             ],
             child: const BottomBar(),

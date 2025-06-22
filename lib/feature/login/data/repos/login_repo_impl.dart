@@ -20,6 +20,9 @@ class LoginRepoImpl implements LoginRepo {
         data: {'username': userName, 'password': password},
       );
       await CacheHelper.saveSecuredData(key: 'token', value: result['token']);
+      await CacheHelper.saveSecuredData(
+          key: 'refreshToken', value: result['refreshToken']);
+
       return right('Login successful');
     } catch (e) {
       if (e is DioException) {

@@ -24,7 +24,13 @@ class SignUpRepoImplem implements SignupRepo {
         },
       );
       await CacheHelper.saveSecuredData(
-          key: 'token', value: result['token'] ?? '');
+        key: 'token',
+        value: result['token'],
+      );
+      await CacheHelper.saveSecuredData(
+        key: 'refreshToken',
+        value: result['refreshToken'],
+      );
       return right('Sign up successful');
     } catch (e) {
       if (e is DioException) {
