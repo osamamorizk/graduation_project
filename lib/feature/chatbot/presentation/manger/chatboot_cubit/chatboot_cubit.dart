@@ -16,7 +16,7 @@ class ChatbootCubit extends Cubit<ChatbootState> {
       MessageModel(
         content: message,
         timestamp: DateTime.now(),
-        isUserMessage: false,
+        isUserMessage: true,
       ),
     );
     emit(ChatbootLoading());
