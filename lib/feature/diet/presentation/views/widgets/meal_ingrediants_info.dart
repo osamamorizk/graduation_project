@@ -15,17 +15,17 @@ class MealIngrediantsInfo extends StatelessWidget {
       children: [
         Text(
           'Carbs: ${foodMealModel.macronutrients?.carbs ?? 15}',
-          // style: TextStyles.font14BlueRegular,
+          style: TextStyles.font14Regular,
         ),
         const Text('|'),
         Text(
           'Fat:  ${foodMealModel.macronutrients?.fat ?? 20}',
-          // style: TextStyles.font14BlueRegular,
+          style: TextStyles.font14Regular,
         ),
         const Text('|'),
         Text(
           'Protein:  ${foodMealModel.macronutrients?.protein ?? 30}',
-          style: TextStyles.font14BlueRegular,
+          style: TextStyles.font14Regular,
         ),
       ],
     );

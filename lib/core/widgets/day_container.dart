@@ -20,7 +20,7 @@ class DayContainer extends StatelessWidget {
       decoration: BoxDecoration(
         color: isSelected
             ? (isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue)
-            : ColorsManger.grey,
+            : ColorsManger.lighterGrey,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Center(

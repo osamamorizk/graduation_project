@@ -11,9 +11,9 @@ class WorkoutCubit extends Cubit<WorkoutState> {
 
   final WorkoutRepo workoutRepo;
 
-  Future<void> getWorkoutPlans({required int id}) async {
+  Future<void> getWorkoutPlans() async {
     emit(AllWorkoutLoading());
-    var result = await workoutRepo.getAllWorkoutPlans(id: id);
+    var result = await workoutRepo.getAllWorkoutPlans();
     result.fold(
       (failure) {
         emit(AllWorkoutFailure(errorMessage: failure.errorMessage));

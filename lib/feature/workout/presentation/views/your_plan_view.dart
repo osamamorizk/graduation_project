@@ -16,7 +16,7 @@ class WorkoutYourPlanView extends StatelessWidget {
       color: Colors.white,
       backgroundColor: ColorsManger.darkBlue,
       onRefresh: () async {
-        return context.read<WorkoutCubit>().getWorkoutPlans(id: 1);
+        return context.read<WorkoutCubit>().getWorkoutPlans();
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),

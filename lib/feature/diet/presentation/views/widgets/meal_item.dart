@@ -31,7 +31,7 @@ class MealItem extends StatelessWidget {
         children: [
           Text(
             meal.mealType ?? 'Meal',
-            style: TextStyles.font16BlackBold,
+            style: TextStyles.font16Regular,
           ),
           const Spacer(),
           ContainerIformation(

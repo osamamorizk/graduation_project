@@ -70,7 +70,7 @@ class AppRouter {
             providers: [
               BlocProvider(
                 create: (context) => WorkoutCubit(getIt.get<WorkoutRepoImpl>())
-                  ..getWorkoutPlans(id: CacheHelper.getInt(key: 'userId')),
+                  ..getWorkoutPlans(),
               ),
               BlocProvider(
                 create: (context) =>

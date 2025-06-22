@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/themes/colors_manger.dart';
 
 class StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
   final Widget child;
@@ -9,10 +8,8 @@ class StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     return SizedBox.expand(
       child: Material(
-        color: isDark ? ColorsManger.darkBackground : Colors.white,
         elevation: 0,
         child: child,
       ),

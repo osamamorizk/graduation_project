@@ -21,7 +21,7 @@ class FoodMealItem extends StatelessWidget {
         color: color ??
             (isDark ? ColorsManger.darkCard : ColorsManger.lighterGrey),
         borderRadius: BorderRadius.circular(12.0),
-        border: Border.all(color: ColorsManger.darkGrey),
+        border: Border.all(color: ColorsManger.darkGrey, width: .3),
       ),
       child: Column(
         children: [
