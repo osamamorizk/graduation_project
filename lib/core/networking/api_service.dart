@@ -6,7 +6,7 @@ class ApiService {
 
   ApiService(this.dio) {
     dio.options = BaseOptions(
-      baseUrl: 'https://nutrixia.us.kg/api/',
+      baseUrl: 'http://54.198.235.195:8080/api/',
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 15),
       sendTimeout: const Duration(seconds: 5),

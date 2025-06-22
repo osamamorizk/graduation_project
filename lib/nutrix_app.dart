@@ -53,12 +53,12 @@ class NutrixApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               onGenerateRoute: appRouter.generateRoute,
               initialRoute:
-                  // (CasheHlper.getData(key: 'login') ?? false)
+                  // (CasheHlper.getData(key: 'token') ?? false)
                   //     ? (CasheHlper.getData(key: 'dataDone') ?? false)
                   //         ? Routes.bottomBar
                   //         : Routes.dataForm
                   //     : Routes.onboarding,
-                  Routes.bottomBar,
+                  Routes.login,
             );
           },
         ),

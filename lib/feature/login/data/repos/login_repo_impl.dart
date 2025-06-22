@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:graduation_project/core/helpers/cashe_helper.dart';
 import 'package:graduation_project/core/helpers/end_points_const.dart';
 import 'package:graduation_project/core/helpers/errors.dart';
 import 'package:graduation_project/core/networking/api_service.dart';
@@ -18,7 +19,8 @@ class LoginRepoImpl implements LoginRepo {
         endPoints: loginEndPoint,
         data: {'username': userName, 'password': password},
       );
-      return right(result);
+      CasheHlper.saveData(key: 'token', value: result['token']);
+      return right('Login successful');
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
