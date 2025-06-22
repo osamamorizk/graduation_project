@@ -47,7 +47,7 @@ class MyDataView extends StatelessWidget {
         backgroundColor: ColorsManger.darkBlue,
         color: Colors.white,
         onRefresh: () async {
-          int userId = CasheHlper.getData(key: 'userId') ?? 4;
+          int userId = CacheHelper.getData(key: 'userId') ?? 4;
           return context.read<ProfileCubit>().getProfile(id: userId);
         },
         child: BlocBuilder<ProfileCubit, ProfileState>(

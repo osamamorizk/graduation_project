@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:graduation_project/core/helpers/cashe_helper.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class ApiService {
@@ -7,21 +8,28 @@ class ApiService {
   ApiService(this.dio) {
     dio.options = BaseOptions(
       baseUrl: 'http://54.198.235.195:8080/api/',
-      connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 15),
-      sendTimeout: const Duration(seconds: 5),
-      // headers: {
-      //   'Content-Type': 'application/json',
-      //   'Accept': 'application/json',
-      // },
+      connectTimeout: const Duration(seconds: 30),
+      receiveTimeout: const Duration(seconds: 30),
+      sendTimeout: const Duration(seconds: 30),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
     );
-    dio.interceptors.add(
+    dio.interceptors.addAll([
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          options.headers['Authorization'] =
+              'Bearer ${CacheHelper.getData(key: 'token') ?? ''}';
+          return handler.next(options);
+        },
+      ),
       PrettyDioLogger(
         requestBody: true,
         requestHeader: true,
         responseHeader: true,
       ),
-    );
+    ]);
   }
 
   Future<dynamic> get(

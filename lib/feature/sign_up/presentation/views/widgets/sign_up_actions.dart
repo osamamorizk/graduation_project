@@ -17,7 +17,7 @@ class SignUpActions extends StatelessWidget {
         CustomButton(
           onPressed: () {
             if (signupCubit.formKey.currentState!.validate()) {
-              CasheHlper.saveData(
+              CacheHelper.saveData(
                   key: 'name', value: signupCubit.userNameController.text);
               context.read<SignupCubit>().signUp(
                     signUpData: SignUpData(

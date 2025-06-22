@@ -59,7 +59,7 @@ class GoalSelectionScreenState extends State<GoalSelectionScreen> {
                   },
                   child: CustomSingleSelectedItem(
                     isSelected: selectedIndex == index,
-                    image: getImageForGoal(goal),
+                    image: getImageForGoal(goal, context),
                     title: goals[index],
                   ),
                 );
@@ -71,18 +71,30 @@ class GoalSelectionScreenState extends State<GoalSelectionScreen> {
     );
   }
 
-  Image getImageForGoal(String goal) {
+  Image getImageForGoal(String goal, BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     switch (goal) {
       case 'Lose Weight':
-        return Image.asset(Assets.iconsLoseWeight);
+        return Image.asset(
+          Assets.iconsLoseWeight,
+        );
       case 'Build Strength':
-        return Image.asset(Assets.iconsStrenght);
+        return Image.asset(
+          Assets.iconsStrenght,
+          color: isDark ? Colors.white : Colors.black,
+        );
       // case 'Gain Weight':
       //   return Image.asset(Assets.iconsGainWeight);
       case 'Reduce Stress':
-        return Image.asset(Assets.iconsReduceStress);
+        return Image.asset(
+          Assets.iconsReduceStress,
+          color: isDark ? Colors.white : Colors.black,
+        );
       case 'Improve Health':
-        return Image.asset(Assets.iconsImproveHealth);
+        return Image.asset(
+          Assets.iconsImproveHealth,
+          color: isDark ? Colors.white : Colors.black,
+        );
       default:
         return Image.asset(Assets.iconsLoseWeight);
     }

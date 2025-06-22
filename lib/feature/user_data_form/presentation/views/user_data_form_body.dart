@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/functions/custom_snack_bar.dart';
-import 'package:graduation_project/core/helpers/cashe_helper.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/widgets/custom_action_button.dart';
@@ -75,6 +72,7 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
             ),
           ),
           (currentIndex + 1) / selectedScreens.length,
+          context,
         ),
         body: Column(
           children: [
@@ -115,37 +113,41 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
     };
     if (currentIndex == selectedScreens.length - 1) {
       if (isValid) {
-        if (widget.category == 'workout') {
-          log('workout , put');
-          int userId = CasheHlper.getData(key: 'userId') ?? 4;
-          print(userId);
-          userDataCubit.putWorkout(
-            data: data,
-            id: userId,
-          );
-        } else if (widget.category == 'diet') {
-          log('diet , put');
-          int userId = CasheHlper.getData(key: 'userId') ?? 4;
+        // if (widget.category == 'workout') {
+        //   log('workout , put');
+        //   int userId = CasheHlper.getData(key: 'userId') ?? 4;
+        //   print(userId);
+        //   userDataCubit.putWorkout(
+        //     data: data,
+        //     id: userId,
+        //   );
+        // } else if (widget.category == 'diet') {
+        //   log('diet , put');
+        //   int userId = CasheHlper.getData(key: 'userId') ?? 4;
 
-          userDataCubit.putDiet(
-            data: data,
-            id: userId,
-          );
-        } else if (widget.category == 'putUser') {
-          log('user , putpiiiiiiii');
-          int userId = CasheHlper.getData(key: 'userId') ?? 4;
-          print(userId);
+        //   userDataCubit.putDiet(
+        //     data: data,
+        //     id: userId,
+        //   );
+        // } else if (widget.category == 'putUser') {
+        //   log('user , putpiiiiiiii');
+        //   int userId = CasheHlper.getData(key: 'userId') ?? 4;
+        //   print(userId);
 
-          userDataCubit.putUser(
-            data: data,
-            id: userId,
-          );
-        } else {
-          log('post');
-          userDataCubit.postUserData(
-            data: data,
-          );
-        }
+        //   userDataCubit.putUser(
+        //     data: data,
+        //     id: userId,
+        //   );
+        // } else {
+
+        //   userDataCubit.postUserData(
+        //     data: data,
+        //   );
+        // }
+
+        userDataCubit.postUserData(
+          data: data,
+        );
       } else {
         showCustomSnackBar(
             text: 'Please complete all required fields.', context);

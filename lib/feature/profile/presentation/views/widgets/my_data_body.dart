@@ -19,7 +19,7 @@ class MyDataViewBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(Assets.imagesProfieIcon),
-            userDataItem('Name', CasheHlper.getData(key: 'name') ?? 'user',
+            userDataItem('Name', CacheHelper.getData(key: 'name') ?? 'user',
                 trailingIcon: Icons.check),
             userDataItem('User goal', goals[userModel.goal]),
             userDataItem(

@@ -20,26 +20,26 @@ class UserDataForm extends StatelessWidget {
     return BlocListener<UserDataCubit, UserDataState>(
       listener: (context, state) async {
         if (state is PostUserDataSuccess) {
-          await CasheHlper.saveInt(
-              key: 'userId', value: state.userDataFormModel.id);
-          await CasheHlper.saveData(key: 'dataDone', value: true);
+          await CacheHelper.saveData(key: 'dataDone', value: true);
           showSuccessToast('Registration process completed successfully');
           // ignore: use_build_context_synchronously
           context.pushNamedAndRemoveUntil(
             predicate: (route) => false,
             Routes.bottomBar,
           );
-        } else if (state is PutDietPlanSuccess) {
-          showSuccessToast('Diet plan updated successfully');
-          context.pop();
-          context.pushNamedAndRemoveUntil(Routes.bottomBar,
-              predicate: (route) => false);
-        } else if (state is PutWorkoutPlanSuccess) {
-          showSuccessToast('Workout plan updated successfully');
-          context.pop();
-          context.pushNamedAndRemoveUntil(Routes.bottomBar,
-              predicate: (route) => false);
-        } else if (state is PutUserSuccess) {
+        }
+        //  else if (state is PutDietPlanSuccess) {
+        //   showSuccessToast('Diet plan updated successfully');
+        //   context.pop();
+        //   context.pushNamedAndRemoveUntil(Routes.bottomBar,
+        //       predicate: (route) => false);
+        // } else if (state is PutWorkoutPlanSuccess) {
+        //   showSuccessToast('Workout plan updated successfully');
+        //   context.pop();
+        //   context.pushNamedAndRemoveUntil(Routes.bottomBar,
+        //       predicate: (route) => false);
+        // }
+        else if (state is PutUserSuccess) {
           context.pop();
           showSuccessToast('User data and plans updated successfully');
 
@@ -49,12 +49,6 @@ class UserDataForm extends StatelessWidget {
           context.pop();
           showErrorDialog(context, errorMessage: state.errorMessage);
         } else if (state is PostUserDataFailure) {
-          context.pop();
-          showErrorDialog(context, errorMessage: state.errorMessage);
-        } else if (state is PutDietPlanFailure) {
-          context.pop();
-          showErrorDialog(context, errorMessage: state.errorMessage);
-        } else if (state is PutWorkoutPlanFailure) {
           context.pop();
           showErrorDialog(context, errorMessage: state.errorMessage);
         } else if (state is PostUserDataLoading ||

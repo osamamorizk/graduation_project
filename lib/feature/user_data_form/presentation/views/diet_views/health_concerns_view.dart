@@ -84,7 +84,7 @@ class _HealthConcernsViewState extends State<HealthConcernsView> {
             verticalSpace(30.h),
             Text(
               'If Other, please specify',
-              style: TextStyles.font14BlackBold,
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             UserFormTextField(
               controller: userDataCubit.otherHelthConcernsController,

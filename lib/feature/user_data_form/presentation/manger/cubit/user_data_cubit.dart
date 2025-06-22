@@ -35,45 +35,42 @@ class UserDataCubit extends Cubit<UserDataState> {
         emit(PostUserDataFailure(errorMessage: failure.errorMessage));
       },
       (userData) {
-        Future.delayed(
-          Duration(seconds: duration),
-          () => emit(PostUserDataSuccess(userDataFormModel: userData)),
-        );
+        emit(PostUserDataSuccess(userDataFormModel: userData));
       },
     );
   }
 
-  Future<void> putWorkout({required Map data, required int id}) async {
-    emit(PutWorkoutPlanLoading());
-    var result = await userDataFormRepo.putWorkout(data: data, id: id);
-    result.fold(
-      (failure) {
-        emit(PutWorkoutPlanFailure(errorMessage: failure.errorMessage));
-      },
-      (userData) {
-        Future.delayed(
-          Duration(seconds: duration),
-          () => emit(PutWorkoutPlanSuccess(userDataFormModel: userData)),
-        );
-      },
-    );
-  }
+  // Future<void> putWorkout({required Map data, required int id}) async {
+  //   emit(PutWorkoutPlanLoading());
+  //   var result = await userDataFormRepo.putWorkout(data: data, id: id);
+  //   result.fold(
+  //     (failure) {
+  //       emit(PutWorkoutPlanFailure(errorMessage: failure.errorMessage));
+  //     },
+  //     (userData) {
+  //       Future.delayed(
+  //         Duration(seconds: duration),
+  //         () => emit(PutWorkoutPlanSuccess(userDataFormModel: userData)),
+  //       );
+  //     },
+  //   );
+  // }
 
-  Future<void> putDiet({required Map data, required int id}) async {
-    emit(PutDietPlanLoading());
-    var result = await userDataFormRepo.putDiet(data: data, id: id);
-    result.fold(
-      (failure) {
-        emit(PutDietPlanFailure(errorMessage: failure.errorMessage));
-      },
-      (userData) {
-        Future.delayed(
-          Duration(seconds: duration),
-          () => emit(PutDietPlanSuccess(userDataFormModel: userData)),
-        );
-      },
-    );
-  }
+  // Future<void> putDiet({required Map data, required int id}) async {
+  //   emit(PutDietPlanLoading());
+  //   var result = await userDataFormRepo.putDiet(data: data, id: id);
+  //   result.fold(
+  //     (failure) {
+  //       emit(PutDietPlanFailure(errorMessage: failure.errorMessage));
+  //     },
+  //     (userData) {
+  //       Future.delayed(
+  //         Duration(seconds: duration),
+  //         () => emit(PutDietPlanSuccess(userDataFormModel: userData)),
+  //       );
+  //     },
+  //   );
+  // }
 
   Future<void> putUser(
       {required Map<String, dynamic> data, required int id}) async {

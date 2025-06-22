@@ -19,7 +19,7 @@ class DietYourPlan extends StatelessWidget {
       onRefresh: () async {
         return context
             .read<DietCubit>()
-            .getAllDietsPlan(id: CasheHlper.getInt(key: 'id'));
+            .getAllDietsPlan(id: CacheHelper.getInt(key: 'id'));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),

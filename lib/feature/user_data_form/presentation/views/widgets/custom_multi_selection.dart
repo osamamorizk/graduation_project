@@ -16,13 +16,18 @@ class CustomMultiSelectionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final Color selectedColor =
+        isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue;
+    final Color unselectedColor =
+        isDark ? ColorsManger.darkCard : ColorsManger.lighterBlue;
     return AnimatedContainer(
       curve: Curves.bounceOut,
       decoration: BoxDecoration(
-        color: isSelected ? ColorsManger.lighterBlue : Colors.white,
+        color: isSelected ? selectedColor : unselectedColor,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          width: .5,
+          width: .1,
           color: isSelected ? ColorsManger.darkBlue : Colors.grey.shade300,
         ),
       ),
@@ -33,12 +38,12 @@ class CustomMultiSelectionItem extends StatelessWidget {
         title: Text(
           goal,
           style: TextStyle(
-              color: Colors.black,
+              // color: Colors.black,
               fontWeight: isSelected ? FontWeight.w500 : FontWeight.normal),
         ),
         trailing: Icon(
           isSelected ? Icons.check_box : Icons.check_box_outline_blank,
-          color: ColorsManger.darkBlue,
+          color: isDark ? Colors.white : ColorsManger.darkBlue,
         ),
       ),
     );

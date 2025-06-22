@@ -28,7 +28,7 @@ class LoginBlocListener extends StatelessWidget {
             predicate: (route) => false,
           );
           showSuccessToast(state.loginDone);
-          CasheHlper.saveData(key: 'login', value: true);
+          CacheHelper.saveData(key: 'login', value: true);
         }
       },
       child: const SizedBox.shrink(),

@@ -20,17 +20,15 @@ Future<void> main() async {
 
   tz.setLocalLocation(tz.getLocation(await FlutterTimezone.getLocalTimezone()));
   await Hive.initFlutter();
+  await CacheHelper.casheIntialization();
+  setupServiceLocator();
+  Bloc.observer = MyBlocObserver();
+  await ScreenUtil.ensureScreenSize();
   Hive.registerAdapter<WaterRecordModel>(WaterRecordModelAdapter());
   Hive.registerAdapter<MessageModel>(MessageModelAdapter());
   await Hive.openBox<WaterRecordModel>(kWaterRimenderBox);
   await Hive.openBox<MessageModel>(kChatMessages);
   await Hive.openBox(kDrinkWaterParmeters);
-
-  setupServiceLocator();
-  Bloc.observer = MyBlocObserver();
-
-  await CasheHlper.casheIntialization();
-  await ScreenUtil.ensureScreenSize();
 
   runApp(
     NutrixApp(

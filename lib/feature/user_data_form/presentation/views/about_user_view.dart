@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/gender_toggle_buttons.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/widgets/how_old_container.dart';
@@ -32,6 +31,7 @@ class _AboutUserState extends State<AboutUser> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -40,14 +40,15 @@ class _AboutUserState extends State<AboutUser> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               verticalSpace(35.h),
-              Text(
-                'First, tell us a little about yourself',
-                style: TextStyles.font18BlackBold,
-              ),
+              Text('First, tell us a little about yourself',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: isDark ? Colors.white : ColorsManger.darkBlue,
+                      )),
               verticalSpace(40.h),
               Text(
                 'Your Gender',
-                style: TextStyles.font14BlackBold,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
               verticalSpace(16.h),
               const Center(child: GenderToggleButtons()),
@@ -61,7 +62,7 @@ class _AboutUserState extends State<AboutUser> {
                 children: [
                   Text(
                     'How tall are you?',
-                    style: TextStyles.font14BlackBold,
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const TallUniteToggle(),
                 ],
@@ -74,7 +75,7 @@ class _AboutUserState extends State<AboutUser> {
                 children: [
                   Text(
                     'What is your current weight?',
-                    style: TextStyles.font14BlackBold,
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const WeightUniteToggle(),
                 ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/feature/drink_water/presentation/manger/cubit/notification_cubit.dart';
+import 'package:graduation_project/feature/drink_water/presentation/manger/notification_cubit/notification_cubit.dart';
 import 'package:graduation_project/feature/profile/presentation/views/widgets/theme_selection_widget.dart';
 
 class SettingsView extends StatelessWidget {

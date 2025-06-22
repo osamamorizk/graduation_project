@@ -11,7 +11,9 @@ import 'package:graduation_project/feature/diet/data/repos/diet_repo_impl.dart';
 import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_cubit.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/general_plan_details_view.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/genral_plan_meal_details.dart';
+import 'package:graduation_project/feature/drink_water/data/repos/notification_repo.dart';
 import 'package:graduation_project/feature/drink_water/data/repos/water_repo_impl.dart';
+import 'package:graduation_project/feature/drink_water/presentation/manger/notification_cubit/notification_cubit.dart';
 import 'package:graduation_project/feature/drink_water/presentation/manger/drink_water_cubit/water_record_cubit.dart';
 import 'package:graduation_project/feature/drink_water/presentation/views/drink_water_view.dart';
 import 'package:graduation_project/feature/login/data/repos/login_repo_impl.dart';
@@ -68,11 +70,11 @@ class AppRouter {
             providers: [
               BlocProvider(
                 create: (context) => WorkoutCubit(getIt.get<WorkoutRepoImpl>())
-                  ..getWorkoutPlans(id: CasheHlper.getInt(key: 'userId')),
+                  ..getWorkoutPlans(id: CacheHelper.getInt(key: 'userId')),
               ),
               BlocProvider(
                 create: (context) => DietCubit(getIt.get<DietRepoImpl>())
-                  ..getAllDietsPlan(id: CasheHlper.getInt(key: 'userId')),
+                  ..getAllDietsPlan(id: CacheHelper.getInt(key: 'userId')),
               ),
             ],
             child: const BottomBar(),
@@ -110,7 +112,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => ProfileCubit(getIt.get<ProfileRepoImpl>())
-              ..getProfile(id: CasheHlper.getData(key: 'userId')),
+              ..getProfile(id: CacheHelper.getData(key: 'userId')),
             child: const MyDataView(),
           ),
         );
@@ -148,7 +150,14 @@ class AppRouter {
 
       case Routes.settingsView:
         return MaterialPageRoute(
-          builder: (context) => const SettingsView(),
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                NotificationCubit(getIt.get<NotificationRepository>())
+                  ..initialize()
+                  ..loadNotificationStatus()
+                  ..requestPermissions(),
+            child: const SettingsView(),
+          ),
         );
 
       case Routes.chatbot:

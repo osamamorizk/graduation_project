@@ -8,11 +8,14 @@ class CustomButton extends StatelessWidget {
   final String text;
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return ElevatedButton(
       style: ButtonStyle(
           shape: WidgetStatePropertyAll(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-          backgroundColor: WidgetStateProperty.all(ColorsManger.darkBlue),
+          backgroundColor: WidgetStateProperty.all(
+            isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue,
+          ),
           minimumSize: const WidgetStatePropertyAll(Size(double.infinity, 50))),
       onPressed: onPressed,
       child: Text(

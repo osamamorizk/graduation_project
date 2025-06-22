@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 
 void showErrorDialog(BuildContext parentContext,
     {required String errorMessage}) {
@@ -33,9 +32,10 @@ void showErrorDialog(BuildContext parentContext,
               Text(
                 errorMessage,
                 textAlign: TextAlign.center,
-                style: isDark
-                    ? TextStyles.font14WhiteBold
-                    : TextStyles.font14BlackBold,
+                // style:
+                //  isDark
+                //     ? TextStyles.font14WhiteBold
+                //     : TextStyles.font14BlackBold,
               ),
             ],
           ),
