@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:graduation_project/core/helpers/cashe_helper.dart';
+import 'package:graduation_project/core/helpers/cache_helper.dart';
 import 'package:graduation_project/core/helpers/errors.dart';
 import 'package:graduation_project/core/networking/api_service.dart';
 import 'package:graduation_project/core/networking/end_points.dart';
@@ -23,7 +23,8 @@ class SignUpRepoImplem implements SignupRepo {
           'password': signUpData.password,
         },
       );
-      await CacheHelper.saveData(key: 'token', value: result['token'] ?? '');
+      await CacheHelper.saveSecuredData(
+          key: 'token', value: result['token'] ?? '');
       return right('Sign up successful');
     } catch (e) {
       if (e is DioException) {

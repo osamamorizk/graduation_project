@@ -47,7 +47,7 @@ class CacheHelper {
     return await flutterSecureStorage.write(key: key, value: value);
   }
 
-  static dynamic getSecuredData({required String key}) async {
+  static Future<String?> getSecuredData({required String key}) async {
     const flutterSecureStorage = FlutterSecureStorage();
     return await flutterSecureStorage.read(key: key);
   }

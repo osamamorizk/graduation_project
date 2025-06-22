@@ -11,6 +11,7 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     this.keyboardType,
     required this.validator,
+    this.onFieldSubmitted,
   });
   final String? hintText;
   final Widget? suffixIcon;
@@ -18,12 +19,14 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final Function(String?)? validator;
+  final void Function(String)? onFieldSubmitted;
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return SizedBox(
       width: double.infinity,
       child: TextFormField(
+        onFieldSubmitted: onFieldSubmitted,
         controller: controller,
         keyboardType: keyboardType,
         validator: (value) {
