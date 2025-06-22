@@ -8,7 +8,6 @@ part 'user_data_state.dart';
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(this.userDataFormRepo) : super(UserDataInitial());
   final UserDataFormRepo userDataFormRepo;
-  int duration = 15;
   int gender = 0;
   double tall = 140;
   double age = 25;
@@ -81,10 +80,7 @@ class UserDataCubit extends Cubit<UserDataState> {
         emit(PutUserFailure(errorMessage: failure.errorMessage));
       },
       (userData) {
-        Future.delayed(
-          Duration(seconds: duration),
-          () => emit(PutUserSuccess(userDataFormModel: userData)),
-        );
+        emit(PutUserSuccess(userDataFormModel: userData));
       },
     );
   }

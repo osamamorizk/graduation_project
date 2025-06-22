@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/core/helpers/cache_helper.dart';
 import 'package:graduation_project/core/helpers/const.dart';
 import 'package:graduation_project/core/helpers/service_locator.dart';
 import 'package:graduation_project/core/routes/app_router.dart';
@@ -43,13 +44,11 @@ class NutrixApp extends StatelessWidget {
               themeMode: themMode,
               debugShowCheckedModeBanner: false,
               onGenerateRoute: appRouter.generateRoute,
-              initialRoute:
-                  // (CasheHlper.getData(key: 'token') ?? false)
-                  //     ? (CasheHlper.getData(key: 'dataDone') ?? false)
-                  //         ? Routes.bottomBar
-                  //         : Routes.dataForm
-                  //     : Routes.onboarding,
-                  Routes.login,
+              initialRoute: (CacheHelper.getData(key: 'login') ?? false)
+                  ? (CacheHelper.getData(key: 'dataDone') ?? false)
+                      ? Routes.bottomBar
+                      : Routes.dataForm
+                  : Routes.onboarding,
             );
           },
         ),
