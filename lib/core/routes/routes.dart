@@ -18,4 +18,5 @@ abstract class Routes {
   static const String workoutExerciseDetails = 'workoutExerciseDetails';
   static const String drinkWaterRoute = 'drinkWaterRoute';
   static const String settingsView = 'settingsView';
+  static const String chatbot = 'chatbotview';
 }

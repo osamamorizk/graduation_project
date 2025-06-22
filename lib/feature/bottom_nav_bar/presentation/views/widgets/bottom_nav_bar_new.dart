@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
+import 'package:graduation_project/core/helpers/extensions.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/feature/bottom_nav_bar/presentation/views/widgets/bottom_bar_consts.dart';
 
@@ -60,7 +62,11 @@ class NewBottomNavBarState extends State<NewBottomNavBar> {
           backgroundColor: const Color(0xff87AECE),
           child: IconButton(
             tooltip: 'Chat bot',
-            onPressed: () {},
+            onPressed: () {
+              context.pushNamed(
+                Routes.chatbot,
+              );
+            },
             icon: SvgPicture.asset(
               Assets.svgsChatIconUIA,
             ),

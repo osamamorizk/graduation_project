@@ -9,7 +9,7 @@ class OrWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(
+        const Expanded(
           child: Divider(
             thickness: .5,
             color: ColorsManger.grey,
@@ -21,7 +21,7 @@ class OrWidget extends StatelessWidget {
               style: TextStyles.font14greyNormal
                   .copyWith(fontWeight: FontWeight.bold)),
         ),
-        Expanded(
+        const Expanded(
           child: Divider(
             thickness: .5,
             color: ColorsManger.grey,

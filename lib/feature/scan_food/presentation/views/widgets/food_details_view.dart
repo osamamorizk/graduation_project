@@ -20,7 +20,7 @@ class FoodDetailsPage extends StatelessWidget {
         backgroundColor: Colors.white,
         titleSpacing: 0,
         scrolledUnderElevation: .5,
-        iconTheme: IconThemeData(color: ColorsManger.darkBlue, size: 22),
+        iconTheme: const IconThemeData(color: ColorsManger.darkBlue, size: 22),
         elevation: 0,
         title: Text(
           "Food Details",

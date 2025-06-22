@@ -9,7 +9,7 @@ Future<dynamic> logoutDialog(BuildContext context,
   return showDialog(
     builder: (context) => AlertDialog(
       backgroundColor: Colors.white,
-      icon: Icon(
+      icon: const Icon(
         size: 60,
         Icons.warning_rounded,
         color: ColorsManger.darkBlue,
@@ -19,8 +19,8 @@ Future<dynamic> logoutDialog(BuildContext context,
           textAlign: TextAlign.center, style: TextStyles.font18BlackBold),
       actions: <Widget>[
         ElevatedButton(
-          style: ButtonStyle(
-              backgroundColor: const WidgetStatePropertyAll(Colors.white),
+          style: const ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(Colors.white),
               side: WidgetStatePropertyAll(
                   BorderSide(color: ColorsManger.darkBlue, width: .3))),
           onPressed: () {
@@ -33,7 +33,7 @@ Future<dynamic> logoutDialog(BuildContext context,
         ),
         horizontalSpace(10),
         ElevatedButton(
-          style: ButtonStyle(
+          style: const ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(ColorsManger.darkBlue)),
           onPressed: onPressed,
           child: Text(
