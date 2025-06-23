@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project/core/helpers/cache_helper.dart';
 import 'package:graduation_project/core/helpers/service_locator.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/feature/bottom_nav_bar/presentation/views/bottom_bar.dart';
@@ -110,8 +109,8 @@ class AppRouter {
       case Routes.myDataView:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => ProfileCubit(getIt.get<ProfileRepoImpl>())
-              ..getProfile(id: CacheHelper.getData(key: 'userId')),
+            create: (context) =>
+                ProfileCubit(getIt.get<ProfileRepoImpl>())..getProfile(),
             child: const MyDataView(),
           ),
         );

@@ -6,9 +6,10 @@ import 'package:graduation_project/core/themes/text_styles.dart';
 
 Future<dynamic> logoutDialog(BuildContext context,
     {void Function()? onPressed}) {
+  final isDark = Theme.of(context).brightness == Brightness.dark;
   return showDialog(
     builder: (context) => AlertDialog(
-      backgroundColor: Colors.white,
+      elevation: 0,
       icon: const Icon(
         size: 60,
         Icons.warning_rounded,
@@ -19,10 +20,12 @@ Future<dynamic> logoutDialog(BuildContext context,
           textAlign: TextAlign.center, style: TextStyles.font18BlackBold),
       actions: <Widget>[
         ElevatedButton(
-          style: const ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(Colors.white),
-              side: WidgetStatePropertyAll(
-                  BorderSide(color: ColorsManger.darkBlue, width: .3))),
+          style: ButtonStyle(
+              backgroundColor: const WidgetStatePropertyAll(Colors.white),
+              side: WidgetStatePropertyAll(BorderSide(
+                  color:
+                      isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue,
+                  width: .3))),
           onPressed: () {
             context.pop();
           },

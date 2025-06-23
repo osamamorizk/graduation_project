@@ -23,7 +23,7 @@ class FoodElementCardItem extends StatelessWidget {
       ),
       elevation: 2,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -35,36 +35,42 @@ class FoodElementCardItem extends StatelessWidget {
               ),
             ),
             verticalSpace(12),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                NutrientInfo(
-                    icon: Icons.local_fire_department,
-                    value: "${foodItem.calories} cal",
-                    label: "Calories",
-                    color: Colors.orange),
-                NutrientInfo(
-                    icon: Icons.egg_alt_outlined,
-                    value: "${foodItem.macros?.protein}",
-                    label: "Protein",
-                    color: Colors.purple),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  NutrientInfo(
+                      icon: Icons.local_fire_department,
+                      value: "${foodItem.calories} cal",
+                      label: "Calories",
+                      color: Colors.orange),
+                  NutrientInfo(
+                      icon: Icons.egg_alt_outlined,
+                      value: "${foodItem.macros?.protein}",
+                      label: "Protein",
+                      color: Colors.purple),
+                ],
+              ),
             ),
             verticalSpace(16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                NutrientInfo(
-                    icon: Icons.water_drop_outlined,
-                    value: "${foodItem.macros?.fat}",
-                    label: "Fat",
-                    color: Colors.black),
-                NutrientInfo(
-                    icon: FontAwesomeIcons.cookieBite,
-                    value: "${foodItem.macros?.carbohydrates}",
-                    label: "Carbs",
-                    color: Colors.green),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  NutrientInfo(
+                      icon: Icons.water_drop_outlined,
+                      value: "${foodItem.macros?.fat}",
+                      label: "Fat",
+                      color: Colors.black),
+                  NutrientInfo(
+                      icon: FontAwesomeIcons.cookieBite,
+                      value: "${foodItem.macros?.carbohydrates}",
+                      label: "Carbs",
+                      color: Colors.green),
+                ],
+              ),
             ),
             verticalSpace(5),
           ],

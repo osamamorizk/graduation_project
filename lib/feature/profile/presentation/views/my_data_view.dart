@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:graduation_project/core/functions/show_warrning_dailog.dart';
-import 'package:graduation_project/core/helpers/cache_helper.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
@@ -19,7 +18,6 @@ class MyDataView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         scrolledUnderElevation: 0,
         elevation: 0,
         title: Text(
@@ -27,9 +25,9 @@ class MyDataView extends StatelessWidget {
           style: TextStyles.font16BlueBold,
         ),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: ColorsManger.darkBlue),
         actions: [
           IconButton(
+            tooltip: 'Update Data',
             onPressed: () {
               warningDialog(context, () {
                 context.pushNamed(Routes.dataForm, arguments: 'putUser');
@@ -37,7 +35,6 @@ class MyDataView extends StatelessWidget {
             },
             icon: const Icon(
               FontAwesomeIcons.rotate,
-              color: ColorsManger.darkBlue,
               size: 20,
             ),
           ),
@@ -47,8 +44,7 @@ class MyDataView extends StatelessWidget {
         backgroundColor: ColorsManger.darkBlue,
         color: Colors.white,
         onRefresh: () async {
-          int userId = CacheHelper.getData(key: 'userId') ?? 4;
-          return context.read<ProfileCubit>().getProfile(id: userId);
+          return context.read<ProfileCubit>().getProfile();
         },
         child: BlocBuilder<ProfileCubit, ProfileState>(
           builder: (context, state) {

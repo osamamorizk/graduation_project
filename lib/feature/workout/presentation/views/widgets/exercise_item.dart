@@ -18,10 +18,16 @@ class ExerciseItem extends StatelessWidget {
         showExerciseVideoDialog(context, videoUrl: exerciseModel.videoUrl);
       },
       child: Container(
+        margin: const EdgeInsets.only(
+          top: 8,
+        ),
         height: 120.h,
-        decoration: const BoxDecoration(
-            border: BorderDirectional(
-                bottom: BorderSide(width: .2, color: Colors.grey))),
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: .1,
+            color: ColorsManger.darkerGrey,
+          ),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

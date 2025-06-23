@@ -4,5 +4,6 @@ const userDataEndPoint = 'User/profile';
 const dietPlanEndPoint = 'Plan/diet';
 const workoutPlanEndPoint = 'Plan/workout';
 const scanFoodEndPoint = 'FoodDetection/gemini-scan';
+const profileEndPoint = 'User/profile';
 
 const String specializationEndPoints = 'specialization/index';

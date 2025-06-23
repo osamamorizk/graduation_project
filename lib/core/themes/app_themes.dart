@@ -90,9 +90,9 @@ class AppThemes {
       dividerColor: Colors.white10,
       dividerHeight: 0.6,
       indicatorSize: TabBarIndicatorSize.tab,
-      indicatorColor: ColorsManger.neonGreen,
-      labelColor: ColorsManger.neonGreen,
-      unselectedLabelColor: ColorsManger.neonPurple,
+      indicatorColor: ColorsManger.neonPurple,
+      labelColor: ColorsManger.neonPurple,
+      unselectedLabelColor: ColorsManger.darkerGrey,
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       elevation: 0,

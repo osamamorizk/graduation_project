@@ -27,7 +27,7 @@ class ShimmerLoadingWidget extends StatelessWidget {
         baseColor: baseColor,
         highlightColor: highlightColor,
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
           decoration: BoxDecoration(
             color: isDarkMode ? Colors.grey.shade900 : Colors.white,

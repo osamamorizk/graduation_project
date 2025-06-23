@@ -9,7 +9,6 @@ Future<dynamic> warningDialog(
     {String? type}) {
   return showDialog(
     builder: (context) => AlertDialog(
-      backgroundColor: Colors.white,
       actionsAlignment: MainAxisAlignment.center,
       title: Text(message ?? ' create new $type plan ?',
           textAlign: TextAlign.center, style: TextStyles.font22Bold),
