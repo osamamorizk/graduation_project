@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -129,25 +131,18 @@ class _UserDataFormBodyState extends State<UserDataFormBody> {
         //     data: data,
         //     id: userId,
         //   );
-        // } else if (widget.category == 'putUser') {
-        //   log('user , putpiiiiiiii');
-        //   int userId = CasheHlper.getData(key: 'userId') ?? 4;
-        //   print(userId);
-
-        //   userDataCubit.putUser(
-        //     data: data,
-        //     id: userId,
-        //   );
-        // } else {
-
-        //   userDataCubit.postUserData(
-        //     data: data,
-        //   );
         // }
+        if (widget.category == 'putUser') {
+          log('user , putpiiiiiiii');
 
-        userDataCubit.postUserData(
-          data: data,
-        );
+          userDataCubit.putUser(
+            data: data,
+          );
+        } else {
+          userDataCubit.postUserData(
+            data: data,
+          );
+        }
       } else {
         showCustomSnackBar(
             text: 'Please complete all required fields.', context);

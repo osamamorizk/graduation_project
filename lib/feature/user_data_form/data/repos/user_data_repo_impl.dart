@@ -31,11 +31,11 @@ class UserDataRepoImpl implements UserDataFormRepo {
 
   @override
   Future<Either<Failure, UserDataFormModel>> putUser(
-      {required Map<String, dynamic> data, required int id}) async {
+      {required Map<String, dynamic> data}) async {
     try {
       final result =
           await apiService.put(endPoints: userDataEndPoint, data: data);
-      final userDataModel = UserDataFormModel.fromJson(result['user']);
+      final userDataModel = UserDataFormModel.fromJson(result['userProfile']);
       return right(userDataModel);
     } catch (e) {
       if (e is DioException) {

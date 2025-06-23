@@ -39,6 +39,18 @@ class UserDataCubit extends Cubit<UserDataState> {
     );
   }
 
+  Future<void> putUser({required Map<String, dynamic> data}) async {
+    emit(PutUserLoading());
+    var result = await userDataFormRepo.putUser(data: data);
+    result.fold(
+      (failure) {
+        emit(PutUserFailure(errorMessage: failure.errorMessage));
+      },
+      (userData) {
+        emit(PutUserSuccess(userDataFormModel: userData));
+      },
+    );
+  }
   // Future<void> putWorkout({required Map data, required int id}) async {
   //   emit(PutWorkoutPlanLoading());
   //   var result = await userDataFormRepo.putWorkout(data: data, id: id);
@@ -70,20 +82,6 @@ class UserDataCubit extends Cubit<UserDataState> {
   //     },
   //   );
   // }
-
-  Future<void> putUser(
-      {required Map<String, dynamic> data, required int id}) async {
-    emit(PutUserLoading());
-    var result = await userDataFormRepo.putUser(data: data, id: id);
-    result.fold(
-      (failure) {
-        emit(PutUserFailure(errorMessage: failure.errorMessage));
-      },
-      (userData) {
-        emit(PutUserSuccess(userDataFormModel: userData));
-      },
-    );
-  }
 
   bool validateAllData() {
     return validateDietData() && validateWorkoutData();

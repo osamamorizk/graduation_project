@@ -13,7 +13,7 @@ void showCommingSoonDialog(BuildContext parentContext) {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        elevation: 5,
+        elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
