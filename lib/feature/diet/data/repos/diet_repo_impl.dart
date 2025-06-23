@@ -38,6 +38,28 @@ class DietRepoImpl implements DietRepo {
   }
 
   @override
+  Future<Either<Failure, List<DietPlanModel>>> changeDit() async {
+    try {
+      var result =
+          await apiService.post(endPoints: dietPlanEndPoint, data: null);
+      daysDietList.clear();
+      final List<Map<String, dynamic>> transformedResponse =
+          convertToDesiredStructure(result);
+      for (var dietDay in transformedResponse) {
+        daysDietList.add(DietPlanModel.fromJson(dietDay));
+      }
+      return right(daysDietList);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        log(e.toString());
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
+    }
+  }
+
+  @override
   Future<Either<Failure, List<Meal>>> getMealsByDay(
       {required String day}) async {
     try {

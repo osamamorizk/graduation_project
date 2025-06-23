@@ -25,6 +25,21 @@ class DietCubit extends Cubit<DietCubitState> {
     );
   }
 
+  Future<void> changeDiet() async {
+    emit(GetAllDietLoading());
+    var result = await dietRepo.changeDit();
+    result.fold(
+      (failure) {
+        emit(GetAllDietFailure(errorMessage: failure.errorMessage));
+        emit(GetMealsByDayFailure(errorMessage: failure.errorMessage));
+      },
+      (allDietList) {
+        emit(GetAllDietSuccess(allDietList: allDietList));
+        getMealsByDay(day: allDietList[0].day ?? 'saturday');
+      },
+    );
+  }
+
   Future<void> getMealsByDay({required String day}) async {
     var result = await dietRepo.getMealsByDay(day: day);
     result.fold(
