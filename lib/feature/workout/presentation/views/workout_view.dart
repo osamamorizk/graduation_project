@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
-import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
+import 'package:graduation_project/feature/workout/presentation/manger/worlout_cubit/workout_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/views/muscle_group_view.dart';
 import 'package:graduation_project/feature/workout/presentation/views/general_plans_view.dart';
 import 'package:graduation_project/core/widgets/custom_new_plan_button.dart';
@@ -31,7 +32,7 @@ class WorkoutView extends StatelessWidget {
               onPressed: () {
                 context.pop();
 
-                context.pushNamed(Routes.dataForm, arguments: 'workout');
+                context.read<WorkoutCubit>().changeWorkoutPlans();
               },
             ),
           ],

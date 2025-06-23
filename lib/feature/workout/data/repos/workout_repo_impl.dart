@@ -34,6 +34,27 @@ class WorkoutRepoImpl implements WorkoutRepo {
   }
 
   @override
+  Future<Either<Failure, List<WorkoutPlanModel>>> changeWorkoutPlan() async {
+    try {
+      var result =
+          await apiService.post(endPoints: workoutPlanEndPoint, data: null);
+      workoutPlansList.clear();
+
+      for (var workout in result['plan']['daily_plans']) {
+        workoutPlansList.add(WorkoutPlanModel.fromJson(workout));
+      }
+      return right(workoutPlansList);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        log(e.toString());
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
+    }
+  }
+
+  @override
   Future<Either<Failure, List<WorkoutExerciseModel>>> getWorkoutByDay(
       {required String day}) async {
     try {

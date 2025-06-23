@@ -26,6 +26,21 @@ class WorkoutCubit extends Cubit<WorkoutState> {
     );
   }
 
+  Future<void> changeWorkoutPlans() async {
+    emit(AllWorkoutLoading());
+    var result = await workoutRepo.changeWorkoutPlan();
+    result.fold(
+      (failure) {
+        emit(AllWorkoutFailure(errorMessage: failure.errorMessage));
+        emit(WorkoutByDayFailure(errorMessage: failure.errorMessage));
+      },
+      (workoutList) {
+        emit(AllWorkoutSuccess(workoutPlansList: workoutList));
+        getWorkoutByDay(day: workoutList[0].day ?? 'Day1');
+      },
+    );
+  }
+
   Future<void> getWorkoutByDay({required String day}) async {
     var result = await workoutRepo.getWorkoutByDay(day: day);
 

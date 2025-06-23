@@ -6,6 +6,8 @@ import 'package:graduation_project/feature/workout/data/models/workout_model/exe
 
 abstract class WorkoutRepo {
   Future<Either<Failure, List<WorkoutPlanModel>>> getAllWorkoutPlans();
+  Future<Either<Failure, List<WorkoutPlanModel>>> changeWorkoutPlan();
+
   Future<Either<Failure, List<WorkoutExerciseModel>>> getWorkoutByDay(
       {required String day});
 
