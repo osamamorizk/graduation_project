@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:graduation_project/feature/workout/data/models/exercise_model.dart';
-import 'package:graduation_project/feature/workout/data/repos/workout_repo.dart';
+import 'package:graduation_project/feature/workout/data/repos/workout_repo/workout_repo.dart';
 import 'package:meta/meta.dart';
 
 part 'exercise_state.dart';

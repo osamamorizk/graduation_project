@@ -10,7 +10,8 @@ import 'package:graduation_project/feature/profile/data/repos/profile_repo_impl.
 import 'package:graduation_project/feature/scan_food/data/repos/scan_food_repo_impl.dart';
 import 'package:graduation_project/feature/sign_up/data/repos/sign_up_repo_implem.dart';
 import 'package:graduation_project/feature/user_data_form/data/repos/user_data_repo_impl.dart';
-import 'package:graduation_project/feature/workout/data/repos/workout_repo_impl.dart';
+import 'package:graduation_project/feature/workout/data/repos/general_plan_repo/general_plan_repo_impl.dart';
+import 'package:graduation_project/feature/workout/data/repos/workout_repo/workout_repo_impl.dart';
 
 final getIt = GetIt.instance;
 
@@ -60,5 +61,10 @@ void setupServiceLocator() {
   );
   getIt.registerSingleton<NotificationRepository>(
     NotificationRepository(),
+  );
+  getIt.registerSingleton<GeneralWorkoutPlanRepoImpl>(
+    GeneralWorkoutPlanRepoImpl(
+      getIt.get<ApiService>(),
+    ),
   );
 }

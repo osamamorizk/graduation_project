@@ -7,7 +7,7 @@ import 'package:graduation_project/core/networking/end_points.dart';
 import 'package:graduation_project/feature/workout/data/models/exercise_model.dart';
 import 'package:graduation_project/feature/workout/data/models/workout_model/workout_plan_model.dart';
 import 'package:graduation_project/feature/workout/data/models/workout_model/exercise.dart';
-import 'package:graduation_project/feature/workout/data/repos/workout_repo.dart';
+import 'package:graduation_project/feature/workout/data/repos/workout_repo/workout_repo.dart';
 
 class WorkoutRepoImpl implements WorkoutRepo {
   final ApiService apiService;
