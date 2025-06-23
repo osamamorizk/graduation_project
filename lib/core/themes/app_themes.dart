@@ -13,7 +13,7 @@ class AppThemes {
       elevation: .1,
       scrolledUnderElevation: 0,
       backgroundColor: Colors.white,
-      iconTheme: IconThemeData(color: Colors.black),
+      iconTheme: IconThemeData(color: ColorsManger.darkBlue),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       elevation: 0,

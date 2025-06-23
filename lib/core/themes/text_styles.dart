@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 
 class TextStyles {
-  static final TextStyle font22BlueBold = TextStyle(
+  static final TextStyle font22Bold = TextStyle(
     fontSize: 22.sp,
     fontWeight: FontWeight.bold,
   );

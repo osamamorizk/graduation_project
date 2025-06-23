@@ -44,13 +44,13 @@ class ImagePreviewScreen extends StatelessWidget {
       // iconTheme: const IconThemeData(color: ColorsManger.darkBlue, size: 22),
       titleSpacing: 0,
       toolbarHeight: 50,
-      elevation: .7,
+      elevation: 0,
       // backgroundColor: Colors.white,
       scrolledUnderElevation: .2,
       // actionsIconTheme: const IconThemeData(color: ColorsManger.darkBlue),
       centerTitle: false,
       title: Text('Preview Image',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith()),
+          style: Theme.of(context).textTheme.headlineLarge?.copyWith()),
     );
   }
 }
