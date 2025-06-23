@@ -1,10 +1,5 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
-import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
-
 import 'package:graduation_project/feature/scan_food/presentation/views/widgets/image_preview_actions.dart';
 import 'package:graduation_project/feature/scan_food/presentation/views/widgets/scan_food_listner.dart';
 
@@ -16,8 +11,7 @@ class ImagePreviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: imgePreviewAppBar(),
+      appBar: imgePreviewAppBar(context),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0),
         child: Column(
@@ -45,20 +39,18 @@ class ImagePreviewScreen extends StatelessWidget {
     );
   }
 
-  AppBar imgePreviewAppBar() {
+  AppBar imgePreviewAppBar(BuildContext context) {
     return AppBar(
-      iconTheme: const IconThemeData(color: ColorsManger.darkBlue, size: 22),
+      // iconTheme: const IconThemeData(color: ColorsManger.darkBlue, size: 22),
       titleSpacing: 0,
       toolbarHeight: 50,
       elevation: .7,
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       scrolledUnderElevation: .2,
-      actionsIconTheme: const IconThemeData(color: ColorsManger.darkBlue),
+      // actionsIconTheme: const IconThemeData(color: ColorsManger.darkBlue),
       centerTitle: false,
-      title: Text(
-        'Preview Image',
-        style: TextStyles.font20BlueRegular,
-      ),
+      title: Text('Preview Image',
+          style: Theme.of(context).textTheme.titleLarge?.copyWith()),
     );
   }
 }

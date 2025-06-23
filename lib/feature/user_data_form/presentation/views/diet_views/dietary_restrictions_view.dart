@@ -48,7 +48,7 @@ class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
             verticalSpace(35.h),
             Text(
               'Do you follow any specific diet or have food allergies?',
-              style: TextStyles.font16BlackBold,
+              style: TextStyles.font16Bold,
             ),
             verticalSpace(40.h),
             ListView.separated(

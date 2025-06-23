@@ -26,7 +26,7 @@ void showCommingSoonDialog(BuildContext parentContext) {
               Text(
                 textAlign: TextAlign.center,
                 'It is planned to be in the next phase of progress',
-                style: TextStyles.font16BlackBold,
+                style: TextStyles.font16Bold,
               )
             ],
           ),

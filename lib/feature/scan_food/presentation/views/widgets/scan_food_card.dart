@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
-import 'package:graduation_project/feature/scan_food/data/models/scan_food_model.dart';
+import 'package:graduation_project/feature/scan_food/data/models/new_food_model/item.dart';
 import 'package:graduation_project/feature/scan_food/presentation/views/widgets/dish_nutration_info.dart';
 
 class FoodElementCardItem extends StatelessWidget {
   const FoodElementCardItem({
     super.key,
-    required this.scanFoodModel,
+    required this.foodItem,
   });
-  final ScanFoodModel scanFoodModel;
+  final Item foodItem;
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +21,13 @@ class FoodElementCardItem extends StatelessWidget {
       ),
       elevation: 2,
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              scanFoodModel.item,
+              foodItem.foodName ?? "Unknown Food",
               style: TextStyles.font28DarkBlueBold,
             ),
             verticalSpace(12),
@@ -36,12 +36,12 @@ class FoodElementCardItem extends StatelessWidget {
               children: [
                 NutrientInfo(
                     icon: Icons.local_fire_department,
-                    value: "${scanFoodModel.calories} cal",
+                    value: "${foodItem.calories} cal",
                     label: "Calories",
                     color: Colors.orange),
                 NutrientInfo(
                     icon: Icons.egg_alt_outlined,
-                    value: "${scanFoodModel.protein} gm",
+                    value: "${foodItem.macros?.protein} gm",
                     label: "Protein",
                     color: Colors.purple),
               ],
@@ -52,27 +52,17 @@ class FoodElementCardItem extends StatelessWidget {
               children: [
                 NutrientInfo(
                     icon: Icons.water_drop_outlined,
-                    value: "${scanFoodModel.fats} gm",
+                    value: "${foodItem.macros?.fat} gm",
                     label: "Fat",
                     color: Colors.black),
                 NutrientInfo(
                     icon: FontAwesomeIcons.cookieBite,
-                    value: "${scanFoodModel.carbs} gm",
+                    value: "${foodItem.macros?.carbohydrates} gm",
                     label: "Carbs",
                     color: Colors.green),
               ],
             ),
             verticalSpace(5),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                NutrientInfo(
-                    icon: FontAwesomeIcons.apple,
-                    value: "${scanFoodModel.sugar} gm",
-                    label: "Sugar",
-                    color: Colors.red),
-              ],
-            ),
           ],
         ),
       ),

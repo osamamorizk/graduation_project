@@ -24,7 +24,7 @@ class NutrientInfo extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(value, style: TextStyles.font14DarkBlueBold),
+            Text(value, style: Theme.of(context).textTheme.bodySmall),
             Text(label, style: TextStyles.font12BlackBold),
           ],
         ),

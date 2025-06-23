@@ -46,42 +46,43 @@ class ScanFoodUI extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.bottomLeft,
-                            child: IconButton(
-                              padding: const EdgeInsets.only(left: 24),
-                              onPressed: () => pickImageFromGallery(context),
-                              icon: const Icon(
-                                size: 26,
-                                FontAwesomeIcons.images,
-                                color: Colors.white,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.bottomLeft,
+                              child: IconButton(
+                                onPressed: () => pickImageFromGallery(context),
+                                icon: const Icon(
+                                  size: 26,
+                                  FontAwesomeIcons.images,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        CameraButton(
-                          onTap: () async {
-                            XFile picture =
-                                await cameraController!.takePicture();
-                            Gal.putImage(picture.path);
-                            if (File(picture.path).existsSync()) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ImagePreviewScreen(
-                                    imagePath: picture.path,
+                          CameraButton(
+                            onTap: () async {
+                              XFile picture =
+                                  await cameraController!.takePicture();
+                              Gal.putImage(picture.path);
+                              if (File(picture.path).existsSync()) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ImagePreviewScreen(
+                                      imagePath: picture.path,
+                                    ),
                                   ),
-                                ),
-                              );
-                            }
-                          },
-                        ),
-                        const Expanded(
-                            child: SizedBox()), // Pushes everything equally
-                      ],
+                                );
+                              }
+                            },
+                          ),
+                          const Expanded(child: SizedBox()),
+                        ],
+                      ),
                     ),
                     verticalSpace(15),
                   ],

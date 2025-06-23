@@ -54,7 +54,7 @@ class ExerciseItem extends StatelessWidget {
                   Text(
                     softWrap: true,
                     exerciseModel.name,
-                    style: TextStyles.font16BlackBold,
+                    style: TextStyles.font16Bold,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),

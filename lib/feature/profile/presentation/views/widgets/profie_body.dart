@@ -26,7 +26,7 @@ class ProfileBody extends StatelessWidget {
             verticalSpace(16),
             Text(
               CacheHelper.getData(key: 'name') ?? 'user',
-              style: TextStyles.font16BlackBold,
+              style: TextStyles.font16Bold,
             ),
             verticalSpace(32),
             const ProfileOptionList(),
