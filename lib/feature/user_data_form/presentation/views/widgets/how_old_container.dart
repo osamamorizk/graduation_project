@@ -17,7 +17,7 @@ class HowOldContainer extends StatelessWidget {
       children: [
         Text(
           'How old are you?',
-          style: Theme.of(context).textTheme.titleSmall,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         verticalSpace(4),
         Container(

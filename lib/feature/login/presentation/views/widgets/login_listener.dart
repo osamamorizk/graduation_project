@@ -14,7 +14,7 @@ class LoginBlocListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is LoginLoading) {
           showLoadingDialog(context, loadingMessage: 'Please wait a moment.');
         } else if (state is LoginFailure) {
@@ -28,6 +28,8 @@ class LoginBlocListener extends StatelessWidget {
             predicate: (route) => false,
           );
           showSuccessToast(state.loginDone);
+          await CacheHelper.saveData(key: 'dataDone', value: true);
+
           CacheHelper.saveData(key: 'login', value: true);
         }
       },

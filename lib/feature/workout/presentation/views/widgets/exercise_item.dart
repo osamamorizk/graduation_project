@@ -21,23 +21,28 @@ class ExerciseItem extends StatelessWidget {
         height: 120.h,
         decoration: const BoxDecoration(
             border: BorderDirectional(
-                bottom: BorderSide(width: .3, color: Colors.grey))),
+                bottom: BorderSide(width: .2, color: Colors.grey))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             AspectRatio(
               aspectRatio: 1.2,
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                imageUrl: exerciseModel.image,
-                placeholder: (context, url) => const Center(
-                  child: SpinKitSpinningLines(
-                    color: ColorsManger.darkBlue,
-                    size: 30.0,
-                    itemCount: 3,
-                  ),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0),
                 ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+                child: CachedNetworkImage(
+                  fit: BoxFit.fitHeight,
+                  imageUrl: exerciseModel.image,
+                  placeholder: (context, url) => const Center(
+                    child: SpinKitSpinningLines(
+                      color: ColorsManger.darkBlue,
+                      size: 30.0,
+                      itemCount: 3,
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
               ),
             ),
             horizontalSpace(16),

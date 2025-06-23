@@ -56,7 +56,7 @@ void showPlanDialog(BuildContext parentContext) {
           borderRadius: BorderRadius.circular(20),
         ),
         elevation: 5,
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(

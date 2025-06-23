@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/error_view.dart';
 import 'package:graduation_project/core/widgets/shimmer_loading.dart';
 import 'package:graduation_project/feature/workout/presentation/manger/exercise_cubit/exercise_cubit.dart';
@@ -19,16 +18,13 @@ class ExerciseListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 45,
         titleSpacing: 0,
         title: Text(
           '$exerciseGroup Exercises',
-          style: TextStyles.font20BlueRegular,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         scrolledUnderElevation: 0,
-        backgroundColor: Colors.white,
         automaticallyImplyLeading: true,
-        iconTheme: const IconThemeData(color: Colors.black, size: 22),
       ),
       body: RefreshIndicator(
         color: Colors.white,
@@ -37,7 +33,7 @@ class ExerciseListView extends StatelessWidget {
           return context.read<ExerciseCubit>().getExerciseList(id: exerciseId);
         },
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 0),
           child: Builder(builder: (context) {
             return BlocBuilder<ExerciseCubit, ExerciseState>(
               builder: (context, state) {

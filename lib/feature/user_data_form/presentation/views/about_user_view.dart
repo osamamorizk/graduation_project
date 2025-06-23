@@ -48,7 +48,7 @@ class _AboutUserState extends State<AboutUser> {
               verticalSpace(40.h),
               Text(
                 'Your Gender',
-                style: Theme.of(context).textTheme.titleSmall,
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
               verticalSpace(16.h),
               const Center(child: GenderToggleButtons()),
@@ -60,10 +60,8 @@ class _AboutUserState extends State<AboutUser> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'How tall are you?',
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
+                  Text('How tall are you?',
+                      style: Theme.of(context).textTheme.bodyMedium),
                   const TallUniteToggle(),
                 ],
               ),
@@ -75,7 +73,7 @@ class _AboutUserState extends State<AboutUser> {
                 children: [
                   Text(
                     'What is your current weight?',
-                    style: Theme.of(context).textTheme.titleSmall,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const WeightUniteToggle(),
                 ],
