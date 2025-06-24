@@ -9,11 +9,19 @@ import 'package:graduation_project/core/widgets/shimmer_loading.dart';
 import 'package:graduation_project/feature/workout/presentation/manger/general_plan_cubit/workout_general_plan_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/general_plan_item.dart';
 
-class WorkoutGeneralPlansView extends StatelessWidget {
+class WorkoutGeneralPlansView extends StatefulWidget {
   const WorkoutGeneralPlansView({super.key});
 
   @override
+  State<WorkoutGeneralPlansView> createState() =>
+      _WorkoutGeneralPlansViewState();
+}
+
+class _WorkoutGeneralPlansViewState extends State<WorkoutGeneralPlansView>
+    with AutomaticKeepAliveClientMixin<WorkoutGeneralPlansView> {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return RefreshIndicator(
       color: Colors.white,
       backgroundColor: ColorsManger.darkBlue,
@@ -66,4 +74,7 @@ class WorkoutGeneralPlansView extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -9,30 +9,44 @@ import 'package:graduation_project/feature/workout/data/models/general_workout_p
 import 'package:graduation_project/feature/workout/presentation/manger/general_plan_cubit/workout_general_plan_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/level_category_widget.dart';
 
-class ExerciseDetailsGeneralPlanWorkout extends StatelessWidget {
+class ExerciseDetailsGeneralPlanWorkout extends StatefulWidget {
   const ExerciseDetailsGeneralPlanWorkout({super.key});
 
   @override
+  State<ExerciseDetailsGeneralPlanWorkout> createState() =>
+      _ExerciseDetailsGeneralPlanWorkoutState();
+}
+
+class _ExerciseDetailsGeneralPlanWorkoutState
+    extends State<ExerciseDetailsGeneralPlanWorkout>
+    with AutomaticKeepAliveClientMixin<ExerciseDetailsGeneralPlanWorkout> {
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorkoutGeneralPlanCubit, WorkoutGeneralPlanState>(
-      builder: (context, state) {
-        if (state is GeneralWorkoutExerciseDetailsSuccess) {
-          return GPWorkoutExerciseDetailsBody(
-            generalWorkoutExerciseDetailsModel: state.genralPlanDetails,
-          );
-        } else if (state is GeneralWorkoutExerciseDetailsFailure) {
-          return Center(
-            child: Text(
-              state.error,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-          );
-        } else {
-          return const Center(child: CustomCircleProgressIndicator());
-        }
-      },
+    super.build(context);
+    return Scaffold(
+      body: BlocBuilder<WorkoutGeneralPlanCubit, WorkoutGeneralPlanState>(
+        builder: (context, state) {
+          if (state is GeneralWorkoutExerciseDetailsSuccess) {
+            return GPWorkoutExerciseDetailsBody(
+              generalWorkoutExerciseDetailsModel: state.genralPlanDetails,
+            );
+          } else if (state is GeneralWorkoutExerciseDetailsFailure) {
+            return Center(
+              child: Text(
+                state.error,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            );
+          } else {
+            return const Center(child: CustomCircleProgressIndicator());
+          }
+        },
+      ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class GPWorkoutExerciseDetailsBody extends StatelessWidget {
@@ -56,8 +70,7 @@ class GPWorkoutExerciseDetailsBody extends StatelessWidget {
             toolbarHeight: 0,
             flexibleSpace: FlexibleSpaceBar(
                 background: ImageAndTitleWidget(
-              name: generalWorkoutExerciseDetailsModel.name ??
-                  'https://experiencelife.lifetime.life/wp-content/uploads/2023/04/jun23-bid-lateral-raise.jpg',
+              name: generalWorkoutExerciseDetailsModel.name ?? '',
               imageUrl: generalWorkoutExerciseDetailsModel.imageUrl ?? '',
             )),
           ),
@@ -66,7 +79,7 @@ class GPWorkoutExerciseDetailsBody extends StatelessWidget {
               children: [
                 CalorisAndTimeWidget(
                   calories: generalWorkoutExerciseDetailsModel.restTime ?? 0,
-                  duration: generalWorkoutExerciseDetailsModel.duration ?? 0,
+                  duration: generalWorkoutExerciseDetailsModel.sets ?? 0,
                 ),
                 LevelCategoryChips(
                   category:

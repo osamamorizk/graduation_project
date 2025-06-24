@@ -10,13 +10,20 @@ import 'package:graduation_project/core/widgets/image_and_title_widget.dart';
 import 'package:graduation_project/feature/workout/presentation/manger/general_plan_cubit/workout_general_plan_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/title_and_time_widget.dart';
 
-class WorkoutGeneralPlanDays extends StatelessWidget {
+class WorkoutGeneralPlanDays extends StatefulWidget {
   const WorkoutGeneralPlanDays({
     super.key,
   });
 
   @override
+  State<WorkoutGeneralPlanDays> createState() => _WorkoutGeneralPlanDaysState();
+}
+
+class _WorkoutGeneralPlanDaysState extends State<WorkoutGeneralPlanDays>
+    with AutomaticKeepAliveClientMixin<WorkoutGeneralPlanDays> {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: BlocBuilder<WorkoutGeneralPlanCubit, WorkoutGeneralPlanState>(
         builder: (context, state) {
@@ -113,4 +120,7 @@ class WorkoutGeneralPlanDays extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
