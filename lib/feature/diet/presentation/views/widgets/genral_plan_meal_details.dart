@@ -23,7 +23,11 @@ class GenralPlanMealDetails extends StatelessWidget {
             scrolledUnderElevation: 0,
             expandedHeight: 250,
             toolbarHeight: 0,
-            flexibleSpace: FlexibleSpaceBar(background: ImageAndTitleWidget()),
+            flexibleSpace: FlexibleSpaceBar(
+                background: ImageAndTitleWidget(
+              imageUrl: '',
+              name: '',
+            )),
           ),
           SliverToBoxAdapter(child: verticalSpace(50)),
           const SliverToBoxAdapter(

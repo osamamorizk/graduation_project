@@ -22,37 +22,46 @@ class WorkoutGeneralPlansView extends StatelessWidget {
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Expanded(
-          child: BlocBuilder<WorkoutGeneralPlanCubit, WorkoutGeneralPlanState>(
-            builder: (context, state) {
-              if (state is WorkoutGeneralPlanSuccess) {
-                return ListView.separated(
-                  itemCount: state.genralPlanList.length,
-                  separatorBuilder: (context, index) => verticalSpace(16),
-                  itemBuilder: (context, index) => GestureDetector(
-                    onTap: () {
-                      context.pushNamed(Routes.generalWorkoutPlansDays);
-                    },
+        child: BlocBuilder<WorkoutGeneralPlanCubit, WorkoutGeneralPlanState>(
+          builder: (context, state) {
+            if (state is WorkoutGeneralPlanSuccess) {
+              return ListView.separated(
+                itemCount: state.genralPlanList.length,
+                separatorBuilder: (context, index) => verticalSpace(16),
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    context.pushNamed(Routes.generalWorkoutPlansDays,
+                        arguments: state.genralPlanList[index].id);
+
+                    context
+                        .read<WorkoutGeneralPlanCubit>()
+                        .getGeneralWorkoutPlanDetails(
+                            id: state.genralPlanList[index].id ?? -1);
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        bottom:
+                            index == state.genralPlanList.length - 1 ? 16 : 0),
                     child: GeneralPlanItem(
                       generalPLanModel: state.genralPlanList[index],
                     ),
                   ),
-                );
-              }
-              if (state is WorkoutGeneralPlanFailure) {
-                return ListView(
-                  children: [
-                    ErrorView(errorMessage: state.error),
-                  ],
-                );
-              } else {
-                return const ShimmerLoadingWidget(
-                  itemCount: 6,
-                  hight: 95,
-                );
-              }
-            },
-          ),
+                ),
+              );
+            }
+            if (state is WorkoutGeneralPlanFailure) {
+              return ListView(
+                children: [
+                  ErrorView(errorMessage: state.error),
+                ],
+              );
+            } else {
+              return const ShimmerLoadingWidget(
+                itemCount: 6,
+                hight: 95,
+              );
+            }
+          },
         ),
       ),
     );

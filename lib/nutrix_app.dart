@@ -10,8 +10,10 @@ import 'package:graduation_project/core/themes/app_themes.dart';
 import 'package:graduation_project/feature/bottom_nav_bar/presentation/manger/cubit/theme_cubit_cubit.dart';
 import 'package:graduation_project/feature/scan_food/data/repos/scan_food_repo_impl.dart';
 import 'package:graduation_project/feature/scan_food/presentation/manger/cubit/scan_food_cubit.dart';
+import 'package:graduation_project/feature/workout/data/repos/general_plan_repo/general_plan_repo_impl.dart';
 import 'package:graduation_project/feature/workout/data/repos/workout_repo/workout_repo_impl.dart';
 import 'package:graduation_project/feature/workout/presentation/manger/exercise_cubit/exercise_cubit.dart';
+import 'package:graduation_project/feature/workout/presentation/manger/general_plan_cubit/workout_general_plan_cubit.dart';
 
 class NutrixApp extends StatelessWidget {
   const NutrixApp({super.key, required this.appRouter});
@@ -27,6 +29,11 @@ class NutrixApp extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (context) => ExerciseCubit(getIt.get<WorkoutRepoImpl>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                WorkoutGeneralPlanCubit(getIt.get<GeneralWorkoutPlanRepoImpl>())
+                  ..getGeneralWorkoutPlan(),
           ),
           BlocProvider(
             create: (context) => ScanFoodCubit(getIt.get<ScanFoodRepoImpl>()),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
-import 'package:graduation_project/feature/workout/data/models/general_workout_p_lan_model/general_workout_p_lan_model.dart';
+import 'package:graduation_project/feature/workout/data/models/general_workout_plan_models/general_workout_plan_model.dart';
 
 class GeneralPlanItem extends StatelessWidget {
   const GeneralPlanItem({

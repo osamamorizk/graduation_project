@@ -17,3 +17,18 @@ final class WorkoutGeneralPlanFailure extends WorkoutGeneralPlanState {
 
   WorkoutGeneralPlanFailure({required this.error});
 }
+
+final class GeneralWorkoutPlanDetailsLoading extends WorkoutGeneralPlanState {
+  GeneralWorkoutPlanDetailsLoading();
+}
+
+final class GeneralWorkoutPlanDetailsSuccess extends WorkoutGeneralPlanState {
+  final GeneralWorkoutPlanDetailsModel genralPlanDetails;
+  GeneralWorkoutPlanDetailsSuccess(this.genralPlanDetails);
+}
+
+final class GeneralWorkoutPlanDetailsFailure extends WorkoutGeneralPlanState {
+  final String error;
+
+  GeneralWorkoutPlanDetailsFailure({required this.error});
+}

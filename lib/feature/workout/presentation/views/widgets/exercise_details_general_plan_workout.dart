@@ -5,8 +5,8 @@ import 'package:graduation_project/core/widgets/image_and_title_widget.dart';
 import 'package:graduation_project/core/widgets/playing_video_widget.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/level_category_widget.dart';
 
-class GeneralPlanWorkoutExerciseDetails extends StatelessWidget {
-  const GeneralPlanWorkoutExerciseDetails({super.key});
+class ExerciseDetailsGeneralPlanWorkout extends StatelessWidget {
+  const ExerciseDetailsGeneralPlanWorkout({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,11 @@ class GeneralPlanWorkoutExerciseDetails extends StatelessWidget {
             scrolledUnderElevation: 0,
             expandedHeight: 250,
             toolbarHeight: 0,
-            flexibleSpace: FlexibleSpaceBar(background: ImageAndTitleWidget()),
+            flexibleSpace: FlexibleSpaceBar(
+                background: ImageAndTitleWidget(
+              name: '',
+              imageUrl: '',
+            )),
           ),
           SliverToBoxAdapter(
             child: Column(

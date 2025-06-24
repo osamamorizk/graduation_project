@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:graduation_project/feature/workout/data/models/general_workout_p_lan_model/general_workout_p_lan_model.dart';
+import 'package:graduation_project/feature/workout/data/models/general_workout_plan_models/general_plan_details_model/general_plan_details_model.dart';
+import 'package:graduation_project/feature/workout/data/models/general_workout_plan_models/general_workout_plan_model.dart';
 import 'package:graduation_project/feature/workout/data/repos/general_plan_repo/general_plan_repo.dart';
 import 'package:meta/meta.dart';
 
@@ -19,6 +20,19 @@ class WorkoutGeneralPlanCubit extends Cubit<WorkoutGeneralPlanState> {
       },
       (success) {
         emit(WorkoutGeneralPlanSuccess(success));
+      },
+    );
+  }
+
+  Future<void> getGeneralWorkoutPlanDetails({required int id}) async {
+    emit(GeneralWorkoutPlanDetailsLoading());
+    var result = await generalPlanRepo.getGeneralWorkoutPlanDetails(id: id);
+    result.fold(
+      (failure) {
+        emit(GeneralWorkoutPlanDetailsFailure(error: failure.errorMessage));
+      },
+      (success) {
+        emit(GeneralWorkoutPlanDetailsSuccess(success));
       },
     );
   }
