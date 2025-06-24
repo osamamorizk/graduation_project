@@ -37,7 +37,10 @@ class GenralPlanMealDetails extends StatelessWidget {
                 Positioned(
                   top: -50,
                   right: 20,
-                  child: CalorisAndTimeWidget(),
+                  child: CalorisAndTimeWidget(
+                    calories: 20,
+                    duration: 20,
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -60,7 +63,9 @@ class GenralPlanMealDetails extends StatelessWidget {
       ),
       bottomNavigationBar: const BottomAppBar(
         color: Colors.transparent,
-        child: PlayingVideoWidget(),
+        child: PlayingVideoWidget(
+          videoUrl: '',
+        ),
       ),
     );
   }

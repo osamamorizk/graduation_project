@@ -32,3 +32,21 @@ final class GeneralWorkoutPlanDetailsFailure extends WorkoutGeneralPlanState {
 
   GeneralWorkoutPlanDetailsFailure({required this.error});
 }
+
+final class GeneralWorkoutExerciseDetailsLoading
+    extends WorkoutGeneralPlanState {
+  GeneralWorkoutExerciseDetailsLoading();
+}
+
+final class GeneralWorkoutExerciseDetailsSuccess
+    extends WorkoutGeneralPlanState {
+  final GeneralWorkoutExerciseDetailsModel genralPlanDetails;
+  GeneralWorkoutExerciseDetailsSuccess(this.genralPlanDetails);
+}
+
+final class GeneralWorkoutExerciseDetailsFailure
+    extends WorkoutGeneralPlanState {
+  final String error;
+
+  GeneralWorkoutExerciseDetailsFailure({required this.error});
+}

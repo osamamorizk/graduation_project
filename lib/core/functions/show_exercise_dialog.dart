@@ -3,7 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/youtyube_video_player.dart';
 
-void showExerciseVideoDialog(BuildContext context, {required String videoUrl}) {
+void showExerciseVideoDialog(
+  BuildContext context, {
+  required String videoUrl,
+}) {
   showDialog(
     barrierDismissible: false,
     context: context,

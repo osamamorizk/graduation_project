@@ -18,16 +18,17 @@ class TitleAndTimeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return ExpansionTile(
+      initiallyExpanded: true,
       backgroundColor: isDarkMode ? ColorsManger.darkCard : Colors.white,
       childrenPadding: const EdgeInsets.symmetric(
         horizontal: 16,
       ),
       expandedCrossAxisAlignment: CrossAxisAlignment.start,
       collapsedShape: RoundedRectangleBorder(
-          side: const BorderSide(color: ColorsManger.darkerGrey, width: .3),
+          side: const BorderSide(color: ColorsManger.darkerGrey, width: .1),
           borderRadius: BorderRadius.circular(14)),
       shape: RoundedRectangleBorder(
-          side: const BorderSide(color: ColorsManger.darkBlue, width: .3),
+          side: const BorderSide(color: ColorsManger.darkBlue, width: .1),
           borderRadius: BorderRadius.circular(14)),
       title: Text(
         title,
@@ -63,6 +64,7 @@ class TitleAndTimeWidget extends StatelessWidget {
           return GestureDetector(
             onTap: onTap,
             child: ListTile(
+              minTileHeight: 50.h,
               title: Text(
                 e.name ?? 'Exercise',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(

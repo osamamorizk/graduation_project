@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/widgets/calories_and_time.dart';
+import 'package:graduation_project/core/widgets/custom_circle_progress_indicator.dart';
 import 'package:graduation_project/core/widgets/details_section.dart';
 import 'package:graduation_project/core/widgets/image_and_title_widget.dart';
 import 'package:graduation_project/core/widgets/playing_video_widget.dart';
+import 'package:graduation_project/feature/workout/data/models/general_workout_plan_models/general_plan_exercise_details_model.dart';
+import 'package:graduation_project/feature/workout/presentation/manger/general_plan_cubit/workout_general_plan_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/level_category_widget.dart';
 
 class ExerciseDetailsGeneralPlanWorkout extends StatelessWidget {
@@ -10,7 +14,36 @@ class ExerciseDetailsGeneralPlanWorkout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return BlocBuilder<WorkoutGeneralPlanCubit, WorkoutGeneralPlanState>(
+      builder: (context, state) {
+        if (state is GeneralWorkoutExerciseDetailsSuccess) {
+          return GPWorkoutExerciseDetailsBody(
+            generalWorkoutExerciseDetailsModel: state.genralPlanDetails,
+          );
+        } else if (state is GeneralWorkoutExerciseDetailsFailure) {
+          return Center(
+            child: Text(
+              state.error,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          );
+        } else {
+          return const Center(child: CustomCircleProgressIndicator());
+        }
+      },
+    );
+  }
+}
+
+class GPWorkoutExerciseDetailsBody extends StatelessWidget {
+  const GPWorkoutExerciseDetailsBody({
+    super.key,
+    required this.generalWorkoutExerciseDetailsModel,
+  });
+  final GeneralWorkoutExerciseDetailsModel generalWorkoutExerciseDetailsModel;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -23,40 +56,45 @@ class ExerciseDetailsGeneralPlanWorkout extends StatelessWidget {
             toolbarHeight: 0,
             flexibleSpace: FlexibleSpaceBar(
                 background: ImageAndTitleWidget(
-              name: '',
-              imageUrl: '',
+              name: generalWorkoutExerciseDetailsModel.name ??
+                  'https://experiencelife.lifetime.life/wp-content/uploads/2023/04/jun23-bid-lateral-raise.jpg',
+              imageUrl: generalWorkoutExerciseDetailsModel.imageUrl ?? '',
             )),
           ),
           SliverToBoxAdapter(
             child: Column(
               children: [
-                CalorisAndTimeWidget(),
-                LevelCategoryChips(),
+                CalorisAndTimeWidget(
+                  calories: generalWorkoutExerciseDetailsModel.restTime ?? 0,
+                  duration: generalWorkoutExerciseDetailsModel.duration ?? 0,
+                ),
+                LevelCategoryChips(
+                  category:
+                      generalWorkoutExerciseDetailsModel.targetMuscle ?? '',
+                  level: generalWorkoutExerciseDetailsModel.difficulty ?? '',
+                ),
               ],
             ),
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               child: Column(
                 spacing: 8,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   DetailsSection(
                     title: 'How to do',
-                    details: [
-                      'Start Position: Stand upright with feet hip-width apart.'
-                          'Step Forward: Take a big step forward with one leg.'
-                          'Lower Body: Bend both knees until the back knee is close to the floor.'
-                          'Push Up: Press through the front heel to return to the starting position.'
-                          'Repeat: Switch legs and repeat.',
-                    ],
+                    details:
+                        generalWorkoutExerciseDetailsModel.instructions ?? [],
                   ),
-                  DetailsSection(title: 'Key Feature', details: [
-                    'Targets: Quads, hamstrings, glutes.'
-                        'Improves: Balance, stability, lower body strength.'
-                        'Form Tip: Keep chest up and core engaged, avoid letting the front knee pass the toes.',
-                  ]),
+                  DetailsSection(
+                      title: 'Benefits',
+                      details:
+                          generalWorkoutExerciseDetailsModel.benefits ?? []),
+                  DetailsSection(
+                      title: 'Tips',
+                      details: generalWorkoutExerciseDetailsModel.tips ?? []),
                 ],
               ),
             ),
@@ -65,7 +103,10 @@ class ExerciseDetailsGeneralPlanWorkout extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
-        child: PlayingVideoWidget(),
+        child: PlayingVideoWidget(
+          videoUrl: generalWorkoutExerciseDetailsModel.videoUrl ??
+              'https://www.youtube.com/watch?v=3VcKaXpzqRo',
+        ),
       ),
     );
   }

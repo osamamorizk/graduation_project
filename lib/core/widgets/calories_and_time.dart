@@ -8,9 +8,13 @@ class CalorisAndTimeWidget extends StatelessWidget {
     super.key,
     this.widget,
     this.additional,
+    required this.calories,
+    required this.duration,
   });
   final Widget? widget;
   final Widget? additional;
+  final int calories;
+  final int duration;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +39,7 @@ class CalorisAndTimeWidget extends StatelessWidget {
             ),
           ),
           Text(
-            '135 kcal',
+            '$calories cal',
             style: Theme.of(context).textTheme.bodySmall,
           ),
           const SizedBox(
@@ -55,7 +59,7 @@ class CalorisAndTimeWidget extends StatelessWidget {
             ),
           ),
           Text(
-            '10 min',
+            '${duration ~/ 60} min',
             style: Theme.of(context).textTheme.bodySmall,
           ),
           widget ?? const SizedBox.shrink(),

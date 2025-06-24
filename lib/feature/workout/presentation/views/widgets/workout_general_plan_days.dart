@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/helpers/extensions.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/widgets/calories_and_time.dart';
+import 'package:graduation_project/core/widgets/custom_circle_progress_indicator.dart';
 import 'package:graduation_project/core/widgets/error_view.dart';
 import 'package:graduation_project/core/widgets/image_and_title_widget.dart';
-import 'package:graduation_project/core/widgets/shimmer_loading.dart';
 import 'package:graduation_project/feature/workout/presentation/manger/general_plan_cubit/workout_general_plan_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/title_and_time_widget.dart';
 
@@ -51,6 +53,10 @@ class WorkoutGeneralPlanDays extends StatelessWidget {
                                 ),
                               ],
                             ),
+                            calories:
+                                state.genralPlanDetails.caloriesBurned ?? 0,
+                            duration:
+                                state.genralPlanDetails.exerciseCount ?? 10,
                           ),
                         ),
                         Padding(
@@ -66,6 +72,17 @@ class WorkoutGeneralPlanDays extends StatelessWidget {
                             ),
                             itemBuilder: (context, index) {
                               return TitleAndTimeWidget(
+                                onTap: () {
+                                  context
+                                      .pushNamed(Routes.workoutExerciseDetails);
+                                  context
+                                      .read<WorkoutGeneralPlanCubit>()
+                                      .getWorkoutExerciseDetails(
+                                        id: state.genralPlanDetails.days?[index]
+                                                .exercises?[index].id ??
+                                            -70,
+                                      );
+                                },
                                 title:
                                     state.genralPlanDetails.days?[index].name ??
                                         'Day',
@@ -90,10 +107,7 @@ class WorkoutGeneralPlanDays extends StatelessWidget {
               ],
             );
           } else {
-            return const ShimmerLoadingWidget(
-              itemCount: 6,
-              hight: 95,
-            );
+            return const CustomCircleProgressIndicator();
           }
         },
       ),
