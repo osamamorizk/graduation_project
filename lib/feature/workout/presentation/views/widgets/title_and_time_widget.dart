@@ -16,15 +16,19 @@ class TitleAndTimeWidget extends StatelessWidget {
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    // final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return ExpansionTile(
-      shape: const OutlineInputBorder(
-        borderSide: BorderSide(
-          color: ColorsManger.grey,
-          width: 0.2,
-        ),
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+      backgroundColor: isDarkMode ? ColorsManger.darkCard : Colors.white,
+      childrenPadding: const EdgeInsets.symmetric(
+        horizontal: 16,
       ),
+      expandedCrossAxisAlignment: CrossAxisAlignment.start,
+      collapsedShape: RoundedRectangleBorder(
+          side: const BorderSide(color: ColorsManger.darkerGrey, width: .3),
+          borderRadius: BorderRadius.circular(14)),
+      shape: RoundedRectangleBorder(
+          side: const BorderSide(color: ColorsManger.darkBlue, width: .3),
+          borderRadius: BorderRadius.circular(14)),
       title: Text(
         title,
         style: Theme.of(context)

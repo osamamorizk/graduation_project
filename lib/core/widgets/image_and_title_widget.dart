@@ -20,27 +20,32 @@ class ImageAndTitleWidget extends StatelessWidget {
             alignment: Alignment.topCenter,
             fit: BoxFit.fitWidth,
             width: double.infinity,
-            height: 300,
             imageUrl: imageUrl),
-        Positioned(
-          top: 50,
-          left: 10,
-          child: IconButton(
-            onPressed: () => context.pop(),
-            icon: const Icon(
-              Icons.arrow_back_rounded,
-              color: Colors.white,
-            ),
-          ),
+        Container(
+          width: double.infinity,
+          height: 250,
+          color: Colors.black.withOpacity(0.4),
         ),
         Positioned(
-          top: 90,
-          left: 20,
-          child: Text(
-            name,
-            style: TextStyles.font16whiteBold.copyWith(
-              fontSize: 18,
-            ),
+          top: 30,
+          left: 10,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              IconButton(
+                onPressed: () => context.pop(),
+                icon: const Icon(
+                  Icons.arrow_back_rounded,
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                name,
+                style: TextStyles.font16whiteBold.copyWith(
+                  fontSize: 18,
+                ),
+              ),
+            ],
           ),
         ),
       ],
