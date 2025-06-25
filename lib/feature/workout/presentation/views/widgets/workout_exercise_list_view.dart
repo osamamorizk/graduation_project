@@ -58,7 +58,7 @@ class WorkoutExerciseListView extends StatelessWidget {
           ));
         } else {
           return const SliverShimmerLoading(
-            hight: 140,
+            height: 140,
           );
         }
       },

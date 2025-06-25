@@ -39,7 +39,7 @@ class DietMealsListView extends StatelessWidget {
         } else {
           return const SliverShimmerLoading(
             itemCount: 4,
-            hight: 40,
+            height: 40,
           );
         }
       },

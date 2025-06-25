@@ -6,10 +6,10 @@ import 'package:shimmer/shimmer.dart';
 class SliverShimmerLoading extends StatelessWidget {
   const SliverShimmerLoading({
     super.key,
-    this.hight,
+    this.height,
     this.itemCount,
   });
-  final double? hight;
+  final double? height;
   final int? itemCount;
 
   @override
@@ -35,7 +35,7 @@ class SliverShimmerLoading extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  verticalSpace(hight ?? 40),
+                  verticalSpace(height ?? 40),
                 ],
               ),
             ),

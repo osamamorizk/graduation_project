@@ -7,24 +7,24 @@ class LevelCard extends StatelessWidget {
     required this.levelNumber,
     required this.title,
     required this.subtitle,
-    required this.islocked,
+    required this.isUnlocked,
     this.onTap,
   });
 
   final int levelNumber;
   final String title;
   final String subtitle;
-  final bool islocked;
+  final bool isUnlocked;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    final bgColor = !islocked ? Colors.white : Colors.grey.shade200;
+    final bgColor = isUnlocked ? Colors.white : Colors.grey.shade200;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: GestureDetector(
-        onTap: !islocked ? onTap : null,
+        onTap: isUnlocked ? onTap : null,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           decoration: BoxDecoration(
@@ -38,7 +38,7 @@ class LevelCard extends StatelessWidget {
               const SizedBox(width: 16),
               _buildTextContent(context),
               Icon(
-                !islocked ? Icons.lock_open : Icons.lock,
+                isUnlocked ? Icons.lock_open : Icons.lock,
                 color: ColorsManger.darkBlue,
               )
             ],

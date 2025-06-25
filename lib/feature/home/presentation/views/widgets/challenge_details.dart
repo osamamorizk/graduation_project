@@ -48,12 +48,10 @@ class ChallengeDetails extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${challengeModel.totalDays} days  |  ',
+                  '${challengeModel.totalDays} days | ${challengeModel.progressPercentage} %',
                   style: Theme.of(context).textTheme.bodySmall,
-                ),
-                Text(
-                  'Completed ${challengeModel.progressPercentage}',
-                  style: Theme.of(context).textTheme.bodySmall,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             )

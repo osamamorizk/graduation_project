@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/feature/home/data/models/chanllenge_model/chanllenge_model.dart';
+import 'package:graduation_project/feature/home/presentation/manger/cubit/challenge_cubit.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/challenge_details.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/level_card_widget.dart';
 
@@ -34,16 +36,20 @@ class ChallengeItem extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.6,
           child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: challengeModel.levels?.length,
-              itemBuilder: (context, index) {
-                return LevelCard(
-                  levelNumber: index + 1,
-                  title: 'Level ${index + 1}',
-                  subtitle: challengeModel.levels?[index].title ?? '',
-                  islocked: challengeModel.levels?[index].isUnlocked ?? true,
-                );
-              }),
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: challengeModel.levels?.length,
+            itemBuilder: (context, index) {
+              return LevelCard(
+                onTap: () {
+                  context.read<ChallengeCubit>().getLevelDetails(id: index + 1);
+                },
+                levelNumber: index + 1,
+                title: 'Level ${index + 1}',
+                subtitle: challengeModel.levels?[index].title ?? '',
+                isUnlocked: challengeModel.levels?[index].isUnlocked ?? true,
+              );
+            },
+          ),
         )
       ],
     );
