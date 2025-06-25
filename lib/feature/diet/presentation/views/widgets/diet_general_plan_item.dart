@@ -1,40 +1,63 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
+import 'package:graduation_project/core/widgets/shimmer_loading.dart';
 
 class GpMealItem extends StatelessWidget {
-  const GpMealItem({super.key});
+  final String imageUrl;
+  final String name;
+  final int calories;
+  final int time;
+
+  const GpMealItem({
+    super.key,
+    required this.imageUrl,
+    required this.name,
+    required this.calories,
+    required this.time,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: Column(
-        spacing: 8,
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image(
-            height: 155.h,
-            width: double.infinity,
-            fit: BoxFit.fill,
-            image: const AssetImage(
-              Assets.imagesGeneralPlansGeneralDiet,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
+              height: 155.h,
+              width: double.infinity,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => const ShimmerLoadingWidget(
+                itemCount: 1,
+                hight: 140,
+              ),
+
+              // Container(
+              //   color: Colors.grey.shade300,
+              //   child: const Center(child: CustomCircleProgressIndicator()),
+              // ),
+              errorWidget: (context, url, error) => CachedNetworkImage(
+                fit: BoxFit.cover,
+                imageUrl:
+                    'https://images.unsplash.com/photo-1525351484163-7529414344d8',
+              ),
             ),
           ),
-          Text(
-            'Green beans, tomatoes, eggs',
-            style: TextStyles.font14Regular,
-          ),
+          Text(name, style: TextStyles.font14Regular),
           Row(
-            spacing: 6,
+            spacing: 8,
             children: [
               SvgPicture.asset(Assets.svgsCalories),
               Text(
-                '135 kcal',
+                '$calories kcal',
                 style: TextStyles.font14BlueRegular.copyWith(fontSize: 12),
               ),
               const SizedBox(
@@ -47,7 +70,7 @@ class GpMealItem extends StatelessWidget {
               ),
               SvgPicture.asset(Assets.svgsClock),
               Text(
-                'min',
+                '$time min',
                 style: TextStyles.font14BlueRegular.copyWith(fontSize: 12),
               ),
             ],

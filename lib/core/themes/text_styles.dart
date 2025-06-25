@@ -37,7 +37,7 @@ class TextStyles {
     fontSize: 12.sp,
     fontWeight: FontWeight.bold,
   );
-  static final TextStyle font18BlackBold = TextStyle(
+  static final TextStyle font18Bold = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeight.bold,
   );

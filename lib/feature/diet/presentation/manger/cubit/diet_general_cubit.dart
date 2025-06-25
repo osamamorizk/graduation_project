@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:graduation_project/feature/diet/data/models/diet_gp_details_model/diet_gp_details_model.dart';
 import 'package:graduation_project/feature/diet/data/models/diet_gp_model.dart';
 import 'package:graduation_project/feature/diet/data/repos/diet_gp_repo/diet_general_plan_repo.dart';
 import 'package:meta/meta.dart';
@@ -14,6 +15,17 @@ class DietGeneralCubit extends Cubit<DietGeneralCubitState> {
     failureOrSuccess.fold(
       (failure) => emit(GeneralDietCubitFailure(failure.errorMessage)),
       (dietPlans) => emit(GeneralDietCubitSuccess(dietPlans)),
+    );
+  }
+
+  Future<void> getDietPlanDetails({required int id}) async {
+    emit(GeneralDietCubitDetailsLoading());
+    final failureOrSuccess =
+        await dietGeneralPlanRepo.getGeneralDietPlanDetails(id: id);
+    failureOrSuccess.fold(
+      (failure) => emit(GeneralDietCubitDetailsFailure(failure.errorMessage)),
+      (dietPlanDetails) =>
+          emit(GeneralDietCubitDetailsSuccess(dietPlanDetails)),
     );
   }
 }

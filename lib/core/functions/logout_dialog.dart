@@ -17,7 +17,7 @@ Future<dynamic> logoutDialog(BuildContext context,
       ),
       actionsAlignment: MainAxisAlignment.center,
       content: Text('Do you want to logout ?',
-          textAlign: TextAlign.center, style: TextStyles.font18BlackBold),
+          textAlign: TextAlign.center, style: TextStyles.font18Bold),
       actions: <Widget>[
         ElevatedButton(
           style: ButtonStyle(

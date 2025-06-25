@@ -33,7 +33,7 @@ class _WorkoutDayNumberViewState extends State<WorkoutDayNumberView> {
           verticalSpace(35.h),
           Text(
             'How many days a week can you realistically workout?',
-            style: TextStyles.font18BlackBold,
+            style: TextStyles.font18Bold,
           ),
           verticalSpace(40.h),
           ListView.separated(

@@ -32,10 +32,18 @@ class DietGeneralPlans extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 16),
                     child: InkWell(
                       onTap: () {
+                        context.read<DietGeneralCubit>().getDietPlanDetails(
+                              id: state.dietPlans[index].id ?? 0,
+                            );
                         context.pushNamed(Routes.generalDietPlanDetailsView);
                       },
-                      child: GenneralPlanDietColllection(
-                        dietGpModel: state.dietPlans[index],
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            bottom:
+                                index == state.dietPlans.length - 1 ? 16 : 0),
+                        child: GenneralPlanDietColllection(
+                          dietGpModel: state.dietPlans[index],
+                        ),
                       ),
                     ),
                   );

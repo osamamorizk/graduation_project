@@ -18,3 +18,17 @@ final class GeneralDietCubitSuccess extends DietGeneralCubitState {
 
   GeneralDietCubitSuccess(this.dietPlans);
 }
+
+final class GeneralDietCubitDetailsSuccess extends DietGeneralCubitState {
+  final DietGpDetailsModel dietPlanDetails;
+
+  GeneralDietCubitDetailsSuccess(this.dietPlanDetails);
+}
+
+final class GeneralDietCubitDetailsFailure extends DietGeneralCubitState {
+  final String errorMessage;
+
+  GeneralDietCubitDetailsFailure(this.errorMessage);
+}
+
+final class GeneralDietCubitDetailsLoading extends DietGeneralCubitState {}

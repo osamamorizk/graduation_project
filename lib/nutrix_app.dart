@@ -8,6 +8,8 @@ import 'package:graduation_project/core/routes/app_router.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/app_themes.dart';
 import 'package:graduation_project/feature/bottom_nav_bar/presentation/manger/cubit/theme_cubit_cubit.dart';
+import 'package:graduation_project/feature/diet/data/repos/diet_gp_repo/diet_general_plan_repo_impl.dart';
+import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_general_cubit.dart';
 import 'package:graduation_project/feature/scan_food/data/repos/scan_food_repo_impl.dart';
 import 'package:graduation_project/feature/scan_food/presentation/manger/cubit/scan_food_cubit.dart';
 import 'package:graduation_project/feature/workout/data/repos/general_plan_repo/general_plan_repo_impl.dart';
@@ -37,6 +39,11 @@ class NutrixApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => ScanFoodCubit(getIt.get<ScanFoodRepoImpl>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                DietGeneralCubit(getIt.get<DietGeneralPlanRepoImpl>())
+                  ..getAllDietPlans(),
           ),
           BlocProvider(
             create: (context) => ThemeCubit()..loadTheme(),

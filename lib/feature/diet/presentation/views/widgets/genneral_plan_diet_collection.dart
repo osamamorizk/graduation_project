@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
+import 'package:graduation_project/core/widgets/shimmer_loading.dart';
 import 'package:graduation_project/feature/diet/data/models/diet_gp_model.dart';
 
 class GenneralPlanDietColllection extends StatelessWidget {
@@ -25,24 +26,21 @@ class GenneralPlanDietColllection extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           CachedNetworkImage(
-            imageUrl: dietGpModel.imageUrl ?? '',
+            imageUrl: dietGpModel.imageUrl ??
+                'https://images.unsplash.com/photo-1498837167922-ddd27525d352',
             fit: BoxFit.cover,
-            placeholder: (context, url) => Container(
-              color: Colors.grey.shade300,
-              child: const Center(child: CircularProgressIndicator()),
+            placeholder: (context, url) => const ShimmerLoadingWidget(
+              itemCount: 1,
+              hight: 140,
             ),
             errorWidget: (context, url, error) => CachedNetworkImage(
                 fit: BoxFit.cover,
                 imageUrl:
                     'https://images.unsplash.com/photo-1498837167922-ddd27525d352'),
           ),
-
-          // Black overlay
           Container(
             color: Colors.black.withOpacity(0.6),
           ),
-
-          // Text
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(

@@ -41,7 +41,7 @@ class GoalSelectionScreenState extends State<GoalSelectionScreen> {
           verticalSpace(35.h),
           Text(
             'What is your goal?',
-            style: TextStyles.font18BlackBold,
+            style: TextStyles.font18Bold,
           ),
           verticalSpace(35.h),
           Expanded(
