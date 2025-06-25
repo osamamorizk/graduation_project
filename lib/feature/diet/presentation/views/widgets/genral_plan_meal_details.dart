@@ -63,9 +63,7 @@ class GenralPlanMealDetails extends StatelessWidget {
       ),
       bottomNavigationBar: const BottomAppBar(
         color: Colors.transparent,
-        child: PlayingVideoWidget(
-          videoUrl: '',
-        ),
+        child: PlayingVideoWidget(),
       ),
     );
   }

@@ -30,7 +30,7 @@ class ImageAndTitleWidget extends StatelessWidget {
             imageUrl: imageUrl),
         Container(
           width: double.infinity,
-          height: 250,
+          height: 220,
           color: Colors.black.withOpacity(0.4),
         ),
         Positioned(

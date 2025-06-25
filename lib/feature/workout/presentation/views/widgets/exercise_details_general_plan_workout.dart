@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/functions/show_exercise_dialog.dart';
 import 'package:graduation_project/core/widgets/calories_and_time.dart';
 import 'package:graduation_project/core/widgets/custom_circle_progress_indicator.dart';
 import 'package:graduation_project/core/widgets/details_section.dart';
@@ -19,12 +20,16 @@ class ExerciseDetailsGeneralPlanWorkout extends StatefulWidget {
 
 class _ExerciseDetailsGeneralPlanWorkoutState
     extends State<ExerciseDetailsGeneralPlanWorkout>
-    with AutomaticKeepAliveClientMixin<ExerciseDetailsGeneralPlanWorkout> {
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
       body: BlocBuilder<WorkoutGeneralPlanCubit, WorkoutGeneralPlanState>(
+        buildWhen: (previous, current) =>
+            current is GeneralWorkoutExerciseDetailsSuccess ||
+            current is GeneralWorkoutExerciseDetailsFailure ||
+            current is GeneralWorkoutExerciseDetailsLoading,
         builder: (context, state) {
           if (state is GeneralWorkoutExerciseDetailsSuccess) {
             return GPWorkoutExerciseDetailsBody(
@@ -61,12 +66,12 @@ class GPWorkoutExerciseDetailsBody extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            collapsedHeight: 200,
             floating: true,
             pinned: true,
             stretch: true,
             shadowColor: Colors.transparent,
             scrolledUnderElevation: 0,
-            expandedHeight: 250,
             toolbarHeight: 0,
             flexibleSpace: FlexibleSpaceBar(
                 background: ImageAndTitleWidget(
@@ -116,9 +121,15 @@ class GPWorkoutExerciseDetailsBody extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
-        child: PlayingVideoWidget(
-          videoUrl: generalWorkoutExerciseDetailsModel.videoUrl ??
-              'https://www.youtube.com/watch?v=3VcKaXpzqRo',
+        child: GestureDetector(
+          onTap: () {
+            showExerciseVideoDialog(
+              context,
+              videoUrl: generalWorkoutExerciseDetailsModel.videoUrl ??
+                  'https://www.youtube.com/watch?v=3VcKaXpzqRo',
+            );
+          },
+          child: const PlayingVideoWidget(),
         ),
       ),
     );

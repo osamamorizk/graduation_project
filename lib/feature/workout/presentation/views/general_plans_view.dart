@@ -18,7 +18,7 @@ class WorkoutGeneralPlansView extends StatefulWidget {
 }
 
 class _WorkoutGeneralPlansViewState extends State<WorkoutGeneralPlansView>
-    with AutomaticKeepAliveClientMixin<WorkoutGeneralPlansView> {
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -31,6 +31,11 @@ class _WorkoutGeneralPlansViewState extends State<WorkoutGeneralPlansView>
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: BlocBuilder<WorkoutGeneralPlanCubit, WorkoutGeneralPlanState>(
+          buildWhen: (previous, current) {
+            return current is WorkoutGeneralPlanLoading ||
+                current is WorkoutGeneralPlanSuccess ||
+                current is WorkoutGeneralPlanFailure;
+          },
           builder: (context, state) {
             if (state is WorkoutGeneralPlanSuccess) {
               return ListView.separated(

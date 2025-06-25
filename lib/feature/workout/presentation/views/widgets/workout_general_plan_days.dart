@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project/core/helpers/extensions.dart';
-import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/widgets/calories_and_time.dart';
 import 'package:graduation_project/core/widgets/custom_circle_progress_indicator.dart';
@@ -26,6 +24,10 @@ class _WorkoutGeneralPlanDaysState extends State<WorkoutGeneralPlanDays>
     super.build(context);
     return Scaffold(
       body: BlocBuilder<WorkoutGeneralPlanCubit, WorkoutGeneralPlanState>(
+        buildWhen: (previous, current) =>
+            current is GeneralWorkoutPlanDetailsSuccess ||
+            current is GeneralWorkoutPlanDetailsFailure ||
+            current is GeneralWorkoutPlanDetailsLoading,
         builder: (context, state) {
           if (state is GeneralWorkoutPlanDetailsSuccess) {
             return SingleChildScrollView(
@@ -79,17 +81,6 @@ class _WorkoutGeneralPlanDaysState extends State<WorkoutGeneralPlanDays>
                             ),
                             itemBuilder: (context, index) {
                               return TitleAndTimeWidget(
-                                onTap: () {
-                                  context
-                                      .pushNamed(Routes.workoutExerciseDetails);
-                                  context
-                                      .read<WorkoutGeneralPlanCubit>()
-                                      .getWorkoutExerciseDetails(
-                                        id: state.genralPlanDetails.days?[index]
-                                                .exercises?[index].id ??
-                                            -70,
-                                      );
-                                },
                                 title:
                                     state.genralPlanDetails.days?[index].name ??
                                         'Day',

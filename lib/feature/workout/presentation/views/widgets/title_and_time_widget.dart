@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/core/helpers/extensions.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/feature/workout/data/models/general_workout_plan_models/general_plan_details_model/exercise.dart';
+import 'package:graduation_project/feature/workout/presentation/manger/general_plan_cubit/workout_general_plan_cubit.dart';
 
 class TitleAndTimeWidget extends StatelessWidget {
   const TitleAndTimeWidget({
     super.key,
     required this.title,
     required this.exercise,
-    this.onTap,
   });
 
   final String title;
   final List<Exercise> exercise;
-  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
@@ -59,29 +61,44 @@ class TitleAndTimeWidget extends StatelessWidget {
       //     ],
       //   ),
       // ),
-      children: exercise.map(
-        (e) {
-          return GestureDetector(
-            onTap: onTap,
-            child: ListTile(
-              minTileHeight: 50.h,
-              title: Text(
-                e.name ?? 'Exercise',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontSize: 13.sp,
-                    ),
-              ),
-              trailing: Text(
-                '${e.sets} sets',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontSize: 12.sp,
-                      color: ColorsManger.grey,
-                    ),
-              ),
-            ),
-          );
-        },
-      ).toList(),
+      children: [
+        SizedBox(
+          height: exercise.length * 60.h,
+          child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: exercise.length,
+            itemBuilder: (context, index) {
+              final e = exercise[index];
+              return GestureDetector(
+                onTap: () {
+                  context.pushNamed(Routes.workoutExerciseDetails);
+                  context
+                      .read<WorkoutGeneralPlanCubit>()
+                      .getWorkoutExerciseDetails(
+                        id: e.id ?? -70,
+                      );
+                },
+                child: ListTile(
+                  minTileHeight: 50.h,
+                  title: Text(
+                    "${index + 1}- ${e.name}",
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          fontSize: 13.sp,
+                        ),
+                  ),
+                  trailing: Text(
+                    '${e.sets} sets',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          fontSize: 12.sp,
+                          color: ColorsManger.grey,
+                        ),
+                  ),
+                ),
+              );
+            },
+          ),
+        )
+      ],
     );
   }
 }

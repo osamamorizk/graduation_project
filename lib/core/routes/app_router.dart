@@ -33,13 +33,9 @@ import 'package:graduation_project/feature/sign_up/presentation/views/sign_up_vi
 import 'package:graduation_project/feature/user_data_form/data/repos/user_data_repo_impl.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/user_data_form.dart';
-import 'package:graduation_project/feature/workout/data/models/general_workout_plan_models/general_plan_details_model/general_plan_details_model.dart';
-import 'package:graduation_project/feature/workout/data/repos/general_plan_repo/general_plan_repo_impl.dart';
 import 'package:graduation_project/feature/workout/data/repos/workout_repo/workout_repo_impl.dart';
-import 'package:graduation_project/feature/workout/presentation/manger/general_plan_cubit/workout_general_plan_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/manger/worlout_cubit/workout_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/exercise_list_view.dart';
-import 'package:graduation_project/feature/workout/presentation/views/widgets/general_workout_plan_exercises.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/exercise_details_general_plan_workout.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/workout_general_plan_days.dart';
 

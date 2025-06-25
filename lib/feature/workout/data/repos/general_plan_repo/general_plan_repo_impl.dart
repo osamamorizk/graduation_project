@@ -22,7 +22,7 @@ class GeneralWorkoutPlanRepoImpl implements GeneralPlanRepo {
       for (var plan in result) {
         generalWorkoutPlansList.add(GeneralWorkoutPLanModel.fromJson(plan));
       }
-      return right(generalWorkoutPlansList);
+      return right(generalWorkoutPlansList.reversed.toList());
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure(errorMessage: e.message ?? 'Unknown error'));
