@@ -130,6 +130,9 @@ class _GeneralPlanDetailsBodyState extends State<GeneralPlanDetailsBody> {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: GestureDetector(
                       onTap: () {
+                        context
+                            .read<DietGeneralCubit>()
+                            .getDietMealDetails(id: meal.id);
                         context.pushNamed(
                           Routes.generalDietMealDetails,
                         );

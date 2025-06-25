@@ -32,3 +32,17 @@ final class GeneralDietCubitDetailsFailure extends DietGeneralCubitState {
 }
 
 final class GeneralDietCubitDetailsLoading extends DietGeneralCubitState {}
+
+final class GeneralDietCubitMealDetailsSuccess extends DietGeneralCubitState {
+  final GpMealDetailsModel dietMealDetails;
+
+  GeneralDietCubitMealDetailsSuccess(this.dietMealDetails);
+}
+
+final class GeneralDietCubitMealDetailsFailure extends DietGeneralCubitState {
+  final String errorMessage;
+
+  GeneralDietCubitMealDetailsFailure(this.errorMessage);
+}
+
+final class GeneralDietCubitMealDetailsLoading extends DietGeneralCubitState {}

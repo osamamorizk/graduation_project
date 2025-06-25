@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:graduation_project/core/helpers/errors.dart';
 import 'package:graduation_project/feature/diet/data/models/diet_gp_details_model/diet_gp_details_model.dart';
 import 'package:graduation_project/feature/diet/data/models/diet_gp_model.dart';
+import 'package:graduation_project/feature/diet/data/models/gp_meal_details_model/gp_meal_details_model.dart';
 
 abstract class DietGeneralPlanRepo {
   Future<Either<Failure, List<DietGpModel>>> getGeneralDietPlans();
@@ -9,6 +10,6 @@ abstract class DietGeneralPlanRepo {
   Future<Either<Failure, DietGpDetailsModel>> getGeneralDietPlanDetails(
       {required int id});
 
-  // Future<Either<Failure, GeneralDietMealDetailsModel>>
-  //     getDietMealDetails({required int id});
+  Future<Either<Failure, GpMealDetailsModel>> getDietMealDetails(
+      {required int id});
 }
