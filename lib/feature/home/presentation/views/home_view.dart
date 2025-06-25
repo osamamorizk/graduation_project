@@ -29,7 +29,7 @@ class HomeView extends StatelessWidget {
                       verticalSpace(4),
                       const HomeBanner(),
                       verticalSpace(20),
-                      const ScanAndPlanBox(),
+                      const ScanAndPlanAndHydartionBox(),
                       verticalSpace(16),
                       Text(
                         'Challenges',

@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/helpers/spacing.dart';
+import 'package:graduation_project/feature/home/presentation/views/widgets/hydration_box.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/plan_box.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/scan_food_box.dart';
 
-class ScanAndPlanBox extends StatelessWidget {
-  const ScanAndPlanBox({super.key});
+class ScanAndPlanAndHydartionBox extends StatelessWidget {
+  const ScanAndPlanAndHydartionBox({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
+      spacing: 8,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        const ScanFoodBox(),
-        horizontalSpace(5),
-        const YourPlanBox(),
+        Expanded(child: ScanFoodBox()),
+        Expanded(child: HydrationBox()),
+        Expanded(child: YourPlanBox()),
       ],
     );
   }

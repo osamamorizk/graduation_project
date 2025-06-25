@@ -59,7 +59,7 @@ class CalorisAndTimeWidget extends StatelessWidget {
             ),
           ),
           Text(
-            '${duration ~/ 60} min',
+            '$duration sets',
             style: Theme.of(context).textTheme.bodySmall,
           ),
           widget ?? const SizedBox.shrink(),

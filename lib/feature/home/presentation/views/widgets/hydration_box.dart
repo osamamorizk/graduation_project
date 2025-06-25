@@ -3,28 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
+import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
+import 'package:graduation_project/core/routes/routes.dart';
+import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
-import 'package:graduation_project/feature/bottom_nav_bar/presentation/views/widgets/bottom_nav_bar_new.dart';
 
-class ScanFoodBox extends StatelessWidget {
-  const ScanFoodBox({super.key});
+class HydrationBox extends StatelessWidget {
+  const HydrationBox({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        final bottomNavBarState =
-            context.findAncestorStateOfType<NewBottomNavBarState>();
-        bottomNavBarState?.jumpToIndex(2);
+        context.pushNamed(Routes.drinkWaterRoute);
       },
       child: Container(
         height: 94.h,
         width: MediaQuery.sizeOf(context).width / 2.35,
         decoration: BoxDecoration(
-          image: const DecorationImage(
+          image: DecorationImage(
+              colorFilter: ColorFilter.mode(
+                  ColorsManger.darkBlue.withOpacity(.6), BlendMode.darken),
               fit: BoxFit.fill,
-              image: AssetImage(Assets.imagesScanBoxBackground)),
+              image: const AssetImage(Assets.imagesHydrationBox)),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -32,11 +34,11 @@ class ScanFoodBox extends StatelessWidget {
           children: [
             SvgPicture.asset(
               height: 27,
-              Assets.svgsCameraIcon,
+              Assets.svgsWaterGlass,
             ),
             verticalSpace(12),
             Text(
-              'Scan Food',
+              'Hydration',
               style: TextStyles.font14WhiteBold,
             )
           ],
