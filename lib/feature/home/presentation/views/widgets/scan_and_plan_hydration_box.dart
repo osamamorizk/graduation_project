@@ -9,8 +9,7 @@ class ScanAndPlanAndHydartionBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Row(
-      spacing: 8,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      spacing: 12,
       children: [
         Expanded(child: ScanFoodBox()),
         Expanded(child: HydrationBox()),

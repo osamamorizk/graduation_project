@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/functions/show_comming_soon_dialog.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
-import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
-import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/feature/home/data/models/challenge_model.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/challenge_item.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/home_banner.dart';
-import 'package:graduation_project/feature/home/presentation/views/widgets/scan_and_plan_box.dart';
+import 'package:graduation_project/feature/home/presentation/views/widgets/scan_and_plan_hydration_box.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -48,8 +46,11 @@ class HomeView extends StatelessWidget {
               delegate: SliverChildBuilderDelegate(
                 (context, index) => GestureDetector(
                   onTap: () => showCommingSoonDialog(context),
-                  child: ChallengeItem(
-                    challengeModel: challengesList[index],
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: ChallengeItem(
+                      challengeModel: challengesList[index],
+                    ),
                   ),
                 ),
                 childCount: challengesList.length,
@@ -66,11 +67,7 @@ class HomeView extends StatelessWidget {
       toolbarHeight: 50,
       titleSpacing: 0,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      leading: GestureDetector(
-          onTap: () {
-            context.pushNamed(Routes.drinkWaterRoute);
-          },
-          child: Image.asset(Assets.iconsAppIcon)),
+      leading: Image.asset(Assets.iconsAppIcon),
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,

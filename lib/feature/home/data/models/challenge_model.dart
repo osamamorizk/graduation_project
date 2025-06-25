@@ -21,16 +21,16 @@ List<ChallengeModel> challengesList = [
     durationDays: 30,
     level: "Advanced",
   ),
-  ChallengeModel(
-    title: "Clean Eating",
-    image: Assets.imagesCleanEating,
-    durationDays: 14,
-    level: "Intermediate",
-  ),
-  ChallengeModel(
-    title: "Hydration",
-    image: Assets.imagesHydration,
-    durationDays: 30,
-    level: "Beginner",
-  ),
+  // ChallengeModel(
+  //   title: "Clean Eating",
+  //   image: Assets.imagesCleanEating,
+  //   durationDays: 14,
+  //   level: "Intermediate",
+  // ),
+  // ChallengeModel(
+  //   title: "Hydration",
+  //   image: Assets.imagesHydration,
+  //   durationDays: 30,
+  //   level: "Beginner",
+  // ),
 ];
