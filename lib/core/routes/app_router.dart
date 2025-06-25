@@ -17,6 +17,7 @@ import 'package:graduation_project/feature/drink_water/presentation/manger/drink
 import 'package:graduation_project/feature/drink_water/presentation/views/drink_water_view.dart';
 import 'package:graduation_project/feature/home/data/repos/challenge_repo_impl.dart';
 import 'package:graduation_project/feature/home/presentation/manger/cubit/challenge_cubit.dart';
+import 'package:graduation_project/feature/home/presentation/views/widgets/level_details_view.dart';
 import 'package:graduation_project/feature/login/data/repos/login_repo_impl.dart';
 import 'package:graduation_project/feature/login/presentation/manger/cubit/login_cubit.dart';
 import 'package:graduation_project/feature/login/presentation/views/forget_password.dart';
@@ -142,6 +143,13 @@ class AppRouter {
       case Routes.generalWorkoutPlansDays:
         return MaterialPageRoute(
           builder: (context) => const WorkoutGeneralPlanDays(),
+        );
+      case Routes.levelDetailsView:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => LoginCubit(getIt.get<LoginRepoImpl>()),
+            child: const LevelDetailsView(),
+          ),
         );
       // case Routes.exercisesByDay:
       //   final args = settings.arguments;

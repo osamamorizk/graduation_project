@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/helpers/extensions.dart';
+import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/feature/home/data/models/chanllenge_model/chanllenge_model.dart';
 import 'package:graduation_project/feature/home/presentation/manger/cubit/challenge_cubit.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/challenge_details.dart';
@@ -42,6 +44,7 @@ class ChallengeItem extends StatelessWidget {
               return LevelCard(
                 onTap: () {
                   context.read<ChallengeCubit>().getLevelDetails(id: index + 1);
+                  context.pushNamed(Routes.levelDetailsView);
                 },
                 levelNumber: index + 1,
                 title: 'Level ${index + 1}',
