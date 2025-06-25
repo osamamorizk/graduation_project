@@ -110,7 +110,7 @@ class GpMealDetailsBody extends StatelessWidget {
           onTap: () {
             showExerciseVideoDialog(context,
                 videoUrl: gpMealDetailsModel.videoUrl ??
-                    'https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+                    'https://www.youtube.com/watch?v=D93k2PDJd08&ab_channel=WILDERNESSCOOKING');
           },
           child: const PlayingVideoWidget(),
         ),

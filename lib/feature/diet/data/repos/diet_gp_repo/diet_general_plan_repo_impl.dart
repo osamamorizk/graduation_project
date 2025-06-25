@@ -19,7 +19,7 @@ class DietGeneralPlanRepoImpl implements DietGeneralPlanRepo {
       for (var plan in response) {
         dietPlans.add(DietGpModel.fromJson(plan));
       }
-      return right(dietPlans);
+      return right(dietPlans.reversed.toList());
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
