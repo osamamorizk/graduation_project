@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/widgets/error_view.dart';
 import 'package:graduation_project/core/widgets/sliver_shimmer_loading.dart';
-import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_cubit.dart';
+import 'package:graduation_project/feature/diet/presentation/manger/diet_cubit/diet_cubit.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/meal_item.dart';
 
 class DietMealsListView extends StatelessWidget {

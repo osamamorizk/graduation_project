@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
-import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_cubit.dart';
+import 'package:graduation_project/feature/diet/presentation/manger/diet_cubit/diet_cubit.dart';
 import 'package:graduation_project/feature/diet/presentation/views/diet_general_plans.dart';
 import 'package:graduation_project/feature/diet/presentation/views/diet_your_plan.dart';
 

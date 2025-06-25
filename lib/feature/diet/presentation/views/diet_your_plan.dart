@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/widgets/sticky_hidder_for_days.dart';
-import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_cubit.dart';
+import 'package:graduation_project/feature/diet/presentation/manger/diet_cubit/diet_cubit.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/diet_days_list.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/diet_meal_list_view.dart';
 

@@ -6,8 +6,10 @@ import 'package:graduation_project/feature/bottom_nav_bar/presentation/views/bot
 import 'package:graduation_project/feature/chatbot/data/repos/chat_bot_repo.dart';
 import 'package:graduation_project/feature/chatbot/presentation/manger/chatboot_cubit/chatboot_cubit.dart';
 import 'package:graduation_project/feature/chatbot/presentation/views/chatbot_view.dart';
+import 'package:graduation_project/feature/diet/data/repos/diet_gp_repo/diet_general_plan_repo_impl.dart';
 import 'package:graduation_project/feature/diet/data/repos/diet_repo_impl.dart';
-import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_cubit.dart';
+import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_general_cubit.dart';
+import 'package:graduation_project/feature/diet/presentation/manger/diet_cubit/diet_cubit.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/general_plan_details_view.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/genral_plan_meal_details.dart';
 import 'package:graduation_project/feature/drink_water/data/repos/notification_repo.dart';
@@ -72,6 +74,11 @@ class AppRouter {
               BlocProvider(
                 create: (context) =>
                     DietCubit(getIt.get<DietRepoImpl>())..getAllDietsPlan(),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    DietGeneralCubit(getIt.get<DietGeneralPlanRepoImpl>())
+                      ..getAllDietPlans(),
               ),
             ],
             child: const BottomBar(),
