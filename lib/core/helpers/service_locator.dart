@@ -6,6 +6,7 @@ import 'package:graduation_project/feature/diet/data/repos/diet_gp_repo/diet_gen
 import 'package:graduation_project/feature/diet/data/repos/diet_repo_impl.dart';
 import 'package:graduation_project/feature/drink_water/data/repos/notification_repo.dart';
 import 'package:graduation_project/feature/drink_water/data/repos/water_repo_impl.dart';
+import 'package:graduation_project/feature/home/data/repos/challenge_repo_impl.dart';
 import 'package:graduation_project/feature/login/data/repos/login_repo_impl.dart';
 import 'package:graduation_project/feature/profile/data/repos/profile_repo_impl.dart';
 import 'package:graduation_project/feature/scan_food/data/repos/scan_food_repo_impl.dart';
@@ -31,6 +32,11 @@ void setupServiceLocator() {
 
   getIt.registerSingleton<UserDataRepoImpl>(
     UserDataRepoImpl(
+      getIt.get<ApiService>(),
+    ),
+  );
+  getIt.registerSingleton<ChallengeRepoImpl>(
+    ChallengeRepoImpl(
       getIt.get<ApiService>(),
     ),
   );

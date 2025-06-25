@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/feature/home/data/models/challenge_model.dart';
+import 'package:graduation_project/feature/home/data/models/chanllenge_model/chanllenge_model.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/challenge_details.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/level_card_widget.dart';
 
@@ -35,13 +35,13 @@ class ChallengeItem extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.6,
           child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 5,
+              itemCount: challengeModel.levels?.length,
               itemBuilder: (context, index) {
                 return LevelCard(
                   levelNumber: index + 1,
                   title: 'Level ${index + 1}',
-                  subtitle: 'Subtitle for level ${index + 1}',
-                  islocked: index > 2,
+                  subtitle: challengeModel.levels?[index].title ?? '',
+                  islocked: challengeModel.levels?[index].isUnlocked ?? true,
                 );
               }),
         )

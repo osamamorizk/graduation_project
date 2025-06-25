@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/feature/home/data/models/challenge_model.dart';
+import 'package:graduation_project/feature/home/data/models/chanllenge_model/chanllenge_model.dart';
 
 class ChallengeDetails extends StatelessWidget {
   const ChallengeDetails({
@@ -24,7 +24,7 @@ class ChallengeDetails extends StatelessWidget {
         Image.asset(
           height: 75.h,
           fit: BoxFit.fill,
-          challengeModel.image,
+          Assets.imagesUnbroken,
         ),
         horizontalSpace(16),
         Column(
@@ -32,7 +32,7 @@ class ChallengeDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              challengeModel.title,
+              challengeModel.challengeTitle ?? 'Challlenge',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             verticalSpace(16),
@@ -48,11 +48,11 @@ class ChallengeDetails extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${challengeModel.durationDays} days  |  ',
+                  '${challengeModel.totalDays} days  |  ',
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 Text(
-                  challengeModel.level,
+                  'Completed ${challengeModel.progressPercentage}',
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],

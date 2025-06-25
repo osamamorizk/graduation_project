@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   /// Assets for icons0bar
   /// assets/icons/0bar.png
   static const String icons0bar = "assets/icons/0bar.png";
@@ -32,7 +32,8 @@ class Assets {
 
   /// Assets for iconsDedliftStrength
   /// assets/icons/dedlift_strength.png
-  static const String iconsDedliftStrength = "assets/icons/dedlift_strength.png";
+  static const String iconsDedliftStrength =
+      "assets/icons/dedlift_strength.png";
 
   /// Assets for iconsGainWeight
   /// assets/icons/gain_weight.png
@@ -120,7 +121,8 @@ class Assets {
 
   /// Assets for imagesExercisesChest
   /// assets/images/exercises/chest.png
-  static const String imagesExercisesChest = "assets/images/exercises/chest.png";
+  static const String imagesExercisesChest =
+      "assets/images/exercises/chest.png";
 
   /// Assets for imagesExercisesLeg
   /// assets/images/exercises/leg.png
@@ -128,15 +130,18 @@ class Assets {
 
   /// Assets for imagesExercisesStretches
   /// assets/images/exercises/stretches.png
-  static const String imagesExercisesStretches = "assets/images/exercises/stretches.png";
+  static const String imagesExercisesStretches =
+      "assets/images/exercises/stretches.png";
 
   /// Assets for imagesGeneralPlansGeneralDiet
   /// assets/images/general_plans/general_diet.png
-  static const String imagesGeneralPlansGeneralDiet = "assets/images/general_plans/general_diet.png";
+  static const String imagesGeneralPlansGeneralDiet =
+      "assets/images/general_plans/general_diet.png";
 
   /// Assets for imagesGeneralPlansGenralWorkout
   /// assets/images/general_plans/genral_workout.png
-  static const String imagesGeneralPlansGenralWorkout = "assets/images/general_plans/genral_workout.png";
+  static const String imagesGeneralPlansGenralWorkout =
+      "assets/images/general_plans/genral_workout.png";
 
   /// Assets for imagesHydration
   /// assets/images/hydration.png
@@ -176,7 +181,8 @@ class Assets {
 
   /// Assets for imagesPlanboxBackground
   /// assets/images/planbox_background.png
-  static const String imagesPlanboxBackground = "assets/images/planbox_background.png";
+  static const String imagesPlanboxBackground =
+      "assets/images/planbox_background.png";
 
   /// Assets for imagesProfieIcon
   /// assets/images/profie_icon.png
@@ -188,7 +194,8 @@ class Assets {
 
   /// Assets for imagesScanBoxBackground
   /// assets/images/scan_box_background.png
-  static const String imagesScanBoxBackground = "assets/images/scan_box_background.png";
+  static const String imagesScanBoxBackground =
+      "assets/images/scan_box_background.png";
 
   /// Assets for imagesSplash
   /// assets/images/splash.png
@@ -216,43 +223,53 @@ class Assets {
 
   /// Assets for svgsBottomBarActiveDiet
   /// assets/svgs/bottom_bar/active_diet.svg
-  static const String svgsBottomBarActiveDiet = "assets/svgs/bottom_bar/active_diet.svg";
+  static const String svgsBottomBarActiveDiet =
+      "assets/svgs/bottom_bar/active_diet.svg";
 
   /// Assets for svgsBottomBarActiveHome
   /// assets/svgs/bottom_bar/active_home.svg
-  static const String svgsBottomBarActiveHome = "assets/svgs/bottom_bar/active_home.svg";
+  static const String svgsBottomBarActiveHome =
+      "assets/svgs/bottom_bar/active_home.svg";
 
   /// Assets for svgsBottomBarActiveProfile
   /// assets/svgs/bottom_bar/active_profile.svg
-  static const String svgsBottomBarActiveProfile = "assets/svgs/bottom_bar/active_profile.svg";
+  static const String svgsBottomBarActiveProfile =
+      "assets/svgs/bottom_bar/active_profile.svg";
 
   /// Assets for svgsBottomBarActiveScan
   /// assets/svgs/bottom_bar/active_scan.svg
-  static const String svgsBottomBarActiveScan = "assets/svgs/bottom_bar/active_scan.svg";
+  static const String svgsBottomBarActiveScan =
+      "assets/svgs/bottom_bar/active_scan.svg";
 
   /// Assets for svgsBottomBarActiveWorkouts
   /// assets/svgs/bottom_bar/active_workouts.svg
-  static const String svgsBottomBarActiveWorkouts = "assets/svgs/bottom_bar/active_workouts.svg";
+  static const String svgsBottomBarActiveWorkouts =
+      "assets/svgs/bottom_bar/active_workouts.svg";
 
   /// Assets for svgsBottomBarInactiveDiet
   /// assets/svgs/bottom_bar/inactive_diet.svg
-  static const String svgsBottomBarInactiveDiet = "assets/svgs/bottom_bar/inactive_diet.svg";
+  static const String svgsBottomBarInactiveDiet =
+      "assets/svgs/bottom_bar/inactive_diet.svg";
 
   /// Assets for svgsBottomBarInactiveHome
   /// assets/svgs/bottom_bar/inactive_home.svg
-  static const String svgsBottomBarInactiveHome = "assets/svgs/bottom_bar/inactive_home.svg";
+  static const String svgsBottomBarInactiveHome =
+      "assets/svgs/bottom_bar/inactive_home.svg";
 
   /// Assets for svgsBottomBarInactiveProfile
   /// assets/svgs/bottom_bar/inactive_profile.svg
-  static const String svgsBottomBarInactiveProfile = "assets/svgs/bottom_bar/inactive_profile.svg";
+  static const String svgsBottomBarInactiveProfile =
+      "assets/svgs/bottom_bar/inactive_profile.svg";
 
   /// Assets for svgsBottomBarInactiveScan
   /// assets/svgs/bottom_bar/inactive_scan.svg
-  static const String svgsBottomBarInactiveScan = "assets/svgs/bottom_bar/inactive_scan.svg";
+  static const String svgsBottomBarInactiveScan =
+      "assets/svgs/bottom_bar/inactive_scan.svg";
 
   /// Assets for svgsBottomBarInactiveWorkouts
   /// assets/svgs/bottom_bar/inactive_workouts.svg
-  static const String svgsBottomBarInactiveWorkouts = "assets/svgs/bottom_bar/inactive_workouts.svg";
+  static const String svgsBottomBarInactiveWorkouts =
+      "assets/svgs/bottom_bar/inactive_workouts.svg";
 
   /// Assets for svgsCalender
   /// assets/svgs/calender.svg
@@ -288,15 +305,18 @@ class Assets {
 
   /// Assets for svgsProfileChangePassword
   /// assets/svgs/profile/change_password.svg
-  static const String svgsProfileChangePassword = "assets/svgs/profile/change_password.svg";
+  static const String svgsProfileChangePassword =
+      "assets/svgs/profile/change_password.svg";
 
   /// Assets for svgsProfileContactUs
   /// assets/svgs/profile/contact_us.svg
-  static const String svgsProfileContactUs = "assets/svgs/profile/contact_us.svg";
+  static const String svgsProfileContactUs =
+      "assets/svgs/profile/contact_us.svg";
 
   /// Assets for svgsProfileDataPrivacy
   /// assets/svgs/profile/data_privacy.svg
-  static const String svgsProfileDataPrivacy = "assets/svgs/profile/data_privacy.svg";
+  static const String svgsProfileDataPrivacy =
+      "assets/svgs/profile/data_privacy.svg";
 
   /// Assets for svgsProfileLogOut
   /// assets/svgs/profile/log_out.svg
@@ -308,11 +328,13 @@ class Assets {
 
   /// Assets for svgsProfileMyProgress
   /// assets/svgs/profile/my_progress.svg
-  static const String svgsProfileMyProgress = "assets/svgs/profile/my_progress.svg";
+  static const String svgsProfileMyProgress =
+      "assets/svgs/profile/my_progress.svg";
 
   /// Assets for svgsProfileProfileFrame
   /// assets/svgs/profile/profile_frame.svg
-  static const String svgsProfileProfileFrame = "assets/svgs/profile/profile_frame.svg";
+  static const String svgsProfileProfileFrame =
+      "assets/svgs/profile/profile_frame.svg";
 
   /// Assets for svgsProfileReminder
   /// assets/svgs/profile/reminder.svg
@@ -334,4 +356,3 @@ class Assets {
   /// assets/svgs/your_plan.svg
   static const String svgsYourPlan = "assets/svgs/your_plan.svg";
 }
-
