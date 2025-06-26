@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/functions/custom_snack_bar.dart';
 import 'package:graduation_project/core/functions/logout_dialog.dart';
 import 'package:graduation_project/core/functions/show_comming_soon_dialog.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
+import 'package:graduation_project/core/helpers/cache_helper.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/routes/routes.dart';
@@ -53,9 +55,11 @@ class ProfileOptionList extends StatelessWidget {
           onTap: () {
             logoutDialog(
               context,
-              onPressed: () {
-                context.pop();
-                showCommingSoonDialog(context);
+              onPressed: () async {
+                context.pushNamedAndRemoveUntil(Routes.login,
+                    predicate: (route) => false);
+                await CacheHelper.saveData(key: 'login', value: false);
+                showSuccessToast('Logged out successfully');
               },
             );
           },

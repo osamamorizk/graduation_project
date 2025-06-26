@@ -28,3 +28,13 @@ final class LevelFailure extends ChallengeState {
   final String errorMessage;
   LevelFailure(this.errorMessage);
 }
+
+final class MarkDaySuccess extends ChallengeState {
+  final String message;
+  MarkDaySuccess(this.message);
+}
+
+final class MarkDayFailure extends ChallengeState {
+  final String errorMessage;
+  MarkDayFailure(this.errorMessage);
+}

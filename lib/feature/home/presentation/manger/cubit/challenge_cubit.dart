@@ -27,4 +27,12 @@ class ChallengeCubit extends Cubit<ChallengeState> {
       (level) => emit(LevelSuccess(level)),
     );
   }
+
+  Future<void> markDayCompleted({required int day}) async {
+    final result = await challengeRepo.markDayCompleted(day: day);
+    result.fold(
+      (failure) => emit(MarkDayFailure(failure.errorMessage)),
+      (success) => emit(MarkDaySuccess(success)),
+    );
+  }
 }

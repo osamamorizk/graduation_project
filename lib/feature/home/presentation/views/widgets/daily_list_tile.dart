@@ -1,82 +1,107 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:graduation_project/core/themes/colors_manger.dart';
+import 'package:graduation_project/feature/home/data/models/level_model/day.dart';
+import 'package:graduation_project/feature/home/presentation/manger/cubit/challenge_cubit.dart';
 
 class DayTaskTile extends StatefulWidget {
-  final String dayTitle;
-  final String? content;
-
   const DayTaskTile({
     super.key,
-    required this.dayTitle,
-    this.content,
+    required this.day,
+    this.onTap,
   });
-
+  final Day day;
+  final void Function(bool?)? onTap;
   @override
   State<DayTaskTile> createState() => _DayTaskTileState();
 }
 
 class _DayTaskTileState extends State<DayTaskTile> {
   bool isExpanded = false;
-  bool isCompleted = false;
+  late bool isCompleted;
+
+  @override
+  void initState() {
+    isCompleted = widget.day.isCompleted ?? false;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Card(
       child: ExpansionTile(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        childrenPadding: const EdgeInsets.only(
+          bottom: 16,
+          left: 20,
+          right: 16,
+          top: 0,
+        ),
+        backgroundColor: isDark ? ColorsManger.darkCard : Colors.white,
         collapsedShape: RoundedRectangleBorder(
           side: const BorderSide(
-            color: Colors.grey,
+            color: ColorsManger.grey,
             width: .2,
           ),
           borderRadius: BorderRadius.circular(16),
         ),
         shape: RoundedRectangleBorder(
           side: const BorderSide(
-            color: Colors.grey,
-            width: .5,
+            color: ColorsManger.grey,
+            width: .2,
           ),
           borderRadius: BorderRadius.circular(16),
         ),
-        initiallyExpanded: false,
+        initiallyExpanded: !isCompleted,
         title: Row(
           children: [
             Checkbox(
+              activeColor:
+                  isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue,
               value: isCompleted,
               onChanged: (value) {
                 if (value == true) {
                   isCompleted = !isCompleted;
-                }
+                  context
+                      .read<ChallengeCubit>()
+                      .markDayCompleted(day: widget.day.dayNumber ?? 1);
 
-                setState(() {});
+                  setState(() {});
+                }
               },
             ),
-            Expanded(
-                child: Text(
-              widget.dayTitle,
+            Text(
+              widget.day.title ?? '',
               style: Theme.of(context).textTheme.bodyMedium,
-            )),
+            ),
           ],
         ),
         children: [
-          // const Divider(
-          //   thickness: .5,
-          //   endIndent: 20,
-          //   indent: 20,
-          // ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, bottom: 16),
-            child: Row(
-              children: [
-                Text(
-                  ' widget.content',
+          Row(
+            children: [
+              Text(
+                widget.day.description ?? '',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 14,
+                    ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Tips: ${widget.day.tip}',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium
-                      ?.copyWith(fontWeight: FontWeight.normal),
-                  textAlign: TextAlign.left,
+                      ?.copyWith(fontWeight: FontWeight.normal, fontSize: 14),
                 ),
-              ],
-            ),
+              ),
+            ],
           )
         ],
       ),

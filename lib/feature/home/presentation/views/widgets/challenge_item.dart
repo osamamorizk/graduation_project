@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/routes/routes.dart';
+import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/feature/home/data/models/chanllenge_model/chanllenge_model.dart';
 import 'package:graduation_project/feature/home/presentation/manger/cubit/challenge_cubit.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/challenge_details.dart';
@@ -20,15 +21,15 @@ class ChallengeItem extends StatelessWidget {
       initiallyExpanded: true,
       collapsedShape: RoundedRectangleBorder(
         side: const BorderSide(
-          color: Colors.grey,
+          color: ColorsManger.grey,
           width: .2,
         ),
         borderRadius: BorderRadius.circular(16),
       ),
       shape: RoundedRectangleBorder(
         side: const BorderSide(
-          color: Colors.grey,
-          width: .5,
+          color: ColorsManger.grey,
+          width: .2,
         ),
         borderRadius: BorderRadius.circular(16),
       ),
@@ -44,11 +45,13 @@ class ChallengeItem extends StatelessWidget {
               return LevelCard(
                 onTap: () {
                   context.read<ChallengeCubit>().getLevelDetails(id: index + 1);
-                  context.pushNamed(Routes.levelDetailsView);
+                  context.pushNamed(Routes.levelDetailsView, arguments: {
+                    'id': index + 1,
+                  });
                 },
                 levelNumber: index + 1,
                 title: 'Level ${index + 1}',
-                subtitle: challengeModel.levels?[index].title ?? '',
+                subtitle: challengeModel.levels?[index].description ?? '',
                 isUnlocked: challengeModel.levels?[index].isUnlocked ?? true,
               );
             },

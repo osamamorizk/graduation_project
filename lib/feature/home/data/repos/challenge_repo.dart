@@ -6,4 +6,5 @@ import 'package:graduation_project/feature/home/data/models/level_model/level_mo
 abstract class ChallengeRepo {
   Future<Either<Failure, ChallengeModel>> getChallenges();
   Future<Either<Failure, LevelModel>> getLevelDetails({required int id});
+  Future<Either<Failure, String>> markDayCompleted({required int day});
 }

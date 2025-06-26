@@ -19,7 +19,11 @@ class LevelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bgColor = isUnlocked ? Colors.white : Colors.grey.shade200;
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final cardColor = isDarkMode ? ColorsManger.darkCard : Colors.white;
+    final lockedCardColor =
+        isDarkMode ? ColorsManger.darkSurface : Colors.grey.shade200;
+    final bgColor = isUnlocked ? cardColor : lockedCardColor;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
@@ -30,11 +34,11 @@ class LevelCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: bgColor,
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Colors.grey, width: .5),
+            border: Border.all(color: ColorsManger.grey, width: .2),
           ),
           child: Row(
             children: [
-              _buildNumberCircle(),
+              _buildNumberCircle(context),
               const SizedBox(width: 16),
               _buildTextContent(context),
               Icon(
@@ -48,12 +52,12 @@ class LevelCard extends StatelessWidget {
     );
   }
 
-  Widget _buildNumberCircle() {
+  Widget _buildNumberCircle(BuildContext context) {
     return Stack(
       alignment: Alignment.center,
       children: [
         CircleAvatar(
-          radius: 16,
+          radius: 15,
           backgroundColor: Colors.blue.shade100,
           child: Text(
             '$levelNumber',

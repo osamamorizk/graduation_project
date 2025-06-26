@@ -37,4 +37,19 @@ class ChallengeRepoImpl implements ChallengeRepo {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, String>> markDayCompleted({required int day}) async {
+    try {
+      await apiService.post(
+          endPoints: 'Challenge/day/$day/complete', data: null);
+      return right('Completed Successfuly');
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      } else {
+        return Left(Failure(errorMessage: e.toString()));
+      }
+    }
+  }
 }

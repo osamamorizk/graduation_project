@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/themes/colors_manger.dart';
 
 class DescriptionCard extends StatelessWidget {
-  const DescriptionCard({super.key});
+  const DescriptionCard({super.key, required this.description});
 
+  final String description;
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFFCEAE8),
+        color: isDarkMode ? ColorsManger.darkCard : const Color(0xFFFCEAE8),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: const Row(
+      child: Row(
         spacing: 8,
         children: [
-          Icon(
+          const Icon(
             Icons.description_outlined,
-            color: Colors.red,
+            color: ColorsManger.darkBlue,
             size: 30,
           ),
           Expanded(
             child: Text(
-              "Eat more whole, unprocessed foods, reduce added sugars and feel better",
-              style: TextStyle(fontWeight: FontWeight.w500),
+              description,
+              style: const TextStyle(fontWeight: FontWeight.w500),
             ),
           )
         ],
