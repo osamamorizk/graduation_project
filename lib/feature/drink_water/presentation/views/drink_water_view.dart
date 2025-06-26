@@ -48,6 +48,14 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.read<NotificationCubit>().remindToDrink(now, context);
+            },
+            icon: const Icon(Icons.add),
+          ),
+        ],
         scrolledUnderElevation: 0,
       ),
       body: Padding(

@@ -62,74 +62,83 @@ class GPWorkoutExerciseDetailsBody extends StatelessWidget {
   final GeneralWorkoutExerciseDetailsModel generalWorkoutExerciseDetailsModel;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            collapsedHeight: 200,
-            floating: true,
-            pinned: true,
-            stretch: true,
-            shadowColor: Colors.transparent,
-            scrolledUnderElevation: 0,
-            toolbarHeight: 0,
-            flexibleSpace: FlexibleSpaceBar(
-                background: ImageAndTitleWidget(
-              name: generalWorkoutExerciseDetailsModel.name ?? '',
-              imageUrl: generalWorkoutExerciseDetailsModel.imageUrl ?? '',
-            )),
-          ),
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                CalorisAndTimeWidget(
-                  calories: generalWorkoutExerciseDetailsModel.restTime ?? 0,
-                  duration: generalWorkoutExerciseDetailsModel.sets ?? 0,
-                ),
-                LevelCategoryChips(
-                  category:
-                      generalWorkoutExerciseDetailsModel.targetMuscle ?? '',
-                  level: generalWorkoutExerciseDetailsModel.difficulty ?? '',
-                ),
-              ],
+    return RefreshIndicator(
+      onRefresh: () {
+        return context
+            .read<WorkoutGeneralPlanCubit>()
+            .getWorkoutExerciseDetails(
+                id: generalWorkoutExerciseDetailsModel.id ?? -1);
+      },
+      child: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              collapsedHeight: 200,
+              floating: true,
+              pinned: true,
+              stretch: true,
+              shadowColor: Colors.transparent,
+              scrolledUnderElevation: 0,
+              toolbarHeight: 0,
+              flexibleSpace: FlexibleSpaceBar(
+                  background: ImageAndTitleWidget(
+                name: generalWorkoutExerciseDetailsModel.name ?? '',
+                imageUrl: generalWorkoutExerciseDetailsModel.imageUrl ?? '',
+              )),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            SliverToBoxAdapter(
               child: Column(
-                spacing: 8,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  DetailsSection(
-                    title: 'How to do',
-                    details:
-                        generalWorkoutExerciseDetailsModel.instructions ?? [],
+                  CalorisAndTimeWidget(
+                    calories: generalWorkoutExerciseDetailsModel.restTime ?? 0,
+                    duration: generalWorkoutExerciseDetailsModel.sets ?? 0,
                   ),
-                  DetailsSection(
-                      title: 'Benefits',
-                      details:
-                          generalWorkoutExerciseDetailsModel.benefits ?? []),
-                  DetailsSection(
-                      title: 'Tips',
-                      details: generalWorkoutExerciseDetailsModel.tips ?? []),
+                  LevelCategoryChips(
+                    category:
+                        generalWorkoutExerciseDetailsModel.targetMuscle ?? '',
+                    level: generalWorkoutExerciseDetailsModel.difficulty ?? '',
+                  ),
                 ],
               ),
             ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                child: Column(
+                  spacing: 8,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    DetailsSection(
+                      title: 'How to do',
+                      details:
+                          generalWorkoutExerciseDetailsModel.instructions ?? [],
+                    ),
+                    DetailsSection(
+                        title: 'Benefits',
+                        details:
+                            generalWorkoutExerciseDetailsModel.benefits ?? []),
+                    DetailsSection(
+                        title: 'Tips',
+                        details: generalWorkoutExerciseDetailsModel.tips ?? []),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.transparent,
+          child: GestureDetector(
+            onTap: () {
+              showExerciseVideoDialog(
+                context,
+                videoUrl: generalWorkoutExerciseDetailsModel.videoUrl ??
+                    'https://www.youtube.com/watch?v=3VcKaXpzqRo',
+              );
+            },
+            child: const PlayingVideoWidget(),
           ),
-        ],
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        child: GestureDetector(
-          onTap: () {
-            showExerciseVideoDialog(
-              context,
-              videoUrl: generalWorkoutExerciseDetailsModel.videoUrl ??
-                  'https://www.youtube.com/watch?v=3VcKaXpzqRo',
-            );
-          },
-          child: const PlayingVideoWidget(),
         ),
       ),
     );

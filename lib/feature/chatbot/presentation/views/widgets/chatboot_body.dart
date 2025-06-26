@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_typing_indicator/flutter_typing_indicator.dart';
@@ -34,106 +36,111 @@ class _ChatbotBodyState extends State<ChatbotBody> {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     const String typingIndicatorText = 'typingIndicatorText';
-    return Column(
-      children: [
-        Expanded(
-          child: BlocListener<ChatbootCubit, ChatbootState>(
-            listener: (context, state) {
-              if (state is ChatbootMessagesLoaded) {
-                setState(() {
-                  messages = state.messages;
-                });
-              }
-              if (state is ChatbootLoading) {
-                setState(() {
-                  messages.add(
-                    MessageModel(
-                      content: typingIndicatorText,
-                      timestamp: DateTime.now(),
-                      isUserMessage: false,
-                    ),
-                  );
-                });
-              } else if (state is ChatbootResponseSuccess) {
-                setState(() {
-                  messages
-                      .removeWhere((msg) => msg.content == typingIndicatorText);
-                  messages.add(
-                    MessageModel(
-                      content: state.text,
-                      timestamp: DateTime.now(),
-                      isUserMessage: false,
-                    ),
-                  );
-                  scrollToLastMessage();
-                });
-              } else if (state is ChatbootError) {
-                setState(() {
-                  messages
-                      .removeWhere((msg) => msg.content == typingIndicatorText);
-                });
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: BlocListener<ChatbootCubit, ChatbootState>(
+              listener: (context, state) {
+                if (state is ChatbootMessagesLoaded) {
+                  setState(() {
+                    messages = state.messages;
+                  });
+                }
+                if (state is ChatbootLoading) {
+                  setState(() {
+                    messages.add(
+                      MessageModel(
+                        content: typingIndicatorText,
+                        timestamp: DateTime.now(),
+                        isUserMessage: false,
+                      ),
+                    );
+                  });
+                } else if (state is ChatbootResponseSuccess) {
+                  setState(() {
+                    messages.removeWhere(
+                        (msg) => msg.content == typingIndicatorText);
+                    messages.add(
+                      MessageModel(
+                        content: state.text,
+                        timestamp: DateTime.now(),
+                        isUserMessage: false,
+                      ),
+                    );
+                    scrollToLastMessage();
+                  });
+                } else if (state is ChatbootError) {
+                  setState(() {
+                    messages.removeWhere(
+                        (msg) => msg.content == typingIndicatorText);
+                  });
 
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(state.errorMessage),
-                    backgroundColor: Colors.red,
-                  ),
-                );
-              }
-            },
-            child: ListView.builder(
-              controller: _scrollController,
-              itemCount: messages.length,
-              itemBuilder: (context, index) {
-                final msg = messages[index];
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: msg.content == typingIndicatorText
-                      ? const TypingIndicator(
-                          dotColor: ColorsManger.neonPurple,
-                          dotSize: 9.0,
-                          padding: 12.0,
-                        )
-                      : MessageWidget(messageModel: msg),
-                );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(state.errorMessage),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                }
               },
+              child: ListView.builder(
+                controller: _scrollController,
+                itemCount: messages.length,
+                itemBuilder: (context, index) {
+                  final msg = messages[index];
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: messages.isEmpty
+                        ? const Center(
+                            child: Text(
+                                'Welcome! I’m NUTRIBot — your guide to a healthier, stronger you.'))
+                        : msg.content == typingIndicatorText
+                            ? const TypingIndicator(
+                                dotColor: ColorsManger.neonPurple,
+                                dotSize: 9.0,
+                                padding: 12.0,
+                              )
+                            : MessageWidget(messageModel: msg),
+                  );
+                },
+              ),
             ),
           ),
-        ),
-        Divider(
-          thickness: .05,
-          color: isDarkMode ? ColorsManger.neonPurple : ColorsManger.darkBlue,
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 8),
-                child: CustomTextFormField(
-                  controller: _messageController,
-                  validator: null,
-                  hintText: 'Ask me anything...',
-                ),
+          Divider(
+            thickness: .05,
+            color: isDarkMode ? ColorsManger.neonPurple : ColorsManger.darkBlue,
+          ),
+        ],
+      ),
+      bottomNavigationBar: Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 8),
+              child: CustomTextFormField(
+                controller: _messageController,
+                validator: null,
+                hintText: 'Ask me anything...',
               ),
             ),
-            IconButton(
-              onPressed: () {
-                sendMessage(context);
+          ),
+          IconButton(
+            onPressed: () {
+              sendMessage(context);
 
-                _messageController.clear();
-              },
-              tooltip: 'Send message',
-              icon: Icon(
-                size: 30,
-                Icons.send,
-                color: isDarkMode
-                    ? ColorsManger.neonPurple
-                    : ColorsManger.darkBlue,
-              ),
+              _messageController.clear();
+            },
+            tooltip: 'Send message',
+            icon: Icon(
+              size: 30,
+              Icons.send,
+              color:
+                  isDarkMode ? ColorsManger.neonPurple : ColorsManger.darkBlue,
             ),
-          ],
-        ),
-      ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -156,12 +163,11 @@ class _ChatbotBodyState extends State<ChatbotBody> {
   }
 
   void scrollToLastMessage() {
+    log('scroll');
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
-        _scrollController.animateTo(
+        _scrollController.jumpTo(
           _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
         );
       },
     );
