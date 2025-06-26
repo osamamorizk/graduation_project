@@ -18,19 +18,30 @@ class WorkoutExerciseListView extends StatelessWidget {
     return BlocBuilder<WorkoutCubit, WorkoutState>(
       builder: (context, state) {
         if (state is WorkoutByDaySuccess) {
-          return SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: WorkoutItem(
-                    exercise: state.dailyWorkoutExercise[index],
+          return state.dailyWorkoutExercise.isEmpty
+              ? const SliverFillRemaining(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'No exercises for this day',
+                      ),
+                    ],
+                  ),
+                )
+              : SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: WorkoutItem(
+                          exercise: state.dailyWorkoutExercise[index],
+                        ),
+                      );
+                    },
+                    childCount: state.dailyWorkoutExercise.length,
                   ),
                 );
-              },
-              childCount: state.dailyWorkoutExercise.length,
-            ),
-          );
         } else if (state is WorkoutByDayFailure) {
           return SliverToBoxAdapter(
               child: Column(
@@ -47,7 +58,7 @@ class WorkoutExerciseListView extends StatelessWidget {
           ));
         } else {
           return const SliverShimmerLoading(
-            hight: 140,
+            height: 140,
           );
         }
       },

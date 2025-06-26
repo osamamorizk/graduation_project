@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 
 import 'package:graduation_project/core/helpers/errors.dart';
 import 'package:graduation_project/core/networking/api_service.dart';
+import 'package:graduation_project/core/networking/end_points.dart';
 
 import 'package:graduation_project/feature/diet/data/models/diet_plan_model/diet_plan_model.dart';
 import 'package:graduation_project/feature/diet/data/models/diet_plan_model/meal.dart';
@@ -16,15 +17,34 @@ class DietRepoImpl implements DietRepo {
   DietRepoImpl(this.apiService);
   List<DietPlanModel> daysDietList = [];
   @override
-  Future<Either<Failure, List<DietPlanModel>>> getAllDiet(
-      {required int id}) async {
+  Future<Either<Failure, List<DietPlanModel>>> getAllDiet() async {
     try {
-      var result = await apiService.get(endPoints: 'Plan/diet-plan/4');
+      var result = await apiService.get(endPoints: dietPlanEndPoint);
       daysDietList.clear();
-
       final List<Map<String, dynamic>> transformedResponse =
           convertToDesiredStructure(result);
+      for (var dietDay in transformedResponse) {
+        daysDietList.add(DietPlanModel.fromJson(dietDay));
+      }
+      return right(daysDietList);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        log(e.toString());
+        return left(ServerFailure(errorMessage: e.toString()));
+      }
+    }
+  }
 
+  @override
+  Future<Either<Failure, List<DietPlanModel>>> changeDit() async {
+    try {
+      var result =
+          await apiService.post(endPoints: dietPlanEndPoint, data: null);
+      daysDietList.clear();
+      final List<Map<String, dynamic>> transformedResponse =
+          convertToDesiredStructure(result);
       for (var dietDay in transformedResponse) {
         daysDietList.add(DietPlanModel.fromJson(dietDay));
       }
@@ -68,22 +88,28 @@ List<Map<String, dynamic>> convertToDesiredStructure(
     Map<String, dynamic> originalResponse) {
   final List<Map<String, dynamic>> result = [];
 
-  originalResponse.forEach((day, meals) {
-    final List<Map<String, dynamic>> mealList = [];
+  final dailyPlans = originalResponse['plan']?['daily_plans'];
+  if (dailyPlans is List) {
+    for (var dayPlan in dailyPlans) {
+      final String day = dayPlan['day'];
+      final meals = dayPlan['meals'];
 
-    meals.forEach((mealType, mealDetails) {
-      mealList.add({
-        "mealType": mealType,
-        "main": mealDetails["main"],
-        "alternatives": mealDetails["alternatives"],
+      final List<Map<String, dynamic>> mealList = [];
+
+      meals?.forEach((mealType, mealDetails) {
+        mealList.add({
+          "mealType": mealType,
+          "main": mealDetails["main"],
+          "alternatives": mealDetails["alternatives"],
+        });
       });
-    });
 
-    result.add({
-      "day": day,
-      "meals": mealList,
-    });
-  });
+      result.add({
+        "day": day,
+        "meals": mealList,
+      });
+    }
+  }
 
   return result;
 }

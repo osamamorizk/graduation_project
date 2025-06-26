@@ -45,7 +45,7 @@ class _FitnessLevelViewState extends State<FitnessLevelView> {
           verticalSpace(35.h),
           Text(
             'What is your Fitness level?',
-            style: TextStyles.font18BlackBold,
+            style: TextStyles.font18Bold,
           ),
           verticalSpace(40.h),
           ListView.separated(

@@ -6,10 +6,10 @@ import 'package:graduation_project/feature/drink_water/data/repos/water_repo.dar
 import 'package:hive/hive.dart';
 
 class WaterRepoImpl implements WaterRepo {
-  final waterRecordBox = Hive.box<WaterRecordModel>(kWaterRimenderBox);
-
   @override
   Either<Failure, void> addWaterRecord(int amount) {
+    final waterRecordBox = Hive.box<WaterRecordModel>(kWaterRimenderBox);
+
     try {
       final now = DateTime.now();
       final nextTime = now.add(const Duration(hours: 1));
@@ -32,6 +32,8 @@ class WaterRepoImpl implements WaterRepo {
 
   @override
   Either<Failure, List<WaterRecordModel>> featchWaterRecords() {
+    final waterRecordBox = Hive.box<WaterRecordModel>(kWaterRimenderBox);
+
     try {
       final records = waterRecordBox.values.toList().reversed.toList();
       return Right(records);

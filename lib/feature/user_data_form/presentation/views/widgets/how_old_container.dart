@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 
 class HowOldContainer extends StatelessWidget {
   const HowOldContainer({
@@ -18,7 +17,7 @@ class HowOldContainer extends StatelessWidget {
       children: [
         Text(
           'How old are you?',
-          style: TextStyles.font14BlackBold,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         verticalSpace(4),
         Container(
@@ -28,7 +27,7 @@ class HowOldContainer extends StatelessWidget {
           child: Center(
             child: Text(
               '$age',
-              style: TextStyles.font16Regular,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
         ),

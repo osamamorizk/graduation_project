@@ -11,12 +11,13 @@ class ContainerIformation extends StatelessWidget {
   final dynamic data;
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       width: 85.w,
       padding:
           const EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isDark ? ColorsManger.darkCard : Colors.white,
         border: Border.all(width: .8, color: ColorsManger.darkGrey),
         borderRadius: BorderRadius.circular(16),
       ),

@@ -28,6 +28,9 @@ class GenderToggleButtonsState extends State<GenderToggleButtons> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    Color toggleButtonColor =
+        isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue;
     return ToggleButtons(
       isSelected: selected,
       onPressed: (int index) {
@@ -50,11 +53,11 @@ class GenderToggleButtonsState extends State<GenderToggleButtons> {
       },
       borderRadius: BorderRadius.circular(10),
       selectedColor: Colors.white,
-      color: ColorsManger.darkBlue,
-      fillColor: ColorsManger.darkBlue,
-      borderColor: ColorsManger.darkBlue,
-      selectedBorderColor: ColorsManger.darkBlue,
-      textStyle: const TextStyle(fontSize: 14),
+      color: toggleButtonColor,
+      fillColor: toggleButtonColor,
+      borderColor: toggleButtonColor,
+      selectedBorderColor: toggleButtonColor,
+      textStyle: const TextStyle(fontSize: 15),
       constraints: BoxConstraints(
         minHeight: 50,
         minWidth: MediaQuery.of(context).size.width / 2.25,

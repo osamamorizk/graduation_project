@@ -17,6 +17,7 @@ class CustomChosePlanButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return GestureDetector(
       onTap: onPressed,
       child: Container(
@@ -24,7 +25,7 @@ class CustomChosePlanButton extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 15),
         decoration: BoxDecoration(
-          color: ColorsManger.darkBlue,
+          color: isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Center(

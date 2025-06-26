@@ -14,22 +14,24 @@ class MealItem extends StatelessWidget {
   final Meal meal;
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return ExpansionTile(
+      backgroundColor: isDark ? ColorsManger.darkCard : Colors.white,
       childrenPadding: const EdgeInsets.symmetric(
         horizontal: 20,
       ),
       expandedCrossAxisAlignment: CrossAxisAlignment.start,
       collapsedShape: RoundedRectangleBorder(
-          side: const BorderSide(color: ColorsManger.darkerGrey, width: .5),
+          side: const BorderSide(color: ColorsManger.darkerGrey, width: .1),
           borderRadius: BorderRadius.circular(24)),
       shape: RoundedRectangleBorder(
-          side: const BorderSide(color: ColorsManger.darkBlue, width: .5),
+          side: const BorderSide(color: ColorsManger.darkBlue, width: .1),
           borderRadius: BorderRadius.circular(24)),
       title: Row(
         children: [
           Text(
             meal.mealType ?? 'Meal',
-            style: TextStyles.font16BlackBold,
+            style: TextStyles.font16Regular,
           ),
           const Spacer(),
           ContainerIformation(

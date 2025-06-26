@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:graduation_project/core/helpers/end_points_const.dart';
+import 'package:graduation_project/core/helpers/cache_helper.dart';
 import 'package:graduation_project/core/helpers/errors.dart';
 import 'package:graduation_project/core/networking/api_service.dart';
+import 'package:graduation_project/core/networking/end_points.dart';
 import 'package:graduation_project/feature/sign_up/data/models/sign_up_data.dart';
 import 'package:graduation_project/feature/sign_up/data/repos/signup_repo.dart';
 
@@ -15,14 +16,22 @@ class SignUpRepoImplem implements SignupRepo {
       {required SignUpData signUpData}) async {
     try {
       var result = await apiService.post(
-        endPoints: registerEndPoint,
+        endPoints: signUpEndPoints,
         data: {
           'username': signUpData.username,
           'email': signUpData.email,
           'password': signUpData.password,
         },
       );
-      return right(result);
+      await CacheHelper.saveSecuredData(
+        key: 'token',
+        value: result['token'],
+      );
+      await CacheHelper.saveSecuredData(
+        key: 'refreshToken',
+        value: result['refreshToken'],
+      );
+      return right('Sign up successful');
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

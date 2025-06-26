@@ -2,7 +2,7 @@ class UserModel {
   final int id;
   final int gender;
   final int age;
-  final int height;
+  final num height;
   final int weight;
   final int fitnessLevel;
   final int weeklyWorkoutDays;

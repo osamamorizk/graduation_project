@@ -8,10 +8,12 @@ class ShimmerLoadingWidget extends StatelessWidget {
     super.key,
     this.hight,
     this.itemCount,
+    this.padding,
   });
 
   final double? hight;
   final int? itemCount;
+  final double? padding;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class ShimmerLoadingWidget extends StatelessWidget {
         baseColor: baseColor,
         highlightColor: highlightColor,
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+          margin: EdgeInsets.symmetric(horizontal: padding ?? 0, vertical: 8),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
           decoration: BoxDecoration(
             color: isDarkMode ? Colors.grey.shade900 : Colors.white,

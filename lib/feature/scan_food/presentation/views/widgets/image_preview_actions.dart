@@ -39,7 +39,9 @@ class ImagePreviewActions extends StatelessWidget {
               fixedSize: WidgetStatePropertyAll(Size(145, 40)),
               backgroundColor: WidgetStatePropertyAll(ColorsManger.darkBlue)),
           onPressed: () {
-            context.read<ScanFoodCubit>().scanFood(imagePath: imagePath, id: 1);
+            context.read<ScanFoodCubit>().scanFood(
+                  imagePath: imagePath,
+                );
           },
           icon: const Icon(
             Icons.compare,

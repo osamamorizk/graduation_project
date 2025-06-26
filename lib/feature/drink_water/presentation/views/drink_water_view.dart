@@ -6,7 +6,7 @@ import 'package:graduation_project/core/helpers/const.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/feature/drink_water/data/models/water_record_model.dart';
-import 'package:graduation_project/feature/drink_water/presentation/manger/cubit/notification_cubit.dart';
+import 'package:graduation_project/feature/drink_water/presentation/manger/notification_cubit/notification_cubit.dart';
 import 'package:graduation_project/feature/drink_water/presentation/manger/drink_water_cubit/water_record_cubit.dart';
 import 'package:graduation_project/feature/drink_water/presentation/views/widgets/percent_indicator_widget.dart';
 import 'package:graduation_project/feature/drink_water/presentation/views/widgets/record_details_body.dart';

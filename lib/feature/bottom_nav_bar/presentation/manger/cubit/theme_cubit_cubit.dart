@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation_project/core/helpers/cashe_helper.dart';
+import 'package:graduation_project/core/helpers/cache_helper.dart';
 
 class ThemeCubit extends Cubit<ThemeMode> {
   ThemeCubit() : super(ThemeMode.light);
@@ -9,7 +9,7 @@ class ThemeCubit extends Cubit<ThemeMode> {
   final String kDark = 'dark';
   final String kSystem = 'system';
   void loadTheme() {
-    final curretnThemeMode = CasheHlper.getData(key: themeModeKey);
+    final curretnThemeMode = CacheHelper.getData(key: themeModeKey);
     if (curretnThemeMode != null) {
       if (curretnThemeMode == kLight) {
         emit(ThemeMode.light);
@@ -26,7 +26,7 @@ class ThemeCubit extends Cubit<ThemeMode> {
   void setTheme(ThemeMode theme) async {
     emit(theme);
 
-    await CasheHlper.saveData(
+    await CacheHelper.saveData(
       key: themeModeKey,
       value: theme == ThemeMode.system
           ? kSystem

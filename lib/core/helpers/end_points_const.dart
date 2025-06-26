@@ -1,8 +1,8 @@
-const registerEndPoint = 'Auth/register';
-const loginEndPoint = 'Auth/login';
+// const registerEndPoint = 'Auth/register';
+// const loginEndPoint = 'Auth/login';
 
-const postDataEndPoint = 'User';
+// const userDataEndPoint = 'User/profile';
 
-const getDietPlanEndPoint = 'Plan/diet-plan/';
+// const getDietPlanEndPoint = 'Plan/diet-plan/';
 
-const getWorkoutPlanEndPoint = 'Plan/workout-plan/';
+// const getWorkoutPlanEndPoint = 'Plan/workout-plan/';

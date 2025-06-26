@@ -47,7 +47,7 @@ class _HealthConcernsViewState extends State<HealthConcernsView> {
             verticalSpace(35.h),
             Text(
               'Do you have any medical or physical concerns we should consider?',
-              style: TextStyles.font18BlackBold,
+              style: TextStyles.font18Bold,
             ),
             verticalSpace(40.h),
             ListView.separated(
@@ -84,7 +84,7 @@ class _HealthConcernsViewState extends State<HealthConcernsView> {
             verticalSpace(30.h),
             Text(
               'If Other, please specify',
-              style: TextStyles.font14BlackBold,
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             UserFormTextField(
               controller: userDataCubit.otherHelthConcernsController,

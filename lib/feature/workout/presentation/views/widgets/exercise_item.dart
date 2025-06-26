@@ -18,26 +18,37 @@ class ExerciseItem extends StatelessWidget {
         showExerciseVideoDialog(context, videoUrl: exerciseModel.videoUrl);
       },
       child: Container(
+        margin: const EdgeInsets.only(
+          top: 8,
+        ),
         height: 120.h,
-        decoration: const BoxDecoration(
-            border: BorderDirectional(
-                bottom: BorderSide(width: .3, color: Colors.grey))),
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: .1,
+            color: ColorsManger.darkerGrey,
+          ),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             AspectRatio(
               aspectRatio: 1.2,
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                imageUrl: exerciseModel.image,
-                placeholder: (context, url) => const Center(
-                  child: SpinKitSpinningLines(
-                    color: ColorsManger.darkBlue,
-                    size: 30.0,
-                    itemCount: 3,
-                  ),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0),
                 ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+                child: CachedNetworkImage(
+                  fit: BoxFit.fitHeight,
+                  imageUrl: exerciseModel.image,
+                  placeholder: (context, url) => const Center(
+                    child: SpinKitSpinningLines(
+                      color: ColorsManger.darkBlue,
+                      size: 30.0,
+                      itemCount: 3,
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
               ),
             ),
             horizontalSpace(16),
@@ -49,7 +60,7 @@ class ExerciseItem extends StatelessWidget {
                   Text(
                     softWrap: true,
                     exerciseModel.name,
-                    style: TextStyles.font16BlackBold,
+                    style: TextStyles.font16Bold,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),

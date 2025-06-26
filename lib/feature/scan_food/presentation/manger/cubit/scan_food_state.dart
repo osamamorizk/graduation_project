@@ -8,7 +8,7 @@ final class ScanFoodInitial extends ScanFoodState {}
 final class ScanFoodLoading extends ScanFoodState {}
 
 final class ScanFoodSuccess extends ScanFoodState {
-  final List<ScanFoodModel> scanFoodList;
+  final List<Item> scanFoodList;
 
   ScanFoodSuccess({required this.scanFoodList});
 }

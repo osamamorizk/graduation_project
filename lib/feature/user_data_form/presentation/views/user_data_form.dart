@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/functions/custom_snack_bar.dart';
 import 'package:graduation_project/core/functions/error_dialog.dart';
 import 'package:graduation_project/core/functions/upload_data_dialog.dart';
-import 'package:graduation_project/core/helpers/cashe_helper.dart';
+import 'package:graduation_project/core/helpers/cache_helper.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
@@ -20,26 +20,26 @@ class UserDataForm extends StatelessWidget {
     return BlocListener<UserDataCubit, UserDataState>(
       listener: (context, state) async {
         if (state is PostUserDataSuccess) {
-          await CasheHlper.saveInt(
-              key: 'userId', value: state.userDataFormModel.id);
-          await CasheHlper.saveData(key: 'dataDone', value: true);
+          await CacheHelper.saveData(key: 'dataDone', value: true);
           showSuccessToast('Registration process completed successfully');
           // ignore: use_build_context_synchronously
           context.pushNamedAndRemoveUntil(
             predicate: (route) => false,
             Routes.bottomBar,
           );
-        } else if (state is PutDietPlanSuccess) {
-          showSuccessToast('Diet plan updated successfully');
-          context.pop();
-          context.pushNamedAndRemoveUntil(Routes.bottomBar,
-              predicate: (route) => false);
-        } else if (state is PutWorkoutPlanSuccess) {
-          showSuccessToast('Workout plan updated successfully');
-          context.pop();
-          context.pushNamedAndRemoveUntil(Routes.bottomBar,
-              predicate: (route) => false);
-        } else if (state is PutUserSuccess) {
+        }
+        //  else if (state is PutDietPlanSuccess) {
+        //   showSuccessToast('Diet plan updated successfully');
+        //   context.pop();
+        //   context.pushNamedAndRemoveUntil(Routes.bottomBar,
+        //       predicate: (route) => false);
+        // } else if (state is PutWorkoutPlanSuccess) {
+        //   showSuccessToast('Workout plan updated successfully');
+        //   context.pop();
+        //   context.pushNamedAndRemoveUntil(Routes.bottomBar,
+        //       predicate: (route) => false);
+        // }
+        else if (state is PutUserSuccess) {
           context.pop();
           showSuccessToast('User data and plans updated successfully');
 
@@ -49,12 +49,6 @@ class UserDataForm extends StatelessWidget {
           context.pop();
           showErrorDialog(context, errorMessage: state.errorMessage);
         } else if (state is PostUserDataFailure) {
-          context.pop();
-          showErrorDialog(context, errorMessage: state.errorMessage);
-        } else if (state is PutDietPlanFailure) {
-          context.pop();
-          showErrorDialog(context, errorMessage: state.errorMessage);
-        } else if (state is PutWorkoutPlanFailure) {
           context.pop();
           showErrorDialog(context, errorMessage: state.errorMessage);
         } else if (state is PostUserDataLoading ||

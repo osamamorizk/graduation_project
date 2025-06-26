@@ -3,20 +3,22 @@ import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 
 class LevelCategoryChips extends StatelessWidget {
-  const LevelCategoryChips({super.key});
-
+  const LevelCategoryChips(
+      {super.key, required this.level, required this.category});
+  final String level;
+  final String category;
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         CustomExerciseInfoWidget(
           title: 'Level',
-          type: 'Beginner',
+          type: level,
         ),
         CustomExerciseInfoWidget(
           title: 'Category',
-          type: 'Muscle Gain',
+          type: category,
         ),
       ],
     );

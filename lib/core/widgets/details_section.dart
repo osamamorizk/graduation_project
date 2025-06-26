@@ -8,7 +8,7 @@ class DetailsSection extends StatelessWidget {
     required this.details,
   });
   final String title;
-  final List<String> details;
+  final List<dynamic> details;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class DetailsSection extends StatelessWidget {
 }
 
 class NumberedDetailsList extends StatelessWidget {
-  final List<String> items;
+  final List<dynamic> items;
   const NumberedDetailsList(this.items, {super.key});
 
   @override

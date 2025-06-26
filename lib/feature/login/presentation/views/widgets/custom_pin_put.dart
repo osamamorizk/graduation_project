@@ -28,7 +28,7 @@ class _OtpTextFieldState extends State<OtpTextField> {
     final defaultPinTheme = PinTheme(
       width: 56,
       height: 56,
-      textStyle: TextStyles.font22BlueBold,
+      textStyle: TextStyles.font22Bold,
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(width: 2, color: borderColor),

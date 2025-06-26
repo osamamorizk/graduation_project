@@ -15,11 +15,13 @@ class FoodMealItem extends StatelessWidget {
   final Color? color;
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       decoration: BoxDecoration(
-        color: color ?? ColorsManger.lightGrey,
+        color: color ??
+            (isDark ? ColorsManger.darkCard : ColorsManger.lighterGrey),
         borderRadius: BorderRadius.circular(12.0),
-        border: Border.all(color: ColorsManger.darkGrey),
+        border: Border.all(color: ColorsManger.darkGrey, width: .3),
       ),
       child: Column(
         children: [

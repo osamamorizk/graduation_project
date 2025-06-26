@@ -8,7 +8,6 @@ part 'user_data_state.dart';
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(this.userDataFormRepo) : super(UserDataInitial());
   final UserDataFormRepo userDataFormRepo;
-  int duration = 15;
   int gender = 0;
   double tall = 140;
   double age = 25;
@@ -35,62 +34,54 @@ class UserDataCubit extends Cubit<UserDataState> {
         emit(PostUserDataFailure(errorMessage: failure.errorMessage));
       },
       (userData) {
-        Future.delayed(
-          Duration(seconds: duration),
-          () => emit(PostUserDataSuccess(userDataFormModel: userData)),
-        );
+        emit(PostUserDataSuccess(userDataFormModel: userData));
       },
     );
   }
 
-  Future<void> putWorkout({required Map data, required int id}) async {
-    emit(PutWorkoutPlanLoading());
-    var result = await userDataFormRepo.putWorkout(data: data, id: id);
-    result.fold(
-      (failure) {
-        emit(PutWorkoutPlanFailure(errorMessage: failure.errorMessage));
-      },
-      (userData) {
-        Future.delayed(
-          Duration(seconds: duration),
-          () => emit(PutWorkoutPlanSuccess(userDataFormModel: userData)),
-        );
-      },
-    );
-  }
-
-  Future<void> putDiet({required Map data, required int id}) async {
-    emit(PutDietPlanLoading());
-    var result = await userDataFormRepo.putDiet(data: data, id: id);
-    result.fold(
-      (failure) {
-        emit(PutDietPlanFailure(errorMessage: failure.errorMessage));
-      },
-      (userData) {
-        Future.delayed(
-          Duration(seconds: duration),
-          () => emit(PutDietPlanSuccess(userDataFormModel: userData)),
-        );
-      },
-    );
-  }
-
-  Future<void> putUser(
-      {required Map<String, dynamic> data, required int id}) async {
+  Future<void> putUser({required Map<String, dynamic> data}) async {
     emit(PutUserLoading());
-    var result = await userDataFormRepo.putUser(data: data, id: id);
+    var result = await userDataFormRepo.putUser(data: data);
     result.fold(
       (failure) {
         emit(PutUserFailure(errorMessage: failure.errorMessage));
       },
       (userData) {
-        Future.delayed(
-          Duration(seconds: duration),
-          () => emit(PutUserSuccess(userDataFormModel: userData)),
-        );
+        emit(PutUserSuccess(userDataFormModel: userData));
       },
     );
   }
+  // Future<void> putWorkout({required Map data, required int id}) async {
+  //   emit(PutWorkoutPlanLoading());
+  //   var result = await userDataFormRepo.putWorkout(data: data, id: id);
+  //   result.fold(
+  //     (failure) {
+  //       emit(PutWorkoutPlanFailure(errorMessage: failure.errorMessage));
+  //     },
+  //     (userData) {
+  //       Future.delayed(
+  //         Duration(seconds: duration),
+  //         () => emit(PutWorkoutPlanSuccess(userDataFormModel: userData)),
+  //       );
+  //     },
+  //   );
+  // }
+
+  // Future<void> putDiet({required Map data, required int id}) async {
+  //   emit(PutDietPlanLoading());
+  //   var result = await userDataFormRepo.putDiet(data: data, id: id);
+  //   result.fold(
+  //     (failure) {
+  //       emit(PutDietPlanFailure(errorMessage: failure.errorMessage));
+  //     },
+  //     (userData) {
+  //       Future.delayed(
+  //         Duration(seconds: duration),
+  //         () => emit(PutDietPlanSuccess(userDataFormModel: userData)),
+  //       );
+  //     },
+  //   );
+  // }
 
   bool validateAllData() {
     return validateDietData() && validateWorkoutData();

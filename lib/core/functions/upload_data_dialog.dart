@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/core/themes/colors_manger.dart';
 
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:graduation_project/core/widgets/custom_circle_progress_indicator.dart';
@@ -10,6 +11,7 @@ void showLoadingDialog(BuildContext parentContext,
     barrierDismissible: false,
     context: parentContext,
     builder: (BuildContext context) {
+      final isDark = Theme.of(context).brightness == Brightness.dark;
       return Dialog(
         insetPadding: EdgeInsets.symmetric(horizontal: 60.w),
         insetAnimationCurve: Curves.elasticOut,
@@ -18,7 +20,7 @@ void showLoadingDialog(BuildContext parentContext,
           borderRadius: BorderRadius.circular(20),
         ),
         elevation: 5,
-        backgroundColor: Colors.white,
+        backgroundColor: isDark ? ColorsManger.darkCard : Colors.white,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -34,7 +36,9 @@ void showLoadingDialog(BuildContext parentContext,
                       child: Text(
                         loadingMessage,
                         textAlign: textAlign ?? TextAlign.center,
-                        style: TextStyles.font16BlueBold,
+                        style: isDark
+                            ? TextStyles.font14WhiteBold
+                            : TextStyles.font14BlackBold,
                       ),
                     ),
             ],

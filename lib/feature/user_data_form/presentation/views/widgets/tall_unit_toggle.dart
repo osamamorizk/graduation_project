@@ -9,10 +9,11 @@ class TallUniteToggle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
       decoration: BoxDecoration(
-        color: ColorsManger.darkBlue,
+        color: isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Text('CM', style: TextStyles.font14WhiteBold),

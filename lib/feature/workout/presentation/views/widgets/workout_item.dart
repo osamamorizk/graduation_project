@@ -14,11 +14,13 @@ class WorkoutItem extends StatelessWidget {
   final WorkoutExerciseModel exercise;
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       decoration: BoxDecoration(
+        color: isDark ? ColorsManger.darkCard : Colors.white,
         borderRadius: BorderRadius.circular(12.0),
-        border: Border.all(color: ColorsManger.darkerGrey, width: .6),
+        border: Border.all(color: ColorsManger.darkerGrey, width: .2),
       ),
       child: Column(
         children: [
@@ -30,7 +32,7 @@ class WorkoutItem extends StatelessWidget {
                   children: [
                     Text(
                       exercise.name ?? 'Exercise',
-                      style: TextStyles.font14BlackBold,
+                      style: TextStyles.font14Regular,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],
@@ -49,17 +51,23 @@ class WorkoutItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              WorkoutElementDataItem(
-                data1: 'Sets: ${exercise.sets}',
-                data2: 'Reps: ${exercise.reps}',
+              Expanded(
+                flex: 2,
+                child: WorkoutElementDataItem(
+                  data1: 'Sets: ${exercise.sets}',
+                  data2: 'Reps: ${exercise.reps}',
+                ),
               ),
-              WorkoutElementDataItem(
-                data1: 'Rest: ${exercise.restBetweenSets}',
-                data2: 'Intensity:  ${exercise.intensity}',
+              Expanded(
+                child: WorkoutElementDataItem(
+                  data1: 'Rest: ${exercise.restBetweenSets}',
+                  data2: 'Intensity:  ${exercise.intensity}',
+                ),
               )
             ],
           ),
           ListTile(
+            tileColor: isDark ? Colors.white : ColorsManger.darkCard,
             contentPadding: const EdgeInsets.only(top: 10),
             leading: const Icon(
               Icons.error_outline,

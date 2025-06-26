@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project/core/helpers/cashe_helper.dart';
 import 'package:graduation_project/core/helpers/service_locator.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/feature/bottom_nav_bar/presentation/views/bottom_bar.dart';
@@ -8,12 +7,15 @@ import 'package:graduation_project/feature/chatbot/data/repos/chat_bot_repo.dart
 import 'package:graduation_project/feature/chatbot/presentation/manger/chatboot_cubit/chatboot_cubit.dart';
 import 'package:graduation_project/feature/chatbot/presentation/views/chatbot_view.dart';
 import 'package:graduation_project/feature/diet/data/repos/diet_repo_impl.dart';
-import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_cubit.dart';
+import 'package:graduation_project/feature/diet/presentation/manger/diet_cubit/diet_cubit.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/general_plan_details_view.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/genral_plan_meal_details.dart';
+import 'package:graduation_project/feature/drink_water/data/repos/notification_repo.dart';
 import 'package:graduation_project/feature/drink_water/data/repos/water_repo_impl.dart';
+import 'package:graduation_project/feature/drink_water/presentation/manger/notification_cubit/notification_cubit.dart';
 import 'package:graduation_project/feature/drink_water/presentation/manger/drink_water_cubit/water_record_cubit.dart';
 import 'package:graduation_project/feature/drink_water/presentation/views/drink_water_view.dart';
+import 'package:graduation_project/feature/home/presentation/views/widgets/level_details_view.dart';
 import 'package:graduation_project/feature/login/data/repos/login_repo_impl.dart';
 import 'package:graduation_project/feature/login/presentation/manger/cubit/login_cubit.dart';
 import 'package:graduation_project/feature/login/presentation/views/forget_password.dart';
@@ -24,8 +26,7 @@ import 'package:graduation_project/feature/profile/data/repos/profile_repo_impl.
 import 'package:graduation_project/feature/profile/presentation/manger/cubit/profile_cubit.dart';
 import 'package:graduation_project/feature/profile/presentation/views/my_data_view.dart';
 import 'package:graduation_project/feature/profile/presentation/views/widgets/settings_view.dart';
-import 'package:graduation_project/feature/scan_food/data/models/scan_food_model.dart';
-
+import 'package:graduation_project/feature/scan_food/data/models/new_food_model/item.dart';
 import 'package:graduation_project/feature/scan_food/presentation/views/widgets/food_details_view.dart';
 import 'package:graduation_project/feature/sign_up/data/repos/sign_up_repo_implem.dart';
 import 'package:graduation_project/feature/sign_up/presentation/manger/cubit/signup_cubit.dart';
@@ -33,11 +34,10 @@ import 'package:graduation_project/feature/sign_up/presentation/views/sign_up_vi
 import 'package:graduation_project/feature/user_data_form/data/repos/user_data_repo_impl.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/manger/cubit/user_data_cubit.dart';
 import 'package:graduation_project/feature/user_data_form/presentation/views/user_data_form.dart';
-import 'package:graduation_project/feature/workout/data/repos/workout_repo_impl.dart';
+import 'package:graduation_project/feature/workout/data/repos/workout_repo/workout_repo_impl.dart';
 import 'package:graduation_project/feature/workout/presentation/manger/worlout_cubit/workout_cubit.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/exercise_list_view.dart';
-import 'package:graduation_project/feature/workout/presentation/views/widgets/general_workout_plan_exercises.dart';
-import 'package:graduation_project/feature/workout/presentation/views/widgets/general_plan_workout_exercise_details.dart';
+import 'package:graduation_project/feature/workout/presentation/views/widgets/exercise_details_general_plan_workout.dart';
 import 'package:graduation_project/feature/workout/presentation/views/widgets/workout_general_plan_days.dart';
 
 class AppRouter {
@@ -68,11 +68,11 @@ class AppRouter {
             providers: [
               BlocProvider(
                 create: (context) => WorkoutCubit(getIt.get<WorkoutRepoImpl>())
-                  ..getWorkoutPlans(id: CasheHlper.getInt(key: 'userId')),
+                  ..getWorkoutPlans(),
               ),
               BlocProvider(
-                create: (context) => DietCubit(getIt.get<DietRepoImpl>())
-                  ..getAllDietsPlan(id: CasheHlper.getInt(key: 'userId')),
+                create: (context) =>
+                    DietCubit(getIt.get<DietRepoImpl>())..getAllDietsPlan(),
               ),
             ],
             child: const BottomBar(),
@@ -92,7 +92,7 @@ class AppRouter {
         final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (_) => FoodDetailsPage(
-            scanedFoodList: args['scanedFoodList'] as List<ScanFoodModel>,
+            scanedFoodList: args['scanedFoodList'] as List<Item>,
             imagePath: args['imagePath'] as String,
           ),
         );
@@ -109,8 +109,8 @@ class AppRouter {
       case Routes.myDataView:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => ProfileCubit(getIt.get<ProfileRepoImpl>())
-              ..getProfile(id: CasheHlper.getData(key: 'userId')),
+            create: (context) =>
+                ProfileCubit(getIt.get<ProfileRepoImpl>())..getProfile(),
             child: const MyDataView(),
           ),
         );
@@ -126,7 +126,7 @@ class AppRouter {
 
       case Routes.generalDietPlanDetailsView:
         return MaterialPageRoute(
-          builder: (context) => const GeneralDietPlanDetailsView(),
+          builder: (context) => const GeneralPlanDetailsView(),
         );
 
       case Routes.generalDietMealDetails:
@@ -137,18 +137,33 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (context) => const WorkoutGeneralPlanDays(),
         );
-      case Routes.exercisesByDay:
+      case Routes.levelDetailsView:
+        final args = settings.arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
-          builder: (context) => const GeneralWorkoutPlanExercises(),
+          builder: (_) => LevelDetailsView(id: args?['id'] as int),
         );
+      // case Routes.exercisesByDay:
+      //   final args = settings.arguments;
+      //   return MaterialPageRoute(
+      //     builder: (context) => GeneralWorkoutPlanExercises(
+      //       generalPlanDetailsModel: args as GeneralWorkoutPlanDetailsModel,
+      //     ),
+      //   );
       case Routes.workoutExerciseDetails:
         return MaterialPageRoute(
-          builder: (context) => const GeneralPlanWorkoutExerciseDetails(),
+          builder: (context) => const ExerciseDetailsGeneralPlanWorkout(),
         );
 
       case Routes.settingsView:
         return MaterialPageRoute(
-          builder: (context) => const SettingsView(),
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                NotificationCubit(getIt.get<NotificationRepository>())
+                  ..initialize()
+                  ..loadNotificationStatus()
+                  ..requestPermissions(),
+            child: const SettingsView(),
+          ),
         );
 
       case Routes.chatbot:

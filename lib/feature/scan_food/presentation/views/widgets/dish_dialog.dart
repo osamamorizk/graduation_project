@@ -35,7 +35,7 @@ void showDishDialog(BuildContext context, ScanFoodModel foodModel,
               verticalSpace(16),
               Text(
                 'Your dish details(per 100 gms): ',
-                style: TextStyles.font16BlackBold,
+                style: TextStyles.font16Bold,
               ),
               verticalSpace(12),
               Row(

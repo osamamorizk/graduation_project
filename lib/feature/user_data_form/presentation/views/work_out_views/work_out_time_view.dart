@@ -39,7 +39,7 @@ class _WorkoutTimeViewState extends State<WorkoutTimeView> {
             verticalSpace(35.h),
             Text(
               'How long can you spend working out?',
-              style: TextStyles.font18BlackBold,
+              style: TextStyles.font18Bold,
             ),
             verticalSpace(40.h),
             ListView.separated(

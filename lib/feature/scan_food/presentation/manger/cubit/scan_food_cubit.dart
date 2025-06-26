@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:graduation_project/feature/scan_food/data/models/scan_food_model.dart';
+import 'package:graduation_project/feature/scan_food/data/models/new_food_model/item.dart';
 import 'package:graduation_project/feature/scan_food/data/repos/scan_food_repo.dart';
 import 'package:meta/meta.dart';
 
@@ -10,9 +10,11 @@ class ScanFoodCubit extends Cubit<ScanFoodState> {
 
   final ScanFoodRepo scanFoodRepo;
 
-  Future<void> scanFood({required String imagePath, required int id}) async {
+  Future<void> scanFood({required String imagePath}) async {
     emit(ScanFoodLoading());
-    var result = await scanFoodRepo.postScanFood(imagePath: imagePath, id: id);
+    var result = await scanFoodRepo.postScanFood(
+      imagePath: imagePath,
+    );
 
     result.fold(
       (failure) {

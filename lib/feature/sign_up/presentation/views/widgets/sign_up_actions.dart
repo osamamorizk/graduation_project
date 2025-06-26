@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:graduation_project/core/helpers/cashe_helper.dart';
+import 'package:graduation_project/core/helpers/cache_helper.dart';
 
 import 'package:graduation_project/core/widgets/custom_action_button.dart';
 import 'package:graduation_project/feature/sign_up/data/models/sign_up_data.dart';
@@ -17,7 +17,7 @@ class SignUpActions extends StatelessWidget {
         CustomButton(
           onPressed: () {
             if (signupCubit.formKey.currentState!.validate()) {
-              CasheHlper.saveData(
+              CacheHelper.saveData(
                   key: 'name', value: signupCubit.userNameController.text);
               context.read<SignupCubit>().signUp(
                     signUpData: SignUpData(

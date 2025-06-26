@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 
 class TextStyles {
-  static final TextStyle font22BlueBold = TextStyle(
+  static final TextStyle font22Bold = TextStyle(
     fontSize: 22.sp,
     fontWeight: FontWeight.bold,
   );
@@ -20,6 +20,10 @@ class TextStyles {
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
+  static final TextStyle font14Bold = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.bold,
+  );
   static final TextStyle font14WhiteBold = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.bold,
@@ -33,11 +37,11 @@ class TextStyles {
     fontSize: 12.sp,
     fontWeight: FontWeight.bold,
   );
-  static final TextStyle font18BlackBold = TextStyle(
+  static final TextStyle font18Bold = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeight.bold,
   );
-  static final TextStyle font16BlackBold = TextStyle(
+  static final TextStyle font16Bold = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.bold,
   );

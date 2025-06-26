@@ -13,11 +13,14 @@ class DayContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       margin: const EdgeInsets.only(right: 16, top: 10, bottom: 10),
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-        color: isSelected ? ColorsManger.darkBlue : ColorsManger.grey,
+        color: isSelected
+            ? (isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue)
+            : ColorsManger.lighterGrey,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Center(

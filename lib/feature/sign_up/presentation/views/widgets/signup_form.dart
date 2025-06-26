@@ -38,6 +38,9 @@ class _SignupFormState extends State<SignupForm> {
       child: Column(
         children: [
           CustomTextFormField(
+            onFieldSubmitted: (value) {
+              FocusScope.of(context).nextFocus();
+            },
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter username';
@@ -49,6 +52,9 @@ class _SignupFormState extends State<SignupForm> {
           ),
           verticalSpace(20),
           CustomTextFormField(
+            onFieldSubmitted: (value) {
+              FocusScope.of(context).nextFocus();
+            },
             validator: (value) {
               if (value == null ||
                   value.isEmpty ||
@@ -62,6 +68,9 @@ class _SignupFormState extends State<SignupForm> {
           ),
           verticalSpace(20),
           CustomTextFormField(
+            onFieldSubmitted: (value) {
+              FocusScope.of(context).nextFocus();
+            },
             validator: (value) {
               if (value == null ||
                   value.isEmpty ||
@@ -83,6 +92,9 @@ class _SignupFormState extends State<SignupForm> {
           ),
           verticalSpace(20),
           CustomTextFormField(
+            onFieldSubmitted: (value) {
+              FocusScope.of(context).unfocus();
+            },
             validator: (value) {
               if (value == null ||
                   value.isEmpty ||

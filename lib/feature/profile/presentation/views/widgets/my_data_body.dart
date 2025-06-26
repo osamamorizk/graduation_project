@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
-import 'package:graduation_project/core/helpers/cashe_helper.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
+import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/feature/profile/data/models/user_model.dart';
 import 'package:graduation_project/feature/profile/presentation/views/widgets/user_data_item.dart';
 
@@ -10,6 +10,7 @@ class MyDataViewBody extends StatelessWidget {
   final UserModel userModel;
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return SingleChildScrollView(
       physics: const AlwaysScrollableScrollPhysics(),
       child: Padding(
@@ -18,18 +19,30 @@ class MyDataViewBody extends StatelessWidget {
           spacing: 20,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(Assets.imagesProfieIcon),
-            userDataItem('Name', CasheHlper.getData(key: 'name') ?? 'user',
-                trailingIcon: Icons.check),
-            userDataItem('User goal', goals[userModel.goal]),
-            userDataItem(
-                'Preferred Diet', dietOptions[userModel.preferredDiet]),
-            userDataItem('Weight', userModel.weight.toString(),
+            Image.asset(
+              Assets.imagesProfieIcon,
+              color: isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue,
+            ),
+            // UserDataItem(
+            //     label: 'Name',
+            //     value: CacheHelper.getData(key: 'name') ?? 'user',
+            //     trailingIcon: Icons.check),
+            UserDataItem(label: 'User goal', value: goals[userModel.goal]),
+            UserDataItem(
+                label: 'Preferred Diet',
+                value: dietOptions[userModel.preferredDiet]),
+            UserDataItem(
+                label: 'Weight',
+                value: userModel.weight.toString(),
                 trailingUnite: 'Kg'),
-            userDataItem('Tall', userModel.height.toString(),
+            UserDataItem(
+                label: 'Tall',
+                value: userModel.height.toString(),
                 trailingUnite: 'm'),
-            userDataItem('Gender', userModel.gender == 0 ? 'Male' : 'Female'),
-            userDataItem('Age', userModel.age.toString()),
+            UserDataItem(
+                label: 'Gender',
+                value: userModel.gender == 0 ? 'Male' : 'Female'),
+            UserDataItem(label: 'Age', value: userModel.age.toString()),
             verticalSpace(16)
           ],
         ),

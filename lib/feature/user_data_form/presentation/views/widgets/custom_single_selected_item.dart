@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
-import 'package:graduation_project/core/themes/text_styles.dart';
 
 class CustomSingleSelectedItem extends StatelessWidget {
   const CustomSingleSelectedItem({
@@ -21,16 +20,20 @@ class CustomSingleSelectedItem extends StatelessWidget {
   final TextAlign? textAlign;
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final Color selectedColor =
+        isDark ? ColorsManger.neonPurple : Colors.grey.shade300;
+    final Color unselectedColor =
+        isDark ? ColorsManger.darkCard : Colors.grey.shade50;
     return AnimatedContainer(
       curve: Curves.bounceInOut,
       height: 57.h,
       decoration: BoxDecoration(
-          color: !isSelected ? Colors.white : ColorsManger.lighterBlue,
+          color: !isSelected ? unselectedColor : selectedColor,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-              width: .5,
-              color:
-                  !isSelected ? Colors.grey.shade300 : ColorsManger.darkBlue)),
+              width: .2,
+              color: !isSelected ? Colors.grey : ColorsManger.darkBlue)),
       duration: const Duration(
         milliseconds: 350,
       ),
@@ -41,7 +44,7 @@ class CustomSingleSelectedItem extends StatelessWidget {
         title: Text(
           textAlign: textAlign,
           title,
-          style: TextStyles.font14BlackBold,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         subtitle: subtitle,
       ),

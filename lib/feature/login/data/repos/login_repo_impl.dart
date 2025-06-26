@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:graduation_project/core/helpers/end_points_const.dart';
+import 'package:graduation_project/core/helpers/cache_helper.dart';
 import 'package:graduation_project/core/helpers/errors.dart';
 import 'package:graduation_project/core/networking/api_service.dart';
+import 'package:graduation_project/core/networking/end_points.dart';
 import 'package:graduation_project/feature/login/data/repos/login_repo.dart';
 
 class LoginRepoImpl implements LoginRepo {
@@ -15,10 +16,14 @@ class LoginRepoImpl implements LoginRepo {
       {required String userName, required String password}) async {
     try {
       var result = await apiService.post(
-        endPoints: loginEndPoint,
+        endPoints: loginEndPoints,
         data: {'username': userName, 'password': password},
       );
-      return right(result);
+      await CacheHelper.saveSecuredData(key: 'token', value: result['token']);
+      await CacheHelper.saveSecuredData(
+          key: 'refreshToken', value: result['refreshToken']);
+
+      return right('Login successful');
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

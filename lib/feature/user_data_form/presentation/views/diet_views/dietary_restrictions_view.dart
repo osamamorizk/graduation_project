@@ -48,7 +48,7 @@ class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
             verticalSpace(35.h),
             Text(
               'Do you follow any specific diet or have food allergies?',
-              style: TextStyles.font18BlackBold,
+              style: TextStyles.font16Bold,
             ),
             verticalSpace(40.h),
             ListView.separated(
@@ -86,7 +86,7 @@ class _DietaryRestrictionsViewState extends State<DietaryRestrictionsView> {
             verticalSpace(30.h),
             Text(
               'If Other, please specify',
-              style: TextStyles.font14BlackBold,
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             UserFormTextField(
               controller: userDataCubit.otherDietaryRestrictionsController,

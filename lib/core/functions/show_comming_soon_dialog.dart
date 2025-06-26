@@ -13,8 +13,7 @@ void showCommingSoonDialog(BuildContext parentContext) {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        elevation: 5,
-        backgroundColor: Colors.white,
+        elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -26,7 +25,7 @@ void showCommingSoonDialog(BuildContext parentContext) {
               Text(
                 textAlign: TextAlign.center,
                 'It is planned to be in the next phase of progress',
-                style: TextStyles.font16BlackBold,
+                style: TextStyles.font16Bold,
               )
             ],
           ),

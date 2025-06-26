@@ -1,7 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class CasheHlper {
+class CacheHelper {
   static late final SharedPreferences sharedPref;
 
   static Future casheIntialization() async {
@@ -47,7 +47,7 @@ class CasheHlper {
     return await flutterSecureStorage.write(key: key, value: value);
   }
 
-  static dynamic getSecuredData({required String key}) async {
+  static Future<String?> getSecuredData({required String key}) async {
     const flutterSecureStorage = FlutterSecureStorage();
     return await flutterSecureStorage.read(key: key);
   }

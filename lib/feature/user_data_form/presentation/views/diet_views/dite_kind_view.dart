@@ -39,7 +39,7 @@ class _DiteKindViewState extends State<DiteKindView> {
           verticalSpace(35.h),
           Text(
             'What kind of diet do you prefer?',
-            style: TextStyles.font18BlackBold,
+            style: TextStyles.font18Bold,
           ),
           verticalSpace(40.h),
           ListView.separated(
