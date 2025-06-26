@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -54,12 +52,7 @@ class NotificationRepository {
   /// Call this anywhere to schedule the next reminder
   Future<void> scheduleDrinkReminder(DateTime now, BuildContext context) async {
     final status = await Permission.notification.status;
-    final androidStatus = await Permission.ignoreBatteryOptimizations.status;
-    log('Notification status: ${status.toString()}');
-    log('Ignore battery optimizations status: ${androidStatus.toString()}');
-    if (androidStatus.isDenied || androidStatus.isRestricted) {
-      if (!androidStatus.isGranted) return;
-    }
+
     if (status.isDenied || status.isRestricted || status.isLimited) {
       final result = await Permission.notification.request();
 
