@@ -10,9 +10,7 @@ import 'package:graduation_project/feature/diet/data/repos/diet_repo_impl.dart';
 import 'package:graduation_project/feature/diet/presentation/manger/diet_cubit/diet_cubit.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/general_plan_details_view.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/genral_plan_meal_details.dart';
-import 'package:graduation_project/feature/drink_water/data/repos/notification_repo.dart';
 import 'package:graduation_project/feature/drink_water/data/repos/water_repo_impl.dart';
-import 'package:graduation_project/feature/drink_water/presentation/manger/notification_cubit/notification_cubit.dart';
 import 'package:graduation_project/feature/drink_water/presentation/manger/drink_water_cubit/water_record_cubit.dart';
 import 'package:graduation_project/feature/drink_water/presentation/views/drink_water_view.dart';
 import 'package:graduation_project/feature/home/presentation/views/widgets/level_details_view.dart';
@@ -156,14 +154,7 @@ class AppRouter {
 
       case Routes.settingsView:
         return MaterialPageRoute(
-          builder: (context) => BlocProvider(
-            create: (context) =>
-                NotificationCubit(getIt.get<NotificationRepository>())
-                  ..initialize()
-                  ..loadNotificationStatus()
-                  ..requestPermissions(),
-            child: const SettingsView(),
-          ),
+          builder: (context) => const SettingsView(),
         );
 
       case Routes.chatbot:

@@ -16,6 +16,7 @@ class CustomNewPlanButton extends StatelessWidget {
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return GestureDetector(
       onTap: () {
         warningDialog(context, onPressed, type);
@@ -27,7 +28,7 @@ class CustomNewPlanButton extends StatelessWidget {
         // width: 85.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: ColorsManger.darkBlue,
+          color: isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

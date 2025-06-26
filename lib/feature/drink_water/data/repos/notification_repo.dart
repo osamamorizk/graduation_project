@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
 import 'package:permission_handler/permission_handler.dart';
 import 'package:timezone/timezone.dart' as tz;
 
@@ -8,54 +7,51 @@ class NotificationRepository {
   final FlutterLocalNotificationsPlugin notificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
+  /// Call this during app startup
+  Future<void> initAndRequestPermissions() async {
+    await initialize();
+    await requestPermissions();
+  }
+
   Future<void> initialize() async {
     const androidInit = AndroidInitializationSettings('@mipmap/launcher_icon');
     const iosInit = DarwinInitializationSettings();
-    const initSettings =
-        InitializationSettings(android: androidInit, iOS: iosInit);
+    const initSettings = InitializationSettings(
+      android: androidInit,
+      iOS: iosInit,
+    );
 
     await notificationsPlugin.initialize(
       initSettings,
-      // onDidReceiveNotificationResponse:
-      //     (NotificationResponse notificationResponse) async {
-      //   final String? payload = notificationResponse.payload;
-      //   log("Received notification with payload: $payload");
-
-      //   if (payload != null && payload == Routes.drinkWaterRoute) {
-      //     await Future.delayed(const Duration(milliseconds: 100));
-      //     navigatorKey.currentState?.pushNamed(Routes.drinkWaterRoute);
-      //   }
-      // },
     );
   }
 
   Future<void> requestPermissions() async {
-    await notificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.requestExactAlarmsPermission();
-    await notificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.requestNotificationsPermission();
+    // Android-specific permissions
+    final androidImplementation =
+        notificationsPlugin.resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>();
+    await androidImplementation?.requestExactAlarmsPermission();
+    await androidImplementation?.requestNotificationsPermission();
 
-    await notificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            IOSFlutterLocalNotificationsPlugin>()
-        ?.requestPermissions(alert: true, badge: true, sound: true);
+    // iOS-specific permissions
+    final iosImplementation =
+        notificationsPlugin.resolvePlatformSpecificImplementation<
+            IOSFlutterLocalNotificationsPlugin>();
+    await iosImplementation?.requestPermissions(
+        alert: true, badge: true, sound: true);
 
-    await Permission.ignoreBatteryOptimizations.isDenied.then(
-      (value) => Permission.ignoreBatteryOptimizations.request(),
-    );
+    // Ignore battery optimizations (Android)
+    if (await Permission.ignoreBatteryOptimizations.isDenied ||
+        await Permission.ignoreBatteryOptimizations.isRestricted ||
+        await Permission.ignoreBatteryOptimizations.isLimited) {
+      await Permission.ignoreBatteryOptimizations.request();
+    }
   }
 
+  /// Call this anywhere to schedule the next reminder
   Future<void> scheduleDrinkReminder(DateTime now, BuildContext context) async {
     final status = await Permission.notification.status;
-
-    // if (status.isPermanentlyDenied) {
-    //   await askPermissionDialog(context);
-    //   return;
-    // }
 
     if (status.isDenied || status.isRestricted || status.isLimited) {
       final result = await Permission.notification.request();
@@ -72,7 +68,7 @@ class NotificationRepository {
   Future<void> scheduleNotification({
     required String title,
     required String body,
-    DateTime? scheduledTime,
+    required DateTime scheduledTime,
     String? payload,
   }) async {
     const androidDetails = AndroidNotificationDetails(
@@ -83,30 +79,36 @@ class NotificationRepository {
       priority: Priority.high,
     );
 
+    const details = NotificationDetails(android: androidDetails);
+
     await notificationsPlugin.zonedSchedule(
       0,
       title,
       body,
-      tz.TZDateTime.from(scheduledTime!, tz.local),
-      const NotificationDetails(android: androidDetails),
+      tz.TZDateTime.from(scheduledTime, tz.local),
+      details,
       payload: payload,
       androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
     );
   }
 
+  /// For daily reminders at fixed hour (e.g., every day at 10am)
   Future<void> dailyReminderNotification({
     required String title,
     required String body,
-    int? hour,
+    int hour = 10,
     String? payload,
   }) async {
+    final scheduledTime = _nextInstanceOfTime(hour: hour);
     await scheduleNotification(
       title: title,
       body: body,
-      scheduledTime: _nextInstanceOfTime(hour: hour ?? 12),
+      scheduledTime: scheduledTime,
+      payload: payload,
     );
   }
 
+  /// Show immediate notification
   Future<void> showNotification({
     required String title,
     required String body,
@@ -127,8 +129,7 @@ class NotificationRepository {
 
   tz.TZDateTime _nextInstanceOfTime({required int hour}) {
     final now = tz.TZDateTime.now(tz.local);
-    var scheduled =
-        tz.TZDateTime(tz.local, now.year, now.month, now.day, hour, 0);
+    var scheduled = tz.TZDateTime(tz.local, now.year, now.month, now.day, hour);
     if (scheduled.isBefore(now)) {
       scheduled = scheduled.add(const Duration(days: 1));
     }

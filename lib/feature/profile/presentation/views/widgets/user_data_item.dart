@@ -58,7 +58,9 @@ class UserDataItem extends StatelessWidget {
                   child: Center(
                     child: Text(
                       trailingUnite!,
-                      style: TextStyles.font12WhiteBold,
+                      style: TextStyles.font14WhiteBold.copyWith(
+                        fontSize: 12.sp,
+                      ),
                     ),
                   ),
                 ),

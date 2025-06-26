@@ -15,8 +15,8 @@ class DietGeneralPlans extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: RefreshIndicator(
-        onRefresh: () async {
-          context.read<DietGeneralCubit>().getAllDietPlans();
+        onRefresh: () {
+          return context.read<DietGeneralCubit>().getAllDietPlans();
         },
         child: BlocBuilder<DietGeneralCubit, DietGeneralCubitState>(
           buildWhen: (previous, current) =>

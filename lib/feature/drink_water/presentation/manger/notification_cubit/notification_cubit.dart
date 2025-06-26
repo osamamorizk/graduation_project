@@ -37,10 +37,6 @@ class NotificationCubit extends Cubit<bool> {
     );
   }
 
-  Future<void> requestPermissions() async {
-    await notificationRepository.requestPermissions();
-  }
-
   Future<void> tryShowNotification(String title, String body) async {
     if (state) {
       await notificationRepository.showNotification(title: title, body: body);

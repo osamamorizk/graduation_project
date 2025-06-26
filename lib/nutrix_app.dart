@@ -10,6 +10,8 @@ import 'package:graduation_project/core/themes/app_themes.dart';
 import 'package:graduation_project/feature/bottom_nav_bar/presentation/manger/cubit/theme_cubit_cubit.dart';
 import 'package:graduation_project/feature/diet/data/repos/diet_gp_repo/diet_general_plan_repo_impl.dart';
 import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_general_cubit.dart';
+import 'package:graduation_project/feature/drink_water/data/repos/notification_repo.dart';
+import 'package:graduation_project/feature/drink_water/presentation/manger/notification_cubit/notification_cubit.dart';
 import 'package:graduation_project/feature/home/data/repos/challenge_repo_impl.dart';
 import 'package:graduation_project/feature/home/presentation/manger/cubit/challenge_cubit.dart';
 import 'package:graduation_project/feature/scan_food/data/repos/scan_food_repo_impl.dart';
@@ -53,6 +55,12 @@ class NutrixApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => ThemeCubit()..loadTheme(),
+          ),
+          BlocProvider(
+            create: (context) =>
+                NotificationCubit(getIt.get<NotificationRepository>())
+                  ..initialize()
+                  ..loadNotificationStatus(),
           ),
         ],
         child: BlocBuilder<ThemeCubit, ThemeMode>(
