@@ -1,14 +1,12 @@
+import 'dart:developer';
 import 'dart:io';
-
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:gal/gal.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
-import 'package:graduation_project/feature/scan_food/presentation/manger/cubit/scan_food_cubit.dart';
 import 'package:graduation_project/feature/scan_food/presentation/views/widgets/camera_button.dart';
 import 'package:graduation_project/feature/scan_food/presentation/views/widgets/image_preview.dart';
 import 'package:image_picker/image_picker.dart';
@@ -46,9 +44,7 @@ class CameraBodyDetails extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.bottomLeft,
                       child: IconButton(
-                        onPressed: () {
-                          context.read<ScanFoodCubit>().pickImageFromGallery();
-                        },
+                        onPressed: () => pickImageFromGallery(context),
                         icon: const Icon(
                           size: 26,
                           FontAwesomeIcons.images,
@@ -82,5 +78,25 @@ class CameraBodyDetails extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+void pickImageFromGallery(BuildContext context) async {
+  final ImagePicker picker = ImagePicker();
+  try {
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    log("Picked image: ${image?.path}");
+    if (image != null && image.path.isNotEmpty) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ImagePreviewScreen(imagePath: image.path),
+        ),
+      );
+    } else {
+      debugPrint("User cancelled the picker or image is empty");
+    }
+  } catch (e) {
+    debugPrint("Error picking image: $e");
   }
 }

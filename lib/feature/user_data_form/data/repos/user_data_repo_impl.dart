@@ -24,7 +24,7 @@ class UserDataRepoImpl implements UserDataFormRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }
@@ -42,7 +42,7 @@ class UserDataRepoImpl implements UserDataFormRepo {
         return left(ServerFailure.fromDioException(e));
       } else {
         log(e.toString());
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }

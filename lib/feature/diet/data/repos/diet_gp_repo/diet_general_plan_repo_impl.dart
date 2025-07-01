@@ -26,7 +26,7 @@ class DietGeneralPlanRepoImpl implements DietGeneralPlanRepo {
       } else {
         return left(
           ServerFailure(
-            errorMessage: e.toString(),
+            errorMessage: 'Oops, something went wrong',
           ),
         );
       }
@@ -44,7 +44,7 @@ class DietGeneralPlanRepoImpl implements DietGeneralPlanRepo {
       if (e is DioException) {
         return left(ServerFailure(errorMessage: e.message ?? 'Unknown error'));
       } else {
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }
@@ -61,7 +61,7 @@ class DietGeneralPlanRepoImpl implements DietGeneralPlanRepo {
       if (e is DioException) {
         return left(ServerFailure(errorMessage: e.message ?? 'Unknown error'));
       } else {
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }

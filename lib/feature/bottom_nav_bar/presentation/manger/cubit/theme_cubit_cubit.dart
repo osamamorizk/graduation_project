@@ -19,7 +19,7 @@ class ThemeCubit extends Cubit<ThemeMode> {
         emit(ThemeMode.system);
       }
     } else {
-      emit(ThemeMode.system);
+      emit(ThemeMode.light);
     }
   }
 

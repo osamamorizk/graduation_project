@@ -20,7 +20,7 @@ class ProfileRepoImpl implements ProfileRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }

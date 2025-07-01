@@ -23,9 +23,7 @@ class WaterRepoImpl implements WaterRepo {
       return right(null);
     } catch (e) {
       return Left(
-        Failure(
-          errorMessage: e.toString(),
-        ),
+        Failure(errorMessage: 'Oops, something went wrong'),
       );
     }
   }
@@ -38,7 +36,7 @@ class WaterRepoImpl implements WaterRepo {
       final records = waterRecordBox.values.toList().reversed.toList();
       return Right(records);
     } catch (e) {
-      return Left(Failure(errorMessage: e.toString()));
+      return Left(Failure(errorMessage: 'Oops, something went wrong'));
     }
   }
 }

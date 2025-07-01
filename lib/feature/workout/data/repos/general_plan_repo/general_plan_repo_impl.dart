@@ -27,7 +27,7 @@ class GeneralWorkoutPlanRepoImpl implements GeneralPlanRepo {
       if (e is DioException) {
         return left(ServerFailure(errorMessage: e.message ?? 'Unknown error'));
       } else {
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }
@@ -43,7 +43,7 @@ class GeneralWorkoutPlanRepoImpl implements GeneralPlanRepo {
       if (e is DioException) {
         return left(ServerFailure(errorMessage: e.message ?? 'Unknown error'));
       } else {
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }
@@ -60,7 +60,7 @@ class GeneralWorkoutPlanRepoImpl implements GeneralPlanRepo {
       if (e is DioException) {
         return left(ServerFailure(errorMessage: e.message ?? 'Unknown error'));
       } else {
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }

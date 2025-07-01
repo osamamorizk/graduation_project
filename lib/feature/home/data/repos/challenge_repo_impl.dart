@@ -19,7 +19,7 @@ class ChallengeRepoImpl implements ChallengeRepo {
       if (e is DioException) {
         return Left(ServerFailure.fromDioException(e));
       } else {
-        return Left(Failure(errorMessage: e.toString()));
+        return Left(Failure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }
@@ -33,7 +33,7 @@ class ChallengeRepoImpl implements ChallengeRepo {
       if (e is DioException) {
         return Left(ServerFailure.fromDioException(e));
       } else {
-        return Left(Failure(errorMessage: e.toString()));
+        return Left(Failure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }

@@ -32,7 +32,7 @@ class DietRepoImpl implements DietRepo {
         return left(ServerFailure.fromDioException(e));
       } else {
         log(e.toString());
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }
@@ -54,7 +54,7 @@ class DietRepoImpl implements DietRepo {
         return left(ServerFailure.fromDioException(e));
       } else {
         log(e.toString());
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }
@@ -70,7 +70,7 @@ class DietRepoImpl implements DietRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }

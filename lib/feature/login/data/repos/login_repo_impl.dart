@@ -28,7 +28,7 @@ class LoginRepoImpl implements LoginRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }

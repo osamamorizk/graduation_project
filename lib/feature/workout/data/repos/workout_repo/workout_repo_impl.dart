@@ -28,7 +28,7 @@ class WorkoutRepoImpl implements WorkoutRepo {
         return left(ServerFailure.fromDioException(e));
       } else {
         log(e.toString());
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }
@@ -49,7 +49,7 @@ class WorkoutRepoImpl implements WorkoutRepo {
         return left(ServerFailure.fromDioException(e));
       } else {
         log(e.toString());
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }
@@ -64,7 +64,7 @@ class WorkoutRepoImpl implements WorkoutRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }
@@ -92,7 +92,7 @@ class WorkoutRepoImpl implements WorkoutRepo {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
-        return left(ServerFailure(errorMessage: e.toString()));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }
     }
   }

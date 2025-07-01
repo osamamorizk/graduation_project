@@ -38,7 +38,7 @@ class ServerFailure extends Failure {
     }
   }
   static String getErrorMessage(dynamic response) {
-    if (response is Map && response['message'] is String) {
+    if (response is Map) {
       return response['message'];
     } else {
       return 'Something went wrong.';

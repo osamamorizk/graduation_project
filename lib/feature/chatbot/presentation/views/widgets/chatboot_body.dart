@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_typing_indicator/flutter_typing_indicator.dart';
+import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/const.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/widgets/custom_text_form_field.dart';
@@ -84,27 +86,48 @@ class _ChatbotBodyState extends State<ChatbotBody> {
                   );
                 }
               },
-              child: ListView.builder(
-                controller: _scrollController,
-                itemCount: messages.length,
-                itemBuilder: (context, index) {
-                  final msg = messages[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: messages.isEmpty
-                        ? const Center(
-                            child: Text(
-                                'Welcome! I’m NUTRIBOT — your guide to a healthier, stronger you.'))
-                        : msg.content == typingIndicatorText
-                            ? const TypingIndicator(
-                                dotColor: ColorsManger.neonPurple,
-                                dotSize: 9.0,
-                                padding: 12.0,
-                              )
-                            : MessageWidget(messageModel: msg),
-                  );
-                },
-              ),
+              child: messages.isEmpty
+                  ? Center(
+                      child: Column(
+                      spacing: 10,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 65,
+                          backgroundColor: isDarkMode
+                              ? ColorsManger.neonPurple
+                              : ColorsManger.darkBlue,
+                          child: SvgPicture.asset(
+                            Assets.svgsChatbotLogo,
+                            width: 90,
+                            height: 100,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        Text(
+                          'Welcome! I’m NUTRIBOT\nyour guide to a healthier, stronger you.',
+                          style: Theme.of(context).textTheme.headlineLarge,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ))
+                  : ListView.builder(
+                      controller: _scrollController,
+                      itemCount: messages.length,
+                      itemBuilder: (context, index) {
+                        final msg = messages[index];
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: msg.content == typingIndicatorText
+                              ? const TypingIndicator(
+                                  dotColor: ColorsManger.neonPurple,
+                                  dotSize: 9.0,
+                                  padding: 12.0,
+                                )
+                              : MessageWidget(messageModel: msg),
+                        );
+                      },
+                    ),
             ),
           ),
           Divider(
@@ -166,19 +189,23 @@ class _ChatbotBodyState extends State<ChatbotBody> {
   }
 
   void scrollToLastMessage() {
-    log('scroll');
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
         _scrollController.jumpTo(
           _scrollController.position.maxScrollExtent,
         );
-      },
-    );
+      } else {
+        log('⚠️ ScrollController has no attached clients yet.');
+      }
+    });
   }
 }
 
 List<MessageModel> getMessages() {
   var box = Hive.box<MessageModel>(kChatMessages);
   List<MessageModel> messages = box.values.toList();
+  if (messages.isEmpty) {
+    return [];
+  }
   return messages;
 }

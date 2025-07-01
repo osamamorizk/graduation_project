@@ -9,6 +9,7 @@ class HomeBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return SizedBox(
       height: 186,
       width: double.infinity,
@@ -21,7 +22,7 @@ class HomeBanner extends StatelessWidget {
             height: 180.h,
             width: MediaQuery.sizeOf(context).width.w,
             decoration: BoxDecoration(
-              color: ColorsManger.darkBlue,
+              color: isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue,
               borderRadius: BorderRadius.circular(16),
             ),
             child: const BannerTextButton(),
