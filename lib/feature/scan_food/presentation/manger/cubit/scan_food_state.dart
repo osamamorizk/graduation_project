@@ -18,3 +18,15 @@ final class ScanFoodFailure extends ScanFoodState {
 
   ScanFoodFailure({required this.errorMessage});
 }
+
+class ScanImagePicked extends ScanFoodState {
+  final String imagePath;
+  ScanImagePicked(this.imagePath);
+}
+
+class ScanCancelled extends ScanFoodState {}
+
+class ScanError extends ScanFoodState {
+  final String message;
+  ScanError(this.message);
+}

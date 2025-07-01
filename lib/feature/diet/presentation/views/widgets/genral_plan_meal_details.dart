@@ -106,13 +106,12 @@ class GpMealDetailsBody extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
-        child: GestureDetector(
+        child: PlayingVideoWidget(
           onTap: () {
             showExerciseVideoDialog(context,
-                videoUrl: gpMealDetailsModel.videoUrl ??
-                    'https://www.youtube.com/watch?v=D93k2PDJd08&ab_channel=WILDERNESSCOOKING');
+                videoUrl:
+                    'https://www.youtube.com/watch?v=eA-jzXKw2Aw&ab_channel=5-MinuteCra');
           },
-          child: const PlayingVideoWidget(),
         ),
       ),
     );

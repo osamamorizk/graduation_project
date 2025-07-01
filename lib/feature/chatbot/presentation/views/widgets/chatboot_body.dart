@@ -94,7 +94,7 @@ class _ChatbotBodyState extends State<ChatbotBody> {
                     child: messages.isEmpty
                         ? const Center(
                             child: Text(
-                                'Welcome! I’m NUTRIBot — your guide to a healthier, stronger you.'))
+                                'Welcome! I’m NUTRIBOT — your guide to a healthier, stronger you.'))
                         : msg.content == typingIndicatorText
                             ? const TypingIndicator(
                                 dotColor: ColorsManger.neonPurple,
@@ -108,35 +108,38 @@ class _ChatbotBodyState extends State<ChatbotBody> {
             ),
           ),
           Divider(
-            thickness: .05,
+            thickness: .02,
             color: isDarkMode ? ColorsManger.neonPurple : ColorsManger.darkBlue,
           ),
         ],
       ),
       bottomNavigationBar: Row(
+        spacing: 8,
         children: [
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 8),
-              child: CustomTextFormField(
-                controller: _messageController,
-                validator: null,
-                hintText: 'Ask me anything...',
-              ),
+            child: CustomTextFormField(
+              controller: _messageController,
+              validator: null,
+              hintText: 'Ask me anything...',
             ),
           ),
-          IconButton(
-            onPressed: () {
-              sendMessage(context);
+          CircleAvatar(
+            backgroundColor:
+                isDarkMode ? ColorsManger.neonPurple : ColorsManger.darkBlue,
+            radius: 22,
+            child: IconButton(
+              onPressed: () {
+                sendMessage(context);
 
-              _messageController.clear();
-            },
-            tooltip: 'Send message',
-            icon: Icon(
-              size: 30,
-              Icons.send,
-              color:
-                  isDarkMode ? ColorsManger.neonPurple : ColorsManger.darkBlue,
+                _messageController.clear();
+              },
+              tooltip: 'Send message',
+              icon: const Icon(
+                size: 27, Icons.send_rounded, color: Colors.white,
+                //  isDarkMode
+                //     ? ColorsManger.neonPurple
+                //     : ColorsManger.darkBlue,
+              ),
             ),
           ),
         ],

@@ -9,6 +9,10 @@ class MessageWidget extends StatelessWidget {
   final MessageModel messageModel;
   @override
   Widget build(BuildContext context) {
+    final now = DateTime.now();
+    final messageDate = messageModel.timestamp;
+    final isToday =
+        now.month == messageDate.month && now.day == messageDate.day;
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final messageColor =
         isDarkMode ? ColorsManger.neonPurple : ColorsManger.darkBlue;
@@ -43,7 +47,9 @@ class MessageWidget extends StatelessWidget {
               right: messageModel.isUserMessage ? 4 : 0,
               left: messageModel.isUserMessage ? 0 : 4),
           child: Text(
-            DateFormat('hh:mm a').format(DateTime.now()),
+            isToday
+                ? DateFormat('hh:mm a').format(messageDate)
+                : DateFormat('dd/MM hh:mm a').format(messageDate),
             style: Theme.of(context)
                 .textTheme
                 .bodySmall

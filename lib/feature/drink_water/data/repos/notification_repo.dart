@@ -31,7 +31,7 @@ class NotificationRepository {
     final androidImplementation =
         notificationsPlugin.resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>();
-    await androidImplementation?.requestExactAlarmsPermission();
+    // await androidImplementation?.requestExactAlarmsPermission();
     await androidImplementation?.requestNotificationsPermission();
 
     // iOS-specific permissions
@@ -41,12 +41,12 @@ class NotificationRepository {
     await iosImplementation?.requestPermissions(
         alert: true, badge: true, sound: true);
 
-    // Ignore battery optimizations (Android)
-    if (await Permission.ignoreBatteryOptimizations.isDenied ||
-        await Permission.ignoreBatteryOptimizations.isRestricted ||
-        await Permission.ignoreBatteryOptimizations.isLimited) {
-      await Permission.ignoreBatteryOptimizations.request();
-    }
+    // // Ignore battery optimizations (Android)
+    // if (await Permission.ignoreBatteryOptimizations.isDenied ||
+    //     await Permission.ignoreBatteryOptimizations.isRestricted ||
+    //     await Permission.ignoreBatteryOptimizations.isLimited) {
+    //   await Permission.ignoreBatteryOptimizations.request();
+    // }
   }
 
   /// Call this anywhere to schedule the next reminder

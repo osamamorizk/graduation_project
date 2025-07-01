@@ -128,8 +128,9 @@ class GPWorkoutExerciseDetailsBody extends StatelessWidget {
           ],
         ),
         bottomNavigationBar: BottomAppBar(
+          height: 90,
           color: Colors.transparent,
-          child: GestureDetector(
+          child: PlayingVideoWidget(
             onTap: () {
               showExerciseVideoDialog(
                 context,
@@ -137,7 +138,6 @@ class GPWorkoutExerciseDetailsBody extends StatelessWidget {
                     'https://www.youtube.com/watch?v=3VcKaXpzqRo',
               );
             },
-            child: const PlayingVideoWidget(),
           ),
         ),
       ),
