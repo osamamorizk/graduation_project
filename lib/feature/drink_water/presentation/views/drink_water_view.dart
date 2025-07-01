@@ -34,12 +34,16 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
     if (lastOpenDate == null || lastOpenDate.day != now.day) {
       currentIntake = 0;
       drinkWaterPramters.put('currentIntake', currentIntake);
-      Hive.box<WaterRecordModel>(kWaterRimenderBox).clear();
+      clearRecords();
       drinkWaterPramters.put(kLastOpenDate, now);
     } else {
       currentIntake = drinkWaterPramters.get('currentIntake');
     }
     super.initState();
+  }
+
+  void clearRecords() async {
+    await Hive.box<WaterRecordModel>(kWaterRimenderBox).clear();
   }
 
   @override
@@ -48,14 +52,6 @@ class _WaterTrackerScreenState extends State<WaterTrackerScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              context.read<NotificationCubit>().remindToDrink(now, context);
-            },
-            icon: const Icon(Icons.add),
-          ),
-        ],
         scrolledUnderElevation: 0,
       ),
       body: Padding(

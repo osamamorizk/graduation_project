@@ -29,7 +29,7 @@ class PercentIndicatorBody extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          verticalSpace(60),
+          verticalSpace(50),
           Text(
             "${currentIntake.toInt()} /${dailyTarget.toInt()} ml",
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -42,23 +42,20 @@ class PercentIndicatorBody extends StatelessWidget {
                   color: Colors.black,
                 ),
           ),
-          verticalSpace(15),
+          verticalSpace(10),
+          Text(
+            "400 ml",
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Colors.black,
+                ),
+          ),
           GestureDetector(
             onTap: onTap,
-            child: Column(
-              children: [
-                Text(
-                  "400 ml",
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.black,
-                      ),
-                ),
-                verticalSpace(8),
-                Image.asset(
-                  Assets.imagesWaterBottel,
-                ),
-                verticalSpace(8),
-              ],
+            child: Image.asset(
+              scale: 1.2,
+              width: 100,
+              height: 70,
+              Assets.imagesWaterBottel,
             ),
           )
         ],

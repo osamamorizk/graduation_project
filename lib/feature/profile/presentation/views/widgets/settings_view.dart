@@ -49,13 +49,6 @@ class SettingsView extends StatelessWidget {
               },
             ),
             verticalSpace(16),
-            IconButton(
-                iconSize: 35,
-                onPressed: () {
-                  context.read<NotificationCubit>().tryShowNotification(
-                      'Daily Reminder', 'Time to drink water!');
-                },
-                icon: const Icon(Icons.notifications))
           ],
         ),
       ),
