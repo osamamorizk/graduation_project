@@ -8,6 +8,8 @@ import 'package:graduation_project/core/routes/app_router.dart';
 import 'package:graduation_project/core/routes/routes.dart';
 import 'package:graduation_project/core/themes/app_themes.dart';
 import 'package:graduation_project/feature/bottom_nav_bar/presentation/manger/cubit/theme_cubit_cubit.dart';
+import 'package:graduation_project/feature/chatbot/data/repos/chat_bot_repo.dart';
+import 'package:graduation_project/feature/chatbot/presentation/manger/chatboot_cubit/chatboot_cubit.dart';
 import 'package:graduation_project/feature/diet/data/repos/diet_gp_repo/diet_general_plan_repo_impl.dart';
 import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_general_cubit.dart';
 import 'package:graduation_project/feature/drink_water/data/repos/notification_repo.dart';
@@ -55,6 +57,10 @@ class NutrixApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => ThemeCubit()..loadTheme(),
+          ),
+          BlocProvider(
+            create: (context) =>
+                ChatbootCubit(getIt.get<ChatBotRepo>())..getMessages(),
           ),
           BlocProvider(
             create: (context) =>

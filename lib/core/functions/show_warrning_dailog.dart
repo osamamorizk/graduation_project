@@ -5,22 +5,26 @@ import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 
 Future<dynamic> warningDialog(
-    BuildContext context, void Function()? onPressed, String? message,
-    {String? type}) {
+  BuildContext context,
+  void Function()? onPressed,
+  String? message, {
+  String? type,
+  String? details,
+}) {
   final isDark = Theme.of(context).brightness == Brightness.dark;
   return showDialog(
     builder: (context) => AlertDialog(
       actionsAlignment: MainAxisAlignment.center,
       title: Text(message ?? ' create new $type plan ?',
           textAlign: TextAlign.center, style: TextStyles.font22Bold),
-      content: Text('You will lost the current plan',
+      content: Text(details ?? 'You will lost the current plan',
           textAlign: TextAlign.center, style: TextStyles.font16Regular),
       actions: <Widget>[
         ElevatedButton(
           style: const ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(Colors.white),
               side: WidgetStatePropertyAll(
-                  BorderSide(color: ColorsManger.darkBlue, width: .3))),
+                  BorderSide(color: ColorsManger.darkBlue, width: .1))),
           onPressed: () {
             context.pop();
           },

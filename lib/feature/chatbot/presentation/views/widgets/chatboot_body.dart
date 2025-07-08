@@ -1,23 +1,20 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_typing_indicator/flutter_typing_indicator.dart';
-import 'package:graduation_project/core/helpers/app_assets.dart';
-import 'package:graduation_project/core/helpers/const.dart';
 import 'package:graduation_project/core/themes/colors_manger.dart';
 import 'package:graduation_project/core/widgets/custom_text_form_field.dart';
 import 'package:graduation_project/feature/chatbot/data/models/message_model.dart';
 import 'package:graduation_project/feature/chatbot/presentation/manger/chatboot_cubit/chatboot_cubit.dart';
+import 'package:graduation_project/feature/chatbot/presentation/views/widgets/empty_chat_body.dart';
 import 'package:graduation_project/feature/chatbot/presentation/views/widgets/messge_widget.dart';
-import 'package:hive/hive.dart';
 
 class ChatbotBody extends StatefulWidget {
   const ChatbotBody({
     super.key,
+    required this.messages1,
   });
-
+  final List<MessageModel> messages1;
   @override
   State<ChatbotBody> createState() => _ChatbotBodyState();
 }
@@ -29,7 +26,7 @@ class _ChatbotBodyState extends State<ChatbotBody> {
   @override
   void initState() {
     _messageController = TextEditingController();
-    messages = getMessages();
+    messages = widget.messages1;
     scrollToLastMessage();
     super.initState();
   }
@@ -87,30 +84,17 @@ class _ChatbotBodyState extends State<ChatbotBody> {
                 }
               },
               child: messages.isEmpty
-                  ? Center(
-                      child: Column(
-                      spacing: 10,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          radius: 65,
-                          backgroundColor: isDarkMode
-                              ? ColorsManger.neonPurple
-                              : ColorsManger.darkBlue,
-                          child: SvgPicture.asset(
-                            Assets.svgsChatbotLogo,
-                            width: 90,
-                            height: 100,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        Text(
-                          'Welcome! I’m NUTRIBOT\nyour guide to a healthier, stronger you.',
-                          style: Theme.of(context).textTheme.headlineLarge,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ))
+                  ? EmptyChatBody(
+                      isDarkMode: isDarkMode,
+                      onNutritionTap: () {
+                        addRole(context,
+                            'You are a licensed nutritionist. Only respond with advice related to nutrition, healthy eating, and diet planning. Do not answer questions outside this role. Start by introducing yourself as a nutritionist.');
+                      },
+                      onFitnessTap: () {
+                        addRole(context,
+                            'You are a certified fitness coach. Only provide guidance related to fitness, workouts, and physical training. Do not respond to unrelated topics. Start by introducing yourself as a fitness coach.');
+                      },
+                    )
                   : ListView.builder(
                       controller: _scrollController,
                       itemCount: messages.length,
@@ -118,13 +102,15 @@ class _ChatbotBodyState extends State<ChatbotBody> {
                         final msg = messages[index];
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8),
-                          child: msg.content == typingIndicatorText
-                              ? const TypingIndicator(
-                                  dotColor: ColorsManger.neonPurple,
-                                  dotSize: 9.0,
-                                  padding: 12.0,
-                                )
-                              : MessageWidget(messageModel: msg),
+                          child: index == 0
+                              ? null
+                              : (msg.content == typingIndicatorText
+                                  ? const TypingIndicator(
+                                      dotColor: ColorsManger.neonPurple,
+                                      dotSize: 9.0,
+                                      padding: 12.0,
+                                    )
+                                  : MessageWidget(messageModel: msg)),
                         );
                       },
                     ),
@@ -199,13 +185,29 @@ class _ChatbotBodyState extends State<ChatbotBody> {
       }
     });
   }
+
+  void addRole(BuildContext context, String message) {
+    return setState(() {
+      context.read<ChatbootCubit>().getAiResponse(
+            message,
+          );
+      messages.add(
+        MessageModel(
+          content: _messageController.text,
+          timestamp: DateTime.now(),
+          isUserMessage: true,
+        ),
+      );
+      scrollToLastMessage();
+    });
+  }
 }
 
-List<MessageModel> getMessages() {
-  var box = Hive.box<MessageModel>(kChatMessages);
-  List<MessageModel> messages = box.values.toList();
-  if (messages.isEmpty) {
-    return [];
-  }
-  return messages;
-}
+// List<MessageModel> getMessages() {
+//   var box = Hive.box<MessageModel>(kChatMessages);
+//   List<MessageModel> messages = box.values.toList();
+//   if (messages.isEmpty) {
+//     return [];
+//   }
+//   return messages;
+// }

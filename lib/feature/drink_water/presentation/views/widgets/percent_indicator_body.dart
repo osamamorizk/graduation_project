@@ -49,12 +49,13 @@ class PercentIndicatorBody extends StatelessWidget {
                   color: Colors.black,
                 ),
           ),
+          verticalSpace(8),
           GestureDetector(
             onTap: onTap,
             child: Image.asset(
-              scale: 1.2,
-              width: 100,
-              height: 70,
+              scale: 1,
+              width: 70,
+              height: 65,
               Assets.imagesWaterBottel,
             ),
           )
