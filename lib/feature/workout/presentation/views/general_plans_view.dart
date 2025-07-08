@@ -65,7 +65,7 @@ class _WorkoutGeneralPlansViewState extends State<WorkoutGeneralPlansView>
             if (state is WorkoutGeneralPlanFailure) {
               return ListView(
                 children: [
-                  ErrorView(errorMessage: state.error),
+                  Center(child: ErrorView(errorMessage: state.error)),
                 ],
               );
             } else {

@@ -10,10 +10,10 @@ Future<dynamic> logoutDialog(BuildContext context,
   return showDialog(
     builder: (context) => AlertDialog(
       elevation: 0,
-      icon: const Icon(
+      icon: Icon(
         size: 60,
         Icons.warning_rounded,
-        color: ColorsManger.darkBlue,
+        color: isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue,
       ),
       actionsAlignment: MainAxisAlignment.center,
       content: Text('Do you want to logout ?',
@@ -36,8 +36,9 @@ Future<dynamic> logoutDialog(BuildContext context,
         ),
         horizontalSpace(10),
         ElevatedButton(
-          style: const ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(ColorsManger.darkBlue)),
+          style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(
+                  isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue)),
           onPressed: onPressed,
           child: Text(
             'Log out',

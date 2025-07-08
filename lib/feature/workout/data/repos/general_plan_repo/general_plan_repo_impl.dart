@@ -25,7 +25,7 @@ class GeneralWorkoutPlanRepoImpl implements GeneralPlanRepo {
       return right(generalWorkoutPlansList.reversed.toList());
     } catch (e) {
       if (e is DioException) {
-        return left(ServerFailure(errorMessage: e.message ?? 'Unknown error'));
+        return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       } else {
         return left(ServerFailure(errorMessage: 'Oops, something went wrong'));
       }

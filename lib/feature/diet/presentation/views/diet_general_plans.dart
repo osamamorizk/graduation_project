@@ -50,7 +50,11 @@ class DietGeneralPlans extends StatelessWidget {
                 },
               );
             } else if (state is GeneralDietCubitFailure) {
-              return ErrorView(errorMessage: state.errorMessage);
+              return ListView(
+                children: [
+                  Center(child: ErrorView(errorMessage: state.errorMessage)),
+                ],
+              );
             } else {
               return const ShimmerLoadingWidget(
                 height: 110,

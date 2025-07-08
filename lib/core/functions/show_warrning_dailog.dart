@@ -7,6 +7,7 @@ import 'package:graduation_project/core/themes/text_styles.dart';
 Future<dynamic> warningDialog(
     BuildContext context, void Function()? onPressed, String? message,
     {String? type}) {
+  final isDark = Theme.of(context).brightness == Brightness.dark;
   return showDialog(
     builder: (context) => AlertDialog(
       actionsAlignment: MainAxisAlignment.center,
@@ -30,8 +31,9 @@ Future<dynamic> warningDialog(
         ),
         horizontalSpace(10),
         ElevatedButton(
-          style: const ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(ColorsManger.darkBlue)),
+          style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(
+                  isDark ? ColorsManger.neonPurple : ColorsManger.darkBlue)),
           onPressed: onPressed,
           child: Text(
             'New Plan',

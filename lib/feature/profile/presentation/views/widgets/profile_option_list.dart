@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/functions/custom_snack_bar.dart';
 import 'package:graduation_project/core/functions/logout_dialog.dart';
-import 'package:graduation_project/core/functions/show_comming_soon_dialog.dart';
 import 'package:graduation_project/core/helpers/app_assets.dart';
 import 'package:graduation_project/core/helpers/cache_helper.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
@@ -39,14 +38,15 @@ class ProfileOptionList extends StatelessWidget {
           image: Assets.svgsProfileShare,
           text: 'Share',
           onTap: () {
-            Share.share('check out my website https://www.google.com/');
+            Share.share(
+                'Application download link https://drive.google.com/drive/u/0/folders/1dxfnWm6lmfDiI4Lb2IXecR4V6RUYD_jU');
           },
         ),
         verticalSpace(32),
         ProfileOptionItem(
           image: Assets.svgsProfileContactUs,
           text: 'Contact us',
-          onTap: () => showCommingSoonDialog(context),
+          onTap: () => context.pushNamed(Routes.contactUsView),
         ),
         verticalSpace(32),
         ProfileOptionItem(

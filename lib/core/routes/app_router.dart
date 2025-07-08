@@ -22,6 +22,7 @@ import 'package:graduation_project/feature/login/presentation/views/verification
 import 'package:graduation_project/feature/onboarding/presentation/views/onboarding_view.dart';
 import 'package:graduation_project/feature/profile/data/repos/profile_repo_impl.dart';
 import 'package:graduation_project/feature/profile/presentation/manger/cubit/profile_cubit.dart';
+import 'package:graduation_project/feature/profile/presentation/views/contac_us_view.dart';
 import 'package:graduation_project/feature/profile/presentation/views/my_data_view.dart';
 import 'package:graduation_project/feature/profile/presentation/views/widgets/settings_view.dart';
 import 'package:graduation_project/feature/scan_food/data/models/new_food_model/item.dart';
@@ -139,6 +140,11 @@ class AppRouter {
         final args = settings.arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
           builder: (_) => LevelDetailsView(id: args?['id'] as int),
+        );
+
+      case Routes.contactUsView:
+        return MaterialPageRoute(
+          builder: (_) => const ContacUsView(),
         );
       // case Routes.exercisesByDay:
       //   final args = settings.arguments;

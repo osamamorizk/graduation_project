@@ -99,6 +99,10 @@ class Assets {
   /// assets/images/comming_soon.png
   static const String imagesCommingSoon = "assets/images/comming_soon.png";
 
+  /// Assets for imagesContactApp
+  /// assets/images/contact_app.png
+  static const String imagesContactApp = "assets/images/contact_app.png";
+
   /// Assets for imagesDepressedMan
   /// assets/images/depressed_man.png
   static const String imagesDepressedMan = "assets/images/depressed_man.png";
@@ -142,6 +146,10 @@ class Assets {
   /// assets/images/general_plans/genral_workout.png
   static const String imagesGeneralPlansGenralWorkout =
       "assets/images/general_plans/genral_workout.png";
+
+  /// Assets for imagesGirl getting B1 level and joyfully throwing hand up
+  /// assets/images/Girl getting B1 level and joyfully throwing hand up.png
+  // static const String imagesGirl getting B1 level and joyfully throwing hand up = "assets/images/Girl getting B1 level and joyfully throwing hand up.png";
 
   /// Assets for imagesHydration
   /// assets/images/hydration.png

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/core/functions/show_comming_soon_dialog.dart';
 import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/themes/text_styles.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -29,7 +30,7 @@ class BannerTextButton extends StatelessWidget {
                 backgroundColor: WidgetStatePropertyAll(Colors.white),
               ),
               onPressed: () async {
-                urlLauncher();
+                showCommingSoonDialog(context);
               },
               child: Text(
                 'Explore more',
