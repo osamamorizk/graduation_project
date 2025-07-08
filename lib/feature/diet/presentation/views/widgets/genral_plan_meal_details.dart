@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/functions/show_exercise_dialog.dart';
-
-import 'package:graduation_project/core/helpers/spacing.dart';
 import 'package:graduation_project/core/widgets/custom_circle_progress_indicator.dart';
 import 'package:graduation_project/core/widgets/error_view.dart';
 import 'package:graduation_project/core/widgets/image_and_title_widget.dart';
@@ -55,7 +53,7 @@ class GpMealDetailsBody extends StatelessWidget {
             stretch: true,
             shadowColor: Colors.transparent,
             scrolledUnderElevation: 0,
-            expandedHeight: 200,
+            expandedHeight: 170,
             toolbarHeight: 0,
             flexibleSpace: FlexibleSpaceBar(
                 background: ImageAndTitleWidget(
@@ -65,18 +63,13 @@ class GpMealDetailsBody extends StatelessWidget {
               name: gpMealDetailsModel.name ?? 'Meal name',
             )),
           ),
-          SliverToBoxAdapter(child: verticalSpace(50)),
           SliverToBoxAdapter(
-            child: Stack(
-              clipBehavior: Clip.none,
+            child: Column(
               children: [
-                Positioned(
-                  top: -50,
-                  right: 20,
-                  child: CalorisAndTimeWidget(
-                    calories: gpMealDetailsModel.calories ?? 10,
-                    duration: gpMealDetailsModel.time ?? 10,
-                  ),
+                CalorisAndTimeWidget(
+                  title: 'min',
+                  calories: gpMealDetailsModel.calories ?? 10,
+                  duration: gpMealDetailsModel.time ?? 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

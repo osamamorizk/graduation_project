@@ -63,7 +63,7 @@ class LevelDetailsView extends StatelessWidget {
                     child: ErrorView(errorMessage: state.errorMessage));
               } else {
                 return const ShimmerLoadingWidget(
-                  hight: 90,
+                  height: 90,
                   itemCount: 7,
                 );
               }

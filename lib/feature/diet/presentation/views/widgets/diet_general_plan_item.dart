@@ -38,7 +38,7 @@ class GpMealItem extends StatelessWidget {
               fit: BoxFit.cover,
               placeholder: (context, url) => const ShimmerLoadingWidget(
                 itemCount: 1,
-                hight: 140,
+                height: 140,
               ),
 
               // Container(

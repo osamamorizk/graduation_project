@@ -46,7 +46,7 @@ class CameraBodyDetails extends StatelessWidget {
                       child: IconButton(
                         onPressed: () => pickImageFromGallery(context),
                         icon: const Icon(
-                          size: 26,
+                          size: 28,
                           FontAwesomeIcons.images,
                           color: Colors.white,
                         ),

@@ -14,7 +14,6 @@ void showExerciseVideoDialog(
       return Dialog(
         insetAnimationCurve: Curves.elasticOut,
         insetAnimationDuration: const Duration(milliseconds: 500),
-        backgroundColor: Colors.white,
         elevation: 2,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: SizedBox(

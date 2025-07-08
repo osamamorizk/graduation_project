@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graduation_project/core/helpers/extensions.dart';
 import 'package:graduation_project/core/routes/routes.dart';
-import 'package:graduation_project/core/widgets/custom_circle_progress_indicator.dart';
 import 'package:graduation_project/core/widgets/error_view.dart';
+import 'package:graduation_project/core/widgets/shimmer_loading.dart';
 import 'package:graduation_project/feature/diet/presentation/manger/cubit/diet_general_cubit.dart';
 import 'package:graduation_project/feature/diet/presentation/views/widgets/genneral_plan_diet_collection.dart';
 
@@ -52,7 +52,10 @@ class DietGeneralPlans extends StatelessWidget {
             } else if (state is GeneralDietCubitFailure) {
               return ErrorView(errorMessage: state.errorMessage);
             } else {
-              return const CustomCircleProgressIndicator();
+              return const ShimmerLoadingWidget(
+                height: 110,
+                itemCount: 5,
+              );
             }
           },
         ),

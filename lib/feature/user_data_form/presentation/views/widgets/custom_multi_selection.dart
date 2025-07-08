@@ -18,9 +18,8 @@ class CustomMultiSelectionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final Color selectedColor =
-        isDark ? ColorsManger.neonPurple : Colors.grey.shade300;
-    final Color unselectedColor =
-        isDark ? ColorsManger.darkCard : Colors.grey.shade50;
+        isDark ? ColorsManger.neonPurple : ColorsManger.darkGrey;
+    final Color unselectedColor = isDark ? ColorsManger.darkCard : Colors.white;
     return AnimatedContainer(
       curve: Curves.bounceOut,
       decoration: BoxDecoration(
@@ -28,7 +27,7 @@ class CustomMultiSelectionItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           width: .2,
-          color: isSelected ? ColorsManger.darkBlue : Colors.grey,
+          color: isSelected ? ColorsManger.darkBlue : ColorsManger.grey,
         ),
       ),
       duration: const Duration(milliseconds: 500),

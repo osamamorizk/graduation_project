@@ -54,7 +54,7 @@ class ExerciseListView extends StatelessWidget {
                   return const ShimmerLoadingWidget(
                     padding: 16,
                     itemCount: 6,
-                    hight: 90,
+                    height: 90,
                   );
                 }
               },

@@ -6,12 +6,12 @@ import 'package:shimmer/shimmer.dart';
 class ShimmerLoadingWidget extends StatelessWidget {
   const ShimmerLoadingWidget({
     super.key,
-    this.hight,
+    this.height,
     this.itemCount,
     this.padding,
   });
 
-  final double? hight;
+  final double? height;
   final int? itemCount;
   final double? padding;
 
@@ -40,7 +40,7 @@ class ShimmerLoadingWidget extends StatelessWidget {
             ),
           ),
           child: Row(
-            children: [verticalSpace(hight ?? 40)],
+            children: [verticalSpace(height ?? 40)],
           ),
         ),
       ),

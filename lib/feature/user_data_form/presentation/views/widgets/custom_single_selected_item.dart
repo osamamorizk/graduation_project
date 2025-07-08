@@ -22,9 +22,8 @@ class CustomSingleSelectedItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final Color selectedColor =
-        isDark ? ColorsManger.neonPurple : Colors.grey.shade300;
-    final Color unselectedColor =
-        isDark ? ColorsManger.darkCard : Colors.grey.shade50;
+        isDark ? ColorsManger.neonPurple : ColorsManger.darkGrey;
+    final Color unselectedColor = isDark ? ColorsManger.darkCard : Colors.white;
     return AnimatedContainer(
       curve: Curves.bounceInOut,
       height: 57.h,
@@ -33,7 +32,7 @@ class CustomSingleSelectedItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
               width: .2,
-              color: !isSelected ? Colors.grey : ColorsManger.darkBlue)),
+              color: isSelected ? ColorsManger.darkBlue : ColorsManger.grey)),
       duration: const Duration(
         milliseconds: 350,
       ),

@@ -20,7 +20,7 @@ class WorkoutItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: isDark ? ColorsManger.darkCard : Colors.white,
         borderRadius: BorderRadius.circular(12.0),
-        border: Border.all(color: ColorsManger.darkerGrey, width: .2),
+        border: Border.all(color: ColorsManger.darkerGrey, width: .3),
       ),
       child: Column(
         children: [
@@ -52,7 +52,7 @@ class WorkoutItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                flex: 2,
+                flex: 1,
                 child: WorkoutElementDataItem(
                   data1: 'Sets: ${exercise.sets}',
                   data2: 'Reps: ${exercise.reps}',

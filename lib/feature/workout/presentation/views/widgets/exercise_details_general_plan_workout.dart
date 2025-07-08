@@ -73,7 +73,7 @@ class GPWorkoutExerciseDetailsBody extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
-              collapsedHeight: 200,
+              collapsedHeight: 170,
               floating: true,
               pinned: true,
               stretch: true,

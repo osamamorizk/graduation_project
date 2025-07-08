@@ -27,10 +27,10 @@ class TitleAndTimeWidget extends StatelessWidget {
       ),
       expandedCrossAxisAlignment: CrossAxisAlignment.start,
       collapsedShape: RoundedRectangleBorder(
-          side: const BorderSide(color: ColorsManger.darkerGrey, width: .1),
+          side: const BorderSide(color: ColorsManger.darkerGrey, width: .2),
           borderRadius: BorderRadius.circular(14)),
       shape: RoundedRectangleBorder(
-          side: const BorderSide(color: ColorsManger.darkBlue, width: .1),
+          side: const BorderSide(color: ColorsManger.darkBlue, width: .2),
           borderRadius: BorderRadius.circular(14)),
       title: Text(
         title,

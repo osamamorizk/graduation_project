@@ -10,17 +10,20 @@ class CalorisAndTimeWidget extends StatelessWidget {
     this.additional,
     required this.calories,
     required this.duration,
+    this.title,
+    this.height,
   });
   final Widget? widget;
   final Widget? additional;
   final int calories;
   final int duration;
-
+  final String? title;
+  final double? height;
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Container(
-      height: 60,
+      height: height ?? 60,
       width: 320,
       decoration: BoxDecoration(
         color: isDarkMode ? ColorsManger.darkBackground : Colors.white,
@@ -59,7 +62,7 @@ class CalorisAndTimeWidget extends StatelessWidget {
             ),
           ),
           Text(
-            '$duration sets',
+            '$duration ${title ?? 'sets'}',
             style: Theme.of(context).textTheme.bodySmall,
           ),
           widget ?? const SizedBox.shrink(),

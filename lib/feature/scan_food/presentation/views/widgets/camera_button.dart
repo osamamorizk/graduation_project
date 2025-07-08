@@ -8,22 +8,26 @@ class CameraButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return GestureDetector(
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(color: Colors.white, width: 2),
+          border: Border.all(
+              color: isDarkMode ? ColorsManger.darkCard : Colors.white,
+              width: 2),
         ),
-        child: const CircleAvatar(
+        child: CircleAvatar(
           radius: 38,
           backgroundColor: Colors.transparent,
           child: CircleAvatar(
             radius: 35,
-            backgroundColor: Colors.white,
+            backgroundColor: isDarkMode ? ColorsManger.darkCard : Colors.white,
             child: Icon(
               Icons.camera_alt,
-              color: ColorsManger.darkBlue,
+              color:
+                  isDarkMode ? ColorsManger.neonPurple : ColorsManger.darkBlue,
               size: 32,
             ),
           ),

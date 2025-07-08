@@ -15,10 +15,10 @@ class HealthConcernsView extends StatefulWidget {
 }
 
 List<String> healthConcerns = [
+  "None",
   "Diabetes",
   "Heart conditions",
   "Joint problems",
-  "High cholesterol",
   "Other health concerns"
 ];
 
@@ -91,6 +91,7 @@ class _HealthConcernsViewState extends State<HealthConcernsView> {
               enabled: selectedHealthConcerns
                   .contains(healthConcerns[healthConcerns.length - 1]),
             ),
+            verticalSpace(40.h),
           ],
         ),
       ),

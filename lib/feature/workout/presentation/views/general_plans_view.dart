@@ -55,7 +55,7 @@ class _WorkoutGeneralPlansViewState extends State<WorkoutGeneralPlansView>
                     padding: EdgeInsets.only(
                         bottom:
                             index == state.genralPlanList.length - 1 ? 16 : 0),
-                    child: GeneralPlanItem(
+                    child: GenneralPlanWorkoutColllection(
                       generalPLanModel: state.genralPlanList[index],
                     ),
                   ),
@@ -71,7 +71,7 @@ class _WorkoutGeneralPlansViewState extends State<WorkoutGeneralPlansView>
             } else {
               return const ShimmerLoadingWidget(
                 itemCount: 6,
-                hight: 95,
+                height: 95,
               );
             }
           },
