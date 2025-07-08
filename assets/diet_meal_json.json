@@ -1,0 +1,555 @@
+{
+  "plan": {
+    "duration": "1 week",
+    "goal": "Balanced Egyptian nutrition plan",
+    "daily_plans": [
+      {
+        "day": "Saturday",
+        "meals": {
+          "breakfast": {
+            "main": {
+              "name": "Baladi Cheese with Tomatoes and Bread",
+              "portion": "100g cheese with 2 tomatoes and 2 pita",
+              "calories": 380,
+              "macronutrients": {
+                "carbs": 42,
+                "protein": 18,
+                "fat": 14
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Shakshuka with Bread",
+                "portion": "2 eggs in tomato sauce with pita",
+                "calories": 340,
+                "macronutrients": {
+                  "carbs": 25,
+                  "protein": 16,
+                  "fat": 18
+                }
+              }
+            ]
+          },
+          "lunch": {
+            "main": {
+              "name": "Koshari",
+              "portion": "1 large bowl with all toppings",
+              "calories": 520,
+              "macronutrients": {
+                "carbs": 75,
+                "protein": 20,
+                "fat": 15
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Molokhia with Chicken and Rice",
+                "portion": "2 cups molokhia with 100g chicken and rice",
+                "calories": 480,
+                "macronutrients": {
+                  "carbs": 50,
+                  "protein": 28,
+                  "fat": 12
+                }
+              }
+            ]
+          },
+          "dinner": {
+            "main": {
+              "name": "Grilled Kofta with Salad",
+              "portion": "3 kofta pieces with mixed salad",
+              "calories": 320,
+              "macronutrients": {
+                "carbs": 12,
+                "protein": 25,
+                "fat": 18
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Stuffed Vine Leaves with Yogurt",
+                "portion": "8 pieces with 1 cup yogurt",
+                "calories": 290,
+                "macronutrients": {
+                  "carbs": 35,
+                  "protein": 15,
+                  "fat": 8
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "day": "Sunday",
+        "meals": {
+          "breakfast": {
+            "main": {
+              "name": "Egyptian Fatteh with Yogurt",
+              "portion": "1 bowl with bread and yogurt",
+              "calories": 360,
+              "macronutrients": {
+                "carbs": 48,
+                "protein": 16,
+                "fat": 10
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Tahini and Honey with Bread",
+                "portion": "3 tbsp tahini with honey and 2 pita",
+                "calories": 420,
+                "macronutrients": {
+                  "carbs": 40,
+                  "protein": 12,
+                  "fat": 22
+                }
+              }
+            ]
+          },
+          "lunch": {
+            "main": {
+              "name": "Bamia Stew with Lamb and Rice",
+              "portion": "2 cups stew with 100g lamb and rice",
+              "calories": 490,
+              "macronutrients": {
+                "carbs": 45,
+                "protein": 32,
+                "fat": 16
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Ful Medames with Eggs",
+                "portion": "1 large bowl with 2 boiled eggs",
+                "calories": 430,
+                "macronutrients": {
+                  "carbs": 40,
+                  "protein": 22,
+                  "fat": 18
+                }
+              }
+            ]
+          },
+          "dinner": {
+            "main": {
+              "name": "Grilled Tilapia with Tahini Sauce",
+              "portion": "180g fish with tahini and vegetables",
+              "calories": 340,
+              "macronutrients": {
+                "carbs": 10,
+                "protein": 35,
+                "fat": 16
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Eggplant Moussaka",
+                "portion": "1 large serving with meat sauce",
+                "calories": 310,
+              "macronutrients": {
+                "carbs": 20,
+                "protein": 18,
+                "fat": 16
+              }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "day": "Monday",
+        "meals": {
+          "breakfast": {
+            "main": {
+              "name": "Aish Baladi with Molasses and Tahini",
+              "portion": "2 pieces bread with 2 tbsp each",
+              "calories": 400,
+              "macronutrients": {
+                "carbs": 52,
+                "protein": 12,
+                "fat": 16
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Gebna Rumi with Cucumber and Bread",
+                "portion": "80g cheese with cucumber and 2 pita",
+                "calories": 350,
+                "macronutrients": {
+                  "carbs": 38,
+                  "protein": 20,
+                  "fat": 12
+                }
+              }
+            ]
+          },
+          "lunch": {
+            "main": {
+              "name": "Roz Bel Laban with Chicken",
+              "portion": "1 cup rice with milk and 120g chicken",
+              "calories": 460,
+              "macronutrients": {
+                "carbs": 40,
+                "protein": 38,
+                "fat": 10
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Mahshi Waraq Enab with Meat",
+                "portion": "10 stuffed leaves with rice and meat",
+                "calories": 420,
+                "macronutrients": {
+                  "carbs": 55,
+                  "protein": 20,
+                  "fat": 12
+                }
+              }
+            ]
+          },
+          "dinner": {
+            "main": {
+              "name": "Shish Tawook with Grilled Vegetables",
+              "portion": "2 skewers with mixed grilled vegetables",
+              "calories": 330,
+              "macronutrients": {
+                "carbs": 15,
+                "protein": 32,
+                "fat": 14
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Baba Ganoush with Grilled Bread",
+              "portion": "1 cup baba ganoush with 2 grilled pita",
+                "calories": 280,
+                "macronutrients": {
+                  "carbs": 32,
+                  "protein": 8,
+                  "fat": 14
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "day": "Tuesday",
+        "meals": {
+          "breakfast": {
+            "main": {
+              "name": "Menemen with Turkish Bread",
+              "portion": "2 eggs with peppers and tomatoes, 2 bread",
+              "calories": 370,
+              "macronutrients": {
+                "carbs": 35,
+                "protein": 18,
+                "fat": 16
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Labneh with Olive Oil and Bread",
+                "portion": "150g labneh with oil and 2 pita",
+                "calories": 380,
+                "macronutrients": {
+                  "carbs": 40,
+                  "protein": 16,
+                  "fat": 15
+                }
+              }
+            ]
+          },
+          "lunch": {
+            "main": {
+              "name": "Fasolya with Lamb and Rice",
+              "portion": "2 cups white beans with 100g lamb and rice",
+              "calories": 510,
+              "macronutrients": {
+                "carbs": 50,
+                "protein": 30,
+                "fat": 18
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Shorbet Ads with Bread",
+                "portion": "2 bowls red lentil soup with bread",
+                "calories": 440,
+                "macronutrients": {
+                  "carbs": 65,
+                  "protein": 22,
+                  "fat": 9
+                }
+              }
+            ]
+          },
+          "dinner": {
+            "main": {
+              "name": "Samak Mashwi with Rice",
+              "portion": "160g grilled fish with seasoned rice",
+              "calories": 350,
+              "macronutrients": {
+                "carbs": 30,
+                "protein": 32,
+                "fat": 12
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Fattoush Salad with Grilled Halloumi",
+                "portion": "Large salad with 100g grilled halloumi",
+                "calories": 320,
+                "macronutrients": {
+                  "carbs": 25,
+                  "protein": 20,
+                  "fat": 16
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "day": "Wednesday",
+        "meals": {
+          "breakfast": {
+            "main": {
+              "name": "Basbousa with Milk",
+              "portion": "1 medium piece with 1 cup milk",
+              "calories": 390,
+              "macronutrients": {
+                "carbs": 55,
+                "protein": 14,
+                "fat": 12
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Fool with Pickles and Bread",
+                "portion": "1 bowl fava beans with pickles and 2 pita",
+                "calories": 340,
+                "macronutrients": {
+                  "carbs": 48,
+                  "protein": 16,
+                  "fat": 10
+                }
+              }
+            ]
+          },
+          "lunch": {
+            "main": {
+              "name": "Kabab Halla with Bread and Salad",
+              "portion": "3 kebab pieces with bread and salad",
+              "calories": 470,
+              "macronutrients": {
+                "carbs": 35,
+                "protein": 28,
+                "fat": 20
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Roz Bel Khalta with Vegetables",
+                "portion": "1.5 cups mixed rice with vegetables",
+                "calories": 410,
+                "macronutrients": {
+                  "carbs": 70,
+                  "protein": 12,
+                  "fat": 8
+                }
+              }
+            ]
+          },
+          "dinner": {
+            "main": {
+              "name": "Malfouf Mahshi with Yogurt",
+              "portion": "6 stuffed cabbage rolls with yogurt",
+              "calories": 300,
+              "macronutrients": {
+                "carbs": 30,
+                "protein": 18,
+                "fat": 12
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Hummus with Meat and Bread",
+                "portion": "1 cup hummus with 80g meat and pita",
+                "calories": 380,
+                "macronutrients": {
+                  "carbs": 35,
+                  "protein": 22,
+                  "fat": 16
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "day": "Thursday",
+        "meals": {
+          "breakfast": {
+            "main": {
+              "name": "Areesh Cheese with Jam and Bread",
+              "portion": "100g cheese with 2 tbsp jam and 2 pita",
+              "calories": 410,
+              "macronutrients": {
+                "carbs": 50,
+                "protein": 18,
+                "fat": 14
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Kashk with Olive Oil and Bread",
+                "portion": "150g kashk with oil and 2 bread",
+                "calories": 360,
+                "macronutrients": {
+                  "carbs": 42,
+                  "protein": 14,
+                  "fat": 12
+                }
+              }
+            ]
+          },
+          "lunch": {
+            "main": {
+              "name": "Sayadiyeh with Fish",
+              "portion": "1.5 cups spiced rice with 140g fish",
+              "calories": 480,
+              "macronutrients": {
+                "carbs": 52,
+                "protein": 34,
+                "fat": 12
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Loubia with Beef and Bread",
+                "portion": "2 cups green beans with 100g beef and bread",
+                "calories": 450,
+                "macronutrients": {
+                  "carbs": 40,
+                  "protein": 26,
+                  "fat": 18
+                }
+              }
+            ]
+          },
+          "dinner": {
+            "main": {
+              "name": "Kibbeh with Salad",
+              "portion": "4 pieces fried kibbeh with large salad",
+              "calories": 360,
+              "macronutrients": {
+                "carbs": 25,
+                "protein": 20,
+                "fat": 20
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Tabbouleh with Grilled Chicken",
+                "portion": "2 cups tabbouleh with 100g chicken",
+                "calories": 310,
+                "macronutrients": {
+                  "carbs": 22,
+                  "protein": 26,
+                  "fat": 12
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "day": "Friday",
+        "meals": {
+          "breakfast": {
+            "main": {
+              "name": "Feteer with Honey and Cheese",
+              "portion": "2 pieces feteer with honey and cheese",
+              "calories": 450,
+              "macronutrients": {
+                "carbs": 48,
+                "protein": 16,
+                "fat": 20
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Mahalabia with Nuts",
+                "portion": "1 cup mahalabia with mixed nuts",
+                "calories": 380,
+                "macronutrients": {
+                  "carbs": 35,
+                  "protein": 12,
+                  "fat": 18
+                }
+              }
+            ]
+          },
+          "lunch": {
+            "main": {
+              "name": "Mansaf with Lamb and Rice",
+              "portion": "1 cup rice with 120g lamb and jameed sauce",
+              "calories": 540,
+              "macronutrients": {
+                "carbs": 42,
+                "protein": 35,
+                "fat": 22
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Makloubeh with Chicken",
+                "portion": "1.5 cups upside-down rice with 120g chicken",
+                "calories": 490,
+                "macronutrients": {
+                  "carbs": 50,
+                  "protein": 32,
+                  "fat": 16
+                }
+              }
+            ]
+          },
+          "dinner": {
+            "main": {
+              "name": "Grilled Sardines with Bread",
+              "portion": "4 grilled sardines with 2 pita bread",
+              "calories": 320,
+              "macronutrients": {
+                "carbs": 25,
+                "protein": 28,
+                "fat": 14
+              }
+            },
+            "alternatives": [
+              {
+                "name": "Mutabbal with Meat and Bread",
+                "portion": "1 cup mutabbal with 80g meat and bread",
+                "calories": 350,
+                "macronutrients": {
+                  "carbs": 30,
+                  "protein": 20,
+                  "fat": 18
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "notes": [
+      "Drink at least 8 glasses of water daily",
+      "Use fresh, locally available Egyptian ingredients",
+      "Adjust portions based on your activity level",
+      "This is a fallback plan - consider regenerating for personalized content"
+    ]
+  },
+  "createdAt": "2025-07-08T12:30:15.1234567",
+  "updatedAt": "2025-07-08T12:30:15.1234567"
+}

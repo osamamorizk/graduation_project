@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/services.dart';
 
 import 'package:graduation_project/core/helpers/errors.dart';
 import 'package:graduation_project/core/networking/api_service.dart';
@@ -19,10 +21,13 @@ class DietRepoImpl implements DietRepo {
   @override
   Future<Either<Failure, List<DietPlanModel>>> getAllDiet() async {
     try {
-      var result = await apiService.get(endPoints: dietPlanEndPoint);
+      // var result = await apiService.get(endPoints: dietPlanEndPoint);
+      var result = await rootBundle.loadString('assets/diet_meal_json.json');
       daysDietList.clear();
+      final Map<String, dynamic> jsonMap = jsonDecode(result);
+
       final List<Map<String, dynamic>> transformedResponse =
-          convertToDesiredStructure(result);
+          convertToDesiredStructure(jsonMap);
       for (var dietDay in transformedResponse) {
         daysDietList.add(DietPlanModel.fromJson(dietDay));
       }

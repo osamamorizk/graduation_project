@@ -2,6 +2,10 @@
 class Assets {
   Assets._();
 
+  /// Assets for dietMealJson
+  /// assets/diet_meal_json.json
+  static const String dietMealJson = "assets/diet_meal_json.json";
+
   /// Assets for icons0bar
   /// assets/icons/0bar.png
   static const String icons0bar = "assets/icons/0bar.png";
@@ -146,10 +150,6 @@ class Assets {
   /// assets/images/general_plans/genral_workout.png
   static const String imagesGeneralPlansGenralWorkout =
       "assets/images/general_plans/genral_workout.png";
-
-  /// Assets for imagesGirl getting B1 level and joyfully throwing hand up
-  /// assets/images/Girl getting B1 level and joyfully throwing hand up.png
-  // static const String imagesGirl getting B1 level and joyfully throwing hand up = "assets/images/Girl getting B1 level and joyfully throwing hand up.png";
 
   /// Assets for imagesHydration
   /// assets/images/hydration.png
